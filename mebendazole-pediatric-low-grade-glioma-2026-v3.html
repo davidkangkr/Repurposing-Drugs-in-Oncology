@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>메벤다졸 × 소아 저등급 교종 — 시험관에서 본 가능성과 한계 (2026)</title>
+<style>
+  :root{
+    --bg:#faf8f4; --card:#ffffff; --ink:#2b2b2b; --sub:#6b6b6b;
+    --teal:#0f5e5e; --teal-soft:#e3efee; --gold:#b45309; --gold-soft:#fdf0dc;
+    --sage:#5b7f5b; --sage-soft:#e9f0e6; --red:#b91c1c; --red-soft:#fdecec;
+    --purple:#6d28a8; --purple-soft:#f2e9fb; --line:#e5dfd3;
+    --navy:#1e3a5f; --navy-soft:#e6ecf5;
+    --shadow:0 1px 3px rgba(0,0,0,.05),0 6px 18px rgba(0,0,0,.04);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;
+    line-height:1.75;font-size:16px;-webkit-font-smoothing:antialiased;padding-bottom:3rem}
+  .wrap{max-width:780px;margin:0 auto;padding:0 16px}
+
+  /* hero */
+  .hero{background:linear-gradient(135deg,var(--teal) 0%,#0b4747 60%,#123b3b 100%);color:#fff;
+    padding:2.6rem 0 2.2rem;margin-bottom:1.8rem}
+  .eyebrow{font-size:.74rem;letter-spacing:.16em;color:#f6c77a;font-weight:700;margin-bottom:.8rem}
+  .hero h1{font-size:clamp(1.5rem,5.6vw,2.15rem);line-height:1.3;font-weight:800;letter-spacing:-.01em;margin-bottom:.7rem}
+  .hero .tagline{font-size:1rem;color:#d7ebe9;max-width:56ch}
+
+  .paper{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--gold);
+    border-radius:12px;padding:1.1rem 1.2rem;box-shadow:var(--shadow);margin-bottom:1rem;font-size:.92rem}
+  .paper b{color:var(--teal)}
+  .paper .meta{margin-top:.6rem;color:var(--sub);font-size:.85rem}
+  .paper a{color:var(--teal);word-break:break-all}
+  .disclaimer{font-size:.84rem;color:var(--sub);margin:.4rem 0 1.6rem;padding-left:.2rem}
+
+  /* section */
+  section{margin:2.4rem 0}
+  h2{display:flex;align-items:center;gap:.65rem;font-size:1.32rem;line-height:1.35;color:var(--teal);
+    margin-bottom:1rem;padding-bottom:.55rem;border-bottom:2px solid var(--line)}
+  h2 .num{flex:none;display:inline-flex;align-items:center;justify-content:center;width:2rem;height:2rem;
+    border-radius:50%;background:var(--teal);color:#fff;font-size:.95rem;font-weight:800}
+  h3{font-size:1.08rem;color:var(--navy);margin:1.5rem 0 .6rem}
+  h4{font-size:.98rem;margin-bottom:.35rem;color:var(--ink)}
+  p{margin-bottom:.85rem}
+  ul,ol{margin:0 0 .9rem 1.3rem}
+  li{margin-bottom:.35rem}
+  strong{color:var(--ink)}
+  .lead{font-size:1.02rem}
+
+  /* cards */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem;margin:1rem 0}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1rem 1.05rem;box-shadow:var(--shadow);font-size:.92rem}
+  .card h4{color:var(--teal)}
+  .card.star{grid-column:1/-1;background:var(--gold-soft);border-color:#f0d6aa}
+  .card.star h4{color:var(--gold)}
+
+  /* callouts */
+  .note{border-radius:12px;padding:1rem 1.1rem;margin:1rem 0;font-size:.93rem;border:1px solid transparent}
+  .note h4{margin-bottom:.4rem}
+  .note p:last-child,.note ul:last-child{margin-bottom:0}
+  .note.teal{background:var(--teal-soft);border-color:#c9e0de}
+  .note.teal h4{color:var(--teal)}
+  .note.gold{background:var(--gold-soft);border-color:#f0d6aa}
+  .note.gold h4{color:var(--gold)}
+  .note.red{background:var(--red-soft);border-color:#f5caca}
+  .note.red h4{color:var(--red)}
+  .note.sage{background:var(--sage-soft);border-color:#d3e2cf}
+  .note.sage h4{color:var(--sage)}
+  .note.claude{background:var(--purple-soft);border:1px dashed #c9a6ec}
+  .note.claude h4{color:var(--purple)}
+  .claude-tag{display:inline-block;font-size:.7rem;font-weight:700;color:#fff;background:var(--purple);
+    border-radius:999px;padding:.1rem .55rem;margin-right:.35rem;vertical-align:.1em;letter-spacing:.02em}
+
+  /* tables */
+  .tbl{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1rem 0;border:1px solid var(--line);border-radius:12px;background:var(--card);box-shadow:var(--shadow)}
+  table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:520px}
+  th{background:var(--teal);color:#fff;text-align:left;padding:.65rem .75rem;font-weight:700;white-space:nowrap}
+  td{padding:.6rem .75rem;border-top:1px solid var(--line);vertical-align:top}
+  tr:nth-child(even) td{background:#fbfaf7}
+  .badge{display:inline-block;font-size:.74rem;font-weight:700;padding:.15rem .55rem;border-radius:999px;white-space:nowrap}
+  .b-ok{background:var(--sage-soft);color:var(--sage)}
+  .b-warn{background:var(--gold-soft);color:var(--gold)}
+  .b-q{background:var(--navy-soft);color:var(--navy)}
+  .b-no{background:var(--red-soft);color:var(--red)}
+
+  /* pathway diagram */
+  .flow{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1.1rem;box-shadow:var(--shadow);margin:1rem 0}
+  .flow-title{font-size:.8rem;font-weight:700;color:var(--sub);letter-spacing:.06em;margin-bottom:.8rem}
+  .step{display:flex;align-items:center;gap:.8rem;padding:.65rem .8rem;border-radius:10px;border:1px solid var(--line);background:#fcfbf8}
+  .step .nm{flex:none;min-width:4.6rem;font-weight:800;color:var(--navy)}
+  .step .ef{flex:1;font-size:.88rem;color:var(--sub)}
+  .step .ar{flex:none;font-weight:800;font-size:1.05rem;padding:.1rem .55rem;border-radius:8px}
+  .up{background:var(--gold-soft);color:var(--gold)}
+  .down{background:var(--teal-soft);color:var(--teal)}
+  .link{text-align:center;color:var(--sub);font-size:.9rem;line-height:1.6;padding:.15rem 0}
+  .link.broken{color:var(--red);font-weight:700;font-size:.82rem}
+
+  /* concentration ladder */
+  .ladder{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1.1rem;box-shadow:var(--shadow);margin:1rem 0}
+  .lrow{display:grid;grid-template-columns:8.5rem 1fr;gap:.6rem;align-items:center;margin-bottom:.7rem;font-size:.84rem}
+  .lrow:last-child{margin-bottom:0}
+  .lbl{color:var(--ink);font-weight:600;line-height:1.35}
+  .lbl small{display:block;color:var(--sub);font-weight:400}
+  .bar{height:1.35rem;border-radius:6px;display:flex;align-items:center;padding-left:.5rem;color:#fff;font-size:.74rem;font-weight:700;white-space:nowrap}
+  .bar.lab{background:var(--gold)}
+  .bar.plasma{background:var(--navy)}
+  .bar.csf{background:var(--teal)}
+  .bar.mouse{background:var(--purple)}
+  .bar.none{background:transparent;border:2px dashed var(--red);color:var(--red)}
+  .scale-note{font-size:.76rem;color:var(--sub);margin-top:.8rem;border-top:1px dashed var(--line);padding-top:.6rem}
+
+  /* figures */
+  .fig{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1rem 1rem .8rem;box-shadow:var(--shadow);margin:1.2rem 0}
+  .fig svg{width:100%;height:auto;display:block;font-family:inherit}
+  .fig figcaption{font-size:.8rem;color:var(--sub);margin-top:.6rem;line-height:1.55}
+  .fig figcaption b{color:var(--ink)}
+  .fig .ftitle{font-size:.86rem;font-weight:800;color:var(--teal);margin-bottom:.5rem}
+
+  /* Q&A */
+  details.qa{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:.55rem 0;box-shadow:var(--shadow)}
+  details.qa summary{cursor:pointer;padding:.8rem 1rem;font-weight:700;list-style:none;position:relative;padding-right:2.2rem}
+  details.qa summary::-webkit-details-marker{display:none}
+  details.qa summary::after{content:"+";position:absolute;right:1rem;top:.7rem;color:var(--teal);font-size:1.2rem}
+  details.qa[open] summary::after{content:"−"}
+  details.qa .ans{padding:0 1rem 1rem;font-size:.92rem;color:#3b3b3b}
+  details.qa .ans p:last-child{margin-bottom:0}
+
+  .sources li{font-size:.86rem;word-break:break-word}
+  .sources a{color:var(--teal)}
+
+  .honest{background:var(--card);border:2px solid var(--teal);border-radius:14px;padding:1.1rem 1.2rem;margin-top:2rem;font-size:.9rem}
+  .honest b.t{display:block;color:var(--teal);margin-bottom:.5rem;font-size:1rem}
+
+  footer{margin-top:2rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.8rem;color:var(--sub);text-align:center;line-height:1.7}
+  .print-btn{display:inline-block;margin-top:.7rem;font:inherit;font-size:.82rem;font-weight:600;color:var(--teal);
+    background:var(--card);border:1px solid var(--line);border-radius:999px;padding:.45rem 1.1rem;cursor:pointer}
+
+  @media (max-width:480px){
+    body{font-size:15.5px}
+    .lrow{grid-template-columns:6.6rem 1fr}
+    .step .nm{min-width:3.8rem}
+  }
+  @media print{
+    body{background:#fff;padding:0}
+    .hero{background:#fff;color:#000;border-bottom:2px solid #000}
+    .hero .tagline,.eyebrow{color:#000}
+    details.qa{break-inside:avoid}
+    details.qa .ans{display:block}
+    .print-btn{display:none}
+    .card,.note,.tbl,.flow,.ladder{box-shadow:none;break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="eyebrow">논문 해설 · 약물 재창출 · 2026</div>
+    <h1>메벤다졸 × 소아 저등급 교종<br>— 시험관에서 본 가능성과 한계</h1>
+    <p class="tagline">사람에게 이미 쓰이는 벤즈이미다졸 구충제가, 아이들의 뇌종양 세포에서 무엇을 했고 무엇을 하지 못했는가</p>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="paper">
+    <b>해설 대상 논문</b><br>
+    Ferraro C, Pizzoferrato M, Graziano M, Servidei T, Ruggiero A, Navarra P, Lisi L. "Mebendazole Shows Antiproliferative and Antimigratory Effects in Paediatric Low-Grade Glioma Models." <i>Oncology Research</i> (2026). DOI: <a href="https://doi.org/10.32604/or.2026.071074">10.32604/or.2026.071074</a>
+    <div class="meta"><b>소속</b> 이탈리아 로마 가톨릭대 의대 · Gemelli 병원(약리학 / 소아종양과) &nbsp;|&nbsp; <b>성격</b> 원저 · 시험관(in vitro) 실험 &nbsp;|&nbsp; <b>온라인 공개</b> 2026-05-12 &nbsp;|&nbsp; <b>연구비</b> 없음 · 이해상충 없음(저자 신고)</div>
+  </div>
+  <p class="disclaimer">※ 이 문서는 논문을 일반 회원이 읽을 수 있게 풀어쓴 해설입니다. 원문을 대체하지 않으며, 의료 조언이 아닙니다.<br>※ <span class="claude-tag">Claude 판단</span> 표시가 붙은 부분은 논문에 없는 <b>Claude의 해석·계산·비교</b>입니다. 논문 내용과 구분해서 읽어 주세요.</p>
+
+  <!-- 1 -->
+  <section>
+    <h2><span class="num">1</span>30초 요약</h2>
+    <p class="lead">한 문장으로: <strong>메벤다졸이 소아 저등급 교종 세포 2종의 성장과 이동을 억제했지만, 효과는 세포주마다 크게 달랐고, 표준 항암제 빈블라스틴과 함께 써도 더 나아지지 않았다.</strong></p>
+    <div class="grid">
+      <div class="card"><h4>① 무엇을 했나</h4>소아 저등급 교종 세포주 2종(RES 259, RES 186)에 메벤다졸을 1 nM~100 µM로 48시간 처리하고, 생존·독성·증식·이동·신호경로를 측정했습니다.</div>
+      <div class="card"><h4>② 무엇을 찾았나</h4>RES 259에서는 뚜렷한 성장 억제, RES 186에서는 약한 억제(최대 약 20%). 종양 성장의 핵심 경로인 <b>MAPK의 최종 단계(ERK) 활성이 절반 이하로</b> 떨어졌습니다.</div>
+      <div class="card"><h4>③ 병용은?</h4>소아 교종 표준 약인 <b>빈블라스틴과 병용해도 상승효과가 없었습니다.</b> 두 약 모두 미세소관을 겨냥하기 때문으로 저자들은 해석합니다.</div>
+      <div class="card"><h4>④ 정직한 그늘</h4>세포 실험만 있고 동물실험은 없습니다. 의미 있는 효과는 주로 <b>1 µM 이상</b>에서 나왔습니다. 마우스 뇌에서는 이 농도에 도달했지만, <b>사람 뇌·종양 조직 농도는 측정된 적이 없습니다</b>(11장).</div>
+      <div class="card star"><h4>⭐ 이 논문이 의미 있는 이유</h4>
+        첫째, 대상이 <b>아이들</b>입니다. 소아 저등급 교종은 생존율은 좋지만 치료 후유증(시력·호르몬·발달)이 평생 남을 수 있어, 독성이 적은 선택지가 절실한 분야입니다.<br>
+        둘째, 메벤다졸은 <b>사람에게 승인된 약</b>이고, 이 암의 핵심 동력인 <b>MAPK 경로</b>를 건드린다는 결과가 나왔습니다.<br>
+        셋째, <b>"병용해도 소용없었다"는 음성 결과를 숨기지 않고 보고</b>했습니다. 실제로 미국에서는 메벤다졸을 빈블라스틴과 같은 계열 약(빈크리스틴)과 함께 쓰는 소아 임상이 진행된 적이 있어, 이 음성 결과는 실제 병용 설계에 질문을 던집니다(10장).</div>
+    </div>
+    <figure class="fig">
+      <div class="ftitle">도식 1 · 이 논문은 근거 사다리의 어디에 있나</div>
+      <svg viewBox="0 0 600 270" role="img" aria-label="근거 사다리: 세포, 동물, 1상, 2상, 3상 중 이 논문은 첫 단계인 세포 실험">
+        <g>
+          <rect x="20" y="180" width="104" height="50" rx="8" fill="#0f5e5e" stroke="#b45309" stroke-width="3"/>
+          <text x="72" y="204" text-anchor="middle" font-size="18" font-weight="800" fill="#fff">세포</text>
+          <text x="72" y="222" text-anchor="middle" font-size="12.5" fill="#d7ebe9">시험관</text>
+          <text x="72" y="166" text-anchor="middle" font-size="15" font-weight="800" fill="#b45309">★ 이 논문</text>
+
+          <rect x="134" y="145" width="104" height="85" rx="8" fill="#ece8de"/>
+          <text x="186" y="172" text-anchor="middle" font-size="18" font-weight="800" fill="#2b2b2b">동물</text>
+          <text x="186" y="191" text-anchor="middle" font-size="12.5" fill="#6b6b6b">생체 효과</text>
+
+          <rect x="248" y="110" width="104" height="120" rx="8" fill="#e3e0d4"/>
+          <text x="300" y="137" text-anchor="middle" font-size="18" font-weight="800" fill="#2b2b2b">1상</text>
+          <text x="300" y="156" text-anchor="middle" font-size="12.5" fill="#6b6b6b">안전성</text>
+
+          <rect x="362" y="75" width="104" height="155" rx="8" fill="#d9d5c8"/>
+          <text x="414" y="102" text-anchor="middle" font-size="18" font-weight="800" fill="#2b2b2b">2상</text>
+          <text x="414" y="121" text-anchor="middle" font-size="12.5" fill="#6b6b6b">효과 신호</text>
+
+          <rect x="476" y="40" width="104" height="190" rx="8" fill="#cfcabb"/>
+          <text x="528" y="67" text-anchor="middle" font-size="18" font-weight="800" fill="#2b2b2b">3상</text>
+          <text x="528" y="86" text-anchor="middle" font-size="12.5" fill="#6b6b6b">효과 입증</text>
+        </g>
+        <line x1="20" y1="244" x2="572" y2="244" stroke="#6b6b6b" stroke-width="1.5"/>
+        <polygon points="580,244 568,238 568,250" fill="#6b6b6b"/>
+        <text x="300" y="263" text-anchor="middle" font-size="13" fill="#6b6b6b">오른쪽으로 갈수록 근거가 단단해짐</text>
+      </svg>
+      <figcaption>이 논문은 <b>첫 계단(세포 실험)</b>입니다. 시험관에서 효과를 보인 물질 중 사람에게 효과가 입증되는 비율은 매우 낮습니다. 참고로 메벤다졸은 다른 연구들에서 소아·성인 교종 대상 1상까지 시도되었지만(13장 Q&amp;A), 소아 저등급 교종에서 효과가 입증된 단계는 아닙니다.</figcaption>
+    </figure>
+
+  </section>
+
+  <!-- 2 -->
+  <section>
+    <h2><span class="num">2</span>배경 — 소아 저등급 교종이라는 병</h2>
+    <p>중추신경계 종양은 소아 고형암 중 가장 흔하고, 그중 <b>30% 이상이 저등급 교종(pLGG)</b>입니다. 대표적으로 모양세포성 별아교세포종(pilocytic astrocytoma)이 있습니다.</p>
+    <div class="tbl"><table>
+      <tr><th>항목</th><th>내용 (논문 서론 요약)</th></tr>
+      <tr><td><b>1차 치료</b></td><td>수술. 최대한 절제할수록 예후가 좋음. 다만 뇌 깊은 곳·침윤성 종양은 완전 절제가 어려움</td></tr>
+      <tr><td><b>표준 항암</b></td><td>빈크리스틴+카보플라틴 병용, 또는 <b>빈블라스틴 단독</b>이 가장 널리 쓰임</td></tr>
+      <tr><td><b>분자적 동력</b></td><td>대부분 <b>RAS/MAPK 경로</b>의 과활성. 흔히 BRAF 유전자 변이·융합이 원인</td></tr>
+      <tr><td><b>표적치료</b></td><td>RAF·MEK 억제제(다브라페닙, 트라메티닙, 셀루메티닙 등)가 효과를 보이며 점점 더 많이 쓰임</td></tr>
+      <tr><td><b>남은 숙제</b></td><td>생존율은 좋지만 시력·호르몬·뇌 발달에 <b>평생 남는 후유증</b>. 치료 목표가 "생존"에서 "후유증 최소화"로 이동 중</td></tr>
+    </table></div>
+  </section>
+
+  <!-- 3 -->
+  <section>
+    <h2><span class="num">3</span>메벤다졸은 어떤 약인가</h2>
+    <p>메벤다졸(MBZ, 상품명 Vermox 등)은 FDA가 2세 이상 어린이와 성인의 장내 기생충 치료에 승인한 <b>벤즈이미다졸 계열 구충제</b>입니다. WHO는 포충증에 체중당 40–50 mg/kg/일의 장기 투여를 권고하기도 합니다.</p>
+    <p>작용 방식: 세포 골격인 <b>미세소관의 재료(β-튜불린)의 콜히친 결합 부위에 붙어</b> 미세소관 형성을 막습니다. 기생충뿐 아니라 사람 세포의 미세소관에도 작용하기 때문에, 빠르게 분열하는 암세포에서 항암 효과가 연구되어 왔습니다.</p>
+    <div class="note claude">
+      <h4><span class="claude-tag">Claude 판단</span>펜벤다졸과의 관계 — 같은 집안, 다른 사람</h4>
+      <p>메벤다졸은 커뮤니티에서 자주 언급되는 펜벤다졸과 <b>같은 벤즈이미다졸 계열</b>이고 작용 부위(β-튜불린)도 같습니다. 이 논문도 펜벤다졸 연구(Dogra 2018)를 참고문헌으로 인용합니다.</p>
+      <p>하지만 <b>이 논문은 펜벤다졸을 시험하지 않았습니다.</b> 두 약은 흡수율·대사·인체 승인 여부가 다릅니다(메벤다졸은 사람에게 승인, 펜벤다졸은 동물용이며 인체 임상시험 0건). 따라서 이 결과를 펜벤다졸에 그대로 옮겨 적용해서는 안 됩니다.</p>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section>
+    <h2><span class="num">4</span>왜 하필 메벤다졸이었나</h2>
+    <p>연구팀이 이 약을 고른 이유를, <b>논문이 직접 밝힌 것</b>과 <b>논문 안의 정황에서 읽히는 것</b>으로 나눠 봅니다.</p>
+
+    <h3>논문이 직접 밝힌 이유 (서론)</h3>
+    <div class="tbl"><table>
+      <tr><th>근거</th><th>내용</th></tr>
+      <tr><td><b>① 소아 승인 약</b></td><td>FDA가 2세 이상 어린이·성인에게 허가. WHO는 포충증에 40–50 mg/kg/일 장기 투여를 권고. <b>장기 독성 최소화</b>가 숙제인 pLGG에서 아이에게 오래 써온 약이라는 점이 출발점</td></tr>
+      <tr><td><b>② 미세소관 표적 기전</b></td><td>β-튜불린 콜히친 결합 부위에 결합. 표준 항암제 <b>빈블라스틴도 미세소관 표적</b>이라 비교·병용 설계가 자연스러움</td></tr>
+      <tr><td><b>③ 여러 암종의 전임상 근거</b></td><td>갑상선·위장관·유방·전립선·췌장·난소·대장·흑색종·두경부·백혈병·담도암 등 11개 암종 연구 인용</td></tr>
+      <tr><td><b>④ 핵심 경로와의 접점</b></td><td>MAPK·STAT3·NF-κB 조절 보고, 그리고 메벤다졸이 MEK-ERK 경로에 독특하게 작용한다는 연구(Andersson 2020). pLGG의 동력이 MAPK이므로 <b>가장 직접적인 연결고리</b>. 이동·EMT 억제 효과도 함께 언급</td></tr>
+    </table></div>
+
+    <div class="note claude">
+      <h4><span class="claude-tag">Claude 판단</span>논문 안의 정황 — 이 팀은 원래 메벤다졸을 추적해 왔다</h4>
+      <ul>
+        <li><b>같은 그룹의 선행 리뷰</b>: 참고문헌 22번 Meco 외 2023(<i>Int J Mol Sci</i>)은 "뇌종양 치료를 위한 재창출 약물로서의 메벤다졸" 리뷰인데, 그 저자 중 <b>Navarra·Ruggiero가 이번 논문의 공저자</b>입니다. 2023년에 리뷰를 쓰고 2026년에 직접 실험한 흐름입니다.</li>
+        <li><b>세포 모델을 갖춘 연구 프로그램</b>: RES 259·RES 186은 Ruggiero 교수가 제공했고, 같은 연구실은 이 세포주로 셀루메티닙 내성(참고문헌 44)·mTOR 억제제(참고문헌 50)도 연구했습니다. 후보 약을 차례로 시험하는 프로그램의 한 단계로 보는 것이 자연스럽습니다.</li>
+        <li><b>병용 실험의 출처</b>: 메벤다졸+빈블라스틴이 내성 교종에서 테모졸로마이드 효과를 강화했다는 Kipper 외 2018(참고문헌 75)을 소아 저등급 교종에서 확인하려 한 것으로 보입니다.</li>
+      </ul>
+    </div>
+
+    <div class="note claude">
+      <h4><span class="claude-tag">Claude 판단</span>논문이 말하지 않은 것</h4>
+      <ul>
+        <li><b>혈뇌장벽 통과</b>는 뇌종양 약 선택의 핵심 근거인데 서론에 등장하지 않습니다. 메벤다졸이 마우스 뇌·뇌종양에서 혈청의 70–80% 농도에 이른다는 보고가 있어 당연한 전제로 생략했을 수 있지만, 논문 안에서는 확인되지 않습니다.</li>
+        <li><b>알벤다졸·플루벤다졸·펜벤다졸 등 다른 벤즈이미다졸과의 비교</b>는 없습니다. 계열 안에서 왜 메벤다졸인지를 따로 따지지 않았고, <b>"사람에게 승인되어 있고, 우리 팀이 이미 연구해 온 약"</b>이 사실상의 기준으로 보입니다.</li>
+        <li>회원 여러분께 드리는 시사점: 아이들 뇌종양처럼 독성 부담이 큰 분야의 연구자에게는 <b>승인·소아 사용 경험·연구 축적</b>을 갖춘 메벤다졸이 기본 선택지로 작동합니다. 같은 계열의 펜벤다졸이 이런 연구에서 잘 선택되지 않는 이유를 생각해 볼 때 참고가 되는 사례입니다. 다만 논문 한 편의 정황이므로 일반화에는 주의가 필요합니다.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section>
+    <h2><span class="num">5</span>실험은 어떻게 했나</h2>
+    <div class="tbl"><table>
+      <tr><th>항목</th><th>내용</th></tr>
+      <tr><td><b>세포주</b></td><td><b>RES 259</b> — 4세 여아의 미만성 별아교세포종(WHO 2등급) 유래, 줄기세포 유사 성질·높은 증식력<br><b>RES 186</b> — 3세 여아의 모양세포성 별아교세포종(WHO 1등급) 유래, PTEN 결실·TP53 이형접합성 소실 등 <b>비전형적 변이</b> 보유</td></tr>
+      <tr><td><b>농도</b></td><td>메벤다졸 1 nM ~ 100 µM (DMSO에 녹여 배지에 희석)</td></tr>
+      <tr><td><b>시간</b></td><td>주로 48시간 (실험에 따라 72시간·6~7일)</td></tr>
+      <tr><td><b>측정</b></td><td>대사활성(XTT), 세포 손상(LDH 방출), 신규 DNA 합성(BrdU), 세포 이동(Transwell), 단백질 변화(웨스턴 블롯)</td></tr>
+      <tr><td><b>비교·병용</b></td><td>빈블라스틴 단독(1 pM~100 nM), 그리고 메벤다졸 + 빈블라스틴 1 nM 병용</td></tr>
+      <tr><td><b>배양 조건</b></td><td>실험은 혈청 1% 배지에서 진행</td></tr>
+    </table></div>
+  </section>
+
+  <!-- 6 -->
+  <section>
+    <h2><span class="num">6</span>결과 ① 성장·독성·증식 — 두 세포주의 큰 차이</h2>
+    <div class="tbl"><table>
+      <tr><th>측정 (48시간)</th><th>RES 259</th><th>RES 186</th></tr>
+      <tr><td><b>대사활성 (XTT)</b></td><td>1 µM에서 약 40% 감소, 100 µM에서 50% 이상 감소. IC50은 최고 농도대에서야 도달</td><td>1~100 µM에서 약 20% 감소에 그침. <b>IC50 미도달</b></td></tr>
+      <tr><td><b>세포 손상 (LDH)</b></td><td>농도 의존적으로 유의하게 증가</td><td>100 µM에서만 유의한 증가</td></tr>
+      <tr><td><b>신규 증식 (BrdU)</b></td><td colspan="2">두 세포주 모두 <b>1~100 nM에서는 증식이 약간 증가</b>했다가, 그보다 높은 농도에서 농도 의존적으로 감소</td></tr>
+    </table></div>
+
+    <figure class="fig">
+      <div class="ftitle">도식 2 · 농도를 올리면 세포 활성은 얼마나 떨어지나 (48시간, XTT)</div>
+      <svg viewBox="0 0 600 340" role="img" aria-label="용량 반응 곡선: RES 259는 크게 떨어지고 RES 186은 약하게 떨어짐">
+        <rect x="368" y="30" width="96" height="270" fill="#e3efee" opacity=".75"/>
+        <text x="416" y="47" text-anchor="middle" font-size="12" font-weight="700" fill="#0f5e5e">효과 뚜렷한 구간</text>
+        <line x1="70" y1="30" x2="70" y2="300" stroke="#9a948a"/>
+        <line x1="70" y1="300" x2="580" y2="300" stroke="#9a948a"/>
+        <g font-size="12" fill="#6b6b6b" text-anchor="end">
+          <text x="62" y="76">100%</text><text x="62" y="141">80%</text><text x="62" y="206">60%</text><text x="62" y="271">40%</text>
+        </g>
+        <g stroke="#eee9df"><line x1="70" y1="72.5" x2="580" y2="72.5"/><line x1="70" y1="137.5" x2="580" y2="137.5"/><line x1="70" y1="202.5" x2="580" y2="202.5"/><line x1="70" y1="267.5" x2="580" y2="267.5"/></g>
+        <g font-size="12.5" fill="#2b2b2b" text-anchor="middle">
+          <text x="80" y="322">1nM</text><text x="176" y="322">10nM</text><text x="272" y="322">100nM</text><text x="368" y="322">1µM</text><text x="464" y="322">10µM</text><text x="560" y="322">100µM</text>
+        </g>
+        <line x1="70" y1="235" x2="580" y2="235" stroke="#b91c1c" stroke-width="1.5" stroke-dasharray="6 5"/>
+        <text x="578" y="228" text-anchor="end" font-size="12" font-weight="700" fill="#b91c1c">50% 선 (IC50 기준)</text>
+        <line x1="449" y1="30" x2="449" y2="300" stroke="#6d28a8" stroke-width="1.5" stroke-dasharray="3 4"/>
+        <text x="454" y="292" font-size="11.5" font-weight="700" fill="#6d28a8">↑ 마우스 뇌 ≈7µM</text>
+        <polyline points="80,69 176,72.5 272,92 368,170 464,212 560,267.5" fill="none" stroke="#0f5e5e" stroke-width="3.5" stroke-linejoin="round"/>
+        <g fill="#0f5e5e"><circle cx="80" cy="69" r="5"/><circle cx="176" cy="72.5" r="5"/><circle cx="272" cy="92" r="5"/><circle cx="368" cy="170" r="5"/><circle cx="464" cy="212" r="5"/><circle cx="560" cy="267.5" r="5"/></g>
+        <polyline points="80,69 176,69 272,82 368,124.5 464,150.5 560,163.5" fill="none" stroke="#b45309" stroke-width="3.5" stroke-linejoin="round"/>
+        <g fill="#b45309"><circle cx="80" cy="69" r="5"/><circle cx="176" cy="69" r="5"/><circle cx="272" cy="82" r="5"/><circle cx="368" cy="124.5" r="5"/><circle cx="464" cy="150.5" r="5"/><circle cx="560" cy="163.5" r="5"/></g>
+        <line x1="90" y1="252" x2="118" y2="252" stroke="#0f5e5e" stroke-width="3.5"/><text x="126" y="257" font-size="13" fill="#2b2b2b">RES 259 — 크게 떨어짐 (IC50 도달)</text>
+        <line x1="90" y1="276" x2="118" y2="276" stroke="#b45309" stroke-width="3.5"/><text x="126" y="281" font-size="13" fill="#2b2b2b">RES 186 — 덜 떨어짐 (IC50 미도달)</text>
+      </svg>
+      <figcaption>세로축 100% = 약을 넣지 않은 세포. <b>선이 아래로 내려갈수록 약이 잘 듣는 것</b>입니다. 점의 위치는 논문 그림 1A·B에서 <b>눈으로 읽은 근사값</b>이며, 보라색 점선(마우스 뇌 최고농도)은 다른 연구 자료를 겹쳐 놓은 <span class="claude-tag">Claude 판단</span> 참고선입니다.</figcaption>
+    </figure>
+    <div class="note gold">
+      <h4>⚠ 놓치기 쉬운 부분 — 저농도에서 증식이 약간 늘었다</h4>
+      <p>논문 본문이 직접 밝힌 결과입니다. RES 259에서는 10 nM·100 nM에서의 증가가 통계적으로 유의하게 표시되어 있습니다(그림 1E).</p>
+    </div>
+
+    <figure class="fig">
+      <div class="ftitle">도식 3 · 새로 분열하는 세포 (48시간, BrdU) — 저농도의 작은 "역주행"</div>
+      <svg viewBox="0 0 600 300" role="img" aria-label="BrdU 막대그래프: 1에서 100 나노몰에서는 증식이 약간 늘고 그 이상에서 줄어듦">
+        <rect x="135" y="30" width="210" height="220" rx="6" fill="#fdf0dc" opacity=".8"/>
+        <text x="240" y="48" text-anchor="middle" font-size="12.5" font-weight="700" fill="#b45309">저농도: 오히려 약간 증가</text>
+        <line x1="65" y1="250" x2="580" y2="250" stroke="#9a948a"/>
+        <line x1="65" y1="100" x2="580" y2="100" stroke="#6b6b6b" stroke-dasharray="5 4"/>
+        <text x="578" y="94" text-anchor="end" font-size="11.5" fill="#6b6b6b">대조군 = 100%</text>
+        <g font-size="12" fill="#6b6b6b" text-anchor="end"><text x="58" y="254">0</text><text x="58" y="179">50</text><text x="58" y="104">100</text></g>
+        <rect x="74" y="100.0" width="24" height="150.0" rx="3" fill="#0f5e5e"/><rect x="144" y="89.5" width="24" height="160.5" rx="3" fill="#0f5e5e"/><rect x="214" y="82.0" width="24" height="168.0" rx="3" fill="#0f5e5e"/><rect x="284" y="80.5" width="24" height="169.5" rx="3" fill="#0f5e5e"/><rect x="354" y="175.0" width="24" height="75.0" rx="3" fill="#0f5e5e"/><rect x="424" y="205.0" width="24" height="45.0" rx="3" fill="#0f5e5e"/><rect x="494" y="223.0" width="24" height="27.0" rx="3" fill="#0f5e5e"/>
+        <rect x="102" y="100.0" width="24" height="150.0" rx="3" fill="#b45309"/><rect x="172" y="73.0" width="24" height="177.0" rx="3" fill="#b45309"/><rect x="242" y="85.0" width="24" height="165.0" rx="3" fill="#b45309"/><rect x="312" y="70.0" width="24" height="180.0" rx="3" fill="#b45309"/><rect x="382" y="127.0" width="24" height="123.0" rx="3" fill="#b45309"/><rect x="452" y="142.0" width="24" height="108.0" rx="3" fill="#b45309"/><rect x="522" y="163.0" width="24" height="87.0" rx="3" fill="#b45309"/>
+        <g font-size="12" fill="#2b2b2b" text-anchor="middle"><text x="100" y="272">대조</text><text x="170" y="272">1nM</text><text x="240" y="272">10nM</text><text x="310" y="272">100nM</text><text x="380" y="272">1µM</text><text x="450" y="272">10µM</text><text x="520" y="272">100µM</text></g>
+        <rect x="400" y="34" width="14" height="14" rx="3" fill="#0f5e5e"/><text x="420" y="46" font-size="12.5" fill="#2b2b2b">RES 259</text>
+        <rect x="400" y="56" width="14" height="14" rx="3" fill="#b45309"/><text x="420" y="68" font-size="12.5" fill="#2b2b2b">RES 186</text>
+      </svg>
+      <figcaption>막대 높이는 논문 그림 1E·F에서 <b>눈으로 읽은 근사값</b>입니다. 핵심은 모양입니다. <b>낮은 농도(노란 영역)에서는 분열이 약간 늘었다가</b>, 1 µM부터 뚜렷하게 줄어듭니다.</figcaption>
+    </figure>
+    <div class="note claude">
+      <h4><span class="claude-tag">Claude 판단</span>이 저농도 결과를 어떻게 읽을까</h4>
+      <p>48시간 시험관 결과 하나로 "적은 양은 오히려 해롭다"고 결론 내릴 수는 없습니다. 다만 <b>"조금이라도 먹으면 도움이 된다"는 가정도 성립하지 않는다</b>는 점은 분명히 보여줍니다. 효과가 나타난 농도와 실제로 몸 안에서 도달하는 농도를 함께 봐야 하는 이유입니다(11장).</p>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section>
+    <h2><span class="num">7</span>결과 ② MAPK 경로 — 이 논문의 핵심 발견</h2>
+    <p>소아 저등급 교종을 키우는 엔진이 MAPK 경로이므로, 메벤다졸이 이 경로에 어떤 영향을 주는지가 가장 중요한 질문입니다. 48시간 처리(100 nM, 1 µM, 10 µM) 후 결과는 이렇습니다.</p>
+
+    <div class="flow">
+      <div class="flow-title">RAS → MEK → ERK → CREB 경로에서 일어난 일 (논문 결과)</div>
+      <div class="step"><span class="nm">β-튜불린 III</span><span class="ef">메벤다졸의 1차 표적. 두 세포주 모두 10 µM에서 뚜렷이 감소</span><span class="ar down">↓</span></div>
+      <div class="link">│</div>
+      <div class="step"><span class="nm">RAS</span><span class="ef">RES 259: 농도 의존적 감소 · RES 186: 1 µM에서 증가 후 10 µM에서 급감</span><span class="ar down">↓</span></div>
+      <div class="link">│</div>
+      <div class="step"><span class="nm">MEK</span><span class="ef">인산화 비율(pMEK/MEK)이 1 µM·10 µM에서 <b>오히려 크게 증가</b></span><span class="ar up">↑</span></div>
+      <div class="link broken">✕ 여기서 신호가 끊긴 것처럼 보임 — MEK는 켜졌는데 다음 단계가 꺼짐</div>
+      <div class="step"><span class="nm">ERK</span><span class="ef">인산화 ERK(p44·p42)가 <b>50% 이상 감소</b>. 고농도에서 인산화 비율도 유의하게 감소</span><span class="ar down">↓</span></div>
+      <div class="link">│</div>
+      <div class="step"><span class="nm">CREB</span><span class="ef">RES 259에서 인산화 CREB가 농도 증가에 따라 감소 (RES 186은 유의한 변화 없음)</span><span class="ar down">↓</span></div>
+    </div>
+
+    <p>저자들의 해석: 메벤다졸이 RAS를 줄이자 세포가 <b>보상적으로 MEK를 더 켜려 했지만</b>, MEK에서 ERK로 넘어가는 단계가 막혀 최종 출력(ERK)은 줄었다는 것입니다. ERK가 줄면 그 아래의 CREB 활성도 떨어져 생존·증식·이동 관련 유전자 발현이 약해집니다.</p>
+    <div class="note claude">
+      <h4><span class="claude-tag">Claude 판단</span>왜 이 결과가 흥미로우면서도 조심스러운가</h4>
+      <ul>
+        <li><b>흥미로운 점</b>: 소아 저등급 교종의 표적치료제(MEK 억제제)가 노리는 것이 바로 이 경로의 출력을 끄는 것입니다. 구충제가 비슷한 지점(ERK 출력 감소)에 도달했다는 것은 후속 연구의 이유가 됩니다.</li>
+        <li><b>조심할 점</b>: 저자들이 근거로 인용한 선행 연구(Andersson 2020)의 제목은 "메벤다졸은 MEK-ERK 경로를 <b>활성화</b>한다"입니다. 이번 결과는 MEK는 같은 방향(증가)이지만 ERK는 반대 방향(감소)입니다. 세포 종류 차이일 수 있으나, 기전이 아직 정리되지 않았다는 뜻으로 읽는 것이 정직합니다.</li>
+        <li>ERK의 큰 감소가 뚜렷하게 나타난 농도는 대부분 <b>1~10 µM</b>입니다.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 8 -->
+  <section>
+    <h2><span class="num">8</span>결과 ③ 세포사멸과 자가포식 — 세포주마다 다른 반응</h2>
+    <div class="tbl"><table>
+      <tr><th>표지</th><th>의미</th><th>RES 259</th><th>RES 186</th></tr>
+      <tr><td><b>절단 카스파아제-3</b></td><td>세포사멸(아폽토시스) 실행</td><td>농도 의존적 <b>감소</b></td><td>100 nM·1 µM에서 증가, 10 µM에서 감소</td></tr>
+      <tr><td><b>p21</b></td><td>세포주기 정지</td><td>점진적 감소</td><td>10 µM에서 크게 증가</td></tr>
+      <tr><td><b>p-p53 (Ser46)</b></td><td>사멸 쪽 p53 신호</td><td>저농도에서 증가, 고농도에서 감소</td><td>유의한 변화 없음</td></tr>
+      <tr><td><b>LC3A</b></td><td>자가포식(오토파지)</td><td colspan="2">두 세포주 모두 농도 의존적 증가</td></tr>
+      <tr><td><b>Beclin</b></td><td>자가포식 시작</td><td>증가 후 유의한 감소</td><td>변화 없다가 10 µM에서 감소</td></tr>
+    </table></div>
+    <p>저자들의 해석: 더 민감했던 RES 259는 <b>전형적 세포사멸이 아니라 자가포식 쪽</b>으로 반응했고(자가포식은 스트레스 상황의 생존 반응일 수 있음), RES 186은 세포사멸과 자가포식이 함께 나타났습니다. 10 µM에서는 두 세포주 모두 특정 경로로 설명하기 어려운 <b>비특이적 독성</b>이 나타났을 가능성을 저자들 스스로 언급합니다.</p>
+    <div class="note claude">
+      <h4><span class="claude-tag">Claude 판단</span>"더 잘 죽은 세포에서 사멸 표지가 줄었다"는 역설</h4>
+      <p>RES 259는 LDH(세포 손상)가 농도 의존적으로 늘었는데, 사멸 실행 단백질(카스파아제-3)은 줄었습니다. 즉 이 세포의 손상은 고전적 아폽토시스가 아닌 다른 경로였을 수 있습니다. 시점이 48시간 하나뿐이라 순서와 인과는 이 논문만으로는 판단할 수 없습니다. 저자들도 결론에서 시간 경과 분석이 필요하다고 밝혔습니다.</p>
+    </div>
+  </section>
+
+  <!-- 9 -->
+  <section>
+    <h2><span class="num">9</span>결과 ④ 세포 이동 억제</h2>
+    <p>소아 저등급 교종은 전이하지 않지만, 주변 뇌 조직으로 미세하게 스며드는 성질이 있어 완전 절제를 어렵게 하고 재발 원인이 됩니다. 그래서 세포 이동 억제는 의미 있는 지표입니다.</p>
+    <ul>
+      <li>100 nM·1 µM로 20시간 처리 → 두 세포주 모두 이동 세포 수 감소 경향</li>
+      <li>논문 본문: RES 259에서 유의한 감소, RES 186은 감소했으나 통계적 유의성 미도달</li>
+      <li>이동 관련 단백질: RES 259에서 <b>N-카드헤린 감소</b>(이동성 억제), <b>IκBα 증가</b>(NF-κB 억제), 인산화 CREB 감소</li>
+    </ul>
+    <div class="note claude">
+      <h4><span class="claude-tag">Claude 판단</span>본문과 그림이 엇갈려 보이는 부분</h4>
+      <p>Claude가 원문을 읽으며 확인한 바로는, 그림 4의 통계 표시(**)는 오히려 <b>RES 186의 1 µM 막대</b>에 붙어 있고 RES 259 막대에는 보이지 않습니다. 또 N-카드헤린 감소를 결과 부분은 RES 259에서만, 고찰 부분은 두 세포주 모두에서라고 적고 있습니다. 결론을 뒤집을 정도는 아니지만, <b>이동 억제 결과는 원문 그림을 직접 확인하고 해석하는 것이 안전합니다.</b></p>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section>
+    <h2><span class="num">10</span>빈블라스틴과 병용 — 상승효과 없음</h2>
+    <p>빈블라스틴 단독은 100 nM에서 RES 259의 생존을 약 50% 낮췄습니다. 병용 실험에서는 빈블라스틴을 효과가 약하게 나타나는 <b>1 nM로 고정</b>하고, 메벤다졸 10 nM·100 nM·1 µM와 조합했습니다.</p>
+    <div class="tbl"><table>
+      <tr><th>비교</th><th>결과 (48시간)</th></tr>
+      <tr><td>병용 vs 빈블라스틴 단독</td><td>병용이 분명히 더 효과적</td></tr>
+      <tr><td>병용 vs 메벤다졸 단독</td><td>전반적 추세가 매우 비슷. 병용에서 IC50이 약간 일찍 도달하는 듯한 정도</td></tr>
+      <tr><td>MEK·ERK 단백질</td><td>병용이 메벤다졸 단독의 변화를 유의하게 바꾸지 못함</td></tr>
+      <tr><td>총 단백질량 (보충자료)</td><td>병용군이 각 단독군보다 유의하게 감소 — 지표에 따라 결과가 약간 다름</td></tr>
+    </table></div>
+
+    <figure class="fig">
+      <div class="ftitle">도식 5 · 왜 병용해도 더해지지 않았나 — "같은 바퀴에 브레이크 두 개"</div>
+      <svg viewBox="0 0 600 300" role="img" aria-label="비유 그림: 같은 바퀴에 브레이크 두 개를 걸면 효과가 크게 늘지 않고, 다른 바퀴를 멈추면 효과가 더해질 수 있음">
+        <text x="150" y="28" text-anchor="middle" font-size="15" font-weight="800" fill="#0f5e5e">이번 실험: 같은 바퀴</text>
+        <text x="450" y="28" text-anchor="middle" font-size="15" font-weight="800" fill="#6b6b6b">비교: 다른 바퀴 (일반 원리)</text>
+        <line x1="300" y1="15" x2="300" y2="285" stroke="#e5dfd3" stroke-width="2"/>
+        <circle cx="150" cy="120" r="48" fill="#fff" stroke="#0f5e5e" stroke-width="5"/><line x1="150" y1="120" x2="198.0" y2="120.0" stroke="#0f5e5e" stroke-width="2.5"/><line x1="150" y1="120" x2="174.0" y2="161.6" stroke="#0f5e5e" stroke-width="2.5"/><line x1="150" y1="120" x2="126.0" y2="161.6" stroke="#0f5e5e" stroke-width="2.5"/><line x1="150" y1="120" x2="102.0" y2="120.0" stroke="#0f5e5e" stroke-width="2.5"/><line x1="150" y1="120" x2="126.0" y2="78.4" stroke="#0f5e5e" stroke-width="2.5"/><line x1="150" y1="120" x2="174.0" y2="78.4" stroke="#0f5e5e" stroke-width="2.5"/><circle cx="150" cy="120" r="6" fill="#0f5e5e"/>
+        <text x="150" y="190" text-anchor="middle" font-size="13" font-weight="700" fill="#0f5e5e">미세소관</text>
+        <rect x="82" y="100" width="12" height="40" rx="3" fill="#6d28a8"/>
+        <rect x="206" y="100" width="12" height="40" rx="3" fill="#b45309"/>
+        <text x="70" y="88" text-anchor="middle" font-size="12.5" font-weight="700" fill="#6d28a8">메벤다졸</text>
+        <text x="232" y="88" text-anchor="middle" font-size="12.5" font-weight="700" fill="#b45309">빈블라스틴</text>
+        <text x="150" y="240" text-anchor="middle" font-size="13" fill="#2b2b2b">이미 멈춘 바퀴에 브레이크를</text>
+        <text x="150" y="260" text-anchor="middle" font-size="13" fill="#2b2b2b">더 걸어도 효과가 크게 늘지 않음</text>
+        <circle cx="395" cy="120" r="34" fill="#fff" stroke="#0f5e5e" stroke-width="5"/><line x1="395" y1="120" x2="429.0" y2="120.0" stroke="#0f5e5e" stroke-width="2.5"/><line x1="395" y1="120" x2="412.0" y2="149.4" stroke="#0f5e5e" stroke-width="2.5"/><line x1="395" y1="120" x2="378.0" y2="149.4" stroke="#0f5e5e" stroke-width="2.5"/><line x1="395" y1="120" x2="361.0" y2="120.0" stroke="#0f5e5e" stroke-width="2.5"/><line x1="395" y1="120" x2="378.0" y2="90.6" stroke="#0f5e5e" stroke-width="2.5"/><line x1="395" y1="120" x2="412.0" y2="90.6" stroke="#0f5e5e" stroke-width="2.5"/><circle cx="395" cy="120" r="6" fill="#0f5e5e"/>
+        <circle cx="510" cy="120" r="34" fill="#fff" stroke="#5b7f5b" stroke-width="5"/><line x1="510" y1="120" x2="544.0" y2="120.0" stroke="#5b7f5b" stroke-width="2.5"/><line x1="510" y1="120" x2="527.0" y2="149.4" stroke="#5b7f5b" stroke-width="2.5"/><line x1="510" y1="120" x2="493.0" y2="149.4" stroke="#5b7f5b" stroke-width="2.5"/><line x1="510" y1="120" x2="476.0" y2="120.0" stroke="#5b7f5b" stroke-width="2.5"/><line x1="510" y1="120" x2="493.0" y2="90.6" stroke="#5b7f5b" stroke-width="2.5"/><line x1="510" y1="120" x2="527.0" y2="90.6" stroke="#5b7f5b" stroke-width="2.5"/><circle cx="510" cy="120" r="6" fill="#5b7f5b"/>
+        <rect x="347" y="104" width="10" height="32" rx="3" fill="#6d28a8"/>
+        <rect x="548" y="104" width="10" height="32" rx="3" fill="#1e3a5f"/>
+        <text x="395" y="176" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0f5e5e">미세소관</text>
+        <text x="510" y="176" text-anchor="middle" font-size="12.5" font-weight="700" fill="#5b7f5b">다른 경로</text>
+        <text x="352" y="92" text-anchor="middle" font-size="12" fill="#6d28a8">약 A</text>
+        <text x="553" y="92" text-anchor="middle" font-size="12" fill="#1e3a5f">약 B</text>
+        <text x="450" y="240" text-anchor="middle" font-size="13" fill="#2b2b2b">서로 다른 바퀴를 멈추면</text>
+        <text x="450" y="260" text-anchor="middle" font-size="13" fill="#2b2b2b">효과가 더해질 수 있음</text>
+      </svg>
+      <figcaption><span class="claude-tag">Claude 판단</span> 이해를 돕기 위한 비유입니다. 두 약은 모두 세포분열 장치인 미세소관을 멈추는 "브레이크"입니다. 이미 같은 장치를 멈춘 상태에서는 두 번째 약이 보탤 몫이 적다는 것이 저자들 해석의 핵심입니다.</figcaption>
+    </figure>
+    <p>저자들의 해석: 두 약 모두 <b>튜불린(미세소관)을 겨냥</b>하므로 같은 표적을 두고 경쟁하거나 포화되어, 더해지는 효과가 없었을 것이라고 봅니다. 그래서 결론에서 <b>메벤다졸 단독 전략</b>을 앞으로 탐구할 방향으로 제시합니다.</p>
+    <div class="note claude">
+      <h4><span class="claude-tag">Claude 판단</span>"같은 결합 부위 경쟁"이라는 설명은 조금 부정확하다</h4>
+      <p>저자들은 고찰에서 두 약이 튜불린의 <b>같은 결합 부위</b>를 두고 경쟁할 수 있다고 썼습니다. 하지만 논문 서론에 적힌 대로 메벤다졸은 <b>콜히친 결합 부위</b>에 붙고, 빈블라스틴은 약리학 교과서에서 <b>빈카 결합 부위</b>로 분류되는 다른 자리에 붙습니다. 같은 단백질(튜불린)의 <b>다른 자리</b>입니다.</p>
+      <p>그래서 "자리를 빼앗는 경쟁"보다는 도식 5처럼 <b>같은 결과(미세소관 붕괴)로 수렴해 효과가 포화된다</b>는 설명이 더 정확해 보입니다. 결론(상승효과 없음)은 같지만, 다른 자리에 붙는 약이라면 비율·순서를 바꿨을 때 결과가 달라질 여지가 있다는 점에서 의미 있는 차이입니다.</p>
+    </div>
+    <div class="note claude">
+      <h4><span class="claude-tag">Claude 판단</span>실제 임상과의 연결</h4>
+      <p>미국에서 진행·완료된 소아 교종 1상 임상(<b>NCT01837862</b>)의 저등급 교종 군은 메벤다졸을 <b>빈크리스틴</b>(빈블라스틴과 같은 빈카 알칼로이드 계열, 역시 튜불린 표적)·카보플라틴·테모졸로마이드와 함께 투여하는 설계였습니다. 이번 논문은 같은 계열 병용이 시험관에서 더해지는 이득을 보이지 않았다는 근거를 제시합니다.</p>
+      <p>다만 이 실험은 <b>빈블라스틴 한 농도(1 nM)·48시간·세포 2종</b>에 한정됩니다. 다른 비율·순서·기간에서는 결과가 다를 수 있고, 저자들도 "진짜 상승효과 여부는 추가 연구가 필요하다"고 밝혔습니다. 따라서 "병용은 의미 없다"가 아니라 <b>"같은 표적 병용의 근거가 약해졌다"</b> 정도로 읽는 것이 적절합니다.</p>
+    </div>
+  </section>
+
+  <!-- 11 -->
+  <section>
+    <h2><span class="num">11</span>농도 현실 점검 — 문제는 BBB인가, 흡수인가</h2>
+    <p>논문은 넓은 농도 범위를 고른 이유를 "임상적으로 도달 가능한 저농도와, 전체 약리 특성을 보기 위한 고농도를 모두 보려고"라고 설명합니다. 하지만 실제로 어느 농도까지 도달할 수 있는지는 다루지 않았습니다. 그래서 다른 연구의 자료를 옆에 놓고 비교해 봤습니다.</p>
+
+
+    <figure class="fig">
+      <div class="ftitle">도식 4 · 먹은 약이 종양에 닿기까지 — 어디가 가장 좁은가</div>
+      <svg viewBox="0 0 600 560" role="img" aria-label="약의 여정 개념도: 장에서 혈액으로 흡수되는 단계가 가장 좁은 병목이고, 혈뇌장벽 통과는 비교적 양호하며, 사람 종양 조직 농도는 측정된 적이 없음">
+        <rect x="45" y="20" width="110" height="85" rx="12" fill="#e3efee" stroke="#0f5e5e" stroke-width="2"/>
+        <text x="100" y="58" text-anchor="middle" font-size="15" font-weight="800" fill="#0f5e5e">복용</text>
+        <text x="100" y="80" text-anchor="middle" font-size="12" fill="#0f5e5e">알약</text>
+        <polygon points="45,125 155,125 112,215 88,215" fill="#fdecec" stroke="#b91c1c" stroke-width="2"/>
+        <text x="100" y="160" text-anchor="middle" font-size="14" font-weight="800" fill="#b91c1c">병목</text>
+        <line x1="100" y1="105" x2="100" y2="125" stroke="#0f5e5e" stroke-width="4"/>
+        <line x1="100" y1="215" x2="100" y2="235" stroke="#0f5e5e" stroke-width="4"/>
+        <rect x="86" y="235" width="28" height="90" rx="4" fill="#0f5e5e"/>
+        <path d="M114 270 L148 270" stroke="#b45309" stroke-width="2.5"/><polygon points="156,270 146,264 146,276" fill="#b45309"/>
+        <text x="150" y="292" text-anchor="middle" font-size="11.5" font-weight="700" fill="#b45309">P-gp</text>
+        <text x="62" y="284" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f5e5e">BBB</text>
+        <line x1="100" y1="325" x2="100" y2="352" stroke="#0f5e5e" stroke-width="4"/>
+        <circle cx="100" cy="398" r="44" fill="#fdf0dc" stroke="#b45309" stroke-width="2" stroke-dasharray="5 4"/>
+        <circle cx="100" cy="398" r="22" fill="#e9b872"/>
+        <text x="100" y="403" text-anchor="middle" font-size="12" font-weight="800" fill="#7a3b05">중심</text>
+        <text x="100" y="455" text-anchor="middle" font-size="11.5" font-weight="700" fill="#b45309">점선 = 가장자리</text>
+        <rect x="45" y="460" width="110" height="85" rx="12" fill="#fff" stroke="#b91c1c" stroke-width="2" stroke-dasharray="6 4"/>
+        <text x="100" y="512" text-anchor="middle" font-size="40" font-weight="800" fill="#b91c1c">?</text>
+        <rect x="190" y="15" width="400" height="90" rx="10" fill="#e3efee" stroke="#0f5e5e" stroke-width="1.5"/><text x="206" y="43" font-size="16" font-weight="800" fill="#0f5e5e">① 복용</text><text x="206" y="67" font-size="13.5" fill="#2b2b2b">입으로 먹은 메벤다졸이 장으로 내려감</text><text x="206" y="89" font-size="13.5" fill="#2b2b2b">(임상시험은 식사와 함께 투여)</text>
+        <rect x="190" y="125" width="400" height="90" rx="10" fill="#fdecec" stroke="#b91c1c" stroke-width="1.5"/><text x="206" y="153" font-size="16" font-weight="800" fill="#b91c1c">② 장 → 혈액: 가장 좁은 병목</text><text x="206" y="177" font-size="13.5" fill="#2b2b2b">물에 거의 안 녹아 흡수되는 양이 적고</text><text x="206" y="199" font-size="13.5" fill="#2b2b2b">사람마다 혈중 농도 편차가 큼</text>
+        <rect x="190" y="235" width="400" height="90" rx="10" fill="#e9f0e6" stroke="#5b7f5b" stroke-width="1.5"/><text x="206" y="263" font-size="16" font-weight="800" fill="#5b7f5b">③ 혈액 → 뇌 (BBB): 비교적 양호</text><text x="206" y="287" font-size="13.5" fill="#2b2b2b">마우스: 혈중 양의 약 80%가 뇌 조직에</text><text x="206" y="309" font-size="13.5" fill="#2b2b2b">단, 유출 펌프(P-gp)가 일부를 퍼냄</text>
+        <rect x="190" y="345" width="400" height="90" rx="10" fill="#fdf0dc" stroke="#b45309" stroke-width="1.5"/><text x="206" y="373" font-size="16" font-weight="800" fill="#b45309">④ 뇌 → 종양: 중심 ≠ 가장자리</text><text x="206" y="397" font-size="13.5" fill="#2b2b2b">중심부는 장벽이 새서 들어가기 쉬움</text><text x="206" y="419" font-size="13.5" fill="#2b2b2b">스며든 가장자리 세포는 온전한 장벽 뒤</text>
+        <rect x="190" y="455" width="400" height="90" rx="10" fill="#fff" stroke="#b91c1c" stroke-width="1.5" stroke-dasharray="6 4"/><text x="206" y="483" font-size="16" font-weight="800" fill="#b91c1c">⑤ 사람 종양 조직 농도</text><text x="206" y="507" font-size="13.5" fill="#2b2b2b">측정된 적 없음 — 먼저 채울 빈칸</text><text x="206" y="529" font-size="13.5" fill="#2b2b2b">→ 수술 전 투여 연구로 직접 측정 필요</text>
+      </svg>
+      <figcaption><span class="claude-tag">Claude 판단</span> <b>개념도</b>입니다. 관의 폭은 실제 비율이 아니라 "어디가 좁은가"를 보여줍니다. ③의 수치는 마우스 실험(다형체 C), ④는 일반적인 영상·병리 지식에 근거합니다.</figcaption>
+    </figure>
+    <div class="ladder">
+      <div class="flow-title"><span class="claude-tag">Claude 판단</span>농도 비교 (로그 눈금 기준 대략적 비율)</div>
+      <div class="lrow"><div class="lbl">시험관 10 µM<small>ERK·β-튜불린 큰 감소</small></div><div class="bar lab" style="width:100%">≈ 2,950 ng/mL</div></div>
+      <div class="lrow"><div class="lbl">마우스 뇌 조직 최고<small>다형체 C 경구</small></div><div class="bar mouse" style="width:95%">≈ 2,016 ng/g (약 7 µM)</div></div>
+      <div class="lrow"><div class="lbl">시험관 1 µM<small>RES 259 생존 약 40%↓</small></div><div class="bar lab" style="width:71%">≈ 295 ng/mL</div></div>
+      <div class="lrow"><div class="lbl">개 혈장 최고농도<small>100~200 mg/kg 1회</small></div><div class="bar plasma" style="width:66%">약 150~220 ng/mL</div></div>
+      <div class="lrow"><div class="lbl">시험관 100 nM<small>이동 억제 시험 하한</small></div><div class="bar lab" style="width:43%">≈ 30 ng/mL</div></div>
+      <div class="lrow"><div class="lbl">개 뇌척수액 최고<small>100~200 mg/kg 1회</small></div><div class="bar csf" style="width:34%">약 8~21 ng/mL</div></div>
+      <div class="lrow"><div class="lbl">사람 뇌·종양 조직<small>소아·성인 모두</small></div><div class="bar none" style="width:100%">측정값 없음 (0건)</div></div>
+    </div>
+    <p class="scale-note" style="border:none;padding:0">계산 근거: 메벤다졸 분자량 약 295 g/mol → 1 µM ≈ 295 ng/mL. 마우스 자료는 Bai 외 2015(Blum 외 2026 체계적 문헌고찰에서 재인용), 개 자료는 Yanke 외 2023(건강한 개, 1회 경구 투여, 중앙값)입니다.</p>
+
+    <div class="note claude">
+      <h4><span class="claude-tag">Claude 판단</span>이 비교가 말해주는 것 — 장벽보다 "입구"가 문제</h4>
+      <ul>
+        <li><b>메벤다졸은 BBB를 비교적 잘 통과합니다.</b> 마우스에서 다형체 C를 먹였을 때 뇌/혈장 노출 비율(AUC)이 <b>0.82</b>였습니다. 혈중에 있는 양의 80% 이상이 뇌 조직에도 있었다는 뜻이고, 뇌 최고농도(약 7 µM)는 이번 논문의 유효 구간(1~10 µM)에 들어갑니다.</li>
+        <li><b>뇌척수액 ≠ 뇌 조직.</b> 개의 뇌척수액 농도는 혈장의 4~10%였지만, 이것은 뇌 조직 농도와는 다른 값입니다. 뇌척수액만 보면 실제보다 비관적으로 읽힐 수 있습니다.</li>
+        <li><b>진짜 병목은 장벽 앞단입니다.</b> 메벤다졸은 물에 거의 녹지 않아 장에서 혈액으로 들어가는 양이 적고 사람마다 편차가 큽니다. 성인 교종 1상(Gallia 외 2021)에서도 혈장 농도는 "편차가 크지만 용량에 따라 대체로 증가"했습니다.</li>
+        <li><b>사람 데이터가 비어 있습니다.</b> 2026년 체계적 문헌고찰은 사람의 뇌·뇌척수액 농도 측정값이 <b>한 건도 없다</b>고 정리했습니다. 마우스와 개의 결과를 사람에게 그대로 옮길 수는 없습니다.</li>
+      </ul>
+    </div>
+
+    <h3>그럼 해결책은 무엇인가 — 네 개의 층위</h3>
+    <div class="tbl"><table>
+      <tr><th>층위</th><th>문제</th><th>해결책 후보</th><th>근거 수준</th></tr>
+      <tr><td><b>① 약의 형태</b></td><td>결정 형태(다형체 A·B·C)에 따라 흡수·독성이 다름</td><td><b>다형체 C</b> 사용</td><td><span class="badge b-warn">⚠ 동물</span> 마우스: C는 생존 연장(48.5일 vs 대조 29일), B는 효과 있으나 체중 감소 큼, A는 효과 없음</td></tr>
+      <tr><td><b>② 흡수</b></td><td>낮은 수용해도 → 낮고 들쭉날쭉한 혈중 농도</td><td>식사와 함께 복용(임상시험 방식), 나노현탁액 제형</td><td><span class="badge b-q">❓ 초기</span> 나노현탁액은 시험관 결과뿐, 약동학 자료 없음</td></tr>
+      <tr><td><b>③ 유출 펌프</b></td><td>P-gp/BCRP가 뇌에서 약을 일부 퍼냄</td><td>유출 펌프 억제제(elacridar) 병용</td><td><span class="badge b-warn">⚠ 동물</span> 마우스: 생존 110.5일 vs 메벤다졸 단독 53일. <b>사람 승인 약 아님</b></td></tr>
+      <tr><td><b>④ 우회·개방</b></td><td>경로 자체를 바꾸거나 장벽을 일시적으로 엶</td><td>비강 투여, MRI 유도 집속 초음파</td><td><span class="badge b-q">❓ 초기</span> 비강: 쥐 실험 1건. 초음파: 소아 DIPG 1상 진행, 메벤다졸과는 무관</td></tr>
+    </table></div>
+
+    <div class="note gold">
+      <h4>⚠ 현실적으로 가장 중요한 변수 — 다형체</h4>
+      <p>사람 임상에서도 연구마다 다형체가 달랐습니다(Gallia 2021은 C, Patil 2022는 B). 시판 메벤다졸은 <b>제품마다 다형체 구성이 다를 수 있어</b>, 같은 "메벤다졸"이라도 결과가 다를 수 있습니다. 메벤다졸 연구를 읽을 때 꼭 확인해야 할 항목입니다. 이번 논문은 실험에 다형체 C를 사용했다고 밝혔습니다.</p>
+    </div>
+
+    <div class="note red">
+      <h4>🔴 유출 펌프 억제는 자가 시도 금지 영역</h4>
+      <p>P-gp를 막으면 메벤다졸만이 아니라 <b>함께 먹는 다른 약들까지 뇌로 더 들어갑니다.</b> 이버멕틴처럼 P-gp가 뇌 독성을 막아주던 약에서는 위험이 커질 수 있습니다. 동물 결과가 인상적이더라도 이 조합은 의료진 감시 아래 임상시험에서만 다뤄질 영역입니다.</p>
+    </div>
+
+    <div class="note claude">
+      <h4><span class="claude-tag">Claude 판단 · 일반 지식</span>소아 저등급 교종에 특유한 사정</h4>
+      <p>모양세포성 별아교세포종은 MRI 조영 증강이 흔합니다. 이는 <b>종양 중심부의 혈관 장벽이 이미 새고 있다</b>는 뜻이라, 약이 그 부위로는 비교적 잘 들어갈 수 있습니다. 반면 재발의 원인이 되는 <b>주변으로 스며든 세포들은 온전한 BBB 뒤에</b> 있습니다. 이번 논문이 강조한 "이동 억제"가 의미를 가지려면 그 가장자리까지 약이 닿아야 합니다.</p>
+    </div>
+
+    <div class="note claude">
+      <h4><span class="claude-tag">Claude 판단</span>가장 현실적인 해결책은 "측정"이다</h4>
+      <p>지금 빠진 것은 새 기술보다 <b>사람 종양 조직 농도라는 숫자 하나</b>입니다. 이를 얻는 표준 방법은 <b>수술 전 투여 연구</b>(window-of-opportunity study)입니다. 수술 예정 환자에게 며칠간 약을 투여한 뒤, 절제한 종양 조직과 혈액의 농도를 직접 재는 방식입니다. 이 숫자가 있어야 "시험관 1 µM"과 "실제 뇌 속 농도"를 비교할 수 있습니다. 현재까지 메벤다졸로 이런 연구가 발표된 것은 확인되지 않습니다.</p>
+    </div>
+
+    <div class="note red">
+      <h4>🔴 꼭 짚어둘 점</h4>
+      <p>이 장의 내용은 <b>메벤다졸 복용 용량이나 복용법을 정하는 근거가 될 수 없습니다.</b> 시험관·동물 농도를 사람 용량으로 바꾸는 공식은 없으며, 고용량 메벤다졸은 간독성·골수억제 등 부작용 위험이 있어 반드시 의료진의 감시가 필요합니다.</p>
+    </div>
+  </section>
+
+  <!-- 12 -->
+  <section>
+    <h2><span class="num">12</span>정직한 한계 — 무엇이 확인되고 무엇이 아닌가</h2>
+    <div class="tbl"><table>
+      <tr><th>주장</th><th>상태</th><th>비고</th></tr>
+      <tr><td>메벤다졸이 pLGG 세포주 성장을 억제한다</td><td><span class="badge b-warn">⚠ 시험관</span></td><td>RES 259 뚜렷 · RES 186 약함(20%)</td></tr>
+      <tr><td>메벤다졸이 ERK 활성을 낮춘다</td><td><span class="badge b-warn">⚠ 시험관</span></td><td>주로 1~10 µM · 선행 연구와 방향 일부 불일치</td></tr>
+      <tr><td>메벤다졸이 세포 이동을 억제한다</td><td><span class="badge b-warn">⚠ 시험관</span></td><td>본문·그림 표기 엇갈림 (9장)</td></tr>
+      <tr><td>빈블라스틴과 병용 상승효과 없음</td><td><span class="badge b-warn">⚠ 시험관</span></td><td>한 농도·한 시점 조건에 한정</td></tr>
+      <tr><td>정상 세포는 거의 해치지 않는다(선택적 독성)</td><td><span class="badge b-q">❓ 이 연구에서 미검증</span></td><td>서론에서 문헌 인용으로 언급될 뿐, <b>정상 세포 대조군 없음</b></td></tr>
+      <tr><td>동물에서 종양을 줄인다</td><td><span class="badge b-q">❓ 미시험</span></td><td>동물실험 없음</td></tr>
+      <tr><td>소아 환자에게 효과가 있다</td><td><span class="badge b-no">근거 없음</span></td><td>이 논문 범위 밖</td></tr>
+    </table></div>
+
+    <h3>논문 자체의 한계</h3>
+    <ul>
+      <li><b>세포주 2종만</b> 사용. 그중 RES 186은 저자들 스스로 "전형적 pLGG를 덜 대표할 수 있다"고 인정한 세포주</li>
+      <li><b>시험관 실험만</b> — 저자들이 고찰에서 혈관·면역·세포외기질 등 생체 환경이 빠져 있다고 명시</li>
+      <li>신호 분석 시점이 <b>48시간 하나</b>. p53은 인산화형만 측정하고 총 p53은 측정하지 않음(저자 인정)</li>
+      <li>대부분의 의미 있는 변화가 <b>1~10 µM</b>에서 나타남 — 생체 도달 농도와의 연결 미검토</li>
+      <li>BRAF 변이·융합 상태와 반응의 관계는 분석되지 않음</li>
+    </ul>
+    <div class="note claude">
+      <h4><span class="claude-tag">Claude 판단</span>그럼에도 소개할 가치가 있는 이유</h4>
+      <p>이 논문은 "구충제가 암을 고친다"는 증거가 아닙니다. 대신 <b>① 아이들의 뇌종양이라는 절실한 분야에서, ② 사람에게 승인된 약이, ③ 그 암의 핵심 경로에 영향을 준다는 것, 그리고 ④ 기대했던 병용 효과는 없었다는 것</b>을 함께 정직하게 보고한 기초 연구입니다. 좋은 결과와 나쁜 결과를 함께 읽는 연습에 적합한 논문입니다.</p>
+    </div>
+  </section>
+
+  <!-- 13 -->
+  <section>
+    <h2><span class="num">13</span>예상 질문 & 답변</h2>
+
+    <h3>일반 (처음 읽는 분)</h3>
+    <details class="qa"><summary>그럼 메벤다졸이 소아 뇌종양에 효과가 있다는 건가요?</summary>
+      <div class="ans"><p>아닙니다. <b>배양 접시의 세포</b>에서 성장이 줄었다는 결과입니다. 동물이나 사람에서 확인된 것이 아닙니다. 시험관에서 효과를 보인 물질 중 실제 치료제가 되는 비율은 매우 낮습니다.</p></div></details>
+    <details class="qa"><summary>펜벤다졸도 같은 효과가 있다고 봐도 되나요?</summary>
+      <div class="ans"><p>그렇게 볼 수 없습니다. 같은 계열이지만 <b>이 논문은 펜벤다졸을 시험하지 않았습니다.</b> 흡수율·대사가 다르고, 펜벤다졸은 사람 대상 임상시험이 한 건도 없습니다. (3장 참조)</p></div></details>
+    <details class="qa"><summary>왜 두 세포주의 결과가 그렇게 다른가요?</summary>
+      <div class="ans"><p>저자들은 RES 186이 가진 튜불린 관련 변화나 PI3K/AKT 같은 우회 생존 경로 가능성을 제시합니다. 다만 직접 검증한 것은 아니며 추정입니다. 같은 병명이라도 종양마다 약 반응이 크게 다를 수 있다는 점을 보여줍니다.</p></div></details>
+
+    <h3>심화 (배경이 있는 분)</h3>
+    <details class="qa"><summary>MEK는 올라갔는데 ERK는 내려간 게 말이 되나요?</summary>
+      <div class="ans"><p>저자들은 RAS 감소에 대한 보상으로 MEK 인산화가 증가했지만 MEK→ERK 전달이 방해받았다고 해석합니다. 다만 총 ERK도 10 µM에서 함께 줄었고, 선행 연구는 메벤다졸이 MEK-ERK를 활성화한다고 보고했습니다. <span class="claude-tag">Claude 판단</span> 기전은 아직 열린 질문이며, ERK 탈인산화효소나 시간 경과 분석 같은 추가 실험이 필요해 보입니다.</p></div></details>
+    <details class="qa"><summary>MEK 억제제와 함께 쓰면 어떨까요?</summary>
+      <div class="ans"><p>이 논문은 MEK 억제제 병용을 시험하지 않았습니다. <span class="claude-tag">Claude 판단</span> 메벤다졸이 MEK 인산화를 높였다는 결과를 보면 MEK 억제제와의 조합은 논리적으로 흥미로운 다음 질문이지만, 현재로서는 가설일 뿐입니다.</p></div></details>
+    <details class="qa"><summary>메벤다졸을 사람에게 고용량으로 쓴 임상이 있나요?</summary>
+      <div class="ans"><p>있습니다. 성인 고등급 교종에서 테모졸로마이드와 함께 최대 200 mg/kg/일까지 투여한 1상(Gallia 외 2021), 소아 고등급 교종에서 베바시주맙·이리노테칸과 함께 최대 200 mg/kg/일을 투여한 1상(Krystal 외 2024)이 보고되었습니다. 둘 다 안전성 확인 단계이며 효능을 입증한 것은 아닙니다. 성인 연구에서는 고용량군 일부에서 3등급 간수치 상승이 있었습니다.</p></div></details>
+
+    <h3>회의적 (비판적인 분)</h3>
+    <details class="qa"><summary>또 하나의 "시험관에서만 되는" 과장 아닌가요?</summary>
+      <div class="ans"><p>논문 자체는 비교적 절제되어 있습니다. 시험관 한계를 고찰에서 명시했고, 병용 음성 결과도 그대로 보고했습니다. 다만 서론의 "정상 조직에는 거의 무해하다"는 표현은 이 연구에서 검증되지 않았으니 걸러 읽어야 합니다.</p></div></details>
+    <details class="qa"><summary>1 µM 이상에서만 효과가 크다면 의미가 있나요?</summary>
+      <div class="ans"><p>정당한 지적입니다. <span class="claude-tag">Claude 판단</span> 마우스에서는 다형체 C를 먹였을 때 뇌 조직 농도가 약 7 µM까지 올라가 이 구간에 들어갔습니다. 반면 개의 뇌척수액 농도는 훨씬 낮았고, 사람의 뇌·종양 조직 농도는 측정값이 없습니다. "무의미"도 "충분"도 단정할 수 없고, 사람 종양 조직 농도를 재는 연구가 답을 줄 수 있습니다. (11장)</p></div></details>
+    <details class="qa"><summary>결국 BBB를 어떻게 뚫느냐가 관건 아닌가요?</summary>
+      <div class="ans"><p><span class="claude-tag">Claude 판단</span> 메벤다졸에게는 BBB보다 <b>흡수</b>가 더 큰 병목으로 보입니다. 마우스에서 뇌/혈장 비율이 0.82로 장벽 통과는 비교적 좋았기 때문입니다. 현실적인 순서는 ① 다형체 C 같은 검증된 형태 사용, ② 흡수를 높이는 제형 개발, ③ 사람 종양 조직 농도 측정입니다. 유출 펌프 억제나 초음파 장벽 개방은 그다음 단계이며, 아직 메벤다졸로는 사람에게 시험된 적이 없습니다. (11장)</p></div></details>
+    <details class="qa"><summary>저널은 믿을 만한가요?</summary>
+      <div class="ans"><p><i>Oncology Research</i>는 Tech Science Press에서 발행하는 오픈액세스 저널입니다. 저널 이름보다는 실험 설계와 한계를 직접 보는 것이 중요합니다. 이 문서의 12장 표가 그 판단을 돕기 위한 것입니다.</p></div></details>
+  </section>
+
+  <!-- 14 -->
+  <section>
+    <h2><span class="num">14</span>용어 사전 & 출처</h2>
+    <div class="tbl"><table>
+      <tr><th>용어</th><th>뜻</th></tr>
+      <tr><td><b>pLGG</b></td><td>소아 저등급 교종 — 아이들에게 가장 흔한 뇌종양군. 천천히 자람</td></tr>
+      <tr><td><b>MAPK 경로</b></td><td>RAS→RAF→MEK→ERK로 이어지는 세포 성장 신호 사슬. pLGG의 핵심 동력</td></tr>
+      <tr><td><b>인산화(p-)</b></td><td>단백질에 인산기가 붙어 "켜진" 상태. pERK = 활성 ERK</td></tr>
+      <tr><td><b>미세소관 / 튜불린</b></td><td>세포 골격·세포분열 장치. 튜불린은 그 재료 단백질</td></tr>
+      <tr><td><b>IC50</b></td><td>세포 활성을 50% 낮추는 농도. 낮을수록 강한 약</td></tr>
+      <tr><td><b>아폽토시스</b></td><td>프로그램된 세포 죽음. 카스파아제-3가 실행자</td></tr>
+      <tr><td><b>자가포식(오토파지)</b></td><td>세포가 스스로 내부 성분을 분해·재활용하는 과정. 생존 반응일 수도, 죽음의 길일 수도 있음</td></tr>
+      <tr><td><b>상승효과(synergy)</b></td><td>두 약을 함께 쓸 때 각각의 합보다 큰 효과</td></tr>
+      <tr><td><b>µM / nM</b></td><td>농도 단위. 1 µM = 1,000 nM. 메벤다졸 1 µM ≈ 295 ng/mL</td></tr>
+    </table></div>
+
+    <h3>주요 출처</h3>
+    <ul class="sources">
+      <li><b>본 논문</b>: Ferraro C, et al. <i>Oncology Research</i> (2026). <a href="https://doi.org/10.32604/or.2026.071074">doi.org/10.32604/or.2026.071074</a></li>
+      <li>Andersson CR, et al. Mebendazole is unique among tubulin-active drugs in activating the MEK-ERK pathway. <i>Sci Rep</i> 2020;10:13124 (본 논문 참고문헌 46)</li>
+      <li>Dogra N, et al. Fenbendazole acts as a moderate microtubule destabilizing agent… <i>Sci Rep</i> 2018;8:11926 (본 논문 참고문헌 41)</li>
+      <li>Meco D, Attinà G, Mastrangelo S, Navarra P, Ruggiero A. Emerging perspectives on the antiparasitic mebendazole as a repurposed drug for the treatment of brain cancers. <i>Int J Mol Sci</i> 2023;24(2):1334 (본 논문 참고문헌 22)</li>
+      <li>Kipper FC, et al. Vinblastine and antihelmintic mebendazole potentiate temozolomide in resistant gliomas. <i>Invest New Drugs</i> 2018;36(2):323–31 (본 논문 참고문헌 75)</li>
+      <li>Gallia GL, et al. Mebendazole and temozolomide in patients with newly diagnosed high-grade gliomas: results of a phase 1 clinical trial. <i>Neuro-Oncology Advances</i> 2021. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7817892/">PMC7817892</a></li>
+      <li>Krystal J, et al. A phase 1 study of mebendazole with bevacizumab and irinotecan in high-grade gliomas. <i>Pediatr Blood Cancer</i> 2024. PMID 38234020</li>
+      <li>Blum CB, et al. From anthelmintic to neuro-oncology: a systematic review of mebendazole repurposing for brain tumour therapy. <i>Br J Clin Pharmacol</i> 2026. DOI: 10.1002/bcp.70565 — 마우스 다형체·뇌 농도·elacridar·비강 투여·나노현탁액 자료(Bai 2015 등)는 이 리뷰에서 재인용</li>
+      <li>Sunnybrook·SickKids — MRI 유도 집속 초음파로 BBB를 열어 항암제를 전달하는 소아 DIPG 1상. <a href="https://www.sickkids.ca/en/news/archive/2023/world-first-sunnybrook-sickkids-clinical-trial-chemotherapy-pediatric-brain-tumours-mri-guided-focused-ultrasound">SickKids 발표</a></li>
+      <li>NCT01837862 — A Phase I Study of Mebendazole for the Treatment of Pediatric Gliomas. <a href="https://clinicaltrials.gov/study/NCT01837862">ClinicalTrials.gov</a></li>
+      <li>Yanke AB, et al. Pharmacokinetics of mebendazole in plasma and cerebrospinal fluid (dogs). <i>Front Vet Sci</i> 2023. <a href="https://www.frontiersin.org/journals/veterinary-science/articles/10.3389/fvets.2023.1231769/text">frontiersin.org</a></li>
+    </ul>
+  </section>
+
+  <div class="honest">
+    <b class="t">⚠️ 정직하게 밝힙니다</b>
+    <ul style="margin-bottom:0">
+      <li>이 문서는 <b>일반인용 해설</b>이며 논문 원문을 대체하지 않습니다. 수치는 원문 본문과 그림을 확인해 옮겼습니다.</li>
+      <li><span class="claude-tag">Claude 판단</span> 표시 부분(연구팀의 선택 정황, 농도 비교·BBB 해결책 정리, 임상 연결, 본문·그림 불일치 지적 등)은 <b>논문에 없는 Claude의 해석</b>입니다. 특히 그림 판독은 원문 그림으로 직접 확인하시길 권합니다.</li>
+      <li>NCT01837862의 저등급 교종 군 결과는 이 문서 작성 시점에 확인하지 못했습니다.</li>
+      <li>11장의 마우스 수치는 원 논문(Bai 2015)이 아니라 2026년 체계적 문헌고찰의 정리를 재인용한 것입니다.</li>
+      <li><b>의료 조언이 아닙니다.</b> 메벤다졸을 포함한 어떤 약의 복용도 반드시 담당 의료진과 상의하십시오. 특히 소아 환자의 경우 더욱 그렇습니다.</li>
+    </ul>
+  </div>
+
+  <footer>
+    <b>작성일</b> 2026-10-22 · <b>형식</b> 단일 HTML (외부 의존 0) · <b>해설</b> Claude<br>
+    히포크라테스의 친구들 · 논문 해설<br>
+    <button class="print-btn" onclick="window.print()">인쇄 / PDF로 저장</button>
+  </footer>
+
+</div>
+</body>
+</html>
