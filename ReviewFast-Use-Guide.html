@@ -1,0 +1,928 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="용도변경 약물 커뮤니티를 위한 ReviewFast(Jev) 사용 가이드와 1,984편 선별 연습장">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>ReviewFast 활용 가이드</title>
+</head>
+<body>
+
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&family=Gothic+A1:wght@400;500;700&display=swap">
+<style>
+/* Layout: 한 줄 세로 읽기(모바일 우선) · 상단 고정 단계 내비 · 데이터 그림은 카드 안에서 가로 스크롤 */
+:root{
+  --bg:#F3F6F5; --paper:#FFFFFF; --ink:#13201D; --muted:#5B6B67; --line:#D8E0DD;
+  --accent:#0E6B61; --accent-soft:#DCEFEB; --amber:#B9700C; --amber-soft:#F7EAD3;
+  --direct:#C2352B; --direct-soft:#F8E1DE; --meta:#3E4FA8; --meta-soft:#E2E5F6; --supp:#2F7D3B; --supp-soft:#E0F0E2;
+  --code:#EEF2F1;
+  --f-display:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --f-body:"Gothic A1","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0F1614; --paper:#17211F; --ink:#E4ECE9; --muted:#97A8A3; --line:#2B3A37;
+  --accent:#5CC4B5; --accent-soft:#183A35; --amber:#E7A443; --amber-soft:#3A2C14;
+  --direct:#F07A6E; --direct-soft:#3E1F1C; --meta:#94A2F0; --meta-soft:#22284A; --supp:#79C786; --supp-soft:#1C3420;
+  --code:#1F2B29; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F1614; --paper:#17211F; --ink:#E4ECE9; --muted:#97A8A3; --line:#2B3A37;
+  --accent:#5CC4B5; --accent-soft:#183A35; --amber:#E7A443; --amber-soft:#3A2C14;
+  --direct:#F07A6E; --direct-soft:#3E1F1C; --meta:#94A2F0; --meta-soft:#22284A; --supp:#79C786; --supp-soft:#1C3420;
+  --code:#1F2B29; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.7;word-break:keep-all;overflow-wrap:anywhere}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.wrap{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3,h4{font-family:var(--f-display);text-wrap:balance;line-height:1.3;margin:0}
+h1{font-size:clamp(1.7rem,6vw,2.4rem);font-weight:700;letter-spacing:-.01em}
+h2{font-size:clamp(1.35rem,4.6vw,1.75rem);font-weight:700}
+h3{font-size:1.1rem;font-weight:700}
+h4{font-size:.98rem;font-weight:600}
+p{margin:0}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+.mono,.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}
+.small{font-size:.86rem}
+.stack{display:flex;flex-direction:column;gap:14px}
+.stack-lg{display:flex;flex-direction:column;gap:28px}
+
+/* header */
+header.hero{background:var(--paper);border-bottom:1px solid var(--line)}
+header.hero .wrap{padding-block:34px 26px;display:flex;flex-direction:column;gap:14px}
+.eyebrow{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.lede{font-size:1.04rem;color:var(--muted);max-width:62ch}
+
+/* sticky nav */
+nav.steps{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--paper);border-bottom:1px solid var(--line)}
+nav.steps .wrap{display:flex;gap:6px;overflow-x:auto;padding-block:8px;scrollbar-width:none}
+nav.steps .wrap::-webkit-scrollbar{display:none}
+nav.steps a{flex:none;text-decoration:none;color:var(--ink);font-size:.86rem;font-weight:600;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--bg);white-space:nowrap}
+nav.steps a.on{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+nav.steps a .lv{font-family:var(--f-mono);font-size:.72rem;opacity:.75;margin-right:4px}
+
+main .wrap{padding-block:26px 60px}
+section{scroll-margin-top:calc(56px + env(safe-area-inset-top,0px))}
+.sec-head{display:flex;flex-direction:column;gap:6px;padding-top:12px;border-top:2px solid var(--ink)}
+.level{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-mono);font-size:.78rem;font-weight:600;letter-spacing:.06em}
+.level i{display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--line)}
+.level i.f{background:var(--accent)}
+
+.card{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:18px}
+.card.flat{background:transparent;border-style:dashed}
+.callout{border-left:4px solid var(--amber);background:var(--amber-soft);padding:12px 14px;border-radius:0 8px 8px 0;font-size:.95rem}
+.callout.teal{border-left-color:var(--accent);background:var(--accent-soft)}
+.callout b{font-family:var(--f-display)}
+
+/* Jev box */
+.jev{border:1.5px solid var(--accent);border-radius:12px;background:var(--paper);padding:18px;display:flex;flex-direction:column;gap:14px}
+.jev-tag{display:inline-block;font-family:var(--f-mono);font-size:.75rem;background:var(--accent);color:var(--paper);padding:2px 8px;border-radius:4px;font-weight:600;letter-spacing:.04em}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.kv div{background:var(--bg);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.kv b{font-family:var(--f-mono);font-size:1.25rem;font-variant-numeric:tabular-nums;color:var(--accent)}
+.kv span{font-size:.82rem;color:var(--muted);line-height:1.45}
+
+.fig{overflow-x:auto}
+.fig svg{display:block;width:100%;height:auto}
+svg text{font-family:var(--f-body)}
+.cap{font-size:.82rem;color:var(--muted);margin-top:6px}
+
+.funnel{display:flex;flex-direction:column;align-items:center;gap:8px}
+.fn{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 10px;text-align:center;display:flex;flex-direction:column;min-width:0}
+.fn.h{background:var(--amber-soft);border-color:var(--amber)}
+.fn b{font-family:var(--f-mono);font-size:1.2rem;font-variant-numeric:tabular-nums}
+.fn span{font-size:.8rem;color:var(--muted);line-height:1.35}
+ol.flow{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:22px}
+ol.flow li{position:relative;display:grid;grid-template-columns:auto 1fr auto;gap:4px 12px;align-items:center;background:var(--accent-soft);border:1px solid var(--accent);border-radius:10px;padding:12px 14px}
+ol.flow li.h{background:var(--amber-soft);border-color:var(--amber)}
+ol.flow li b{font-family:var(--f-display);font-size:1.05rem;color:var(--accent);white-space:nowrap}
+ol.flow li.h b{color:var(--amber)}
+ol.flow li span{font-size:.9rem;line-height:1.45;min-width:0}
+ol.flow li em{font-style:normal;font-family:var(--f-mono);font-size:.74rem;color:var(--muted)}
+ol.flow li:not(:last-child)::after{content:"";position:absolute;left:50%;bottom:-18px;border:7px solid transparent;border-top:9px solid var(--muted);transform:translateX(-50%)}
+/* paper cards */
+.paper{display:grid;grid-template-columns:54px 1fr;gap:12px;padding:12px 0;border-top:1px solid var(--line)}
+.paper:first-child{border-top:0}
+.paper .score{font-family:var(--f-mono);font-weight:600;font-size:1.05rem;text-align:center;border-radius:6px;padding:6px 0;align-self:start}
+.paper .t{font-size:.93rem;line-height:1.5;min-width:0}
+.paper .m{font-size:.78rem;color:var(--muted);font-family:var(--f-mono)}
+.s-hi{background:var(--accent-soft);color:var(--accent)}
+.s-mid{background:var(--amber-soft);color:var(--amber)}
+.s-lo{background:var(--code);color:var(--muted)}
+.bar{height:6px;border-radius:3px;background:var(--code);overflow:hidden;margin-top:6px}
+.bar>i{display:block;height:100%;background:var(--accent)}
+
+/* controls */
+.slider-row{display:flex;flex-direction:column;gap:8px}
+input[type=range]{width:100%;accent-color:var(--accent)}
+.readout{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.readout div{background:var(--bg);border-radius:8px;padding:8px 10px;min-width:0}
+.readout b{display:block;font-family:var(--f-mono);font-size:1.3rem;font-variant-numeric:tabular-nums}
+.readout span{font-size:.76rem;color:var(--muted);line-height:1.3;display:block}
+.presets{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font:inherit;font-size:.8rem;padding:5px 10px;border-radius:999px;border:1px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
+.chip[aria-pressed=true]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tab{font:inherit;font-weight:600;font-size:.86rem;padding:7px 12px;border-radius:8px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
+.tab[aria-selected=true][data-g=direct]{border-color:var(--direct);background:var(--direct-soft);color:var(--direct)}
+.tab[aria-selected=true][data-g=metabolic]{border-color:var(--meta);background:var(--meta-soft);color:var(--meta)}
+.tab[aria-selected=true][data-g=support]{border-color:var(--supp);background:var(--supp-soft);color:var(--supp)}
+.drug-row{display:grid;grid-template-columns:minmax(92px,34%) 1fr 64px;gap:8px;align-items:center;padding:7px 4px;border-radius:6px;cursor:pointer;border:0;background:none;width:100%;text-align:left;font:inherit;color:var(--ink)}
+.drug-row:hover{background:var(--bg)}
+.drug-row[aria-expanded=true]{background:var(--bg)}
+.drug-row .nm{font-size:.88rem;font-weight:600;line-height:1.3;min-width:0}
+.drug-row .nm small{display:block;font-weight:400;color:var(--muted);font-size:.72rem;font-family:var(--f-mono)}
+.drug-row .track{height:14px;background:var(--code);border-radius:3px;position:relative;overflow:hidden}
+.drug-row .track i{position:absolute;left:0;top:0;bottom:0;border-radius:3px}
+.drug-row .track i.all{opacity:.35}
+.drug-row .cnt{font-family:var(--f-mono);font-size:.82rem;text-align:right;font-variant-numeric:tabular-nums}
+.drug-detail{padding:4px 4px 12px 12px;border-left:2px solid var(--line);margin:0 0 8px 6px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:.78rem;color:var(--muted)}
+.legend i{display:inline-block;width:12px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+
+pre,code{font-family:var(--f-mono);font-size:.82rem}
+pre{background:var(--code);border-radius:8px;padding:12px;overflow-x:auto;white-space:pre-wrap;word-break:break-word;margin:0;line-height:1.55}
+code{background:var(--code);padding:1px 5px;border-radius:4px}
+.copybox{position:relative}
+.copybox button{position:absolute;top:6px;right:6px;font:inherit;font-size:.74rem;padding:3px 9px;border-radius:6px;border:1px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
+.copybox pre{padding-right:64px}
+
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.compare>div{border-radius:8px;padding:12px;min-width:0;font-size:.9rem}
+.compare .bad{background:var(--direct-soft)}
+.compare .good{background:var(--supp-soft)}
+.compare h4{font-size:.82rem;margin-bottom:6px}
+@media (max-width:520px){.compare{grid-template-columns:1fr}}
+
+details{border:1px solid var(--line);border-radius:10px;background:var(--paper)}
+details summary{cursor:pointer;padding:14px 16px;font-family:var(--f-display);font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:10px}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+";font-family:var(--f-mono);color:var(--accent)}
+details[open] summary::after{content:"−"}
+details .body{padding:0 16px 16px;display:flex;flex-direction:column;gap:12px}
+
+ol.clean,ul.clean{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:6px}
+table{border-collapse:collapse;width:100%;font-size:.85rem}
+th,td{border-bottom:1px solid var(--line);padding:7px 8px;text-align:left;vertical-align:top}
+th{font-family:var(--f-display);font-weight:600;background:var(--bg)}
+.tbl{overflow-x:auto}
+.tbl table{min-width:520px}
+.tbl.fit table{min-width:0}
+footer{border-top:1px solid var(--line);background:var(--paper)}
+footer .wrap{padding-block:24px 40px;display:flex;flex-direction:column;gap:10px;font-size:.85rem}
+.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.tool{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;font-size:.9rem;min-width:0}
+.tool header{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.tool p b{font-family:var(--f-display);font-size:.78rem;color:var(--muted);margin-right:6px}
+.tool.rf{border:1.5px solid var(--accent);background:var(--accent-soft)}
+.pill{font-family:var(--f-mono);font-size:.72rem;padding:2px 8px;border-radius:999px;background:var(--accent);color:var(--paper);white-space:nowrap}
+.pill.g{background:var(--code);color:var(--ink)}
+.pill.b{background:var(--meta-soft);color:var(--meta)}
+.linkbtn{font:inherit;font-weight:600;color:var(--accent);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.filters{display:flex;flex-direction:column;gap:6px}
+.frow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.frow>div{display:flex;flex-direction:column;gap:2px;min-width:0}
+@media (max-width:520px){.frow{grid-template-columns:1fr 1fr}}
+input[type=search],select,textarea{font:inherit;font-size:16px;width:100%;padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:var(--paper);color:var(--ink);min-width:0}
+textarea{font-family:var(--f-mono);font-size:.8rem}
+input[type=file]{font-size:.85rem;max-width:100%}
+.filebtn{display:none}
+.pcard{border-top:1px solid var(--line)}
+.pcard:first-child{border-top:0}
+.pcard.is-keep{box-shadow:inset 3px 0 0 var(--supp)}
+.pcard.is-drop{box-shadow:inset 3px 0 0 var(--muted);opacity:.75}
+.phead{display:grid;grid-template-columns:54px 1fr;gap:12px;width:100%;text-align:left;background:none;border:0;padding:12px 4px 12px 8px;font:inherit;color:var(--ink);cursor:pointer}
+.phead .score{font-family:var(--f-mono);font-weight:600;font-size:1rem;text-align:center;border-radius:6px;padding:6px 0;align-self:start}
+.phead .pt{display:flex;flex-direction:column;gap:2px;min-width:0}
+.phead .t{font-size:.92rem;line-height:1.5}
+.phead .m{font-size:.76rem;color:var(--muted);font-family:var(--f-mono)}
+.pbody{padding:0 8px 14px 74px;display:flex;flex-direction:column;gap:10px}
+@media (max-width:520px){.pbody{padding-left:8px}}
+.abs{font-size:.88rem;line-height:1.65;color:var(--ink)}
+mark{background:var(--amber-soft);color:var(--ink);padding:0 2px;border-radius:2px}
+.pact{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.dbtn{font:inherit;font-weight:600;font-size:.88rem;padding:8px 18px;border-radius:8px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
+.dbtn.keep[aria-pressed=true]{background:var(--supp);border-color:var(--supp);color:var(--paper)}
+.dbtn.drop[aria-pressed=true]{background:var(--muted);border-color:var(--muted);color:var(--paper)}
+@media (prefers-reduced-motion:no-preference){.drug-row .track i{transition:width .35s ease}}
+</style>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">히포크라테스의 친구들 · 문헌 검토 도구 가이드</span>
+    <h1>ReviewFast 활용 가이드</h1>
+    <p class="lede">질문 하나로 PubMed 논문 수천 편을 AI가 관련성 순서로 줄 세워 줍니다. 실제로 <b>"repurposed drugs in oncology"</b>를 돌린 결과(2026년 10월 24일, 1,984편)를 예제로 초급부터 고급까지 따라가 보고, 같은 데이터로 직접 선별 연습도 해봅니다. 이 가이드는 <b>From a question</b>(질문으로 검색) 방식을 다룹니다.</p>
+    <p class="small"><a href="https://www.jolab.ai/reviewfast/" target="_blank" rel="noopener">jolab.ai/reviewfast 열기 ↗</a> · 무료 · 하루 10만 편까지</p>
+  </div>
+</header>
+
+<nav class="steps" aria-label="단계">
+  <div class="wrap" id="navwrap">
+    <a href="#jev" class="on">Jev란?</a>
+    <a href="#compare">비교</a>
+    <a href="#overview">한눈에</a>
+    <a href="#basic"><span class="lv">1</span>초급</a>
+    <a href="#mid"><span class="lv">2</span>중급</a>
+    <a href="#practice">실습</a>
+    <a href="#adv"><span class="lv">3</span>고급</a>
+    <a href="#caution">주의</a>
+  </div>
+</nav>
+
+<main>
+<div class="wrap stack-lg">
+
+<!-- ============ JEV ============ -->
+<section id="jev" class="jev">
+  <div class="stack" style="gap:8px">
+    <span><span class="jev-tag">핵심 엔진</span></span>
+    <h2>Jev: 글 대신 점수로 답하는 AI</h2>
+  </div>
+  <p>ReviewFast의 심장은 TypeSafe AI가 만든 <b>Jev</b>라는 모델입니다. ChatGPT나 Claude처럼 문장을 생성하지 않습니다. 대신 <b>"이 논문 초록이 내 질문에 해당하는가?"</b>라는 물음에 <b>0~1 사이 숫자 하나</b>로 답합니다. 사람의 빠른 직관 판단(카너먼의 '시스템 1')에서 이름을 따 'System One 모델'이라고 부릅니다.</p>
+
+  <div class="fig" aria-label="Jev 작동 그림">
+    <svg viewBox="0 0 640 250" role="img" aria-labelledby="jevsvgt">
+      <title id="jevsvgt">질문·기준과 초록 10편이 Jev에 들어가 각 논문별 점수가 나오는 흐름</title>
+      <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="var(--muted)"/></marker></defs>
+      <rect x="4" y="14" width="190" height="90" rx="10" fill="var(--accent-soft)" stroke="var(--accent)"/>
+      <text x="99" y="52" text-anchor="middle" font-size="21" font-weight="700" fill="var(--ink)">내 질문</text>
+      <text x="99" y="82" text-anchor="middle" font-size="21" font-weight="700" fill="var(--ink)">+ 선정 기준</text>
+      <rect x="4" y="128" width="190" height="108" rx="10" fill="var(--paper)" stroke="var(--line)"/>
+      <rect x="20" y="142" width="158" height="13" rx="3" fill="var(--code)"/>
+      <rect x="20" y="162" width="158" height="13" rx="3" fill="var(--code)"/>
+      <rect x="20" y="182" width="158" height="13" rx="3" fill="var(--code)"/>
+      <text x="99" y="222" text-anchor="middle" font-size="19" fill="var(--muted)">초록 10편씩</text>
+      <path d="M196 59 C 226 59, 226 125, 246 125" fill="none" stroke="var(--muted)" stroke-width="2"/>
+      <path d="M196 182 C 226 182, 226 125, 246 125" fill="none" stroke="var(--muted)" stroke-width="2"/>
+      <rect x="248" y="78" width="130" height="94" rx="12" fill="var(--accent)"/>
+      <text x="313" y="122" text-anchor="middle" font-size="32" font-weight="700" fill="var(--paper)" font-family="IBM Plex Mono, monospace">Jev</text>
+      <text x="313" y="152" text-anchor="middle" font-size="17" fill="var(--paper)">판정만</text>
+      <path d="M382 125 L 414 125" stroke="var(--muted)" stroke-width="2" marker-end="url(#ah)"/>
+      <g font-family="IBM Plex Mono, monospace" font-size="20">
+        <rect x="420" y="14" width="216" height="46" rx="8" fill="var(--accent-soft)"/><text x="434" y="44" fill="var(--ink)">논문 A</text><text x="624" y="44" text-anchor="end" font-weight="600" fill="var(--accent)">0.95</text>
+        <rect x="420" y="68" width="216" height="46" rx="8" fill="var(--accent-soft)"/><text x="434" y="98" fill="var(--ink)">논문 B</text><text x="624" y="98" text-anchor="end" font-weight="600" fill="var(--accent)">0.81</text>
+        <rect x="420" y="122" width="216" height="46" rx="8" fill="var(--amber-soft)"/><text x="434" y="152" fill="var(--ink)">논문 C</text><text x="624" y="152" text-anchor="end" font-weight="600" fill="var(--amber)">0.48</text>
+        <rect x="420" y="176" width="216" height="46" rx="8" fill="var(--code)"/><text x="434" y="206" fill="var(--ink)">논문 D</text><text x="624" y="206" text-anchor="end" font-weight="600" fill="var(--muted)">0.04</text>
+      </g>
+    </svg>
+  </div>
+  <p class="cap" style="margin-top:-6px">질문·기준과 초록을 함께 읽고 논문마다 점수 하나를 매긴 뒤, 점수 높은 순으로 줄 세웁니다.</p>
+
+  <div class="kv">
+    <div><b>0.966</b><span>논문 23건 검증 평균 AUC(순위 정확도). 무료 대안 bge-base는 0.831</span></div>
+    <div><b>라벨 0개</b><span>사람이 먼저 몇 편 골라 가르칠 필요 없음. 질문·기준만 주면 바로 채점</span></div>
+    <div><b>~$0.02</b><span>논문 1,000편 채점 비용(논문 기준). ReviewFast에서는 무료</span></div>
+    <div><b>16초</b><span>이번 예제 1,984편 전체 채점에 걸린 시간</span></div>
+  </div>
+
+  <div class="callout"><b>꼭 기억할 것 하나.</b> Jev 점수 0.9는 "90% 확률로 관련 있음"이 아닙니다. 논문 저자들이 확인한 결과 Jev의 확률 보정은 나쁩니다(관측/기대 비율 0.13). 점수는 <b>읽을 순서를 정하는 도구</b>로 쓰고, 포함·제외 판단은 사람이 합니다.</div>
+</section>
+
+<!-- ============ COMPARE ============ -->
+<section id="compare" class="stack">
+  <div class="sec-head">
+    <span class="level muted">다른 도구와 무엇이 다른가</span>
+    <h2>답을 주는 AI, 순서를 주는 AI</h2>
+  </div>
+  <p>논문 도구는 크게 세 부류입니다. <b>검색 엔진</b>은 목록을 주고, <b>AI 답변형</b>은 상위 논문 몇 편을 읽고 요약 답을 줍니다. ReviewFast는 그 사이에 있습니다. 검색된 논문 <b>전부</b>에 내 질문 기준으로 점수를 매겨, <b>무엇부터 읽을지</b>를 줍니다.</p>
+
+  <div class="card fig">
+    <svg viewBox="0 0 640 430" role="img" aria-labelledby="mapt">
+      <title id="mapt">도구 지도: 가로축은 AI가 판정하는 범위, 세로축은 결과물이 요약 답변인지 논문 목록인지</title>
+      <rect x="70" y="14" width="556" height="340" rx="10" fill="var(--bg)" stroke="var(--line)"/>
+      <line x1="348" y1="14" x2="348" y2="354" stroke="var(--line)" stroke-dasharray="5 5"/>
+      <line x1="70" y1="184" x2="626" y2="184" stroke="var(--line)" stroke-dasharray="5 5"/>
+      <g font-size="17" fill="var(--muted)" text-anchor="middle"><text x="34" y="92">요약</text><text x="34" y="114">답변</text><text x="34" y="262">논문</text><text x="34" y="284">목록</text></g>
+      <text x="80" y="384" font-size="18" fill="var(--muted)">AI가 상위 일부만 읽음</text>
+      <text x="616" y="384" text-anchor="end" font-size="18" fill="var(--muted)">검색 결과 전부 판정</text>
+      <text x="348" y="416" text-anchor="middle" font-size="16" fill="var(--muted)">← AI가 판정하는 범위 →</text>
+      <g font-size="20" font-weight="700">
+        <rect x="96" y="40" width="190" height="44" rx="22" fill="var(--meta-soft)"/><text x="191" y="69" text-anchor="middle" fill="var(--meta)">Consensus</text>
+        <rect x="96" y="94" width="190" height="44" rx="22" fill="var(--meta-soft)"/><text x="191" y="123" text-anchor="middle" fill="var(--meta)">Perplexity</text>
+        <rect x="96" y="148" width="190" height="44" rx="22" fill="var(--meta-soft)"/>
+        <text x="191" y="177" text-anchor="middle" fill="var(--meta)">OpenEvidence</text>
+        <rect x="300" y="58" width="132" height="44" rx="22" fill="var(--meta-soft)"/><text x="366" y="87" text-anchor="middle" fill="var(--meta)">Elicit</text>
+        <rect x="96" y="250" width="232" height="44" rx="22" fill="var(--code)"/><text x="212" y="279" text-anchor="middle" fill="var(--ink)">PubMed · Scholar</text>
+        <rect x="392" y="236" width="214" height="72" rx="14" fill="var(--accent)"/><text x="499" y="268" text-anchor="middle" fill="var(--paper)">ReviewFast</text>
+        <text x="499" y="294" text-anchor="middle" font-size="15" font-weight="400" fill="var(--paper)">전부 채점 → 순서</text>
+      </g>
+      <text x="212" y="320" text-anchor="middle" font-size="15" fill="var(--muted)">AI 판정 없이 키워드 정렬</text>
+    </svg>
+    <p class="cap">위치는 각 도구의 기본 사용 방식을 기준으로 한 대략적인 배치입니다. Elicit은 유료 요금제에서 체계적 문헌고찰용 선별 기능도 제공합니다.</p>
+  </div>
+
+  <div class="tools">
+    <article class="tool rf">
+      <header><h3>ReviewFast</h3><span class="pill">순서를 줌</span></header>
+      <p><b>주는 것</b> 검색된 논문 전부(최대 2,000편)의 점수와 순위, 남긴 논문의 추출 표</p>
+      <p><b>강점</b> 버린 논문까지 점수가 남아 무엇을 뺐는지 확인 가능. 무료</p>
+      <p><b>주의</b> 요약 답변 없음. PubMed만, 초록만</p>
+    </article>
+    <article class="tool">
+      <header><h3>PubMed · Google Scholar</h3><span class="pill g">목록을 줌</span></header>
+      <p><b>주는 것</b> 키워드에 맞는 논문 목록. PubMed는 MeSH 색인, Scholar는 학위논문·프리프린트까지 넓게</p>
+      <p><b>강점</b> 가장 넓고 투명한 검색. 원문 링크의 출발점</p>
+      <p><b>주의</b> 수백~수천 편을 사람이 전부 훑어야 함. 정렬이 내 선정 기준을 반영하지 않음</p>
+    </article>
+    <article class="tool">
+      <header><h3>Elicit</h3><span class="pill b">답 + 표</span></header>
+      <p><b>주는 것</b> 질문에 맞는 논문 찾기, 요약, 항목별 추출 표. Semantic Scholar 기반 1억 편 이상</p>
+      <p><b>강점</b> 표 추출이 강력함. 유료 요금제에 체계적 문헌고찰 흐름</p>
+      <p><b>주의</b> 검색식을 재현 가능한 형태로 내보내기 어려움. 실제 리뷰 검색 전략으로 시험한 독립 연구에서는 민감도가 37.9%에 그침</p>
+    </article>
+    <article class="tool">
+      <header><h3>Consensus</h3><span class="pill b">답을 줌</span></header>
+      <p><b>주는 것</b> 예/아니오 질문에 "지지·반대·혼재" 비율(Consensus Meter)과 요약. 2억 편 이상 색인</p>
+      <p><b>강점</b> 빠른 감 잡기에 좋음</p>
+      <p><b>주의</b> 미터는 상위 10~20편 결론만 반영. 그 밖의 논문은 판단에 들어가지 않음</p>
+    </article>
+    <article class="tool">
+      <header><h3>OpenEvidence</h3><span class="pill b">답을 줌</span></header>
+      <p><b>주는 것</b> 임상 질문에 동료 심사 문헌을 인용한 답변</p>
+      <p><b>강점</b> 의료진이 많이 씀. 주치의와 대화할 때 공통 언어</p>
+      <p><b>주의</b> 의료인 중심 서비스이고 미국 진료 기준 위주</p>
+    </article>
+    <article class="tool">
+      <header><h3>Perplexity</h3><span class="pill b">답을 줌</span></header>
+      <p><b>주는 것</b> 웹과 학술 자료를 찾아 출처 링크와 함께 요약</p>
+      <p><b>강점</b> 뉴스, 임상시험 소식까지 함께 훑기 좋음</p>
+      <p><b>주의</b> 학술 논문과 일반 웹이 섞임. 어떤 논문이 빠졌는지 알 수 없음</p>
+    </article>
+  </div>
+
+  <div class="card stack">
+    <h3>이럴 땐 이 도구</h3>
+    <div class="tbl fit"><table>
+      <thead><tr><th>하고 싶은 일</th><th>먼저 쓸 도구</th></tr></thead>
+      <tbody>
+        <tr><td>"메벤다졸이 교모세포종에 연구된 적 있나?" 빠르게 감 잡기</td><td>Consensus, Perplexity</td></tr>
+        <tr><td>여러 논문의 용량·결과를 표로 비교</td><td>Elicit, 또는 ReviewFast 추출 표</td></tr>
+        <tr><td>주치의와 함께 볼 임상 근거 요약</td><td>OpenEvidence (의료진 계정)</td></tr>
+        <tr><td><b>프로토콜 근거를 빠짐없이 모으기</b></td><td><b>ReviewFast</b></td></tr>
+        <tr><td>특정 논문 원문, 새 논문 알림</td><td>PubMed</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="card stack">
+    <h3>조합해서 쓰는 법</h3>
+    <ol class="flow">
+      <li><b>① 모으기</b><span>ReviewFast로 검색 결과 전부를 채점하고 상위 구간을 남김</span><em>놓치지 않기</em></li>
+      <li class="h"><b>② 요약</b><span>남긴 핵심 논문을 Elicit이나 Claude 같은 AI로 요약·비교</span><em>빠르게 이해</em></li>
+      <li><b>③ 확인</b><span>용량·부작용·대상 환자는 PubMed에서 원문으로 직접 확인</span><em>정확하게</em></li>
+    </ol>
+    <div class="callout teal"><b>왜 이 순서인가.</b> 답변형 AI는 상위 몇 편만 보고 결론을 냅니다. 용도변경 약물처럼 근거가 여러 암종과 연구 유형에 흩어진 분야에서는 이것이 위험할 수 있습니다. ReviewFast로 먼저 전체를 보고 나서 요약하면 무엇을 뺐는지 알고 요약하게 됩니다.</div>
+  </div>
+</section>
+
+<!-- ============ OVERVIEW ============ -->
+<section id="overview" class="stack">
+  <div class="sec-head">
+    <span class="level muted">한눈에 보기</span>
+    <h2>2,488편이 어떻게 줄어드는가</h2>
+  </div>
+  <p>예제 실행에서 실제로 일어난 일입니다. 위에서 아래로 갈수록 내가 읽어야 할 양이 줄어듭니다.</p>
+  <div class="card funnel" id="funnel" aria-label="검색부터 점수 0.8 이상까지 논문 수가 줄어드는 깔때기"></div>
+  <div class="card stack">
+    <h3>ReviewFast 작업 흐름 5단계</h3>
+    <ol class="flow" id="flow" aria-label="검색, 순위, 자동 선택, 확인, 추출 5단계 흐름도"></ol>
+    <p class="cap">파란 단계는 기계가, 주황 단계는 사람이 합니다. 예제 파일은 ③ 자동 선택까지 끝난 상태에서 내려받은 것입니다. ④는 아래 실습에서 직접 해볼 수 있습니다.</p>
+  </div>
+</section>
+
+<!-- ============ BASIC ============ -->
+<section id="basic" class="stack">
+  <div class="sec-head">
+    <span class="level"><i class="f"></i><i></i><i></i> LEVEL 1 · 초급</span>
+    <h2>첫 검색과 결과 읽기</h2>
+  </div>
+
+  <div class="card stack">
+    <h3>1. 질문은 영어로, 좁게</h3>
+    <p>ReviewFast는 입력한 질문을 그대로 PubMed에 보냅니다. PubMed는 영어 데이터베이스이므로 영어 키워드가 기본입니다. 한 번에 가져오는 상한이 <b class="num">2,000</b>편이라, 질문이 너무 넓으면 일부가 잘립니다(이번 예제: 2,488편 중 2,000편만 가져옴).</p>
+    <div class="compare">
+      <div class="bad"><h4>피할 질문</h4><p><code>cancer drug</code><br><span class="small">수십만 편. 2,000편에서 잘림</span></p><p style="margin-top:8px"><code>펜벤다졸 암</code><br><span class="small">한국어는 PubMed에서 거의 안 잡힘</span></p></div>
+      <div class="good"><h4>좋은 질문</h4><p><code>mebendazole glioblastoma</code><br><span class="small">약물 + 암종</span></p><p style="margin-top:8px"><code>disulfiram copper cancer</code><br><span class="small">약물 + 핵심 기전 + 질환</span></p></div>
+    </div>
+  </div>
+
+  <div class="card stack">
+    <h3>2. 점수 색으로 읽기</h3>
+    <p>결과 목록은 점수 높은 순입니다. 실제 예제의 맨 위, 중간, 맨 아래 논문을 비교해 보세요. 맨 아래로 갈수록 암이 아닌 코로나·심혈관 논문이 나타납니다.</p>
+    <h4 class="muted small">맨 위 (1~3위)</h4>
+    <div id="ex-top"></div>
+    <h4 class="muted small">경계선 (점수 0.5 부근)</h4>
+    <div id="ex-mid"></div>
+    <h4 class="muted small">맨 아래 (1,982~1,984위)</h4>
+    <div id="ex-bot"></div>
+  </div>
+
+  <div class="card stack">
+    <h3>3. 초급 사용 순서</h3>
+    <ol class="clean">
+      <li><a href="https://www.jolab.ai/reviewfast/" target="_blank" rel="noopener">사이트</a>에서 <b>From a question</b>을 고릅니다.</li>
+      <li>영어 질문을 입력하고 검색을 시작합니다. 1~2분 안에 PubMed 수집과 Jev 채점이 끝납니다.</li>
+      <li>위에서부터 제목과 초록을 읽습니다. 관심 논문은 PubMed 번호(PMID)로 원문을 찾습니다.</li>
+      <li>결과는 2주 뒤 삭제되므로 필요하면 JSON으로 내려받아 둡니다. 이 가이드의 예제 파일도 이렇게 내려받은 것입니다.</li>
+    </ol>
+    <div class="callout teal"><b>초급 연습 과제.</b> 관심 있는 약물 하나와 암종 하나로 검색해 보고, 상위 20편 중 몇 편이 실제로 내 관심사와 맞는지 세어 보세요. 절반 넘게 맞으면 출발이 좋고, 적으면 질문에 암종이나 기전을 더해 좁혀 보세요.</div>
+  </div>
+</section>
+
+<!-- ============ MID ============ -->
+<section id="mid" class="stack">
+  <div class="sec-head">
+    <span class="level"><i class="f"></i><i class="f"></i><i></i> LEVEL 2 · 중급</span>
+    <h2>점수 분포와 약물별 근거 지도</h2>
+  </div>
+
+  <div class="card stack">
+    <h3>1. 컷오프를 움직여 보기</h3>
+    <p>막대는 점수대별 논문 수입니다. 점수가 0.1 근처와 0.9 근처 두 봉우리로 갈립니다. Jev가 "관련/무관"을 꽤 분명히 가른다는 뜻입니다. 슬라이더로 기준선을 옮기면 읽어야 할 양이 바로 계산됩니다.</p>
+    <div class="fig"><svg id="hist" viewBox="0 0 640 290" role="img" aria-label="Jev 점수 분포 막대그래프와 컷오프 선"></svg></div>
+    <div class="slider-row">
+      <label for="cut" class="small">컷오프: <b class="num" id="cutv">0.50</b> 이상만 읽기</label>
+      <input type="range" id="cut" min="0" max="0.95" step="0.01" value="0.5">
+      <div class="presets" role="group" aria-label="미리 정한 컷오프">
+        <button class="chip" data-c="0.07" type="button">0.07 · 논문 실험값</button>
+        <button class="chip" data-c="0.5" type="button" aria-pressed="true">0.50 · 사이트 자동 선택</button>
+        <button class="chip" data-c="0.8" type="button">0.80 · 핵심만</button>
+      </div>
+    </div>
+    <div class="readout">
+      <div><b id="r-n">1,066</b><span>읽을 논문 수</span></div>
+      <div><b id="r-pct">54%</b><span>전체 1,984편 중</span></div>
+      <div><b id="r-h">36시간</b><span>초록 1편 2분 가정 시</span></div>
+    </div>
+    <p class="cap">0.07은 논문에서 쓴 실험적 기준값(검증 리뷰 23건 모두 재현율 95% 달성, 그러나 Cochrane 리뷰 28건 중 3건은 미달)입니다. 사이트의 자동 선택 0.5는 검증되지 않은 값이라고 사이트가 스스로 밝힙니다.</p>
+  </div>
+
+  <div class="card stack">
+    <h3>2. 약물별 근거 지도</h3>
+    <p>예제 1,984편의 제목·초록에서 커뮤니티 관심 약물 이름을 찾아 세었습니다. 진한 막대는 Jev 점수 0.8 이상인 편수, 연한 막대는 전체 언급 편수입니다. 약물 이름을 누르면 점수 높은 논문이 펼쳐집니다.</p>
+    <div class="tabs" role="tablist" id="gtabs"></div>
+    <div class="legend"><span><i id="lg1"></i>점수 0.8 이상</span><span><i id="lg2" style="opacity:.35"></i>전체 언급</span></div>
+    <div id="druglist" role="tabpanel"></div>
+    <div class="callout"><b>숫자를 읽는 법.</b> 이 숫자는 '효과의 크기'가 아니라 이 검색어에 걸려든 '연구의 양'입니다. 0편으로 나온 약(저용량 날트렉손, 세라펩타아제 등)은 연구가 없는 게 아니라, 그 논문들이 제목·초록에 <i>repurposed</i>라는 단어를 쓰지 않아 이번 검색에 안 잡힌 것입니다. 이런 약은 <code>low-dose naltrexone cancer</code>처럼 약 이름으로 따로 검색해야 합니다.</div>
+  </div>
+
+  <div class="card stack">
+    <h3>3. Jev가 선정 기준을 실제로 따르는가</h3>
+    <p>예제의 선정 기준에는 "리뷰·사설·프로토콜은 제외"가 들어 있었습니다. 제목에 <i>review</i>나 <i>meta-analysis</i>가 들어간 논문 <b class="num">78</b>편을 따로 보면, 0.5 이상을 받은 것은 <b class="num">7</b>편, 0.8 이상은 <b class="num">0</b>편이었습니다.</p>
+    <div class="fig"><svg id="revsvg" viewBox="0 0 640 74" role="img" aria-label="리뷰 논문 78편 중 0.5 이상 7편, 0.8 이상 0편"></svg></div><p class="cap"><span style="color:var(--amber)">■</span> 0.5 이상 받은 리뷰 7편 · <span style="color:var(--line)">■</span> 0.5 미만 71편</p>
+    <p class="small muted">즉 기준 문장을 바꾸면 순위가 바뀝니다. 고급 단계에서 이 점을 활용합니다.</p>
+  </div>
+
+  <div class="card stack">
+    <h3>4. 연도 분포 확인</h3>
+    <div class="fig"><svg id="years" viewBox="0 0 640 230" role="img" aria-label="출판 연도별 논문 수"></svg></div>
+    <p class="small">2019년 이전 논문이 거의 없습니다(2018년 이전 합계 <span class="num" id="pre15"></span>편). 오래된 연구가 없어서가 아니라, PubMed '관련도순'으로 2,000편에서 끊으면서 최신 논문 위주로 담긴 것입니다. 과거 연구까지 원하면 질문을 좁혀 전체 검색 결과가 2,000편 안에 들어오게 하세요.</p>
+  </div>
+</section>
+
+<!-- ============ PRACTICE ============ -->
+<section id="practice" class="stack">
+  <div class="sec-head">
+    <span class="level"><i class="f"></i><i class="f"></i><i></i> 실습 · 직접 해보기</span>
+    <h2>1,984편으로 선별 연습</h2>
+  </div>
+  <p>예제 결과 파일 전체를 여기서 직접 둘러봅니다. 초록을 읽고 <b>남김</b>이나 <b>버림</b>을 눌러 보세요. 내 판단이 Jev 순위의 어디에 몰리는지 바로 그림으로 보입니다.</p>
+
+  <div class="card stack" id="pr-load">
+    <p id="pr-status" class="small">예제 파일을 불러오는 중…</p>
+    <div id="pr-fallback" class="stack" hidden>
+      <p class="small">이 화면에서는 파일을 자동으로 불러올 수 없습니다. 파일을 내려받은 뒤 아래 버튼으로 열어 주세요.</p>
+      <p class="small"><a href="https://davidkangkr.github.io/Repurposing-Drugs-in-Oncology/reviewfast-repurposed-drugs-in-oncology.json" target="_blank" rel="noopener">예제 JSON 파일 열기 ↗</a> (열린 화면에서 저장)</p>
+      <label class="filebtn" for="pr-file">JSON 파일 선택</label>
+      <input type="file" id="pr-file" accept=".json,application/json">
+    </div>
+  </div>
+
+  <div id="pr-app" class="stack" hidden>
+    <div class="card stack pr-sum">
+      <div class="readout">
+        <div><b id="pr-k">0</b><span>남김</span></div>
+        <div><b id="pr-d">0</b><span>버림</span></div>
+        <div><b id="pr-agree">–</b><span>Jev 0.5 기준과 일치</span></div>
+      </div>
+      <div class="fig"><svg id="pr-strip" viewBox="0 0 640 120" role="img" aria-label="내 판단이 순위 어디에 있는지 보여주는 띠 그래프"></svg></div>
+      <p class="cap">가로는 Jev 순위(1위 → 1,984위)입니다. 초록 눈금은 남김, 회색 눈금은 버림, 점선은 점수 0.5 경계입니다. 순위가 좋다면 초록 눈금은 왼쪽에 몰립니다.</p>
+      <div class="presets">
+        <button type="button" class="chip" id="pr-csv">남긴 목록 복사 (CSV)</button>
+        <button type="button" class="chip" id="pr-reset">판단 초기화</button>
+        <span id="pr-reset-confirm" hidden class="small">정말 지울까요? <button type="button" class="chip" id="pr-reset-yes">지우기</button> <button type="button" class="chip" id="pr-reset-no">취소</button></span>
+      </div>
+      <textarea id="pr-csvout" rows="4" hidden aria-label="복사할 CSV" readonly></textarea>
+    </div>
+
+    <div class="card stack">
+      <h3>둘러보기</h3>
+      <div class="presets" role="group" aria-label="연습 구간">
+        <button type="button" class="chip" data-q="top">상위 20편</button>
+        <button type="button" class="chip" data-q="edge">경계선 0.45~0.55</button>
+        <button type="button" class="chip" data-q="bottom">하위 20편</button>
+        <button type="button" class="chip" data-q="all" aria-pressed="true">전체</button>
+      </div>
+      <div class="filters">
+        <label for="pr-q" class="small">제목·초록 검색 (영어)</label>
+        <input id="pr-q" type="search" placeholder="예: mebendazole, glioblastoma, phase II">
+        <div class="frow">
+          <div><label for="pr-drug" class="small">관심 약물</label><select id="pr-drug"><option value="">전체</option></select></div>
+          <div><label for="pr-score" class="small">Jev 점수</label><select id="pr-score">
+            <option value="">전체</option><option value="hi">0.8 이상</option><option value="mid">0.5~0.8</option><option value="lo">0.5 미만</option></select></div>
+          <div><label for="pr-dec" class="small">내 판단</label><select id="pr-dec">
+            <option value="">전체</option><option value="none">아직 안 봄</option><option value="keep">남김</option><option value="drop">버림</option></select></div>
+        </div>
+      </div>
+      <p class="small muted" id="pr-count"></p>
+      <div id="pr-list"></div>
+      <button type="button" class="tab" id="pr-more" hidden>20편 더 보기</button>
+    </div>
+
+    <div class="callout teal"><b>연습 과제.</b> "상위 20편"과 "하위 20편"을 각각 판단해 보세요. 그다음 "경계선"을 판단해 보면, 점수만으로 자르는 것이 왜 위험한지 직접 느낄 수 있습니다. 판단은 이 브라우저에만 저장됩니다.</div>
+  </div>
+</section>
+
+<!-- ============ ADV ============ -->
+<section id="adv" class="stack">
+  <div class="sec-head">
+    <span class="level"><i class="f"></i><i class="f"></i><i class="f"></i> LEVEL 3 · 고급</span>
+    <h2>검색을 설계하고 결과를 해부하기</h2>
+  </div>
+
+  <details open>
+    <summary>A. PubMed가 내 질문을 어떻게 바꿨는지 확인</summary>
+    <div class="body">
+      <p>결과 JSON의 <code>find.search.translation</code>에 PubMed가 실제로 돌린 검색식이 남습니다. 예제 질문은 아래처럼 바뀌었습니다.</p>
+      <pre id="trans"></pre>
+      <p class="small">핵심은 첫 괄호입니다. <b>repurpose, repurposed, repurposing</b> 중 하나가 반드시 있어야 검색됩니다. 'drug repositioning'이나 'off-label'이라고만 쓴 논문은 빠집니다. 빠뜨린 표현은 질문에 직접 넣으세요. 예: <code>(repurposing OR repositioning OR off-label) AND mebendazole AND cancer</code></p>
+    </div>
+  </details>
+
+  <details open>
+    <summary>B. 질문에 조건을 담기</summary>
+    <div class="body">
+      <p>예제 파일의 선정 기준(criteria)을 보면, 입력한 질문이 기준 문장 안에 그대로 들어간 것을 알 수 있습니다.</p>
+      <pre id="crit"></pre>
+      <p>Jev는 이 문장을 읽고 채점합니다. 그러니 <b>질문에 조건을 담으면 순위가 그 조건을 따릅니다.</b> 앞에서 본 것처럼 "리뷰 제외" 문장 하나로 리뷰 논문이 아래로 밀려났습니다. 다만 질문은 PubMed 검색어로도 쓰이므로, 조건은 짧은 영어 단어로 붙이는 편이 안전합니다.</p>
+      <div class="tbl"><table>
+        <thead><tr><th>목적</th><th>질문 예시</th><th>기대 효과</th></tr></thead>
+        <tbody>
+          <tr><td>환자 데이터만</td><td><code>mebendazole cancer patients clinical</code></td><td>증례·임상 연구가 위로</td></tr>
+          <tr><td>기전·전임상</td><td><code>disulfiram copper anticancer mechanism</code></td><td>세포·동물 실험이 위로</td></tr>
+          <tr><td>병용 요법</td><td><code>metformin statin combination cancer</code></td><td>단독 사용 연구는 아래로</td></tr>
+          <tr><td>표현 누락 보완</td><td><code>(repurposing OR repositioning) itraconazole cancer</code></td><td>'repositioning'만 쓴 논문도 포함</td></tr>
+        </tbody>
+      </table></div>
+      <p class="small muted">같은 약으로 질문을 바꿔 두세 번 돌린 뒤 상위 20편을 비교해 보는 것이 가장 좋은 연습입니다.</p>
+    </div>
+  </details>
+
+  <details open>
+    <summary>C. 어디까지 읽어야 하나</summary>
+    <div class="body">
+      <p>체계적 문헌고찰에서는 관련 논문의 <b>95%</b>를 찾는 것(재현율 95%)이 흔한 목표입니다. 순위가 좋으면 관련 논문이 앞쪽에 몰리므로 뒤쪽은 안 읽어도 됩니다. 문제는 <b>어디서 멈춰도 안전한지</b>입니다.</p>
+      <div class="fig"><svg id="rankcurve" viewBox="0 0 640 280" role="img" aria-label="순위별 Jev 점수 곡선"></svg></div>
+      <p class="cap">예제 1,984편을 순위대로 놓고 점수를 그린 곡선. 약 1,000위 근처에서 점수가 급히 떨어집니다.</p>
+      <div class="tbl"><table>
+        <thead><tr><th>멈춤 방식</th><th>근거</th><th>논문 결과</th></tr></thead>
+        <tbody>
+          <tr><td><b>점수 컷오프</b><br><span class="small muted">예: 0.07 미만은 안 읽음</span></td><td>사람 판단 없이 점수만</td><td>검증 리뷰 23/23 성공, 58.9%만 읽음. 하지만 Cochrane 리뷰 28건 중 3건은 95%에 못 미쳤고, 실패해도 알 방법이 없음</td></tr>
+          <tr><td><b>통계적 멈춤</b><br><span class="small muted">Callaghan·Müller-Hansen 방식</span></td><td>지금까지 내가 내린 포함/제외 판단</td><td>51건 모두 95% 달성. 대신 86~88%를 읽어야 했음</td></tr>
+        </tbody>
+      </table></div>
+      <div class="callout"><b>논문의 결론.</b> 재현율을 지켜 준 것은 순위가 아니라 <b>사람의 선별 결정</b>이었습니다. 실무에서는 이렇게 쓰세요. 커뮤니티 학습이나 빠른 탐색이라면 상위 구간만 읽어도 충분합니다. 프로토콜의 근거로 쓸 때는 자동 선택(0.5) 경계 아래도 한동안 읽으며, 관련 논문이 더 이상 나오지 않는 것을 직접 확인한 뒤 멈추세요. 위 <a href="#practice">실습</a>의 "경계선" 구간이 바로 그 연습입니다.</div>
+    </div>
+  </details>
+
+  <details>
+    <summary>D. 추출 표: 남긴 논문에서 항목 뽑기</summary>
+    <div class="body">
+      <p>ReviewFast는 남긴 논문들의 초록에서 원하는 항목을 뽑아 표를 채워 줍니다. 예제 파일 기록으로는 한 번에 최대 300편까지이고, 예제는 아직 추출 전 상태입니다. 커뮤니티 프로토콜 검토에 쓸 만한 항목 예시입니다.</p>
+      <div class="tbl"><table>
+        <thead><tr><th>항목</th><th>왜 필요한가</th><th>예시 값</th></tr></thead>
+        <tbody>
+          <tr><td>연구 유형</td><td>근거 수준 구분</td><td>세포 / 동물 / 증례 / 코호트 / RCT</td></tr>
+          <tr><td>암종</td><td>내 상황과 맞는지</td><td>교모세포종, 삼중음성 유방암</td></tr>
+          <tr><td>용량·투여 기간</td><td>프로토콜 설계</td><td>500 mg 1일 2회, 12주</td></tr>
+          <tr><td>병용 약물</td><td>상호작용·시너지</td><td>테모졸로마이드, 구리</td></tr>
+          <tr><td>주요 결과</td><td>효과 신호</td><td>무진행생존 연장, 종양 축소</td></tr>
+          <tr><td>부작용</td><td>안전성</td><td>간수치 상승, 호중구 감소</td></tr>
+        </tbody>
+      </table></div>
+      <p class="small muted">초록만 읽고 뽑으므로 빈칸이 많을 수 있습니다. 용량과 부작용은 반드시 원문으로 확인하세요.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>E. 결과 JSON 파일 구조</summary>
+    <div class="body">
+      <p>내려받은 파일을 열면 이런 구조입니다. 다른 AI 도구에 넘겨 재분석할 때 어떤 필드를 쓸지 알 수 있습니다.</p>
+<pre>{
+  "question":  "repurposed drugs in oncology",
+  "criteria":  "Include records ... Exclude reviews ...",  <span class="muted">// 질문이 들어간 기준</span>
+  "records":  [ 2,000편: title, abstract, year, pmid, doi ... ],
+  "scores":   { "1": {"p": 0.24}, "2": {"p": 0.86}, ... },  <span class="muted">// Jev 점수</span>
+  "ranking":  [1145, 1923, 1303, ...],  <span class="muted">// 점수순 레코드 번호</span>
+  "find": {
+    "search": { "count": 2488, "translation": "..." },  <span class="muted">// PubMed 검색 결과</span>
+    "cutoff": 0.5,                                    <span class="muted">// 자동 선택 기준</span>
+    "auto":   { "selected": 1066, "extracted": 0 }      <span class="muted">// 선택·추출 수</span>
+  },
+  "events":   [ 생성 → 수집 → 채점 → 순위 고정 → 자동 선택 ]
+}</pre>
+      <p class="small">실습 연습장은 이 중 <code>records</code>, <code>scores</code>, <code>ranking</code> 세 가지만 씁니다. 같은 구조라면 여러분이 직접 내려받은 결과 파일도 실습에서 열 수 있습니다.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>F. 실전 시나리오 2가지</summary>
+    <div class="body">
+      <h4>① 한 약물의 근거 지도 만들기</h4>
+      <ol class="clean small">
+        <li>질문: <code>(fenbendazole OR mebendazole OR albendazole) AND cancer</code></li>
+        <li>같은 약으로 <code>... AND cancer mechanism</code>, <code>... AND cancer patients</code> 두 번 더 돌려 상위 논문 비교</li>
+        <li>상위 구간에서 남길 논문을 고르고, 추출 표 항목으로 연구 유형·암종 지정</li>
+        <li>결과: "세포 ○편, 동물 ○편, 인간 ○편"으로 근거 수준을 한 장에 정리</li>
+      </ol>
+      <h4>② 프로토콜 설계 전 인간 데이터 확인</h4>
+      <ol class="clean small">
+        <li>질문: <code>itraconazole cancer patients clinical</code></li>
+        <li>질문에 patients, clinical을 넣었으므로 세포·동물 연구가 아래로 밀림</li>
+        <li>추출 항목: 용량, 기간, 병용약, 부작용</li>
+        <li>결과: 실제 환자에게 쓰인 용량 범위와 보고된 부작용 목록</li>
+      </ol>
+    </div>
+  </details>
+</section>
+
+<!-- ============ CAUTION ============ -->
+<section id="caution" class="stack">
+  <div class="sec-head">
+    <span class="level muted">반드시 읽기</span>
+    <h2>한계와 주의사항</h2>
+  </div>
+  <div class="card">
+    <ul class="clean">
+      <li><b>초록만 읽습니다.</b> 원문의 용량, 부작용, 한계는 반영되지 않습니다.</li>
+      <li><b>PubMed만 검색합니다.</b> Embase, 임상시험 등록부, 중국·한국 논문은 빠질 수 있습니다.</li>
+      <li><b>점수 ≠ 효과.</b> 점수는 질문과의 관련도일 뿐 약효나 안전성 근거가 아닙니다.</li>
+      <li><b>자동 선택(0.5)은 검증되지 않았습니다.</b> 사이트가 직접 "선택과 값을 확인하라"고 안내합니다.</li>
+      <li><b>데이터 전송.</b> 채점할 기록은 Vercel을 거쳐 TypeSafe AI로 가며 보관될 수 있습니다. 환자 개인 기록은 절대 올리지 마세요.</li>
+      <li><b>2주 보관.</b> 실행 결과는 2주 뒤 삭제됩니다.</li>
+      <li><b>From a question만 다룹니다.</b> 내 검색 결과 파일을 올리는 From your records 방식은 이 가이드의 범위 밖입니다.</li>
+      <li><b>재현성.</b> Jev는 아직 조기 공개 단계라 버전 표기가 없어, 같은 질문이라도 시간이 지나면 점수가 달라질 수 있습니다.</li>
+    </ul>
+  </div>
+  <div class="callout teal"><b>커뮤니티 활용 원칙.</b> ReviewFast는 "무엇을 읽을지" 정해 주는 도구입니다. "무엇을 복용할지"는 원문 근거와 주치의 상담으로 판단합니다.</div>
+</section>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <h4>출처</h4>
+    <ul class="clean">
+      <li><a href="https://www.jolab.ai/reviewfast/" target="_blank" rel="noopener">ReviewFast (JoLab)</a> · 오픈소스 <a href="https://github.com/taehojo/reviewfast" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://www.medrxiv.org/content/10.64898/2026.10.09.26365173v2" target="_blank" rel="noopener">Label-free, low-cost AI ranking for systematic review screening (medRxiv, 2026)</a></li>
+      <li><a href="https://www.digitalocean.com/resources/articles/what-is-jev" target="_blank" rel="noopener">What is Jev? (DigitalOcean)</a></li>
+    </ul>
+    <p class="muted">예제 데이터: ReviewFast web 0.5.0, 2026-10-24 실행 결과 JSON. 약물별 편수는 제목·초록 키워드 집계이며 오탐이 있을 수 있습니다.</p>
+  </div>
+</footer>
+
+<script id="data" type="application/json">{"groups":[{"id":"direct","name":"직접 억제·대사 차단","items":[{"ko":"펜벤다졸 계열","en":"Fenbendazole · Mebendazole · Albendazole","pat":"fenbendazole|mebendazole|albendazole|flubendazole","ps":[0.95,0.95,0.95,0.95,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.93,0.92,0.92,0.92,0.91,0.9,0.9,0.89,0.88,0.88,0.81,0.75,0.73,0.6,0.37,0.34,0.34,0.33,0.32,0.29,0.2,0.18,0.17,0.17,0.15,0.12,0.12,0.11],"top":[["The therapeutic potential of repurposed mebendazole, alone and in synergistic combination with ONC201, in the treatment of diffuse midline glioma.","2025","40667566",0.95,"American journal of cancer research"],["Repurposing mebendazole against triple-negative breast cancer leptomeningeal disease.","2024","38405839",0.95,"Research square"],["Antiparasitic mebendazole (MBZ) effectively overcomes cisplatin resistance in human ovarian cancer cells by inhibiting multiple cancer-associated signaling pathways.","2021","34232919",0.95,"Aging"],["Treatment of breast and colon cancer cell lines with anti-helmintic benzimidazoles mebendazole or albendazole results in selective apoptotic cell death.","2021","34148157",0.95,"Journal of cancer research and clinical oncology"],["Repurposing flubendazole for glioblastoma ferroptosis by affecting xCT and TFRC proteins.","2024","39543084",0.94,"Journal of cellular and molecular medicine"],["Repurposing mebendazole against triple-negative breast cancer CNS metastasis.","2024","38563850",0.94,"Journal of neuro-oncology"]]},{"ko":"이버멕틴","en":"Ivermectin","pat":"ivermectin","ps":[0.95,0.94,0.91,0.89,0.87,0.77,0.75,0.68,0.6,0.53,0.34,0.34,0.33,0.24,0.17,0.15,0.12,0.1,0.1,0.07],"top":[["Ivermectin inhibits HSP27 and potentiates efficacy of oncogene targeting in tumor models.","2020","31845908",0.95,"The Journal of clinical investigation"],["The Antineoplastic Effect of Carboplatin Is Potentiated by Combination with Pitavastatin or Metformin in a Chemoresistant High-Grade Serous Carcinoma Cell Line.","2022","36613537",0.94,"International journal of molecular sciences"],["Antitumor effects of ivermectin at clinically feasible concentrations support its clinical development as a repositioned cancer drug.","2020","32474842",0.91,"Cancer chemotherapy and pharmacology"],["Codelivery of ivermectin and methyl dihydrojasmonate in nanostructured lipid carrier for synergistic antileukemia therapy.","2024","38580074",0.89,"International journal of pharmaceutics"],["Molecular Docking and Dynamics Simulation Revealed Ivermectin as Potential Drug against Schistosoma-Associated Bladder Cancer Targeting Protein Signaling: Computational Drug Repositioning Approach.","2021","34684095",0.87,"Medicina (Kaunas, Lithuania)"],["Novel selective inhibitors of macropinocytosis-dependent growth in pancreatic ductal carcinoma.","2024","38906021",0.77,"Biomedicine & pharmacotherapy = Biomedecine & ph"]]},{"ko":"아르테미시닌","en":"Artemisinin · Artesunate","pat":"artemisinin|artesunate|artemether|dihydroartemisinin","ps":[0.94,0.94,0.92,0.91,0.91,0.9,0.89,0.88,0.84,0.8,0.79,0.78,0.77,0.76,0.35,0.34,0.33,0.3,0.24,0.24,0.2,0.19,0.18,0.17,0.16,0.15,0.15,0.14,0.13,0.12,0.11,0.11,0.1],"top":[["Repurposing dihydroartemisinin as a novel anticancer agent against colorectal cancer stem cells.","2025","41066740",0.94,"Journal of food and drug analysis"],["Repurposing the Antidepressant Sertraline as SHMT Inhibitor to Suppress Serine/Glycine Synthesis-Addicted Breast Tumor Growth.","2021","33203732",0.94,"Molecular cancer therapeutics"],["A novel strategy to target metabolic dependencies in acute myeloid leukemia.","2025","41188278",0.92,"Cell death & disease"],["Combination of Antimalarial and CNS Drugs with Antineoplastic Agents in MCF-7 Breast and HT-29 Colon Cancer Cells: Biosafety Evaluation and Mechanism of Action.","2022","36291699",0.91,"Biomolecules"],["Synergistic Growth Inhibition of HT-29 Colon and MCF-7 Breast Cancer Cells with Simultaneous and Sequential Combinations of Antineoplastics and CNS Drugs.","2021","34299028",0.91,"International journal of molecular sciences"],["Biomarker Expression Profiling in Cervix Carcinoma Biopsies Unravels WT1 as a Target of Artesunate.","2022","36316038",0.9,"Cancer genomics & proteomics"]]},{"ko":"디설피람","en":"Disulfiram","pat":"disulfiram","ps":[0.95,0.95,0.94,0.94,0.94,0.94,0.93,0.93,0.93,0.93,0.93,0.92,0.92,0.92,0.91,0.91,0.91,0.91,0.9,0.89,0.89,0.88,0.88,0.88,0.88,0.87,0.87,0.87,0.84,0.81,0.8,0.53,0.5,0.43,0.39,0.36,0.35,0.32,0.32,0.29,0.24,0.22,0.2,0.2,0.17,0.15,0.14,0.12,0.12,0.1,0.07],"top":[["Repurposing alcohol-abuse drug disulfiram for the treatment of KSHV-infected primary effusion lymphoma by activating antiviral innate immunity.","2025","40036222",0.95,"PLoS pathogens"],["Repurposing disulfiram, an alcohol-abuse drug, in neuroblastoma causes KAT2A downregulation and in vivo activity with a water/oil emulsion.","2023","37777587",0.95,"Scientific reports"],["Disulfiram-Copper Potentiates Anticancer Efficacy of Standard Chemotherapy Drugs in Bladder Cancer Animal Model through ROS-Autophagy-Ferroptosis Signalling Cascade.","2025","39323342",0.94,"Current cancer drug targets"],["Localized Sustained Release of Copper Enhances Antitumor Effects of Disulfiram in Head and Neck Cancer.","2024","38687975",0.94,"Biomacromolecules"],["Disulfiram loaded calcium phosphate nanoparticles for enhanced cancer immunotherapy.","2022","36334355",0.94,"Biomaterials"],["A drug repurposing strategy for overcoming human multiple myeloma resistance to standard-of-care treatment.","2022","35246527",0.94,"Cell death & disease"]]},{"ko":"이트라코나졸","en":"Itraconazole","pat":"itraconazole","ps":[0.95,0.94,0.93,0.92,0.89,0.88,0.88,0.88,0.84,0.83,0.82,0.79,0.78,0.76,0.76,0.75,0.67,0.59,0.53,0.5,0.5,0.34,0.31,0.28,0.24,0.18,0.16,0.13,0.13,0.11,0.07,0.06],"top":[["A metabolism-specific drug-repurposing screen reveals itraconazole as a potent OXPHOS inhibitor in acute myeloid leukemia.","2026","41734389",0.95,"Blood"],["The Antineoplastic Effect of Carboplatin Is Potentiated by Combination with Pitavastatin or Metformin in a Chemoresistant High-Grade Serous Carcinoma Cell Line.","2022","36613537",0.94,"International journal of molecular sciences"],["A phase Ib/IIa trial of 9 repurposed drugs combined with temozolomide for the treatment of recurrent glioblastoma: CUSP9v3.","2021","34377985",0.93,"Neuro-oncology advances"],["S-1, Oxaliplatin, Nab-paclitaxel and Itraconazole for Conversion Surgery for Advanced or Recurrent Gastric Cancer.","2020","32014944",0.92,"Anticancer research"],["Itraconazole for Topical Treatment of Skin Carcinogenesis: Efficacy Enhancement by Lipid Nanocapsule Formulations.","2022","35180903",0.89,"Journal of biomedical nanotechnology"],["Plant-derived extracellular vesicles for itraconazole delivery across the blood-brain barrier for potential glioblastoma treatment.","2026","41484169",0.88,"Scientific reports"]]},{"ko":"독시사이클린·아지스로마이신","en":"Doxycycline · Azithromycin","pat":"doxycycline|azithromycin","ps":[0.92,0.82,0.82,0.6,0.59,0.3,0.29,0.18,0.15,0.14,0.13,0.12,0.1,0.1,0.08,0.06,0.06,0.06,0.05],"top":[["Identification of the targeted therapeutic potential of doxycycline for a subset of gastric cancer patients.","2020","31944316",0.92,"Annals of the New York Academy of Sciences"],["IPIAD- an augmentation regimen added to standard treatment of pancreatic ductal adenocarcinoma using already-marketed repurposed drugs irbesartan, pyrimethamine, itraconazole, azithromycin, and dapsone.","2024","38524376",0.82,"Oncoscience"],["Predictive profiling of gram-negative antibiotics in CagA oncoprotein inactivation: a molecular dynamics simulation approach.","2023","37462112",0.82,"SAR and QSAR in environmental research"],["Management of advanced HR-positive breast cancer using metabolically supported chemotherapy and repurposed drugs: a case report.","2026","42100430",0.6,"Frontiers in oncology"],["OPALS: A New Osimertinib Adjunctive Treatment of Lung Adenocarcinoma or Glioblastoma Using Five Repurposed Drugs.","2021","34068720",0.59,"Cells"],["Repurposing antibiotics: A dual-action approach against bacteria-induced cancer.","2025","41179938",0.3,"Cancer pathogenesis and therapy"]]},{"ko":"탈리도마이드","en":"Thalidomide","pat":"thalidomide","ps":[0.62,0.39,0.39,0.33,0.26,0.25,0.21,0.18,0.17,0.15,0.11,0.1,0.09],"top":[["Identification of Potential Therapeutics for Infantile Hemangioma via in silico Investigation and in vitro Validation.","2024","39286286",0.62,"Drug design, development and therapy"],["BAPST. A Combo of Common Use Drugs as Metabolic Therapy for Cancer: A Theoretical Proposal.","2022","34620071",0.39,"Current molecular pharmacology"],["Appetite problem in cancer patients: Pathophysiology, diagnosis, and treatment.","2021","33607591",0.39,"Cancer treatment and research communications"],["Does Therapeutic Repurposing in Cancer Meet the Expectations of Having Drugs at a Lower Price?","2023","36884210",0.33,"Clinical drug investigation"],["Repurposing of antiangiogenic agents for treatment of vascular anomalies.","2023","37625520",0.26,"Pharmacology & therapeutics"],["Drug repurposing in oncology: a path beyond the bottleneck.","2025","40849858",0.25,"Medical oncology (Northwood, London, England)"]]},{"ko":"셀레콕시브","en":"Celecoxib","pat":"celecoxib","ps":[0.93,0.9,0.89,0.88,0.86,0.82,0.82,0.79,0.76,0.64,0.59,0.53,0.51,0.51,0.5,0.5,0.29,0.24,0.18,0.13,0.12,0.12,0.09,0.08],"top":[["A phase Ib/IIa trial of 9 repurposed drugs combined with temozolomide for the treatment of recurrent glioblastoma: CUSP9v3.","2021","34377985",0.93,"Neuro-oncology advances"],["Exploring Drug Repositioning: Enhanced Co-Delivery of Disulfiram and Celecoxib by Nanostructured Lipid Carriers for Breast Cancer Cells.","2026","40820450",0.9,"Current drug delivery"],["Repurposed Drugs Celecoxib and Fmoc-L-Leucine Alone and in Combination as Temozolomide-Resistant Antiglioma Agents-Comparative Studies on Normal and Immortalized Cell Lines, and on C. elegans.","2024","38542198",0.89,"International journal of molecular sciences"],["Repurposing disulfiram for ALDH-positive NSCLC: Network-based inhibition of EGFR, COX-2, and MAPK1.","2026","41666774",0.88,"Journal of molecular graphics & modelling"],["Phase I Study of a Combination of Fluvastatin and Celecoxib in Children with Relapsing/Refractory Low-Grade or High-Grade Glioma (FLUVABREX).","2023","37046681",0.86,"Cancers"],["Metabolic models predict fotemustine and the combination of eflornithine/rifamycin and adapalene/cannabidiol for the treatment of gliomas.","2024","38701414",0.82,"Briefings in bioinformatics"]]},{"ko":"니클로사마이드","en":"Niclosamide","pat":"niclosamide","ps":[0.94,0.94,0.93,0.92,0.92,0.91,0.91,0.91,0.91,0.9,0.9,0.84,0.83,0.78,0.75,0.7,0.51,0.34,0.29,0.24,0.15,0.14,0.12,0.08,0.08],"top":[["Niclosamide prodrug enhances oral bioavailability and efficacy against hepatocellular carcinoma by targeting vasorin-TGFbeta signalling.","2025","40692331",0.94,"British journal of pharmacology"],["Repurposing of niclosamide as a STAT3 inhibitor to enhance the anticancer effect of chemotherapeutic drugs in treating colorectal cancer.","2020","33011217",0.94,"Life sciences"],["Lactoferrin-modified niclosamide lipid nanocarriers reprogram ferroptosis and antioxidant networks for breast cancer suppression.","2026","41389883",0.93,"International journal of pharmaceutics"],["A High-Throughput Drug Repurposing Strategy to Treat TBX2 and/or TBX3 Dependent Cancers.","2024","39403898",0.92,"Cancer medicine"],["Lipid-Based Self-Microemulsion of Niclosamide Achieved Enhanced Oral Delivery and Anti-Tumor Efficacy in Orthotopic Patient-Derived Xenograft of Hepatocellular Carcinoma in Mice.","2024","38500681",0.92,"International journal of nanomedicine"],["Novel oral delivery system using modified inulin for enhanced liver cancer therapy.","2026","42485522",0.91,"Journal of food and drug analysis"]]},{"ko":"피르비늄","en":"Pyrvinium","pat":"pyrvinium","ps":[0.95,0.93,0.93,0.92,0.92,0.91,0.89,0.85,0.77,0.34,0.29,0.2],"top":[["Pyrvinium Pamoate Alone and With Gemcitabine Exhibits Anti-Pancreatic Cancer Activity in 2D and 3D Cell Culture Models.","2024","39632282",0.95,"Journal of cellular and molecular medicine"],["Repurposing FDA approved drugs inhibiting mitochondrial function for targeting glioma-stem like cells.","2021","33378970",0.93,"Biomedicine & pharmacotherapy = Biomedecine & ph"],["Pyrvinium Pamoate Induces Death of Triple-Negative Breast Cancer Stem-Like Cells and Reduces Metastases through Effects on Lipid Anabolism.","2020","32718996",0.93,"Cancer research"],["A High-Throughput Drug Repurposing Strategy to Treat TBX2 and/or TBX3 Dependent Cancers.","2024","39403898",0.92,"Cancer medicine"],["Pyrvinium Pamoate Use in a B cell Acute Lymphoblastic Leukemia Model of the Bone Tumor Microenvironment.","2020","31989336",0.92,"Pharmaceutical research"],["Quantitative Proteomics Unveils the Synergistic Effects of Combination Drugs on Cytoskeleton Composition and Autophagy-Mediated Cell Death in Neuroblastoma.","2025","40526398",0.91,"Journal of proteome research"]]}]},{"id":"metabolic","name":"대사·면역 조절","items":[{"ko":"비타민D3","en":"Vitamin D3","pat":"vitamin d|cholecalciferol|calcitriol","ps":[0.88,0.88,0.28,0.28,0.15,0.14,0.11],"top":[["Repurposing of sericin combined with dactolisib or vitamin D to combat non-small lung cancer cells through computational and biological investigations.","2024","39505930",0.88,"Scientific reports"],["Vitamin D analog calcitriol for breast cancer therapy; an integrated drug discovery approach.","2023","37054526",0.88,"Journal of biomolecular structure & dynamics"],["Biomarker-Driven Strategies for Stromal Reprogramming in Pancreatic Ductal Adenocarcinoma.","2026","42782738",0.28,"Cells"],["Use of \"Repurposed\" Drugs in the Treatment of Epithelial Ovarian Cancer: A Systematic Review.","2022","35320817",0.28,"American journal of clinical oncology"],["Plasma Proteomic Insights into the Digestive System Disorders Unveil Causal Associations and Drug Repurposing Targets.","2026","42614597",0.15,"Phenomics (Cham, Switzerland)"],["Integrative Oncology for Biochemical Recurrence of Epithelial Ovarian Cancer.","2026","41697452",0.14,"Current oncology reports"]]},{"ko":"메트포르민","en":"Metformin","pat":"metformin","ps":[0.94,0.94,0.94,0.94,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.92,0.92,0.92,0.92,0.92,0.92,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.9,0.89,0.87,0.86,0.85,0.84,0.82,0.82,0.8,0.79,0.79,0.76,0.71,0.67,0.63,0.62,0.6,0.6,0.55,0.51,0.51,0.51,0.49,0.47,0.45,0.44,0.39,0.35,0.34,0.34,0.31,0.31,0.29,0.28,0.28,0.28,0.28,0.27,0.27,0.25,0.24,0.24,0.24,0.24,0.24,0.23,0.22,0.21,0.19,0.19,0.18,0.18,0.18,0.17,0.17,0.16,0.16,0.15,0.15,0.14,0.14,0.14,0.14,0.13,0.13,0.13,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.11,0.1,0.1,0.09,0.09,0.08,0.07,0.07,0.06,0.05],"top":[["Additive Cytotoxic and Colony-Formation Inhibitory Effects of Aspirin and Metformin on PI3KCA-Mutant Colorectal Cancer Cells.","2024","38791419",0.94,"International journal of molecular sciences"],["Repurposing of atorvastatin and metformin denotes their individual and combined antiproliferative effects in non-small cell lung cancer.","2024","38258539",0.94,"Fundamental & clinical pharmacology"],["The Antineoplastic Effect of Carboplatin Is Potentiated by Combination with Pitavastatin or Metformin in a Chemoresistant High-Grade Serous Carcinoma Cell Line.","2022","36613537",0.94,"International journal of molecular sciences"],["Repurposing dextromethorphan and metformin for treating nicotine-induced cancer by directly targeting CHRNA7 to inhibit JAK2/STAT3/SOX2 signaling.","2021","33603170",0.94,"Oncogene"],["Metformin Suppresses Metastatic Potential and Sensitizes Ovarian Cancer Cells to Chemotherapeutics.","2026","42737675",0.93,"International journal of molecular sciences"],["Studying synergistic anticancer effects of repurposed AT(1)B losartan with antidiabetics metformin, rosiglitazone in triple-negative breast cancer cells.","2026","41967625",0.93,"European journal of pharmacology"]]},{"ko":"스타틴류","en":"Statins","pat":"statin|atorvastatin|simvastatin|lovastatin|rosuvastatin","ps":[0.95,0.95,0.95,0.94,0.94,0.94,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.92,0.92,0.92,0.92,0.92,0.92,0.91,0.91,0.91,0.91,0.9,0.9,0.9,0.9,0.89,0.89,0.89,0.88,0.88,0.88,0.87,0.87,0.87,0.87,0.86,0.86,0.85,0.84,0.83,0.82,0.82,0.79,0.77,0.76,0.76,0.69,0.68,0.66,0.66,0.65,0.63,0.61,0.56,0.54,0.51,0.51,0.51,0.47,0.43,0.43,0.41,0.39,0.39,0.36,0.35,0.35,0.34,0.34,0.32,0.32,0.31,0.29,0.28,0.27,0.25,0.24,0.24,0.24,0.23,0.22,0.22,0.21,0.21,0.2,0.19,0.19,0.19,0.19,0.18,0.18,0.17,0.17,0.16,0.16,0.15,0.14,0.14,0.14,0.13,0.13,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.11,0.1,0.1,0.09,0.08,0.07,0.06,0.06,0.06,0.05,0.05],"top":[["Repurposing a Lipid-Lowering Agent to Inhibit TNBC Growth Through Cell Cycle Arrest.","2025","40864776",0.95,"Current issues in molecular biology"],["Repurposing mebendazole against triple-negative breast cancer leptomeningeal disease.","2024","38405839",0.95,"Research square"],["Cholesterol-lowering drug pitavastatin targets lung cancer and angiogenesis via suppressing prenylation-dependent Ras/Raf/MEK and PI3K/Akt/mTOR signaling.","2020","32011362",0.95,"Anti-cancer drugs"],["Repurposing statins and phenothiazines to treat chemoresistant neuroblastoma.","2026","41437160",0.94,"EMBO molecular medicine"],["Repurposing of atorvastatin and metformin denotes their individual and combined antiproliferative effects in non-small cell lung cancer.","2024","38258539",0.94,"Fundamental & clinical pharmacology"],["The Antineoplastic Effect of Carboplatin Is Potentiated by Combination with Pitavastatin or Metformin in a Chemoresistant High-Grade Serous Carcinoma Cell Line.","2022","36613537",0.94,"International journal of molecular sciences"]]},{"ko":"멜라토닌","en":"Melatonin","pat":"melatonin","ps":[0.79,0.37,0.24,0.14,0.12,0.12,0.08,0.07],"top":[["Transcriptomic signature of cancer cachexia by integration of machine learning, literature mining and meta-analysis.","2024","38452471",0.79,"Computers in biology and medicine"],["Managing strategies of chemotherapy and radiotherapy-induced oral mucositis.","2025","39799794",0.37,"Cancer treatment reviews"],["Novel strategies to reverse chemoresistance in colorectal cancer.","2023","36645225",0.24,"Cancer medicine"],["Integrative Oncology for Biochemical Recurrence of Epithelial Ovarian Cancer.","2026","41697452",0.14,"Current oncology reports"],["Harnessing Repurposed Drugs to Enhance Temozolomide Efficacy in Glioblastoma.","2026","42557676",0.12,"Cancer reports (Hoboken, N.J.)"],["Novel approaches to combat preeclampsia: from new drugs to innovative delivery.","2020","32980138",0.12,"Placenta"]]},{"ko":"시메티딘","en":"Cimetidine","pat":"cimetidine","ps":[0.16,0.1],"top":[["Cimetidine repurposed as a potential immunomodulatory agent against colorectal carcinoma: A systematic review.","2024","38592456",0.16,"Journal of oncology pharmacy practice : official"],["Old wine in new bottles: Drug repurposing in oncology.","2020","31730760",0.1,"European journal of pharmacology"]]},{"ko":"프로프라놀올","en":"Propranolol","pat":"propranolol","ps":[0.91,0.9,0.9,0.53,0.51,0.37,0.34,0.33,0.33,0.25,0.18,0.17],"top":[["The Beta2-adrenergic agonist salbutamol synergizes with paclitaxel on cell proliferation and tumor growth in triple negative breast cancer models.","2023","37725114",0.91,"Cancer chemotherapy and pharmacology"],["Differentiation-inducing triiodothyronine enhances chemotherapy and suppresses post-treatment tumor regrowth in medulloblastoma.","2026","42256204",0.9,"Molecular therapy. Oncology"],["Exploring the repurposing potential of telmisartan drug in breast cancer: an in-silico and in-vitro approach.","2023","36847075",0.9,"Anti-cancer drugs"],["The OSR9 Regimen: A New Augmentation Strategy for Osteosarcoma Treatment Using Nine Older Drugs from General Medicine to Inhibit Growth Drive.","2023","37895152",0.53,"International journal of molecular sciences"],["Pancreatic resection with perioperative drug repurposing of propranolol and etodolac: trial protocol of the phase-II randomised placebo controlled PROSPER trial.","2020","32998931",0.51,"BMJ open"],["Does propranolol have a role in cancer treatment? A systematic review of the epidemiological and clinical trial literature on beta-blockers.","2025","40652143",0.37,"Journal of cancer research and clinical oncology"]]},{"ko":"라파마이신","en":"Rapamycin (Sirolimus)","pat":"rapamycin|sirolimus","ps":[0.95,0.93,0.93,0.91,0.87,0.86,0.83,0.8,0.74,0.74,0.64,0.62,0.62,0.47,0.38,0.38,0.37,0.23,0.22,0.21,0.15,0.15,0.13,0.12,0.12,0.12,0.1,0.08],"top":[["Repurposing econazole as a pharmacological autophagy inhibitor to treat pancreatic ductal adenocarcinoma.","2022","35865101",0.95,"Acta pharmaceutica Sinica. B"],["The Antipsychotic Drug Aripiprazole Suppresses Colorectal Cancer by Targeting LAMP2a to Induce RNH1/miR-99a/mTOR-Mediated Autophagy and Apoptosis.","2024","39513392",0.93,"Advanced science (Weinheim, Baden-Wurttemberg, G"],["Nicardipine sensitizes temozolomide by inhibiting autophagy and promoting cell apoptosis in glioma stem cells.","2021","33621205",0.93,"Aging"],["Quantitative Proteomics Unveils the Synergistic Effects of Combination Drugs on Cytoskeleton Composition and Autophagy-Mediated Cell Death in Neuroblastoma.","2025","40526398",0.91,"Journal of proteome research"],["A Novel 3D High-Throughput Phenotypic Drug Screening Pipeline to Identify Drugs with Repurposing Potential for the Treatment of Ovarian Cancer.","2025","40109101",0.87,"Advanced healthcare materials"],["Integrating AI/ML and multi-omics approaches to investigate the role of TNFRSF10A/TRAILR1 and its potential targets in pancreatic cancer.","2025","40424767",0.86,"Computers in biology and medicine"]]},{"ko":"세라펩타아제","en":"Serrapeptase","pat":"serrapeptase","ps":[],"top":[]},{"ko":"메티오니나아제","en":"Methioninase","pat":"methioninase","ps":[],"top":[]},{"ko":"살리노마이신","en":"Salinomycin","pat":"salinomycin","ps":[0.9,0.3,0.19],"top":[["Hydrogel-Based Pre-Clinical Evaluation of Repurposed FDA-Approved Drugs for AML.","2023","36835644",0.9,"International journal of molecular sciences"],["Dichloroacetate and Salinomycin as Therapeutic Agents in Cancer.","2025","40407542",0.3,"Medical sciences (Basel, Switzerland)"],["Discovery of potential anti-SARS-CoV-2 drugs based on large-scale screening in vitro and effect evaluation in vivo.","2022","34962614",0.19,"Science China. Life sciences"]]},{"ko":"저용량 날트렉손","en":"Low-dose naltrexone","pat":"naltrexone","ps":[],"top":[]},{"ko":"CBD 오일","en":"Cannabidiol","pat":"cannabidiol|\\bcbd\\b","ps":[0.88,0.82,0.26,0.22],"top":[["Cannabidiol-induced activation of the metallothionein pathway impedes anticancer effects of disulfiram and its metabolite CuET.","2022","34632694",0.88,"Molecular oncology"],["Metabolic models predict fotemustine and the combination of eflornithine/rifamycin and adapalene/cannabidiol for the treatment of gliomas.","2024","38701414",0.82,"Briefings in bioinformatics"],["Beyond Epilepsy Control: Repurposing Antiepileptic Drugs in Central Nervous System Tumor Therapy.","2026","41827842",0.26,"Cells"],["Repurposing Cannabidiol as a Potential Drug Candidate for Anti-Tumor Therapies.","2021","33921049",0.22,"Biomolecules"]]},{"ko":"오메프라졸","en":"Omeprazole · PPI","pat":"omeprazole|proton pump inhibitor","ps":[0.93,0.91,0.9,0.9,0.89,0.87,0.84,0.83,0.79,0.31,0.28,0.18,0.15,0.13,0.12,0.1,0.08,0.07],"top":[["Proton pump inhibitors suppress DNA damage repair and sensitize treatment resistance in breast cancer by targeting fatty acid synthase.","2021","33813001",0.93,"Cancer letters"],["Combination Therapy of High-Dose Rabeprazole Plus Metronomic Capecitabine in Advanced Gastro-Intestinal Cancer: A Randomized Phase II Trial.","2020","33105819",0.91,"Cancers"],["Investigation of the Putative Relationship Between Copper Transport and the Anticancer Activity of Cisplatin in Ductal Pancreatic Adenocarcinoma.","2025","41090718",0.9,"Cells"],["Selected pharmacotherapy agents as antiproliferative and anti-inflammatory compounds.","2020","31943302",0.9,"Drug development research"],["Antineoplastic effects of sodium dichloroacetate and omeprazole, alone or in combination, on canine oral mucosal melanoma cells.","2023","37520008",0.89,"Frontiers in veterinary science"],["Therapeutic Activity of the Lansoprazole Metabolite 5-Hydroxy Lansoprazole Sulfide in Triple-Negative Breast Cancer by Inhibiting the Enoyl Reductase of Fatty Acid Synthase.","2022","36257066",0.87,"Journal of medicinal chemistry"]]}]},{"id":"support","name":"면역·체력 지원","items":[{"ko":"커큐민","en":"Curcumin","pat":"curcumin","ps":[0.92,0.89,0.88,0.88,0.82,0.76,0.64,0.38,0.37,0.17,0.07],"top":[["Drug repositioning based on gene expression data for human HER2-positive breast cancer.","2021","34597657",0.92,"Archives of biochemistry and biophysics"],["Selective Inhibition of Deamidated Triosephosphate Isomerase by Disulfiram, Curcumin, and Sodium Dichloroacetate: Synergistic Therapeutic Strategies for T-Cell Acute Lymphoblastic Leukemia in Jurkat Cells.","2024","39456228",0.89,"Biomolecules"],["Pioglitazone/Curcumin co-loaded TPGS-functionalized nanocarriers: an auspicious repurposed therapeutic advance targeting lung and breast carcinoma.","2025","40695394",0.88,"International journal of pharmaceutics"],["A Rapid, Convergent Approach to the Identification of Exosome Inhibitors in Breast Cancer Models.","2023","36593796",0.88,"Nanotheranostics"],["Biomimeting ultra-small lipid nanoconstructs for glioblastoma treatment: A computationally guided experimental approach.","2020","32693289",0.82,"International journal of pharmaceutics"],["Analysis of VEGFR-2 and PDGFR-beta expression in canine splenic hemangiosarcoma to identify drug repositioning candidates.","2024","39131208",0.76,"Brazilian journal of veterinary medicine"]]},{"ko":"베르베린","en":"Berberine","pat":"berberine","ps":[0.23,0.07],"top":[["Advances in anticancer alkaloid-derived metallo-chemotherapeutic agents in the last decade: Mechanism of action and future prospects.","2023","36567056",0.23,"Pharmacology & therapeutics"],["Decoding polycystic ovary syndrome: an integrated review of epidemiology, molecular mechanisms, animal models, and the expanding therapeutic landscape.","2026","42307637",0.07,"Naunyn-Schmiedeberg's archives of pharmacology"]]},{"ko":"EGCG","en":"EGCG","pat":"\\begcg\\b|epigallocatechin","ps":[0.92,0.55,0.41,0.38],"top":[["A combination of metformin and epigallocatechin gallate potentiates glioma chemotherapy in vivo.","2023","37025487",0.92,"Frontiers in pharmacology"],["Wnt/beta-catenin Antagonists: Exploring New Avenues to Trigger Old Drugs in Alleviating Glioblastoma Multiforme.","2022","33881978",0.55,"Current molecular pharmacology"],["Analysing potent biomarkers along phytochemicals for breast cancer therapy: an in silico approach.","2024","37726449",0.41,"Breast cancer research and treatment"],["The Past and Future of Angiogenesis as a Target for Cancer Therapy and Prevention.","2024","38714356",0.38,"Cancer prevention research (Philadelphia, Pa.)"]]},{"ko":"레스베라트롤","en":"Resveratrol","pat":"resveratrol","ps":[0.92,0.76,0.51,0.38,0.12],"top":[["Resveratrol synergizes with chloroquine to inhibit the malignant progression of oral squamous cell carcinoma by regulating KIF11.","2026","42035373",0.92,"Naunyn-Schmiedeberg's archives of pharmacology"],["Analysis of VEGFR-2 and PDGFR-beta expression in canine splenic hemangiosarcoma to identify drug repositioning candidates.","2024","39131208",0.76,"Brazilian journal of veterinary medicine"],["Inhibition of the Formation In Vitro of Putatively Carcinogenic Metabolites Derived from S. haematobium and O. viverrini by Combination of Drugs with Antioxidants.","2019","31731402",0.51,"Molecules (Basel, Switzerland)"],["The Past and Future of Angiogenesis as a Target for Cancer Therapy and Prevention.","2024","38714356",0.38,"Cancer prevention research (Philadelphia, Pa.)"],["Novel approaches to combat preeclampsia: from new drugs to innovative delivery.","2020","32980138",0.12,"Placenta"]]},{"ko":"MSM","en":"MSM","pat":"methylsulfonylmethane","ps":[],"top":[]},{"ko":"오메가-3","en":"Omega-3","pat":"omega-3|omega 3|fish oil|docosahexaenoic|eicosapentaenoic","ps":[0.39,0.14],"top":[["Appetite problem in cancer patients: Pathophysiology, diagnosis, and treatment.","2021","33607591",0.39,"Cancer treatment and research communications"],["Integrative Oncology for Biochemical Recurrence of Epithelial Ovarian Cancer.","2026","41697452",0.14,"Current oncology reports"]]},{"ko":"아슈와간다","en":"Ashwagandha","pat":"ashwagandha|withaferin|withania","ps":[0.9],"top":[["Identification of repositioned inhibitors of pan-cancer proteasomal target as potential anti-proliferative candidates using a computational therapeutics approach.","2026","42800176",0.9,"Biochemical and biophysical research communicati"]]},{"ko":"살베스트롤","en":"Salvestrol","pat":"salvestrol","ps":[],"top":[]},{"ko":"케르세틴","en":"Quercetin","pat":"quercetin","ps":[0.9,0.88,0.87,0.83,0.82,0.07],"top":[["Flavonoids kaempferol and quercetin are nuclear receptor 4A1 (NR4A1, Nur77) ligands and inhibit rhabdomyosarcoma cell and tumor growth.","2021","34906197",0.9,"Journal of experimental & clinical cancer resear"],["Targeting CD73 with flavonoids inhibits cancer stem cells and increases lymphocyte infiltration in a triple-negative breast cancer mouse model.","2024","38601156",0.88,"Frontiers in immunology"],["Optimization of atorvastatin and quercetin-loaded solid lipid nanoparticles using Box-Behnken design.","2024","39012199",0.87,"Nanomedicine (London, England)"],["Unveiling the multitargeted repurposing potential of taxifolin (dihydroquercetin) in cervical cancer: an extensive MM\\GBSA-based screening, and MD simulation study.","2023","37394519",0.83,"Medical oncology (Northwood, London, England)"],["Repurposing Camellia sinensis Roots and Ginkgo biloba Leaves for Multiple Myeloma via Wnt/beta-Catenin-Dependent Cell Cycle Arrest and Apoptosis.","2026","42503192",0.82,"Chemistry & biodiversity"],["Decoding polycystic ovary syndrome: an integrated review of epidemiology, molecular mechanisms, animal models, and the expanding therapeutic landscape.","2026","42307637",0.07,"Naunyn-Schmiedeberg's archives of pharmacology"]]},{"ko":"브로멜라인","en":"Bromelain","pat":"bromelain","ps":[0.67],"top":[["Targeting the Stromal Pro-Tumoral Hyaluronan-CD44 Pathway in Pancreatic Cancer.","2021","33921242",0.67,"International journal of molecular sciences"]]},{"ko":"변형 감귤 펙틴","en":"Modified citrus pectin","pat":"citrus pectin","ps":[0.14],"top":[["Integrative Oncology for Biochemical Recurrence of Epithelial Ovarian Cancer.","2026","41697452",0.14,"Current oncology reports"]]},{"ko":"마누카꿀","en":"Manuka honey","pat":"manuka|honey","ps":[0.8],"top":[["Honeybee Venom Synergistically Enhances the Cytotoxic Effect of CNS Drugs in HT-29 Colon and MCF-7 Breast Cancer Cell Lines.","2022","35335887",0.8,"Pharmaceutics"]]},{"ko":"TUDCA","en":"TUDCA","pat":"tudca|tauroursodeoxycholic","ps":[],"top":[]},{"ko":"버섯 추출물","en":"Medicinal mushrooms","pat":"mushroom|ganoderma|reishi|agaricus|turkey tail|coriolus|trametes","ps":[0.16,0.14,0.12,0.1],"top":[["Interrelationship among paraptosis, apoptosis and autophagy in lung cancer A549 cells induced by BEAP, an antitumor protein isolated from the edible porcini mushroom Boletus edulis.","2021","34339788",0.16,"International journal of biological macromolecul"],["Integrative Oncology for Biochemical Recurrence of Epithelial Ovarian Cancer.","2026","41697452",0.14,"Current oncology reports"],["A Possible Synergistic Herbal Solution for COVID-19.","2022","35730437",0.12,"Frontiers in bioscience (Scholar edition)"],["Drug repurposing for skin pigmentation disorders: Discovery of novel tyrosinase inhibitors.","2026","42102696",0.1,"Bioorganic chemistry"]]},{"ko":"프로바이오틱스","en":"Probiotics","pat":"probiotic","ps":[0.37,0.27],"top":[["Managing strategies of chemotherapy and radiotherapy-induced oral mucositis.","2025","39799794",0.37,"Cancer treatment reviews"],["Human trials exploring anti-aging medicines.","2024","38181790",0.27,"Cell metabolism"]]}]}],"hist":[5,125,200,184,110,87,77,51,34,45,54,39,32,48,59,84,142,205,377,26],"allp":[0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.94,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.93,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.92,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.91,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.89,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.88,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.87,0.86,0.86,0.86,0.86,0.86,0.86,0.86,0.86,0.86,0.86,0.86,0.86,0.86,0.86,0.86,0.86,0.86,0.86,0.86,0.86,0.86,0.86,0.86,0.85,0.85,0.85,0.85,0.85,0.85,0.85,0.85,0.85,0.85,0.85,0.85,0.85,0.85,0.85,0.85,0.85,0.85,0.85,0.85,0.85,0.85,0.85,0.85,0.85,0.85,0.85,0.85,0.85,0.84,0.84,0.84,0.84,0.84,0.84,0.84,0.84,0.84,0.84,0.84,0.84,0.84,0.84,0.84,0.84,0.84,0.84,0.84,0.84,0.84,0.84,0.84,0.84,0.84,0.84,0.84,0.84,0.84,0.84,0.84,0.83,0.83,0.83,0.83,0.83,0.83,0.83,0.83,0.83,0.83,0.83,0.83,0.83,0.83,0.83,0.83,0.83,0.83,0.83,0.83,0.83,0.83,0.83,0.83,0.83,0.83,0.83,0.83,0.83,0.82,0.82,0.82,0.82,0.82,0.82,0.82,0.82,0.82,0.82,0.82,0.82,0.82,0.82,0.82,0.82,0.82,0.82,0.82,0.82,0.82,0.82,0.82,0.82,0.82,0.82,0.82,0.82,0.82,0.82,0.82,0.82,0.82,0.82,0.82,0.81,0.81,0.81,0.81,0.81,0.81,0.81,0.81,0.81,0.81,0.81,0.81,0.81,0.81,0.81,0.81,0.81,0.81,0.81,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.79,0.79,0.79,0.79,0.79,0.79,0.79,0.79,0.79,0.79,0.79,0.79,0.79,0.79,0.79,0.79,0.79,0.79,0.79,0.79,0.79,0.79,0.78,0.78,0.78,0.78,0.78,0.78,0.78,0.78,0.78,0.78,0.78,0.78,0.77,0.77,0.77,0.77,0.77,0.77,0.77,0.77,0.77,0.77,0.77,0.77,0.77,0.77,0.77,0.77,0.76,0.76,0.76,0.76,0.76,0.76,0.76,0.76,0.76,0.76,0.76,0.76,0.76,0.76,0.76,0.76,0.76,0.76,0.76,0.76,0.76,0.76,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.75,0.74,0.74,0.74,0.74,0.74,0.74,0.74,0.74,0.74,0.74,0.74,0.74,0.73,0.73,0.73,0.73,0.73,0.73,0.73,0.73,0.73,0.73,0.73,0.73,0.73,0.73,0.72,0.72,0.72,0.72,0.72,0.72,0.72,0.72,0.72,0.72,0.72,0.71,0.71,0.71,0.71,0.71,0.71,0.71,0.71,0.71,0.71,0.71,0.71,0.71,0.71,0.71,0.7,0.7,0.7,0.7,0.7,0.7,0.7,0.69,0.69,0.69,0.69,0.69,0.69,0.69,0.69,0.69,0.69,0.68,0.68,0.68,0.68,0.68,0.68,0.68,0.68,0.68,0.68,0.67,0.67,0.67,0.67,0.67,0.67,0.67,0.67,0.67,0.66,0.66,0.66,0.66,0.66,0.66,0.66,0.66,0.65,0.65,0.65,0.65,0.65,0.65,0.65,0.65,0.65,0.65,0.65,0.64,0.64,0.64,0.64,0.64,0.63,0.63,0.63,0.63,0.63,0.62,0.62,0.62,0.62,0.62,0.62,0.62,0.62,0.61,0.61,0.61,0.61,0.61,0.61,0.61,0.61,0.6,0.6,0.6,0.6,0.6,0.6,0.59,0.59,0.59,0.59,0.59,0.59,0.59,0.59,0.59,0.59,0.58,0.58,0.58,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.56,0.56,0.56,0.56,0.56,0.56,0.56,0.56,0.56,0.56,0.56,0.55,0.55,0.55,0.55,0.55,0.55,0.55,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.54,0.53,0.53,0.53,0.53,0.53,0.53,0.53,0.53,0.53,0.53,0.53,0.53,0.53,0.53,0.52,0.52,0.52,0.52,0.52,0.52,0.52,0.51,0.51,0.51,0.51,0.51,0.51,0.51,0.51,0.51,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.49,0.49,0.49,0.49,0.49,0.49,0.49,0.49,0.49,0.49,0.49,0.49,0.48,0.48,0.48,0.48,0.48,0.48,0.48,0.48,0.48,0.48,0.47,0.47,0.47,0.47,0.47,0.47,0.47,0.47,0.47,0.46,0.46,0.46,0.46,0.45,0.45,0.45,0.45,0.45,0.45,0.45,0.45,0.45,0.45,0.44,0.44,0.44,0.43,0.43,0.43,0.43,0.43,0.43,0.43,0.43,0.42,0.42,0.42,0.42,0.42,0.42,0.42,0.41,0.41,0.41,0.41,0.41,0.41,0.41,0.41,0.41,0.41,0.4,0.4,0.4,0.4,0.4,0.4,0.39,0.39,0.39,0.39,0.39,0.39,0.39,0.39,0.39,0.39,0.39,0.39,0.39,0.39,0.39,0.38,0.38,0.38,0.38,0.38,0.38,0.38,0.38,0.37,0.37,0.37,0.37,0.37,0.37,0.37,0.37,0.37,0.37,0.36,0.36,0.36,0.36,0.36,0.36,0.36,0.36,0.36,0.36,0.35,0.35,0.35,0.35,0.35,0.35,0.35,0.35,0.34,0.34,0.34,0.34,0.34,0.34,0.34,0.34,0.34,0.34,0.34,0.34,0.34,0.34,0.33,0.33,0.33,0.33,0.33,0.33,0.33,0.33,0.33,0.33,0.33,0.33,0.33,0.33,0.32,0.32,0.32,0.32,0.32,0.32,0.32,0.32,0.32,0.32,0.32,0.32,0.32,0.31,0.31,0.31,0.31,0.31,0.31,0.31,0.31,0.31,0.31,0.31,0.31,0.31,0.31,0.31,0.31,0.31,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.3,0.29,0.29,0.29,0.29,0.29,0.29,0.29,0.29,0.29,0.29,0.29,0.29,0.28,0.28,0.28,0.28,0.28,0.28,0.28,0.28,0.28,0.28,0.28,0.28,0.28,0.28,0.28,0.28,0.28,0.27,0.27,0.27,0.27,0.27,0.27,0.27,0.27,0.27,0.27,0.27,0.27,0.27,0.27,0.27,0.27,0.27,0.27,0.27,0.27,0.27,0.27,0.26,0.26,0.26,0.26,0.26,0.26,0.26,0.26,0.26,0.26,0.26,0.26,0.26,0.26,0.26,0.26,0.25,0.25,0.25,0.25,0.25,0.25,0.25,0.25,0.25,0.25,0.25,0.25,0.25,0.25,0.25,0.25,0.25,0.25,0.25,0.25,0.24,0.24,0.24,0.24,0.24,0.24,0.24,0.24,0.24,0.24,0.24,0.24,0.24,0.24,0.24,0.24,0.24,0.24,0.24,0.23,0.23,0.23,0.23,0.23,0.23,0.23,0.23,0.23,0.23,0.23,0.23,0.23,0.23,0.23,0.23,0.23,0.22,0.22,0.22,0.22,0.22,0.22,0.22,0.22,0.22,0.22,0.22,0.22,0.22,0.22,0.22,0.22,0.22,0.22,0.22,0.22,0.22,0.22,0.22,0.22,0.21,0.21,0.21,0.21,0.21,0.21,0.21,0.21,0.21,0.21,0.21,0.21,0.21,0.21,0.21,0.21,0.21,0.21,0.21,0.21,0.21,0.21,0.21,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.19,0.19,0.19,0.19,0.19,0.19,0.19,0.19,0.19,0.19,0.19,0.19,0.19,0.19,0.19,0.19,0.19,0.19,0.19,0.19,0.19,0.19,0.19,0.19,0.19,0.19,0.19,0.19,0.19,0.19,0.19,0.18,0.18,0.18,0.18,0.18,0.18,0.18,0.18,0.18,0.18,0.18,0.18,0.18,0.18,0.18,0.18,0.18,0.18,0.18,0.18,0.18,0.18,0.18,0.18,0.18,0.18,0.18,0.18,0.18,0.18,0.18,0.18,0.18,0.18,0.18,0.18,0.17,0.17,0.17,0.17,0.17,0.17,0.17,0.17,0.17,0.17,0.17,0.17,0.17,0.17,0.17,0.17,0.17,0.17,0.17,0.17,0.17,0.17,0.17,0.17,0.17,0.17,0.17,0.17,0.17,0.16,0.16,0.16,0.16,0.16,0.16,0.16,0.16,0.16,0.16,0.16,0.16,0.16,0.16,0.16,0.16,0.16,0.16,0.16,0.16,0.16,0.16,0.16,0.16,0.16,0.16,0.16,0.16,0.16,0.16,0.16,0.16,0.16,0.16,0.16,0.16,0.16,0.16,0.16,0.16,0.16,0.16,0.16,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.15,0.14,0.14,0.14,0.14,0.14,0.14,0.14,0.14,0.14,0.14,0.14,0.14,0.14,0.14,0.14,0.14,0.14,0.14,0.14,0.14,0.14,0.14,0.14,0.14,0.14,0.14,0.14,0.14,0.14,0.14,0.14,0.14,0.14,0.14,0.14,0.14,0.14,0.14,0.13,0.13,0.13,0.13,0.13,0.13,0.13,0.13,0.13,0.13,0.13,0.13,0.13,0.13,0.13,0.13,0.13,0.13,0.13,0.13,0.13,0.13,0.13,0.13,0.13,0.13,0.13,0.13,0.13,0.13,0.13,0.13,0.13,0.13,0.13,0.13,0.13,0.13,0.13,0.13,0.13,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.12,0.11,0.11,0.11,0.11,0.11,0.11,0.11,0.11,0.11,0.11,0.11,0.11,0.11,0.11,0.11,0.11,0.11,0.11,0.11,0.11,0.11,0.11,0.11,0.11,0.11,0.11,0.11,0.11,0.11,0.11,0.11,0.11,0.11,0.11,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.08,0.08,0.08,0.08,0.08,0.08,0.08,0.08,0.08,0.08,0.08,0.08,0.08,0.08,0.08,0.08,0.08,0.08,0.08,0.08,0.08,0.08,0.08,0.08,0.08,0.08,0.08,0.08,0.08,0.08,0.08,0.08,0.08,0.08,0.07,0.07,0.07,0.07,0.07,0.07,0.07,0.07,0.07,0.07,0.07,0.07,0.07,0.07,0.07,0.07,0.07,0.07,0.07,0.07,0.07,0.07,0.07,0.07,0.07,0.07,0.07,0.07,0.07,0.06,0.06,0.06,0.06,0.06,0.06,0.06,0.06,0.06,0.06,0.06,0.06,0.06,0.06,0.06,0.06,0.06,0.06,0.06,0.06,0.06,0.06,0.06,0.06,0.05,0.05,0.05,0.05,0.05,0.05,0.05,0.05,0.05,0.05,0.05,0.05,0.05,0.05,0.05,0.05,0.04,0.04,0.04,0.03,0.02],"years":{"2019":37,"2020":193,"2021":291,"2022":241,"2023":280,"2024":330,"2025":342,"2026":285},"pre2015":1,"top":[[1,"Repurposing fluphenazine to suppress melanoma brain, lung and bone metastasis by inducing G0/G1 cell cycle arrest and apoptosis and disrupting autophagic flux.","2023","36952079",0.95,"Clinical & experimental metastasis"],[2,"Development of inhalable quinacrine loaded bovine serum albumin modified cationic nanoparticles: Repurposing quinacrine for lung cancer therapeutics.","2020","31935471",0.95,"International journal of pharmaceutics"],[3,"Repurposing maduramicin as a novel anticancer and anti-metastasis agent for triple-negative breast cancer as enhanced by nanoemulsion.","2022","35964826",0.95,"International journal of pharmaceutics"],[4,"Repurposing disulfiram, an alcohol-abuse drug, in neuroblastoma causes KAT2A downregulation and in vivo activity with a water/oil emulsion.","2023","37777587",0.95,"Scientific reports"],[5,"Repurposing of Loperamide as a New Drug With Anticancer Activity for Human Osteosarcoma.","2024","38423641",0.95,"Anticancer research"],[6,"Repurposing mebendazole against triple-negative breast cancer leptomeningeal disease.","2024","38405839",0.95,"Research square"],[7,"Repurposing of antipsychotic trifluoperazine for treating brain metastasis, lung metastasis and bone metastasis of melanoma by disrupting autophagy flux.","2021","33176207",0.95,"Pharmacological research"],[8,"Repurposing econazole as a pharmacological autophagy inhibitor to treat pancreatic ductal adenocarcinoma.","2022","35865101",0.95,"Acta pharmaceutica Sinica. B"],[9,"Treatment of breast and colon cancer cell lines with anti-helmintic benzimidazoles mebendazole or albendazole results in selective apoptotic cell death.","2021","34148157",0.95,"Journal of cancer research and clinical oncology"],[10,"Antiparasitic mebendazole (MBZ) effectively overcomes cisplatin resistance in human ovarian cancer cells by inhibiting multiple cancer-associated signaling pathways.","2021","34232919",0.95,"Aging"]],"mid":[[1044,"Multiparameter Evaluation of the Platelet-Inhibitory Effects of Tyrosine Kinase Inhibitors Used for Cancer Treatment.","2021","34681859",0.52,"International journal of molecular sciences"],[1045,"Structure based virtual screening and molecular simulation study of FDA-approved drugs to inhibit human HDAC6 and VISTA as dual cancer immunotherapy.","2023","37660065",0.52,"Scientific reports"],[1046,"In-silico evidence of ADAM metalloproteinase pathology in cancer signaling networks.","2022","34402747",0.52,"Journal of biomolecular structure & dynamics"]],"bot":[[1982,"Repurposing clinically available drugs and therapies for pathogenic targets to combat SARS-CoV-2.","2023","37193304",0.04,"MedComm"],[1983,"Novel Stem Cells and Nucleic Acid-Based Vaccine Trials Against Viral Outbreak: A Systematic Evaluation During COVID-2019 Pandemic.","2020","32837030",0.03,"Indian journal of clinical biochemistry : IJCB"],[1984,"Global burden of lower respiratory infections and aetiologies, 1990-2023: a systematic analysis for the Global Burden of Disease Study 2023.","2026","41412141",0.02,"The Lancet. Infectious diseases"]],"translation":"(\"repurposable\"[All Fields] OR \"repurpose\"[All Fields] OR \"repurposed\"[All Fields] OR \"repurposing\"[All Fields]) AND (\"drug s\"[All Fields] OR \"pharmaceutical preparations\"[Supplementary Concept] OR \"pharmaceutical preparations\"[All Fields] OR \"drugs\"[All Fields] OR \"pharmaceutical preparations\"[MeSH Terms] OR (\"pharmaceutical\"[All Fields] AND \"preparations\"[All Fields])) AND (\"neoplasms\"[MeSH Terms] OR \"neoplasms\"[All Fields] OR \"oncology\"[All Fields] OR \"oncology s\"[All Fields])","criteria":"Include records that report research directly relevant to this request: repurposed drugs in oncology.\nExclude records that are clearly about a different topic.\nExclude reviews, editorials, commentaries and protocols without original data."}</script>
+<script>
+(function(){
+const D=JSON.parse(document.getElementById('data').textContent);
+const NS='http://www.w3.org/2000/svg';
+const css=v=>`var(--${v})`;
+function el(tag,attrs,parent,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!=null)e.textContent=text;if(parent)parent.appendChild(e);return e;}
+const fmt=n=>n.toLocaleString('en-US');
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const sClass=p=>p>=0.8?'s-hi':p>=0.4?'s-mid':'s-lo';
+
+/* funnel */
+(function(){const rows=[[2488,'PubMed 검색 결과 전체',0],[2000,'ReviewFast가 가져온 수 (상한 2,000)',0],[1984,'초록 있는 영어 논문 → Jev 채점',0],[1066,'점수 0.5 이상 (사이트 자동 선택)',1],[750,'점수 0.8 이상',1]];
+ document.getElementById('funnel').innerHTML=rows.map(r=>`<div class="fn ${r[2]?'h':''}" style="width:${Math.max(46,r[0]/2488*100)}%"><b>${fmt(r[0])}</b><span>${r[1]}</span></div>`).join('');})();
+/* flow */
+(function(){const st=[['① 검색','질문 → PubMed 자동 검색 (최대 2,000편)',0],['② 순위','Jev가 초록마다 0~1 점수 → 점수순 정렬',0],['③ 자동 선택','점수 0.5 이상을 일단 고름 (검증 안 된 기준)',0],['④ 확인','위에서부터 읽으며 남길 논문 결정',1],['⑤ 추출·저장','남긴 논문의 항목을 표로 → JSON 내려받기',0]];
+ document.querySelector('#overview .flow').innerHTML=st.map(s=>`<li class="${s[2]?'h':''}"><b>${s[0]}</b><span>${s[1]}</span><em>${s[2]?'사람':'기계'}</em></li>`).join('');})();
+
+/* paper examples */
+function paperHTML(r){const [rank,t,y,pmid,p,j]=r;
+  return `<div class="paper"><div class="score ${sClass(p)}">${p.toFixed(2)}</div><div><p class="t"><a href="https://pubmed.ncbi.nlm.nih.gov/${pmid}/" target="_blank" rel="noopener">${esc(t)}</a></p><p class="m">${fmt(rank)}위 · ${y} · ${esc(j)}</p><div class="bar"><i style="width:${p*100}%"></i></div></div></div>`;}
+document.getElementById('ex-top').innerHTML=D.top.slice(0,3).map(paperHTML).join('');
+document.getElementById('ex-mid').innerHTML=D.mid.slice(0,2).map(paperHTML).join('');
+document.getElementById('ex-bot').innerHTML=D.bot.map(paperHTML).join('');
+
+/* histogram + slider */
+const hs=document.getElementById('hist');
+const HX=60,HW=564,HY=22,HH=200,hmax=Math.max(...D.hist);
+const ymax=Math.ceil(hmax/100)*100;
+function drawHist(cut){
+  hs.innerHTML='';
+  for(let v=0;v<=ymax;v+=100){const y=HY+HH-v/ymax*HH;el('line',{x1:HX,x2:HX+HW,y1:y,y2:y,stroke:css('line'),'stroke-width':1},hs);el('text',{x:HX-6,y:y+4,'text-anchor':'end','font-size':19,fill:css('muted'),'font-family':'IBM Plex Mono, monospace'},hs,v);}
+  const bw=HW/20;
+  D.hist.forEach((c,i)=>{const h=c/ymax*HH, lo=i/20;
+    el('rect',{x:HX+i*bw+1.5,y:HY+HH-h,width:bw-3,height:h,rx:2,fill:lo+0.05>cut+1e-9?css('accent'):css('line')},hs);});
+  for(let t=0;t<=10;t+=2){const x=HX+t/10*HW;el('text',{x,y:HY+HH+26,'text-anchor':'middle','font-size':19,fill:css('muted'),'font-family':'IBM Plex Mono, monospace'},hs,(t/10).toFixed(1));}
+  el('text',{x:HX+HW/2,y:HY+HH+58,'text-anchor':'middle','font-size':19,fill:css('muted')},hs,'Jev 점수');
+  const cx=HX+cut*HW;
+  el('line',{x1:cx,x2:cx,y1:HY-4,y2:HY+HH,stroke:css('amber'),'stroke-width':2.5},hs);
+  el('text',{x:Math.min(cx+8,HX+HW-90),y:HY+4,'font-size':20,'font-weight':700,fill:css('amber'),'font-family':'IBM Plex Mono, monospace'},hs,'≥ '+cut.toFixed(2));
+}
+const cutIn=document.getElementById('cut');
+function update(){const c=+cutIn.value;document.getElementById('cutv').textContent=c.toFixed(2);
+  const n=D.allp.filter(p=>p>=c-1e-9).length;
+  document.getElementById('r-n').textContent=fmt(n);
+  document.getElementById('r-pct').textContent=Math.round(n/D.allp.length*100)+'%';
+  const hrs=n*2/60;document.getElementById('r-h').textContent=hrs<1?Math.round(n*2)+'분':(hrs<10?hrs.toFixed(1):Math.round(hrs))+'시간';
+  document.querySelectorAll('.presets .chip').forEach(b=>b.setAttribute('aria-pressed',Math.abs(+b.dataset.c-c)<0.005));
+  drawHist(c);}
+cutIn.addEventListener('input',update);
+document.querySelectorAll('.presets .chip').forEach(b=>b.addEventListener('click',()=>{cutIn.value=b.dataset.c;update();}));
+update();
+
+/* drug explorer */
+const gcol={direct:'direct',metabolic:'meta',support:'supp'};
+const tabs=document.getElementById('gtabs'),list=document.getElementById('druglist');
+let cur='direct';
+D.groups.forEach(g=>{const b=document.createElement('button');b.type='button';b.className='tab';b.dataset.g=g.id;b.setAttribute('role','tab');b.textContent=g.name;b.addEventListener('click',()=>{cur=g.id;renderDrugs();});tabs.appendChild(b);});
+function renderDrugs(){
+  tabs.querySelectorAll('.tab').forEach(b=>b.setAttribute('aria-selected',b.dataset.g===cur));
+  const g=D.groups.find(x=>x.id===cur), col=css(gcol[cur]);
+  document.getElementById('lg1').style.background=col;document.getElementById('lg2').style.background=col;
+  const mx=Math.max(20,...g.items.map(i=>i.ps.length));
+  list.innerHTML='';
+  g.items.forEach((it,idx)=>{
+    const n=it.ps.length,n8=it.ps.filter(p=>p>=0.8).length;
+    const row=document.createElement('button');row.type='button';row.className='drug-row';row.setAttribute('aria-expanded','false');
+    row.innerHTML=`<span class="nm">${esc(it.ko)}<small>${esc(it.en)}</small></span><span class="track"><i class="all" style="width:${n/mx*100}%;background:${col}"></i><i style="width:${n8/mx*100}%;background:${col}"></i></span><span class="cnt">${n8} / ${n}</span>`;
+    const det=document.createElement('div');det.className='drug-detail';det.hidden=true;
+    det.innerHTML=n?it.top.map((t,k)=>paperHTML([0,t[0],t[1],t[2],t[3],t[4]]).replace(/<p class="m">0위 · /,'<p class="m">')).join('')+`<p class="small">${n>6?`외 ${n-6}편 더 있음. `:''}<button type="button" class="linkbtn" data-goto-drug="${esc(it.pat)}">실습에서 ${n}편 전부 보기 →</button></p>`:`<p class="small muted">이번 검색에서는 0편. <code>${esc(it.en.toLowerCase())} cancer</code>로 따로 검색해 보세요.</p>`;
+    row.addEventListener('click',()=>{const o=row.getAttribute('aria-expanded')==='true';row.setAttribute('aria-expanded',!o);det.hidden=o;});
+    list.appendChild(row);list.appendChild(det);
+  });
+}
+renderDrugs();
+
+/* reviews svg */
+(function(){const s=document.getElementById('revsvg');const W=600,x0=20;
+  for(let i=0;i<78;i++){const col=i%26,row=Math.floor(i/26);const p=i<7?css('amber'):css('line');
+    el('rect',{x:x0+col*23,y:4+row*23,width:19,height:19,rx:3,fill:p},s);}
+})();
+
+/* years */
+(function(){const s=document.getElementById('years');const ys=Object.keys(D.years),vs=ys.map(y=>D.years[y]);
+  const X=56,W=576,Y=28,H=160,mx=Math.ceil(Math.max(...vs)/100)*100,bw=W/ys.length;
+  for(let v=0;v<=mx;v+=100){const y=Y+H-v/mx*H;el('line',{x1:X,x2:X+W,y1:y,y2:y,stroke:css('line')},s);el('text',{x:X-6,y:y+4,'text-anchor':'end','font-size':19,fill:css('muted'),'font-family':'IBM Plex Mono, monospace'},s,v);}
+  ys.forEach((y,i)=>{const h=vs[i]/mx*H;el('rect',{x:X+i*bw+8,y:Y+H-h,width:bw-16,height:h,rx:3,fill:css('accent')},s);
+    el('text',{x:X+i*bw+bw/2,y:Y+H-h-7,'text-anchor':'middle','font-size':19,fill:css('ink'),'font-family':'IBM Plex Mono, monospace'},s,vs[i]);
+    el('text',{x:X+i*bw+bw/2,y:Y+H+28,'text-anchor':'middle','font-size':19,fill:css('muted'),'font-family':'IBM Plex Mono, monospace'},s,y);});
+  document.getElementById('pre15').textContent=D.pre2015;
+})();
+
+/* rank curve */
+(function(){const s=document.getElementById('rankcurve');const P=D.allp,N=P.length;
+  const X=66,W=560,Y=14,H=190;
+  [0,0.25,0.5,0.75,1].forEach(v=>{const y=Y+H-v*H;el('line',{x1:X,x2:X+W,y1:y,y2:y,stroke:css('line')},s);el('text',{x:X-6,y:y+4,'text-anchor':'end','font-size':19,fill:css('muted'),'font-family':'IBM Plex Mono, monospace'},s,v.toFixed(2));});
+  let d='M'+X+' '+(Y+H)+' ';for(let i=0;i<N;i+=4){d+='L'+(X+i/N*W).toFixed(1)+' '+(Y+H-P[i]*H).toFixed(1)+' ';}
+  d+='L'+(X+W)+' '+(Y+H)+' Z';
+  el('path',{d,fill:css('accent-soft'),stroke:css('accent'),'stroke-width':1.8},s);
+  [0,500,1000,1500,1984].forEach(r=>{const x=X+r/N*W;el('text',{x,y:Y+H+28,'text-anchor':r===0?'start':r===1984?'end':'middle','font-size':19,fill:css('muted'),'font-family':'IBM Plex Mono, monospace'},s,r===0?'1위':fmt(r));});
+  const k=P.filter(p=>p>=0.5).length,xk=X+k/N*W;
+  el('line',{x1:xk,x2:xk,y1:Y,y2:Y+H,stroke:css('amber'),'stroke-width':2,'stroke-dasharray':'4 3'},s);
+  el('text',{x:xk+6,y:Y+22,'font-size':20,fill:css('amber'),'font-weight':700},s,fmt(k)+'위 = 0.5 선');
+  el('text',{x:X+W/2,y:Y+H+60,'text-anchor':'middle','font-size':19,fill:css('muted')},s,'순위 →');
+})();
+
+document.getElementById('trans').textContent=D.translation;
+document.getElementById('crit').textContent=D.criteria;
+
+/* copy */
+document.querySelectorAll('.cp').forEach(b=>b.addEventListener('click',()=>{const t=b.nextElementSibling.textContent;
+  const done=()=>{b.textContent='복사됨';setTimeout(()=>b.textContent='복사',1500);};
+  try{navigator.clipboard.writeText(t).then(done,()=>{sel(b.nextElementSibling);});}catch(e){sel(b.nextElementSibling);}
+}));
+function sel(n){const r=document.createRange();r.selectNodeContents(n);const s=getSelection();s.removeAllRanges();s.addRange(r);}
+
+
+/* ================= practice ================= */
+(function(){
+const SRC=['reviewfast-repurposed-drugs-in-oncology.json','https://davidkangkr.github.io/Repurposing-Drugs-in-Oncology/reviewfast-repurposed-drugs-in-oncology.json'];
+const KEY='rf-practice-v1';
+const $=id=>document.getElementById(id);
+let P=[],dec={},view=[],shown=0,preset='all';
+try{dec=JSON.parse(localStorage.getItem(KEY)||'{}')||{};}catch(e){dec={};}
+const saveDec=()=>{try{localStorage.setItem(KEY,JSON.stringify(dec));}catch(e){}};
+
+function ingest(d){
+  if(!d||!Array.isArray(d.records)||!d.scores||!Array.isArray(d.ranking)) throw new Error('ReviewFast 결과 파일 형식이 아닙니다.');
+  const recs={};d.records.forEach(r=>recs[r.rid]=r);
+  P=[];d.ranking.forEach((rid,i)=>{const r=recs[rid],s=d.scores[rid];if(!r||!s||s.p==null)return;
+    P.push({rid,rank:P.length+1,p:s.p,t:r.title||'',a:r.abstract||'',y:r.year||'',j:(r.journal||'').slice(0,60),pmid:r.pmid||'',
+      lc:((r.title||'')+' '+(r.abstract||'')).toLowerCase()});});
+  if(!P.length) throw new Error('순위가 매겨진 논문이 없습니다.');
+  $('pr-load').hidden=true;$('pr-app').hidden=false;
+  const sel=$('pr-drug');
+  D.groups.forEach(g=>{const og=document.createElement('optgroup');og.label=g.name;
+    g.items.forEach(it=>{const o=document.createElement('option');o.value=it.pat;o.textContent=it.ko;og.appendChild(o);});sel.appendChild(og);});
+  apply();summary();
+}
+async function load(){
+  for(const u of SRC){try{const r=await fetch(u);if(!r.ok)continue;const d=await r.json();ingest(d);return;}catch(e){}}
+  $('pr-status').textContent='예제 파일을 자동으로 불러오지 못했습니다.';$('pr-fallback').hidden=false;
+}
+$('pr-file').addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;
+  try{ingest(JSON.parse(await f.text()));}catch(err){$('pr-status').textContent='열 수 없습니다: '+err.message;}});
+
+function apply(){
+  const q=$('pr-q').value.trim().toLowerCase(),drug=$('pr-drug').value,sc=$('pr-score').value,dv=$('pr-dec').value;
+  const rx=drug?new RegExp(drug,'i'):null;
+  let v=P;
+  if(preset==='top')v=P.slice(0,20);else if(preset==='bottom')v=P.slice(-20);else if(preset==='edge')v=P.filter(x=>x.p>=0.45&&x.p<=0.55);
+  v=v.filter(x=>(!q||x.lc.includes(q))&&(!rx||rx.test(x.lc))&&
+    (!sc||(sc==='hi'?x.p>=0.8:sc==='mid'?(x.p>=0.5&&x.p<0.8):x.p<0.5))&&
+    (!dv||(dv==='none'?!dec[x.rid]:dec[x.rid]===dv)));
+  view=v;shown=0;$('pr-list').innerHTML='';more();
+  $('pr-count').textContent=`${fmt(v.length)}편 · 순위순`;
+}
+function hl(s,q){const e=esc(s);if(!q)return e;const qq=q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');return e.replace(new RegExp(qq,'gi'),m=>`<mark>${m}</mark>`);}
+function card(x){
+  const q=$('pr-q').value.trim(),d=dec[x.rid]||'';
+  const div=document.createElement('div');div.className='pcard'+(d?' is-'+d:'');div.dataset.rid=x.rid;
+  div.innerHTML=`<button type="button" class="phead" aria-expanded="false"><span class="score ${sClass(x.p)}">${x.p.toFixed(2)}</span><span class="pt"><span class="t">${hl(x.t,q)}</span><span class="m">${fmt(x.rank)}위 · ${esc(x.y)} · ${esc(x.j)}</span></span></button>
+  <div class="pbody" hidden><p class="abs">${x.a?hl(x.a,q):'<span class="muted">초록 없음</span>'}</p>
+  <div class="pact"><button type="button" class="dbtn keep" aria-pressed="${d==='keep'}">남김</button><button type="button" class="dbtn drop" aria-pressed="${d==='drop'}">버림</button>${x.pmid?`<a class="small" href="https://pubmed.ncbi.nlm.nih.gov/${esc(x.pmid)}/" target="_blank" rel="noopener">PubMed ↗</a>`:''}</div></div>`;
+  const hd=div.querySelector('.phead'),bd=div.querySelector('.pbody');
+  hd.addEventListener('click',()=>{const o=hd.getAttribute('aria-expanded')==='true';hd.setAttribute('aria-expanded',!o);bd.hidden=o;});
+  div.querySelectorAll('.dbtn').forEach(b=>b.addEventListener('click',()=>{
+    const v=b.classList.contains('keep')?'keep':'drop';
+    if(dec[x.rid]===v)delete dec[x.rid];else dec[x.rid]=v;saveDec();
+    const now=dec[x.rid]||'';div.className='pcard'+(now?' is-'+now:'');
+    div.querySelector('.keep').setAttribute('aria-pressed',now==='keep');div.querySelector('.drop').setAttribute('aria-pressed',now==='drop');
+    summary();}));
+  return div;
+}
+function more(){const L=$('pr-list');view.slice(shown,shown+20).forEach(x=>L.appendChild(card(x)));shown=Math.min(view.length,shown+20);
+  $('pr-more').hidden=shown>=view.length;}
+$('pr-more').addEventListener('click',more);
+let tmr;$('pr-q').addEventListener('input',()=>{clearTimeout(tmr);tmr=setTimeout(apply,250);});
+['pr-drug','pr-score','pr-dec'].forEach(id=>$(id).addEventListener('change',apply));
+document.querySelectorAll('#practice [data-q]').forEach(b=>b.addEventListener('click',()=>{preset=b.dataset.q;
+  document.querySelectorAll('#practice [data-q]').forEach(c=>c.setAttribute('aria-pressed',c===b));apply();}));
+
+function summary(){
+  const ent=Object.entries(dec).filter(([rid])=>P.some(x=>x.rid==rid));
+  const byRid={};P.forEach(x=>byRid[x.rid]=x);
+  let k=0,dr=0,ag=0;ent.forEach(([rid,v])=>{const x=byRid[rid];if(!x)return;v==='keep'?k++:dr++;if((v==='keep')===(x.p>=0.5))ag++;});
+  $('pr-k').textContent=k;$('pr-d').textContent=dr;$('pr-agree').textContent=(k+dr)?Math.round(ag/(k+dr)*100)+'%':'–';
+  const s=$('pr-strip');s.innerHTML='';const X=20,W=600,N=P.length;
+  el('rect',{x:X,y:30,width:W,height:30,rx:4,fill:css('code')},s);
+  const cut=P.filter(x=>x.p>=0.5).length;
+  ent.forEach(([rid,v])=>{const x=byRid[rid];if(!x)return;const xx=X+(x.rank-0.5)/N*W;
+    el('rect',{x:xx-2,y:v==='keep'?24:36,width:4,height:v==='keep'?30:22,fill:v==='keep'?css('supp'):css('muted')},s);});
+  el('line',{x1:X+cut/N*W,x2:X+cut/N*W,y1:18,y2:70,stroke:css('amber'),'stroke-width':2,'stroke-dasharray':'4 3'},s);
+  el('text',{x:X,y:94,'font-size':18,fill:css('muted'),'font-family':'IBM Plex Mono, monospace'},s,'1위');
+  el('text',{x:X+cut/N*W,y:94,'text-anchor':'middle','font-size':18,fill:css('amber'),'font-family':'IBM Plex Mono, monospace'},s,fmt(cut)+'위');
+  el('text',{x:X+W,y:94,'text-anchor':'end','font-size':18,fill:css('muted'),'font-family':'IBM Plex Mono, monospace'},s,fmt(N)+'위');
+  if(!ent.length) el('text',{x:X+W/2,y:52,'text-anchor':'middle','font-size':17,fill:css('muted')},s,'아직 판단한 논문이 없습니다');
+}
+$('pr-csv').addEventListener('click',()=>{
+  const rows=[['rank','score','pmid','year','title']];P.filter(x=>dec[x.rid]==='keep').forEach(x=>rows.push([x.rank,x.p,x.pmid,x.y,x.t]));
+  const csv=rows.map(r=>r.map(v=>{v=String(v);return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;}).join(',')).join('\n');
+  const ta=$('pr-csvout');ta.value=csv;ta.hidden=false;const b=$('pr-csv');
+  const ok=()=>{b.textContent='복사됨';setTimeout(()=>b.textContent='남긴 목록 복사 (CSV)',1500);};
+  try{navigator.clipboard.writeText(csv).then(ok,()=>{ta.select();});}catch(e){ta.select();}
+});
+$('pr-reset').addEventListener('click',()=>{$('pr-reset-confirm').hidden=false;});
+$('pr-reset-no').addEventListener('click',()=>{$('pr-reset-confirm').hidden=true;});
+$('pr-reset-yes').addEventListener('click',()=>{dec={};saveDec();$('pr-reset-confirm').hidden=true;apply();summary();});
+
+/* drug list → practice */
+document.addEventListener('click',e=>{const b=e.target.closest('[data-goto-drug]');if(!b)return;
+  if($('pr-app').hidden){location.hash='#practice';return;}
+  $('pr-drug').value=b.dataset.gotoDrug;preset='all';document.querySelectorAll('#practice [data-q]').forEach(c=>c.setAttribute('aria-pressed',c.dataset.q==='all'));
+  $('pr-q').value='';apply();document.getElementById('practice').scrollIntoView({behavior:'smooth'});});
+load();
+})();
+
+/* nav highlight */
+const links=[...document.querySelectorAll('nav.steps a')];
+const secs=links.map(a=>document.querySelector(a.getAttribute('href')));
+function onScroll(){let idx=0;secs.forEach((s,i)=>{if(s.getBoundingClientRect().top<120)idx=i;});
+  links.forEach((a,i)=>a.classList.toggle('on',i===idx));}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+})();
+</script>
+
+</body>
+</html>
