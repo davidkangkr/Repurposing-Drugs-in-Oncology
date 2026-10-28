@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FMD 임상 번역 노트</title>
+<meta name="description" content="Fasting-Mimicking Diet: 차별적 스트레스 반응의 임상 번역 — 기전, 병용 매트릭스, 임상 근거 원장, 근거 등급, 한계 (전문가용, 2026-10-28)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700&family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d1117; --bg-2:#141a23; --bg-3:#1b2330; --line:#2a3443; --ink:#dfe5ee; --ink-soft:#9aa6b6; --ink-dim:#6f7b8c;
+  --mech:#5fd4e6; --evid:#f2b544; --tool:#a78bfa; --limit:#f47a92; --ok:#6fd49a;
+  --mech-bg:rgba(95,212,230,.09); --evid-bg:rgba(242,181,68,.09); --tool-bg:rgba(167,139,250,.10); --limit-bg:rgba(244,122,146,.09);
+  --mono:"IBM Plex Mono",ui-monospace,monospace; --serif:"Noto Serif KR",serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;font-size:16.5px;line-height:1.75;word-break:keep-all;overflow-wrap:break-word}
+.wrap{max-width:900px;margin:0 auto;padding:0 18px 80px}
+h1,h2,h3{font-family:var(--serif);line-height:1.35;margin:0;color:#f3f6fa}
+h2{font-size:1.5rem;margin:.2em 0 .7em}
+h3{font-size:1.1rem;margin:1.1em 0 .4em}
+p{margin:.6em 0}
+a{color:var(--mech)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--evid);outline-offset:3px}
+code,.mono{font-family:var(--mono)}
+.idx{font-family:var(--mono);font-size:.78rem;letter-spacing:.12em;color:var(--ink-dim);text-transform:uppercase}
+header.top{padding:48px 0 26px;border-bottom:1px solid var(--line)}
+header.top h1{font-size:2rem;margin:.35em 0 .3em}
+header.top .sub{color:var(--ink-soft)}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.chip{font-family:var(--mono);font-size:.74rem;padding:3px 10px;border-radius:4px;border:1px solid}
+.c-mech{color:var(--mech);border-color:var(--mech);background:var(--mech-bg)}
+.c-evid{color:var(--evid);border-color:var(--evid);background:var(--evid-bg)}
+.c-tool{color:var(--tool);border-color:var(--tool);background:var(--tool-bg)}
+.c-limit{color:var(--limit);border-color:var(--limit);background:var(--limit-bg)}
+section{padding:40px 0;border-bottom:1px solid var(--line)}
+.thesis{border:1px solid var(--evid);background:linear-gradient(180deg,var(--evid-bg),transparent);padding:22px 22px;border-radius:6px;margin-top:6px}
+.thesis p{font-family:var(--serif);font-size:1.15rem;line-height:1.7;margin:0;color:#fbf3e2}
+.thesis .idx{color:var(--evid);margin-bottom:8px;display:block}
+.g{display:inline-block;font-family:var(--mono);font-size:.72rem;font-weight:600;padding:0 6px;border-radius:3px;vertical-align:1px;margin:0 2px;border:1px solid}
+.gB{color:#0d1117;background:var(--evid);border-color:var(--evid)}
+.gC{color:var(--evid);border-color:var(--evid)}
+.gD{color:var(--ink-soft);border-color:var(--ink-dim)}
+.gA{color:var(--ink-dim);border-color:var(--ink-dim);text-decoration:line-through}
+.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:14px 0;border:1px solid var(--line);border-radius:6px}
+table{border-collapse:collapse;width:100%;font-size:.9rem;min-width:520px}
+th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;color:var(--ink-soft);background:var(--bg-2);font-weight:500}
+tr:last-child td{border-bottom:0}
+td.k{font-family:var(--mono);font-size:.78rem;color:var(--ink-soft);white-space:nowrap}
+.pipe{display:flex;flex-direction:column;gap:0;margin:16px 0}
+.node{border:1px solid var(--line);border-left:3px solid var(--mech);background:var(--bg-2);border-radius:6px;padding:14px 16px}
+.node .idx{color:var(--mech)}
+.node h3{margin:.2em 0 .4em}
+.node ul{margin:6px 0 0;padding-left:1.1em}
+.node li{margin:5px 0}
+.conn{width:2px;height:22px;background:var(--mech);margin:0 0 0 22px;opacity:.6}
+.node.tool{border-left-color:var(--tool)} .node.tool .idx{color:var(--tool)} .conn.tool{background:var(--tool)}
+.mx{display:flex;flex-direction:column;gap:10px;margin:14px 0}
+.mrow{display:grid;grid-template-columns:1fr;gap:4px;border:1px solid var(--line);border-radius:6px;padding:12px 14px;background:var(--bg-2)}
+.mrow>*{min-width:0;overflow-wrap:anywhere}
+.mrow .h{font-weight:700;color:#f3f6fa}
+.mrow .h .idx{margin-right:8px}
+.mrow .pre,.mrow .cli{font-size:.9rem}
+.mrow .lab{font-family:var(--mono);font-size:.72rem;color:var(--ink-dim);margin-right:6px}
+.ledger{display:flex;flex-direction:column;gap:12px;margin:14px 0}
+.entry{border:1px solid var(--line);border-left:3px solid var(--evid);border-radius:6px;background:var(--bg-2);padding:14px 16px}
+.entry .hd{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;justify-content:space-between}
+.entry .ti{font-weight:700;color:#f3f6fa}
+.entry dl{display:grid;grid-template-columns:110px 1fr;gap:4px 12px;margin:10px 0 0;font-size:.9rem}
+.entry dt{font-family:var(--mono);font-size:.72rem;color:var(--ink-dim);padding-top:3px}
+.entry dd{margin:0}
+.entry .sub{margin:10px 0 0;padding:10px 12px;border:1px dashed var(--line);border-radius:4px;font-size:.88rem}
+.entry.ongoing{border-left-color:var(--ink-dim)}
+.flag{color:var(--limit)}
+.lens{display:grid;grid-template-columns:1fr;gap:10px;margin:14px 0}
+.lcard{border:1px solid var(--line);border-radius:6px;padding:14px 16px;background:var(--bg-2)}
+.lcard .idx{color:var(--mech)}
+.rail{position:relative;margin:18px 0;padding-left:30px}
+.rail::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--mech),var(--evid),var(--limit))}
+.stage{position:relative;margin:0 0 22px}
+.stage::before{content:attr(data-n);position:absolute;left:-30px;top:2px;width:20px;height:20px;border-radius:50%;background:var(--bg);border:2px solid var(--mech);font-family:var(--mono);font-size:.7rem;text-align:center;line-height:16px;color:var(--mech)}
+.stage.core::before{border-color:var(--evid);color:var(--evid)}
+.stage h3{margin-top:0}
+.stage.core h3{color:var(--evid)}
+pre.prompt{background:#0a0e14;border:1px solid var(--line);border-left:3px solid var(--tool);border-radius:4px;padding:12px 14px;font-family:var(--mono);font-size:.8rem;line-height:1.65;white-space:pre-wrap;word-break:break-word;margin:10px 0;color:#c9d2de}
+pre.prompt .cst{color:var(--limit)}
+pre.prompt .lbl{color:var(--tool)}
+.gate{font-size:.86rem;border:1px solid var(--evid);background:var(--evid-bg);border-radius:4px;padding:8px 12px;margin:8px 0}
+.gate b{font-family:var(--mono);font-size:.72rem;color:var(--evid);margin-right:6px}
+.out{font-size:.88rem;color:var(--ink-soft);margin:6px 0}
+.trap{border:1px solid var(--line);border-left:3px solid var(--limit);border-radius:6px;padding:12px 14px;margin:10px 0;background:var(--bg-2)}
+.trap .ti{font-weight:700;color:var(--limit)}
+.ai-note{border:1px dashed #8a93c9;background:rgba(138,147,201,.08);border-radius:6px;padding:12px 14px;margin:14px 0;font-size:.92rem}
+.ai-note .lbl{font-family:var(--mono);font-size:.72rem;color:#c3c9f0;background:#3b4278;padding:2px 8px;border-radius:3px;display:inline-block;margin-bottom:6px}
+.limits{list-style:none;padding:0;margin:12px 0}
+.limits li{border-left:3px solid var(--limit);background:var(--limit-bg);padding:10px 14px;margin:8px 0;border-radius:0 6px 6px 0}
+.related{display:block;border:1px solid var(--mech);border-radius:6px;padding:12px 14px;margin:16px 0;text-decoration:none;color:var(--ink);background:var(--mech-bg)}
+.related .idx{color:var(--mech)}
+.safety{border:1px solid var(--limit);border-radius:6px;padding:16px 18px;background:var(--limit-bg);margin:16px 0}
+.safety h3{margin-top:0;color:var(--limit)}
+.srclist{margin-top:22px;border-top:1px dashed var(--line);padding-top:12px}
+.srclist .idx{color:var(--ink-dim)}
+.srclist ol{margin:6px 0 0;padding-left:1.5em;font-size:.78rem;line-height:1.55;color:var(--ink-soft)}
+.srclist li{margin:5px 0}
+.srclist .m{font-family:var(--mono);font-size:.72rem;color:var(--ink-dim)}
+.srclist a{color:var(--ink-soft);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:2px}
+.srclist a:hover{color:var(--mech)}
+.refs{font-size:.8rem;color:var(--ink-soft)}
+.refs ol{padding-left:1.4em}
+.refs li{margin:3px 0}
+.refs a{color:var(--ink-soft)}
+footer{padding-top:24px;font-size:.82rem;color:var(--ink-dim)}
+.reveal{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
+.reveal.on{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important;transition:none!important}}
+@media (min-width:760px){
+  .mrow{grid-template-columns:200px 1fr 1fr;gap:14px}
+  .lens{grid-template-columns:1fr 1fr}
+}
+@media (max-width:600px){
+  .tblwrap{overflow:visible;border:0}
+  table{min-width:0}
+  thead{display:none}
+  tr{display:block;border:1px solid var(--line);border-radius:6px;margin:0 0 10px;background:var(--bg-2)}
+  td{display:block;border-bottom:1px dashed var(--line)}
+  td.k{white-space:normal;color:var(--evid)}
+  td[data-label]:not(:empty)::before{content:attr(data-label);display:block;font-family:var(--mono);font-size:.7rem;color:var(--ink-dim);margin-bottom:2px}
+}
+@media (max-width:520px){
+  .entry dl{grid-template-columns:1fr}
+  .entry dt{padding-top:6px}
+  header.top h1{font-size:1.6rem}
+}
+@media print{
+  :root{--bg:#fff;--bg-2:#fff;--bg-3:#fff;--line:#c9ced6;--ink:#1d232b;--ink-soft:#47505c;--ink-dim:#6a7380;
+    --mech:#0f7c8c;--evid:#9a6a00;--tool:#5b3fc4;--limit:#b2304c;--mech-bg:#fff;--evid-bg:#fff;--tool-bg:#fff;--limit-bg:#fff}
+  body{font-size:10.5pt;background:#fff}
+  h1,h2,h3,.entry .ti,.mrow .h{color:#111!important}
+  .thesis p{color:#111}
+  pre.prompt{background:#f6f7f9;color:#222}
+  .gB{color:#fff}
+  .reveal{opacity:1!important;transform:none!important}
+  .entry,.trap,.node,.lcard,.mrow,.stage{break-inside:avoid}
+  .tblwrap{overflow:visible}
+  table{min-width:0}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="idx">FMD · EXPERT REGISTER · 2026-10-28 · 히포크라테스의 친구들</div>
+  <h1>Fasting-Mimicking Diet:<br>차별적 스트레스 반응의 임상 번역</h1>
+  <p class="sub">기전 → 병용 → 임상 근거 → 적용 평가 → 등급화 → 한계. PubMed 검색 결과 173편 중 사람 대상 연구 전부와 대표 기전·안전 문헌을 초록 기준으로 재구성했다.</p>
+  <div class="legend" aria-label="색 코딩 범례">
+    <span class="chip c-mech">기전 MECHANISM</span>
+    <span class="chip c-evid">근거 EVIDENCE</span>
+    <span class="chip c-tool">도구 TOOLS</span>
+    <span class="chip c-limit">한계 · 경계 LIMITS</span>
+  </div>
+  <div class="legend" aria-label="근거 등급 표기">
+    <span class="g gA">A</span><span class="mono" style="font-size:.75rem;color:var(--ink-dim)">해당 없음</span>
+    <span class="g gB">B</span><span class="mono" style="font-size:.75rem;color:var(--ink-dim)">소규모 RCT</span>
+    <span class="g gC">C</span><span class="mono" style="font-size:.75rem;color:var(--ink-dim)">단일군·하위분석</span>
+    <span class="g gD">D</span><span class="mono" style="font-size:.75rem;color:var(--ink-dim)">전임상·증례</span>
+  </div>
+</header>
+
+<!-- 00 -->
+<section class="reveal">
+  <div class="idx">00 · Thesis</div>
+  <div class="thesis">
+    <span class="idx">논지</span>
+    <p>FMD는 암을 굶기는 전략이 아니다. oncogene이 만든 대사적 경직성을 표준치료의 증폭기로 쓰는 전략이다. 그 근거는 현재 <strong>B등급 이하</strong>로, 안전성과 대리지표 수준에 머문다. 생존 이득은 아직 검증된 바 없다.</p>
+  </div>
+</section>
+
+<!-- 01 -->
+<section class="reveal">
+  <div class="idx">01 · Paradigm</div>
+  <h2>두 개의 대사 패러다임</h2>
+  <p>“암과 대사”라는 말 아래에는 서로 다른 두 이론 계열이 겹쳐 있다. 문헌에서도 KD, 단식, FMD, 외인성 케톤 보충은 기전적으로 다른 개입인데도 자주 혼용된다 (PMID 42649914). FMD의 근거가 어느 계열에 기대는지 먼저 분리해 둔다.</p>
+  <div class="tblwrap"><table>
+    <thead><tr><th></th><th>대사 원인론 (Warburg → Seyfried)</th><th>영양 감지 신호론 (Longo)</th></tr></thead>
+    <tbody>
+      <tr><td class="k">출발점</td><td>호기성 해당(Warburg effect), 미토콘드리아 손상</td><td>효모·설치류의 단식 스트레스 저항과 수명 연장 (PMID 36283768, 28526131)</td></tr>
+      <tr><td class="k">암의 원인</td><td>미토콘드리아 기능 이상이 일차 원인이라는 강한 주장</td><td>체세포 변이(주류 관점)를 전제한다. 변이가 대사적 경직성을 만든다</td></tr>
+      <tr><td class="k">핵심 개입</td><td>케톤식단(KD), press-pulse 전략</td><td>주기적 단식/FMD + 표준치료</td></tr>
+      <tr><td class="k">작동 논리</td><td>연료(포도당·글루타민) 고갈</td><td>DSR/DSS: 정상세포는 보호 모드로 전환되고, 변이 세포는 신호를 따르지 못한다</td></tr>
+      <tr><td class="k">주류 수용도</td><td>원인론으로서는 논쟁 중</td><td>“대사 재프로그래밍은 hallmark”라는 수준에서 폭넓게 수용됨 (Hanahan &amp; Weinberg 2011; PMID 30327499 “emerging hallmarks”)</td></tr>
+      <tr><td class="k">FMD 근거 위치</td><td class="flag">일부 차용(케톤, 포도당 저하)</td><td style="color:var(--mech)">주된 이론적 기반</td></tr>
+    </tbody>
+  </table></div>
+  <p>정확한 프레이밍은 이렇다. “암은 대사 질환이다”(원인론)가 아니라 “암세포는 대사적 취약성을 가진다”(특징론)이다. 극단적 단식은 흔히 전자의 논리로 정당화된다. 반면 FMD 문헌은 후자의 언어로 쓰여 있다.</p>
+
+  <h3>중재 분류: “단식”이라는 우산 아래의 다섯 가지</h3>
+  <p>일상어의 “간헐적 단식”은 범위가 넓은 말이다. 흔히 16:8을 가리키지만, 문헌에서 16:8은 시간제한 식사(TRE; 동물 연구에서는 TRF)로 분류한다. 아래 표는 단식 계열 중재연구를 범위 고찰한 논문(PMID 41978091)의 범주를 따르고, 장기 물 단식과 KD를 대비용으로 덧붙였다. 행은 강도 순이다.</p>
+  <div class="tblwrap"><table>
+    <thead><tr><th>중재</th><th>형태</th><th>주기</th><th>암 환자 사람 근거 (이 문서의 검토 범위)</th></tr></thead>
+    <tbody>
+      <tr><td class="k">TRE / TRF</td><td>매일 섭식 시간을 8–10시간으로 제한. 열량 제한이 전제는 아님</td><td>매일</td><td>순응은 높으나 임상 결과는 가변적 (41978091). <span class="flag">본 검토 범위 밖</span></td></tr>
+      <tr><td class="k">IF (좁은 뜻)</td><td>5:2, 격일 단식 등. 주 1–2일 무섭취 또는 극저열량</td><td>매주</td><td><span class="flag">본 검토 범위 밖</span></td></tr>
+      <tr><td class="k">STF</td><td>항암 전후 24–72시간 물 위주 단식</td><td>항암 주기</td><td>잘 영양된 환자에서 실행 가능, 대사 효과 일관 (35552051, 41978091) <span class="g gC">C</span></td></tr>
+      <tr><td class="k" style="color:var(--mech)">FMD</td><td>4–5일, 평소 열량의 34–54%, 식물성·저당·저단백</td><td>3–4주</td><td>04 임상 근거 원장 참조 <span class="g gB">B</span>–<span class="g gC">C</span></td></tr>
+      <tr><td class="k">장기 물 단식</td><td>5일 이상 액체만 섭취 (증례: 7일씩 1–2개월마다)</td><td>불규칙</td><td>단일 증례, 다중 교란 (32457832) <span class="g gD">D</span></td></tr>
+      <tr><td class="k">KD (대비용)</td><td>지속적 저탄수·고지방. 단식이 아니라 케톤 상태만 공유</td><td>지속</td><td>실행 가능, 생존 근거는 제한적이고 이질적 (42649914)</td></tr>
+    </tbody>
+  </table></div>
+  <p>범위 고찰(20편, 871명)은 FMD와 STF처럼 강도가 높은 프로토콜이 대사 효과가 더 일관되고, TRE는 순응도는 높지만 임상 결과가 가변적이라고 보고했다. 국제 종양영양 지침 관점의 종설(42926076)도 이 중재들을 모두 “실험적 보조”로 묶는다. 범주 간 혼용은 근거를 부풀리는 주요 경로다. 예컨대 TRE의 순응성과 FMD의 대사 효과를 한 문장에 섞으면, 실제로는 어느 한 중재에도 해당하지 않는 주장이 만들어진다.</p>
+<div class="srclist"><div class="idx">Sources · 01 · 8편</div><ol><li><span class="m">Ylikomi &amp; Nees 2026 · <i>Cancers</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/42649914/" target="_blank" rel="noopener" lang="en">Ketogenic Diet as an Adjuvant in Epithelial Cancers: Mechanisms, Model Systems, and Translational Opportunities.</a></li><li><span class="m">Di Tano &amp; Longo 2022 · <i>Int Rev Cell Mol Biol</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/36283768/" target="_blank" rel="noopener" lang="en">Fasting and cancer: from yeast to mammals.</a></li><li><span class="m">Raffaghello &amp; Longo 2017 · <i>Int Rev Cell Mol Biol</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/28526131/" target="_blank" rel="noopener" lang="en">Metabolic Alterations at the Crossroad of Aging and Oncogenesis.</a></li><li><span class="m">Nencioni 2018 · <i>Nat Rev Cancer</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/30327499/" target="_blank" rel="noopener" lang="en">Fasting and cancer: molecular mechanisms and clinical application.</a></li><li><span class="m">Wen 2026 · <i>Nutrients</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/41978091/" target="_blank" rel="noopener" lang="en">Fasting-Based Dietary Interventions in Cancer Patients and Survivors: A Scoping Review.</a></li><li><span class="m">Bozzetti 2022 · <i>Clin Nutr</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/35552051/" target="_blank" rel="noopener" lang="en">Calorie restriction in cancer patients undergoing chemotherapy: Facts, phantasy or misunderstanding.</a></li><li><span class="m">Phillips 2020 · <i>Front Oncol</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/32457832/" target="_blank" rel="noopener" lang="en">Managing Metastatic Thymoma With Metabolic and Medical Therapy: A Case Report.</a></li><li><span class="m">Abbasi 2026 · <i>Crit Rev Oncol Hematol</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/42926076/" target="_blank" rel="noopener" lang="en">Metabolic diets and fasting in oncology: Integrating guideline-based nutrition, nutrition assessments and biomarker-driven clinical pathology.</a></li></ol></div>
+</section>
+
+<!-- 02 -->
+<section class="reveal">
+  <div class="idx">02 · Mechanism</div>
+  <h2>왜 그런가: 4층 기전</h2>
+  <p>각 층에 근거 등급을 단다. 사람에게서 <em>대리지표 변화</em>가 확인된 것은 <span class="g gC">C</span>, 결과와의 인과는 전임상뿐인 것은 <span class="g gD">D</span>로 표기한다.</p>
+  <div class="pipe">
+    <div class="node">
+      <div class="idx">L1 · 전신 환경</div>
+      <h3>혈중 성장·연료 신호의 동시 하강</h3>
+      <ul>
+        <li>Glucose↓ · Insulin↓ · IGF-1↓ · Leptin↓ · Ketone↑ · IGFBP1↑ (PMID 29463451, 39166749)</li>
+        <li>사람 확인: 101명에서 혈당·성장인자가 일관되게 하강했다 (34789537). 90명에서 C-peptide, IGF1, IGFBP3, leptin이 하강하고 IGFBP1이 상승했으며, 변화는 FMD 종료 후 수주 지속됐다 (34439167) <span class="g gC">C</span></li>
+        <li>주의: 중국 레시피형 FMD에서는 IGF-1 감소가 1·2주기에는 유의했으나, 3주기 종료 시점에는 유의성이 사라졌다 (40711668)</li>
+      </ul>
+    </div>
+    <div class="conn" aria-hidden="true"></div>
+    <div class="node">
+      <div class="idx">L2 · 세포 신호</div>
+      <h3>DSR / DSS: 같은 환경, 다른 운명</h3>
+      <ul>
+        <li>정상세포: proto-oncogene 경로를 하향 조절해 스트레스 저항 모드로 들어간다(DSR)</li>
+        <li>암세포: RAS, AKT, PKA가 구성적으로 활성화되어 있어 항성장 신호에 불응한다. ROS와 산화 스트레스가 늘고 DNA 손상을 거쳐 세포사로 간다(DSS) (36283768, 36646607)</li>
+        <li>호르몬수용체 양성 유방암 마우스 모델: EGR1·PTEN이 상향되면서 AKT–mTOR가 억제됐다 (32669709). CDK4/6i 내성은 NRAS·IGF1 매개 mTORC1을 억제해 극복됐다 (39499997) <span class="g gD">D</span></li>
+        <li>역설: 분화된 TNBC 세포는 FMD에 대응해 PI3K–AKT, mTOR, CDK4/6를 “기아 탈출 경로”로 켠다. 이 경로는 약물 표적이 된다 (34731655) <span class="g gD">D</span></li>
+        <li>세포 실험 11편의 체계적 고찰에서도 IGF-1 신호와 PI3K/AKT/mTOR가 억제되고, 해당이 줄고, AMPK 스트레스 반응이 나타나는 패턴이 수렴했다 (42789187) <span class="g gD">D</span></li>
+      </ul>
+    </div>
+    <div class="conn" aria-hidden="true"></div>
+    <div class="node">
+      <div class="idx">L3 · 면역</div>
+      <h3>면역억제 구획 축소, 세포독성 반응 강화</h3>
+      <ul>
+        <li>마우스: 항암제와 병용하면 HO-1이 하향되고 CD8⁺ TIL이 늘었으며, 유방암·흑색종 진행이 지연됐다 (27411588) <span class="g gD">D</span></li>
+        <li>사람: 말초 혈액에서 면역억제 골수계 세포와 Treg 구획이 축소됐다. 종양 내에서는 Th1/세포독성 반응과 IFNγ 시그니처가 증가했다 (34789537) <span class="g gC">C</span>. 다만 임상 결과와의 인과는 미확인이다</li>
+        <li>저면역원성 TNBC 마우스 모델: anti-PD-L1/anti-OX40의 효과가 증강됐고, irAE는 감소했다 (36001966) <span class="g gD">D</span></li>
+      </ul>
+    </div>
+    <div class="conn" aria-hidden="true"></div>
+    <div class="node">
+      <div class="idx">L4 · 확장 기전 (2025–2026)</div>
+      <h3>미세환경·미생물총·내분비 축</h3>
+      <ul>
+        <li><b>CAF 재프로그래밍:</b> 포도당 감소로 해당과 PDGFC 분비가 줄고, JAK/STAT3이 억제되면서 iCAF가 감소했다. PDGFR 억제제를 더하면 anti-PD-L1 효과가 증강됐다 (42579808) <span class="g gD">D</span></li>
+        <li><b>미생물총:</b> <i>Bifidobacterium pseudolongum</i>이 풍부해지고 L-arginine이 늘면서 CD8⁺ TRM이 유도됐다(대장암 마우스). FMD를 받은 환자에서도 같은 방향의 상관이 관찰됐다 (39870395) <span class="g gD">D</span>~<span class="g gC">C</span></li>
+        <li><b>GR 활성화:</b> 단식과 내분비요법 병용 시 GR/PR 신호가 켜지고 AP-1이 억제됐으며, GR 결손 시 효과가 소실됐다. FMD 환자에서는 혈중 cortisol·progesterone이 상승했다 (41372410, <i>Nature</i> 2026) <span class="g gD">D</span>+<span class="g gC">C</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ai-note"><span class="lbl">AI 클로드 주석</span><br>기전 층이 깊어질수록 설득력은 커진다. 그러나 근거 등급은 그대로다. L1·L3에서 사람의 대리지표 변화는 재현됐다. 하지만 “그 변화가 종양 결과를 바꾼다”는 연결은 모든 층에서 전임상 근거에 기대고 있다. GR 경로는 흥미로운 함의를 하나 가진다. 이 경로가 사실이라면, 항구토 목적의 dexamethasone 사용 여부가 시험 결과에 교란을 만들 수 있다. 실제로 DIRECT 시험에서는 FMD군에서 dexamethasone을 생략했다.</div>
+<div class="srclist"><div class="idx">Sources · 02 · 16편</div><ol><li><span class="m">Buono &amp; Longo 2018 · <i>Trends Endocrinol Metab</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/29463451/" target="_blank" rel="noopener" lang="en">Starvation, Stress Resistance, and Cancer.</a></li><li><span class="m">Fanti &amp; Longo 2024 · <i>Endocr Relat Cancer</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/39166749/" target="_blank" rel="noopener" lang="en">Nutrition, GH/IGF-1 signaling, and cancer.</a></li><li><span class="m">Vernieri 2022 · <i>Cancer Discov</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/34789537/" target="_blank" rel="noopener" lang="en">Fasting-Mimicking Diet Is Safe and Reshapes Metabolism and Antitumor Immunity in Patients with Cancer.</a></li><li><span class="m">Valdemarin 2021 · <i>Cancers</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/34439167/" target="_blank" rel="noopener" lang="en">Safety and Feasibility of Fasting-Mimicking Diet and Effects on Nutritional Status and Circulating Metabolic and Inflammatory Factors in Cancer Patients Undergoing Active Treatment.</a></li><li><span class="m">Xue 2025 · <i>Breast Cancer Res Treat</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/40711668/" target="_blank" rel="noopener" lang="en">The feasibility and safety of fasting-mimicking diet in breast cancer patients with chemotherapy in China.</a></li><li><span class="m">Di Tano &amp; Longo 2022 · <i>Int Rev Cell Mol Biol</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/36283768/" target="_blank" rel="noopener" lang="en">Fasting and cancer: from yeast to mammals.</a></li><li><span class="m">Blazevits 2023 · <i>Trends Cancer</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/36646607/" target="_blank" rel="noopener" lang="en">Fasting and fasting mimicking diets in cancer prevention and therapy.</a></li><li><span class="m">Caffa 2020 · <i>Nature</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/32669709/" target="_blank" rel="noopener" lang="en">Fasting-mimicking diet and hormone therapy induce breast cancer regression.</a></li><li><span class="m">Li 2025 · <i>Drug Resist Updat</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/39499997/" target="_blank" rel="noopener" lang="en">Fasting-mimicking diet potentiates anti-tumor effects of CDK4/6 inhibitors against breast cancer by suppressing NRAS- and IGF1-mediated mTORC1 signaling.</a></li><li><span class="m">Salvadori 2021 · <i>Cell Metab</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/34731655/" target="_blank" rel="noopener" lang="en">Fasting-mimicking diet blocks triple-negative breast cancer and cancer stem cell escape.</a></li><li><span class="m">Bensalek 2026 · <i>Med Oncol</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/42789187/" target="_blank" rel="noopener" lang="en">Fasting-induced metabolic reprogramming as a therapeutic vulnerability in cancer: a systematic mechanistic review of in vitro evidence.</a></li><li><span class="m">Di Biase 2016 · <i>Cancer Cell</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/27411588/" target="_blank" rel="noopener" lang="en">Fasting-Mimicking Diet Reduces HO-1 to Promote T Cell-Mediated Tumor Cytotoxicity.</a></li><li><span class="m">Cortellino 2022 · <i>Cell Rep</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/36001966/" target="_blank" rel="noopener" lang="en">Fasting renders immunotherapy effective against low-immunogenic breast cancer while reducing side effects.</a></li><li><span class="m">Zhang 2026 · <i>Cancer Res</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/42579808/" target="_blank" rel="noopener" lang="en">Fasting-Mimicking Diets Reprogram Cancer-Associated Fibroblasts to Reverse the Immunosuppressive Tumor Microenvironment in Breast Cancer.</a></li><li><span class="m">Nan 2025 · <i>Gut</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/39870395/" target="_blank" rel="noopener" lang="en">Fasting-mimicking diet-enriched Bifidobacterium pseudolongum suppresses colorectal cancer by inducing memory CD8(+) T cells.</a></li><li><span class="m">Padrão 2026 · <i>Nature</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/41372410/" target="_blank" rel="noopener" lang="en">Fasting boosts breast cancer therapy efficacy via glucocorticoid activation.</a></li></ol></div>
+</section>
+
+<!-- 03 -->
+<section class="reveal">
+  <div class="idx">03 · Combination matrix</div>
+  <h2>병용 매트릭스</h2>
+  <p>항목마다 전임상 근거와 임상 근거를 분리해 적는다. 이 표의 약물은 모두 <strong>예시(illustrative)</strong>이며, 병용을 권고하는 것이 아니다.</p>
+  <div class="mx">
+    <div class="mrow"><div class="h"><span class="idx">C1</span>세포독성 항암화학요법</div>
+      <div class="pre"><span class="lab">PRE</span>교모세포종: temozolomide(테모졸로마이드)·방사선 감작, 생존 연장 (22984531). 췌장암: gemcitabine(젬시타빈) 효과 증강, hENT1↑, RRM1↓ (26176887) <span class="g gD">D</span></div>
+      <div class="cli"><span class="lab">CLIN</span>DIRECT, 이란 RCT (유방암 선행항암) <span class="g gB">B</span>. BREAKFAST (TNBC) <span class="g gC">C</span></div></div>
+    <div class="mrow"><div class="h"><span class="idx">C2</span>내분비요법 ± CDK4/6 억제제</div>
+      <div class="pre"><span class="lab">PRE</span>tamoxifen(타목시펜)/fulvestrant(풀베스트란트) 증강. palbociclib(팔보시클립)을 더하면 장기 퇴행과 획득내성 역전 (32669709). abemaciclib(아베마시클립) 내성 극복 (39499997). GR 기전 (41372410) <span class="g gD">D</span></div>
+      <div class="cli"><span class="lab">CLIN</span>환자에서 insulin·leptin·IGF1 하강 등 대사 변화만 확인됨. 효과 평가변수는 없음 <span class="g gC">C</span>(대리지표)</div></div>
+    <div class="mrow"><div class="h"><span class="idx">C3</span>티로신키나제 억제제 (TKI)</div>
+      <div class="pre"><span class="lab">PRE</span>erlotinib(엘로티닙), gefitinib(게피티닙), lapatinib(라파티닙), crizotinib(크리조티닙), regorafenib(레고라페닙)과 병용 시 MAPK 억제와 E2F 억제가 강화됨. 이종이식 모델에서 병용이 단독보다 우월 (25909220). 구강암: gefitinib + FMD에서 STAT3/CCL2 축이 억제되고 M2 TAM이 감소 (40808689) <span class="g gD">D</span></div>
+      <div class="cli"><span class="lab">CLIN</span>전이성 NSCLC 10명 파일럿(80%가 경구 표적치료 중). 안전성·실행 가능성만 평가됨 <span class="g gC">C</span>(안전성)</div></div>
+    <div class="mrow"><div class="h"><span class="idx">C4</span>면역관문억제제 (ICI)</div>
+      <div class="pre"><span class="lab">PRE</span>TNBC에서 anti-PD-L1/anti-OX40 증강, irAE 감소 (36001966). 흑색종 성장 지연, 폐암 모델에서는 증강 경향, ICI 유발 심독성 예방 (37684243) <span class="g gD">D</span></div>
+      <div class="cli"><span class="lab">CLIN</span>FMD + ICI 효과를 평가한 사람 연구는 이 목록에 없음</div></div>
+    <div class="mrow"><div class="h"><span class="idx">C5</span>기타 조합</div>
+      <div class="pre"><span class="lab">PRE</span>고용량 vitamin C(비타민C): KRAS 변이암에서 HO-1·ferritin 역전 (32393788). CLL: bortezomib(보르테조밉) + rituximab(리툭시맙)이 기아 탈출 경로인 프로테아좀을 차단 (38241703) <span class="g gD">D</span></div>
+      <div class="cli"><span class="lab">CLIN</span>CLL 환자 2명 경과 보고뿐 <span class="g gD">D</span></div></div>
+  </div>
+  <p style="font-size:.85rem;color:var(--ink-dim)">각주: 검색 결과에 포함된 나노입자 약물전달 연구군은 FMD를 운반체 설계에 활용하는 공학 연구다. 환자 적용과는 거리가 멀어 이 매트릭스에서 제외했다.</p>
+<div class="srclist"><div class="idx">Sources · 03 · 11편</div><ol><li><span class="m">Safdie 2012 · <i>PLoS One</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/22984531/" target="_blank" rel="noopener" lang="en">Fasting enhances the response of glioma to chemo- and radiotherapy.</a></li><li><span class="m">D&#x27;Aronzo 2015 · <i>Oncotarget</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/26176887/" target="_blank" rel="noopener" lang="en">Fasting cycles potentiate the efficacy of gemcitabine treatment in in vitro and in vivo pancreatic cancer models.</a></li><li><span class="m">Caffa 2020 · <i>Nature</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/32669709/" target="_blank" rel="noopener" lang="en">Fasting-mimicking diet and hormone therapy induce breast cancer regression.</a></li><li><span class="m">Li 2025 · <i>Drug Resist Updat</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/39499997/" target="_blank" rel="noopener" lang="en">Fasting-mimicking diet potentiates anti-tumor effects of CDK4/6 inhibitors against breast cancer by suppressing NRAS- and IGF1-mediated mTORC1 signaling.</a></li><li><span class="m">Padrão 2026 · <i>Nature</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/41372410/" target="_blank" rel="noopener" lang="en">Fasting boosts breast cancer therapy efficacy via glucocorticoid activation.</a></li><li><span class="m">Caffa 2015 · <i>Oncotarget</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/25909220/" target="_blank" rel="noopener" lang="en">Fasting potentiates the anticancer activity of tyrosine kinase inhibitors by strengthening MAPK signaling inhibition.</a></li><li><span class="m">Wang 2025 · <i>Front Pharmacol</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/40808689/" target="_blank" rel="noopener" lang="en">Fasting-mimicking diet enhances EGFR-TKI efficacy in oral cancer through dual mechanisms: direct cancer cell sensitization and tumor-associated macrophage crosstalk.</a></li><li><span class="m">Cortellino 2022 · <i>Cell Rep</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/36001966/" target="_blank" rel="noopener" lang="en">Fasting renders immunotherapy effective against low-immunogenic breast cancer while reducing side effects.</a></li><li><span class="m">Cortellino 2023 · <i>Nat Commun</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/37684243/" target="_blank" rel="noopener" lang="en">Fasting mimicking diet in mice delays cancer growth and reduces immunotherapy-associated cardiovascular and systemic side effects.</a></li><li><span class="m">Di Tano 2020 · <i>Nat Commun</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/32393788/" target="_blank" rel="noopener" lang="en">Synergistic effect of fasting-mimicking diet and vitamin C against KRAS mutated cancers.</a></li><li><span class="m">Raucci 2024 · <i>Cancer Res</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/38241703/" target="_blank" rel="noopener" lang="en">Cyclic Fasting-Mimicking Diet Plus Bortezomib and Rituximab Is an Effective Treatment for Chronic Lymphocytic Leukemia.</a></li></ol></div>
+</section>
+
+<!-- 04 -->
+<section class="reveal">
+  <div class="idx">04 · Clinical evidence ledger</div>
+  <h2>임상 근거 원장</h2>
+  <p>사람 대상 연구 전부를 적는다. 효과 평가변수를 가진 연구와 안전성·대사 평가변수만 가진 연구를 구분해서 읽는다.</p>
+  <div class="ledger">
+
+    <article class="entry">
+      <div class="hd"><span class="ti">DIRECT (de Groot 2020, <i>Nat Commun</i>)</span><span class="g gB">B</span></div>
+      <dl>
+        <dt>설계</dt><dd>다기관 무작위 2상, FMD vs 일반식 (항암 3일 전부터 당일까지)</dd>
+        <dt>대상</dt><dd>HER2 음성 II/III기 유방암 131명. 당뇨 제외, BMI &gt; 18</dd>
+        <dt>병용</dt><dd>선행 항암화학요법</dd>
+        <dt>1차 평가변수</dt><dd class="flag">독성: 두 군 간 차이 없음 (미달성). 단, FMD군은 dexamethasone을 생략했다</dd>
+        <dt>주요 결과</dt><dd>영상학적 완전·부분반응 OR 3.17 (P = 0.039). Miller–Payne 4/5 병리반응 OR 4.11 (P = 0.016, <span class="flag">per-protocol</span>). T림프구 DNA 손상 감소</dd>
+        <dt>ID</dt><dd class="mono">PMID 32576828 · NCT02126449</dd>
+      </dl>
+      <div class="sub">파생 분석: 삶의 질(129명 무작위) 일부 영역 개선. 단 순응군 비교는 per-protocol이다 (33179154). 생식세포 IGF1R 변이(rs3743259, rs3743258)와 병리반응 불량의 연관 (113명, 탐색적) (38136416). 동반 논평은 “전반적으로 음성인 결과”로 평가했다 (32848145).</div>
+    </article>
+
+    <article class="entry">
+      <div class="hd"><span class="ti">이란 RCT (Bahrami 2024, <i>Front Nutr</i>)</span><span class="g gB">B</span></div>
+      <dl>
+        <dt>설계</dt><dd>무작위 대조, 22 vs 22. 3주마다 8주기</dd>
+        <dt>대상</dt><dd>HER2 음성 유방암 44명</dd>
+        <dt>병용</dt><dd>선행 항암화학요법</dd>
+        <dt>주요 결과</dt><dd>3등급 구토·호중구감소 감소 (P &lt; 0.001, 0.04). Miller–Payne 4/5와 영상반응이 FMD군에서 더 빈번 (P = 0.01). IGF1·hs-CRP 감소</dd>
+        <dt>ID</dt><dd class="mono">PMID 39703333 · IRCT</dd>
+      </dl>
+    </article>
+
+    <article class="entry">
+      <div class="hd"><span class="ti">BREAKFAST (Ligorio 2025, <i>Cell Metab</i>)</span><span class="g gC">C</span></div>
+      <dl>
+        <dt>설계</dt><dd>단일군 2상. 3주마다 5일 FMD</dd>
+        <dt>대상</dt><dd>조기 TNBC 30명</dd>
+        <dt>병용</dt><dd>수술 전 항암화학요법</dd>
+        <dt>1차 평가변수</dt><dd>pCR: 56.6%. 동반 논평은 과거 항암 단독 30–40%와 비교했다 (39908983, <span class="flag">과거 대조</span>)</dd>
+        <dt>탐색</dt><dd>pCR 종양에서 해당·피루브산 대사 경로가 조기에 하향됐다. 반응 예측 바이오마커 후보다</dd>
+        <dt>ID</dt><dd class="mono">PMID 39694040 · NCT04248998</dd>
+      </dl>
+    </article>
+
+    <article class="entry">
+      <div class="hd"><span class="ti">NCT03340935 (Vernieri 2022, <i>Cancer Discov</i>)</span><span class="g gC">C</span></div>
+      <dl>
+        <dt>설계</dt><dd>1b상, 주기적 5일 FMD</dd>
+        <dt>대상</dt><dd>여러 암종 101명</dd>
+        <dt>병용</dt><dd>각자의 표준 항암치료</dd>
+        <dt>1차 평가변수</dt><dd>안전성·실행 가능성: 충족</dd>
+        <dt>주요 결과</dt><dd>혈당·성장인자 하강. 말초 면역억제 구획 축소, 종양 내 Th1/세포독성 반응 증가</dd>
+        <dt>ID</dt><dd class="mono">PMID 34789537</dd>
+      </dl>
+      <div class="sub">하위분석 ①: 진행성 TNBC에서 FMD + carboplatin(카보플라틴)–gemcitabine 14명과 같은 기관 연속 환자 76명(항암 단독)을 비교했다. 중앙 OS 30.3 vs 17.2개월, 보정 HR 0.40 (P = 0.019) (37615485) <span class="g gC">C</span> <span class="flag">과거 대조·소표본</span><br>
+      하위분석 ②: 101명 중 장기 완전반응 5명(확장기 SCLC, 전이성 췌장암, 전이성 대장암, 전이성 TNBC 2명) (35810555) <span class="g gD">D</span> <span class="flag">선별 증례</span></div>
+    </article>
+
+    <article class="entry">
+      <div class="hd"><span class="ti">Valdemarin 2021 (<i>Cancers</i>)</span><span class="g gC">C</span></div>
+      <dl>
+        <dt>설계</dt><dd>단일군 1/2상. 3주~1개월마다, 평균 6.3주기</dd>
+        <dt>대상</dt><dd>고형암·혈액암 90명. <span class="flag">영양 위험 낮은 환자</span></dd>
+        <dt>주요 결과</dt><dd>경미한 부작용만 발생. 체중·악력 유지, 위상각·제지방량 증가, 지방량 감소. 대사·염증 인자 변화가 수주 지속</dd>
+        <dt>ID</dt><dd class="mono">PMID 34439167 · NCT03595540</dd>
+      </dl>
+    </article>
+
+    <article class="entry">
+      <div class="hd"><span class="ti">전이성 NSCLC 파일럿 (Ghaddar 2026, <i>Clin Lung Cancer</i>)</span><span class="g gC">C</span></div>
+      <dl>
+        <dt>설계</dt><dd>단일군 단일기관 파일럿. 4일 FMD 1회</dd>
+        <dt>대상</dt><dd>1차 치료로 2개월 이상 안정된 10명. BMI &gt; 18, PS 0–2(실제 0–1), 중앙 연령 57세, 선암 90%, 경구 표적치료 80%</dd>
+        <dt>주요 결과</dt><dd>완료 90%, 3–4등급 이상반응 0. 1–2등급 오심 30%, 복통·피로·두통 각 20%. 체중 감소 10% 미만. 칼로리 순응 70%. 재시행 의향 80%</dd>
+        <dt>ID</dt><dd class="mono">PMID 42060951 · NCT03700437</dd>
+      </dl>
+    </article>
+
+    <article class="entry">
+      <div class="hd"><span class="ti">전립선암 파일럿 (Fay-Watt 2023)</span><span class="g gC">C</span></div>
+      <dl>
+        <dt>설계</dt><dd>전향적 파일럿. 매월 4일 포장형 FMD, 3주기</dd>
+        <dt>대상</dt><dd>대사증후군 소견이 있는 전립선암 35명 (29명 완료)</dd>
+        <dt>주요 결과</dt><dd>체중 −3.79 kg, 복부둘레 −4.57 cm, 수축기 혈압 −9.52 mmHg. 순응 83%. 대사 평가변수만 있음</dd>
+        <dt>ID</dt><dd class="mono">PMID 35314788 · NCT04292041</dd>
+      </dl>
+    </article>
+
+    <article class="entry">
+      <div class="hd"><span class="ti">중국 레시피형 FMD (Xue 2025, <i>Breast Cancer Res Treat</i>)</span><span class="g gC">C</span></div>
+      <dl>
+        <dt>설계</dt><dd>단일군 파일럿. 항암 4일 전부터 당일까지, 평소 열량의 34–54%, 3주기</dd>
+        <dt>대상</dt><dd>항암 중 유방암 30명 (27명 완료)</dd>
+        <dt>주요 결과</dt><dd>FMD 관련 3등급 이상 이상반응 5.95% (84주기 중 5건). 체중 −2.04 kg(주로 지방), 근육량 유지. IGF-1 감소는 3주기 종료 시점에 유의성 소실</dd>
+        <dt>ID</dt><dd class="mono">PMID 40711668</dd>
+      </dl>
+    </article>
+
+    <article class="entry ongoing">
+      <div class="hd"><span class="ti">진행 중 · 대장암 III기 RCT (Guo 2026 프로토콜)</span><span class="mono" style="font-size:.75rem;color:var(--ink-dim)">PENDING</span></div>
+      <dl>
+        <dt>설계</dt><dd>중국 6개 기관 다기관 무작위, 1:1. 4개월 FMD 후 3년 추적</dd>
+        <dt>대상</dt><dd>근치 절제한 III기 대장암 602명 (예정)</dd>
+        <dt>1차 평가변수</dt><dd>3년 무병생존(DFS). FMD 분야의 첫 대규모 생존 평가변수 RCT</dd>
+        <dt>일정</dt><dd>2022년 6월 등록 시작, 2027년 12월 종료 예정</dd>
+        <dt>ID</dt><dd class="mono">PMID 42425570 · NCT05384444</dd>
+      </dl>
+    </article>
+
+    <article class="entry ongoing">
+      <div class="hd"><span class="ti">설계 공개 · FAME (Vernieri 2019)</span><span class="mono" style="font-size:.75rem;color:var(--ink-dim)">DESIGN</span></div>
+      <dl>
+        <dt>설계</dt><dd>2상 pick-the-winner. 백금–pemetrexed(페메트렉시드) + metformin(메트포르민) vs + metformin + FMD</dd>
+        <dt>대상</dt><dd>LKB1 불활성 진행성 폐선암</dd>
+        <dt>가설</dt><dd>중앙 PFS 7.6 → 12개월</dd>
+        <dt>ID</dt><dd class="mono">PMID 30617039. 결과 논문은 이번 검색 결과에 없음</dd>
+      </dl>
+    </article>
+  </div>
+<div class="srclist"><div class="idx">Sources · 04 · 16편</div><ol><li><span class="m">de Groot 2020 · <i>Nat Commun</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/32576828/" target="_blank" rel="noopener" lang="en">Fasting mimicking diet as an adjunct to neoadjuvant chemotherapy for breast cancer in the multicentre randomized phase 2 DIRECT trial.</a></li><li><span class="m">Lugtenberg 2021 · <i>Breast Cancer Res Treat</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/33179154/" target="_blank" rel="noopener" lang="en">Quality of life and illness perceptions in patients with breast cancer using a fasting mimicking diet as an adjunct to neoadjuvant chemotherapy in the phase 2 DIRECT (BOOG 2013-14) trial.</a></li><li><span class="m">de Gruil 2023 · <i>Cancers</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/38136416/" target="_blank" rel="noopener" lang="en">IGF1 and Insulin Receptor Single Nucleotide Variants Associated with Response in HER2-Negative Breast Cancer Patients Treated with Neoadjuvant Chemotherapy with or without a Fasting Mimicking Diet (BOOG 2013-04 DIRECT Trial).</a></li><li><span class="m">Vernieri 2020 · <i>Nat Commun</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/32848145/" target="_blank" rel="noopener" lang="en">Fasting-mimicking diet plus chemotherapy in breast cancer treatment.</a></li><li><span class="m">Bahrami 2024 · <i>Front Nutr</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/39703333/" target="_blank" rel="noopener" lang="en">Fasting mimicking diet during neo-adjuvant chemotherapy in breast cancer patients: a randomized controlled trial study.</a></li><li><span class="m">Goncalves &amp; Iyengar 2025 · <i>Cell Metab</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/39908983/" target="_blank" rel="noopener" lang="en">Fueling metabolic disruption via FMD to boost chemotherapy in TNBC.</a></li><li><span class="m">Ligorio 2025 · <i>Cell Metab</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/39694040/" target="_blank" rel="noopener" lang="en">Early downmodulation of tumor glycolysis predicts response to fasting-mimicking diet in triple-negative breast cancer patients.</a></li><li><span class="m">Vernieri 2022 · <i>Cancer Discov</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/34789537/" target="_blank" rel="noopener" lang="en">Fasting-Mimicking Diet Is Safe and Reshapes Metabolism and Antitumor Immunity in Patients with Cancer.</a></li><li><span class="m">Ligorio 2024 · <i>Int J Cancer</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/37615485/" target="_blank" rel="noopener" lang="en">Adding fasting-mimicking diet to first-line carboplatin-based chemotherapy is associated with better overall survival in advanced triple-negative breast cancer patients: A subanalysis of the NCT03340935 trial.</a></li><li><span class="m">Ligorio 2022 · <i>Eur J Cancer</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/35810555/" target="_blank" rel="noopener" lang="en">Exceptional tumour responses to fasting-mimicking diet combined with standard anticancer therapies: A sub-analysis of the NCT03340935 trial.</a></li><li><span class="m">Valdemarin 2021 · <i>Cancers</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/34439167/" target="_blank" rel="noopener" lang="en">Safety and Feasibility of Fasting-Mimicking Diet and Effects on Nutritional Status and Circulating Metabolic and Inflammatory Factors in Cancer Patients Undergoing Active Treatment.</a></li><li><span class="m">Ghaddar 2026 · <i>Clin Lung Cancer</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/42060951/" target="_blank" rel="noopener" lang="en">Brief Report: A Pilot Study Evaluating the Feasibility, Safety, and Compliance With a Fasting-Mimicking Diet in Patients With Metastatic Non-Small Cell Lung Cancer.</a></li><li><span class="m">Fay-Watt 2023 · <i>Prostate Cancer Prostatic Dis</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/35314788/" target="_blank" rel="noopener" lang="en">The impact of a fasting mimicking diet on the metabolic health of a prospective cohort of patients with prostate cancer: a pilot implementation study.</a></li><li><span class="m">Xue 2025 · <i>Breast Cancer Res Treat</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/40711668/" target="_blank" rel="noopener" lang="en">The feasibility and safety of fasting-mimicking diet in breast cancer patients with chemotherapy in China.</a></li><li><span class="m">Guo 2026 · <i>BMJ Open</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/42425570/" target="_blank" rel="noopener" lang="en">Effects of a fasting-mimicking diet on long-term prognosis in patients with colorectal cancer undergoing radical resection: protocol for a multicentre, prospective, randomised controlled trial.</a></li><li><span class="m">Vernieri 2019 · <i>Clin Lung Cancer</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/30617039/" target="_blank" rel="noopener" lang="en">Exploiting FAsting-mimicking Diet and MEtformin to Improve the Efficacy of Platinum-pemetrexed Chemotherapy in Advanced LKB1-inactivated Lung Adenocarcinoma: The FAME Trial.</a></li></ol></div>
+</section>
+
+<!-- 05 -->
+<section class="reveal">
+  <div class="idx">05 · Lung cancer lens</div>
+  <h2>폐암 렌즈</h2>
+  <p>검색 결과 가운데 폐암에 직접 닿는 문헌은 네 갈래다. 사람 근거는 안전성 파일럿 1편뿐이다.</p>
+  <div class="lens">
+    <div class="lcard"><div class="idx">LUNG-1 · 사람</div><h3>EGFR-TKI 환자 포함 NSCLC 파일럿</h3><p>4일 FMD 1회는 상대적으로 젊고 PS가 좋은 환자에서 안전했다. 효과 평가변수는 없고, 단일 주기만 평가했다. <span class="g gC">C</span> (42060951)</p></div>
+    <div class="lcard"><div class="idx">LUNG-2 · 전임상</div><h3>TKI 증강</h3><p>erlotinib·gefitinib·crizotinib 등과 병용할 때 MAPK 억제가 강화되고, 이종이식 모델에서 병용이 우월했다. <span class="g gD">D</span> (25909220)</p></div>
+    <div class="lcard"><div class="idx">LUNG-3 · 전임상</div><h3>cisplatin 내성 폐선암</h3><p>뉴클레오사이드 합성을 위해 글루타민에 의존하므로, 주기적 단식과 기아 유도 세포사에 취약했다(Obrist 2018 해설). <span class="g gD">D</span> (29875131)</p></div>
+    <div class="lcard"><div class="idx">LUNG-4 · 설계</div><h3>LKB1 불활성 + metformin + FMD</h3><p>대사 스트레스 상황에서 성장을 멈추는 LKB1이 없는 아형을 겨냥한 FAME 설계다. ICI 반응도 불량한 아형이다. (30617039)</p></div>
+  </div>
+  <p style="font-size:.9rem;color:var(--ink-soft)">보조: 면역항암제 + FMD 조합이 폐암 마우스 모델에서 증강 <em>경향</em>을 보였다 (37684243) <span class="g gD">D</span>.</p>
+  <a class="related" href="https://davidkangkr.github.io/positive-progress-case-studies/hien-case-lung-expert-2026-10-28-v2.html"><span class="idx">관련 사례 →</span> Hien 사례 (대만 폐암, 전문가용 분석)</a>
+<div class="srclist"><div class="idx">Sources · 05 · 5편</div><ol><li><span class="m">Ghaddar 2026 · <i>Clin Lung Cancer</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/42060951/" target="_blank" rel="noopener" lang="en">Brief Report: A Pilot Study Evaluating the Feasibility, Safety, and Compliance With a Fasting-Mimicking Diet in Patients With Metastatic Non-Small Cell Lung Cancer.</a></li><li><span class="m">Caffa 2015 · <i>Oncotarget</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/25909220/" target="_blank" rel="noopener" lang="en">Fasting potentiates the anticancer activity of tyrosine kinase inhibitors by strengthening MAPK signaling inhibition.</a></li><li><span class="m">Guidi &amp; Longo 2018 · <i>EMBO J</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/29875131/" target="_blank" rel="noopener" lang="en">Periodic fasting starves cisplatin-resistant cancers to death.</a></li><li><span class="m">Vernieri 2019 · <i>Clin Lung Cancer</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/30617039/" target="_blank" rel="noopener" lang="en">Exploiting FAsting-mimicking Diet and MEtformin to Improve the Efficacy of Platinum-pemetrexed Chemotherapy in Advanced LKB1-inactivated Lung Adenocarcinoma: The FAME Trial.</a></li><li><span class="m">Cortellino 2023 · <i>Nat Commun</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/37684243/" target="_blank" rel="noopener" lang="en">Fasting mimicking diet in mice delays cancer growth and reduces immunotherapy-associated cardiovascular and systemic side effects.</a></li></ol></div>
+</section>
+
+<!-- 06 -->
+<section class="reveal">
+  <div class="idx">06 · Applicability protocol</div>
+  <h2>적용 가능성 평가 프로토콜</h2>
+  <p>아래는 예시(illustrative) 시나리오다. <strong>EGFR 변이 비소세포폐암, 1차 EGFR-TKI 복용 중인 가상의 환자</strong>를 놓고 6단계를 끝까지 밀어붙인다. 특정 환자에 대한 권고가 아니다. 근거가 얇아지는 단계는 그렇다고 명시한다.</p>
+
+  <h3 style="color:var(--tool)">도구 계층: 근거 연결형 추론 사슬</h3>
+  <div class="pipe">
+    <div class="node tool"><div class="idx">T1 · 검색</div>PubMed / Semantic Scholar MCP. 질문을 MeSH와 자유어로 분해하고 PMID를 회수한다</div>
+    <div class="conn tool" aria-hidden="true"></div>
+    <div class="node tool"><div class="idx">T2 · 스크리닝</div>ReviewFast. 관련성 점수로 선별하되, <b>관련성 점수 ≠ 근거 질</b>임을 기억한다. 원저가 아닌 프로토콜과 경고 리뷰는 점수가 낮아도 수동으로 포함한다</div>
+    <div class="conn tool" aria-hidden="true"></div>
+    <div class="node tool"><div class="idx">T3 · 시험 상태</div>ClinicalTrials API. NCT 번호로 모집 상태, 적격 기준, 결과 게시 여부를 확인한다</div>
+    <div class="conn tool" aria-hidden="true"></div>
+    <div class="node tool"><div class="idx">T4 · 전문 분석</div>Paperclip. 초록에 없는 1차 평가변수, ITT/PP 구분, 제외 기준을 확인한다. 접근 불가한 전문은 “미확인”으로 정직하게 표기한다</div>
+    <div class="conn tool" aria-hidden="true"></div>
+    <div class="node tool"><div class="idx">T5 · 가설 생성</div>opencancer.ai. 기전 연결 가설을 만든다. 출력은 반드시 T1–T4로 되돌려 검증한다</div>
+  </div>
+
+  <div class="rail">
+    <div class="stage" data-n="1">
+      <h3>기전 특정</h3>
+      <p>FMD가 EGFR-TKI의 작용과 만나는 지점을 특정한다. 후보는 MAPK 억제 강화와 E2F 전사 억제, 그리고 TKI가 유발하는 STAT3/CCL2 축의 억제다.</p>
+<pre class="prompt"><span class="lbl">[PROMPT]</span> 단식 모방 식단(FMD) 또는 기아 조건이 EGFR-TKI(erlotinib, gefitinib, osimertinib)의 항종양 작용을 바꾸는 분자 기전을 정리하라.
+<span class="cst">제약: 각 주장에 PMID를 붙이고, 모델 종류(세포주명/이종이식/사람)를 명시하라. 폐암이 아닌 모델은 별도로 표시하라. 근거가 없으면 "근거 없음"이라고 쓰라.</span></pre>
+      <div class="gate"><b>GATE</b>모든 기전 주장이 PMID와 모델 종류를 갖는가? 폐암이 아닌 모델(예: 구강암 40808689)이 분리되었는가?</div>
+      <p class="out">결과: 25909220(다암종 세포주 + 이종이식), 40808689(구강암). 모두 <span class="g gD">D</span>. osimertinib 관련 근거는 이번 검색 결과에서 확인되지 않았다.</p>
+    </div>
+
+    <div class="stage" data-n="2">
+      <h3>취약성 연결</h3>
+      <p>환자 종양의 분자 특성이 FMD가 겨냥하는 취약성과 맞물리는지 본다. EGFR 변이 종양은 RAS–MAPK 하류에 의존한다. LKB1 상태, KRAS 동반 여부, 해당 의존도가 연결 변수다.</p>
+<pre class="prompt"><span class="lbl">[PROMPT]</span> EGFR 변이 폐선암에서 영양 결핍(포도당·IGF-1·인슐린 감소)에 대한 취약성 또는 저항성을 시사하는 전임상·임상 근거를 찾아라.
+<span class="cst">제약: 공존 변이(STK11/LKB1, KRAS, TP53)별로 나눠 정리하라. 저항 방향의 근거(기아 탈출 경로)도 반드시 포함하라.</span></pre>
+      <div class="gate"><b>GATE</b>증강 근거와 함께 반대 근거(기아 탈출: PI3K–AKT 활성화, 34731655)도 회수했는가?</div>
+    </div>
+
+    <div class="stage core" data-n="3">
+      <h3>개별화 (핵심 단계)</h3>
+      <p>여기서 대부분의 후보가 걸러진다. 시험의 적격 기준은 곧 안전성 근거의 적용 범위다. 이 범위를 벗어나는 환자에게 안전성 데이터는 외삽할 수 없다.</p>
+      <div class="tblwrap"><table>
+        <thead><tr><th>점검 항목</th><th>근거 범위 (출처)</th><th>벗어나면</th></tr></thead>
+        <tbody>
+          <tr><td>BMI · 최근 체중 변화</td><td>BMI &gt; 18 (32576828, 42060951). 영양 위험 낮음 (34439167)</td><td class="flag">중단 → 영양 지원 경로로</td></tr>
+          <tr><td>근감소 · 악액질 단계</td><td>잘 영양된 환자만 연구됨 (35552051). 악액질 인지 틀 필요 (42926076)</td><td class="flag">중단</td></tr>
+          <tr><td>수행능력 (ECOG PS)</td><td>PS 0–2 기준, 실제 0–1 (42060951)</td><td class="flag">근거 없음</td></tr>
+          <tr><td>TKI 위장관 독성 (설사·식욕부진)</td><td>EGFR-TKI 환자는 영양 사전관리와 위장관 독성 관리가 핵심 (41425618)</td><td>독성 조절 우선</td></tr>
+          <tr><td>당뇨 · 혈당강하제 · 스테로이드</td><td>DIRECT는 당뇨를 제외 (32576828). GR 축의 교란 가능성 (41372410)</td><td class="flag">저혈당 위험, 근거 없음</td></tr>
+          <tr><td>연령</td><td>NSCLC 파일럿 중앙 57세, “상대적으로 젊은” 환자 (42060951)</td><td>고령에서는 근거 희박</td></tr>
+          <tr><td>생식세포 IGF1R 변이 (연구용)</td><td>병리반응과 연관된 탐색적 결과 (38136416)</td><td>임상 결정에는 사용 불가</td></tr>
+        </tbody>
+      </table></div>
+      <div class="gate"><b>GATE</b>한 항목이라도 근거 범위를 벗어나면 프로토콜은 여기서 멈춘다. 이후 산출물은 “FMD 질문”이 아니라 “영양 지원 질문”이 된다.</div>
+    </div>
+
+    <div class="stage" data-n="4">
+      <h3>실증 회수</h3>
+      <p>T3로 NCT03700437의 결과 게시 여부와 후속 시험을, T4로 42060951 전문에서 주기 수·이상반응 상세를 확인한다. 같은 환경에서 진행 중인 FMD + TKI 시험이 있는지도 검색한다.</p>
+<pre class="prompt"><span class="lbl">[PROMPT]</span> ClinicalTrials.gov에서 "fasting mimicking diet" AND (lung OR NSCLC OR EGFR) 시험을 찾아 모집 상태, 적격 기준, 1차 평가변수, 결과 게시 여부를 표로 정리하라.
+<span class="cst">제약: 조회 날짜를 명시하라. 결과가 게시되지 않은 시험을 근거로 인용하지 마라.</span></pre>
+      <div class="gate"><b>GATE</b>전문을 확인하지 못한 항목은 “초록 기준”으로 표기했는가?</div>
+    </div>
+
+    <div class="stage" data-n="5">
+      <h3>근거 등급화</h3>
+      <p>이 시나리오의 등급은 다음과 같다. <b>안전성</b>은 <span class="g gC">C</span>다(n = 10, 단일 주기, 선별된 젊은 환자). <b>EGFR 변이 NSCLC에서의 효과</b>는 <span class="g gD">D</span>다(전임상, 비폐암 모델 포함). <b>생존</b>은 근거가 없다.</p>
+    </div>
+
+    <div class="stage" data-n="6">
+      <h3>임상 환원</h3>
+      <p>산출물은 프로토콜이 아니라 <strong>주치의와 영양팀에게 가져갈 질문</strong>이다.</p>
+<pre class="prompt"><span class="lbl">[질문 1]</span> 현재 체중 추이, 근육량, PS로 볼 때 저는 FMD 연구의 적격 기준 안에 들어가나요?
+<span class="lbl">[질문 2]</span> 지금 쓰는 TKI의 위장관 부작용을 고려하면, 열량을 제한하는 것이 독성 관리에 방해가 될까요?
+<span class="lbl">[질문 3]</span> 참여할 수 있는 FMD 또는 영양 중재 임상시험이 있나요?
+<span class="lbl">[질문 4]</span> 영양 선별 평가(체성분 포함)를 먼저 받아볼 수 있을까요?</pre>
+    </div>
+  </div>
+<div class="srclist"><div class="idx">Sources · 06 · 11편</div><ol><li><span class="m">Wang 2025 · <i>Front Pharmacol</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/40808689/" target="_blank" rel="noopener" lang="en">Fasting-mimicking diet enhances EGFR-TKI efficacy in oral cancer through dual mechanisms: direct cancer cell sensitization and tumor-associated macrophage crosstalk.</a></li><li><span class="m">Caffa 2015 · <i>Oncotarget</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/25909220/" target="_blank" rel="noopener" lang="en">Fasting potentiates the anticancer activity of tyrosine kinase inhibitors by strengthening MAPK signaling inhibition.</a></li><li><span class="m">Salvadori 2021 · <i>Cell Metab</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/34731655/" target="_blank" rel="noopener" lang="en">Fasting-mimicking diet blocks triple-negative breast cancer and cancer stem cell escape.</a></li><li><span class="m">de Groot 2020 · <i>Nat Commun</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/32576828/" target="_blank" rel="noopener" lang="en">Fasting mimicking diet as an adjunct to neoadjuvant chemotherapy for breast cancer in the multicentre randomized phase 2 DIRECT trial.</a></li><li><span class="m">Ghaddar 2026 · <i>Clin Lung Cancer</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/42060951/" target="_blank" rel="noopener" lang="en">Brief Report: A Pilot Study Evaluating the Feasibility, Safety, and Compliance With a Fasting-Mimicking Diet in Patients With Metastatic Non-Small Cell Lung Cancer.</a></li><li><span class="m">Valdemarin 2021 · <i>Cancers</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/34439167/" target="_blank" rel="noopener" lang="en">Safety and Feasibility of Fasting-Mimicking Diet and Effects on Nutritional Status and Circulating Metabolic and Inflammatory Factors in Cancer Patients Undergoing Active Treatment.</a></li><li><span class="m">Bozzetti 2022 · <i>Clin Nutr</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/35552051/" target="_blank" rel="noopener" lang="en">Calorie restriction in cancer patients undergoing chemotherapy: Facts, phantasy or misunderstanding.</a></li><li><span class="m">Abbasi 2026 · <i>Crit Rev Oncol Hematol</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/42926076/" target="_blank" rel="noopener" lang="en">Metabolic diets and fasting in oncology: Integrating guideline-based nutrition, nutrition assessments and biomarker-driven clinical pathology.</a></li><li><span class="m">Fuller-Shavel 2025 · <i>Front Nutr</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/41425618/" target="_blank" rel="noopener" lang="en">Nutritional strategies in supporting immune checkpoint inhibitor, PI3K inhibitor, and tyrosine kinase inhibitor cancer therapies.</a></li><li><span class="m">Padrão 2026 · <i>Nature</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/41372410/" target="_blank" rel="noopener" lang="en">Fasting boosts breast cancer therapy efficacy via glucocorticoid activation.</a></li><li><span class="m">de Gruil 2023 · <i>Cancers</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/38136416/" target="_blank" rel="noopener" lang="en">IGF1 and Insulin Receptor Single Nucleotide Variants Associated with Response in HER2-Negative Breast Cancer Patients Treated with Neoadjuvant Chemotherapy with or without a Fasting Mimicking Diet (BOOG 2013-04 DIRECT Trial).</a></li></ol></div>
+</section>
+
+<!-- 07 -->
+<section class="reveal">
+  <div class="idx">07 · Evidence grading &amp; pitfalls</div>
+  <h2>근거 등급 표와 흔한 함정</h2>
+  <div class="tblwrap"><table>
+    <thead><tr><th>등급</th><th>정의</th><th>FMD 해당 문헌</th></tr></thead>
+    <tbody>
+      <tr><td><span class="g gA">A</span></td><td>대규모 RCT, 메타분석</td><td class="flag"><b>없음.</b> FMD의 생존 평가변수 RCT는 2020년 1월 기준 0건 (33359756). 첫 대규모 RCT는 2027년 종료 예정 (NCT05384444)</td></tr>
+      <tr><td><span class="g gB">B</span></td><td>소규모 RCT</td><td>DIRECT, 이란 RCT. 반응률·독성 등 대리지표만 있고, DIRECT의 1차 평가변수는 미달성</td></tr>
+      <tr><td><span class="g gC">C</span></td><td>단일군 1·2상, 하위분석</td><td>101명 1b상, 90명 1/2상, BREAKFAST, NSCLC·전립선암·중국 파일럿, aTNBC 생존 하위분석</td></tr>
+      <tr><td><span class="g gD">D</span></td><td>전임상, 증례</td><td>02·03의 기전 연구 대부분, 이례적 반응 5례, CLL 2례</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 style="color:var(--limit)">흔한 함정</h3>
+  <div class="trap"><div class="ti">① per-protocol 낙관 편향</div>DIRECT의 병리반응 OR 4.11과 삶의 질 개선은 순응군 분석이다. FMD를 끝까지 지킨 환자는 애초에 더 건강했을 수 있다.</div>
+  <div class="trap"><div class="ti">② 1차 평가변수 미달성의 망각</div>DIRECT는 “독성 감소”를 증명하려 설계됐지만 이를 달성하지 못했다. 동반 논평은 이를 “전반적으로 음성”으로 평가했다 (32848145). 2차 평가변수만 인용하면 결론이 뒤집힌다.</div>
+  <div class="trap"><div class="ti">③ 과거 대조군 비교</div>BREAKFAST의 pCR 56.6%는 과거 항암 단독 30–40%와 비교한 것이다 (39908983). aTNBC 하위분석은 14명을 같은 기관 연속 환자 76명과 비교했다. 선택 편향과 시대 효과를 배제할 수 없다.</div>
+  <div class="trap"><div class="ti">④ 선별 증례의 일반화</div>101명 중 완전반응 5명을 보고한 것(35810555)은 가설 생성용이다. 분모는 101이다.</div>
+  <div class="trap"><div class="ti">⑤ 대리지표와 결과의 혼동</div>IGF-1·인슐린 하강은 재현성이 좋다. 그러나 종양 결과와의 연결은 입증되지 않았다. 레시피형 FMD에서는 3주기에 IGF-1 감소의 유의성이 사라졌다 (40711668).</div>
+  <div class="trap"><div class="ti">⑥ 다중 중재 증례의 단일 원인 귀속</div>전이성 흉선종 증례(32457832)는 7일 액체 단식을 1–2개월마다 반복하고 비단식일에는 변형 케톤식을 한 경우다. 종양 퇴행은 중증근무력증 재발로 섭취가 급감하고 체중이 크게 준 시기와 겹쳤다. 두 번째 퇴행에는 prednisone(프레드니손) 투여도 동반됐다. 극단적 단식의 사람 근거는 이런 단일 증례 수준에 머문다.</div>
+  <div class="ai-note"><span class="lbl">AI 클로드 주석</span><br>①–④는 모두 같은 방향, 즉 효과 과대평가 쪽으로 작동한다. 그래서 개별 연구의 긍정 신호를 합산해 “근거가 쌓였다”고 말하기 어렵다. 반면 안전성 신호(잘 선별된 환자에서 중증 이상반응이 드묾)는 여러 연구에서 일관되므로, 상대적으로 단단한 결론이다.</div>
+<div class="srclist"><div class="idx">Sources · 07 · 6편</div><ol><li><span class="m">Clark 2021 · <i>Complement Ther Med</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/33359756/" target="_blank" rel="noopener" lang="en">The effects of physical activity, fast-mimicking diet and psychological interventions on cancer survival: A systematic review and meta-analysis of randomized controlled trials.</a></li><li><span class="m">Vernieri 2020 · <i>Nat Commun</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/32848145/" target="_blank" rel="noopener" lang="en">Fasting-mimicking diet plus chemotherapy in breast cancer treatment.</a></li><li><span class="m">Goncalves &amp; Iyengar 2025 · <i>Cell Metab</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/39908983/" target="_blank" rel="noopener" lang="en">Fueling metabolic disruption via FMD to boost chemotherapy in TNBC.</a></li><li><span class="m">Ligorio 2022 · <i>Eur J Cancer</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/35810555/" target="_blank" rel="noopener" lang="en">Exceptional tumour responses to fasting-mimicking diet combined with standard anticancer therapies: A sub-analysis of the NCT03340935 trial.</a></li><li><span class="m">Xue 2025 · <i>Breast Cancer Res Treat</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/40711668/" target="_blank" rel="noopener" lang="en">The feasibility and safety of fasting-mimicking diet in breast cancer patients with chemotherapy in China.</a></li><li><span class="m">Phillips 2020 · <i>Front Oncol</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/32457832/" target="_blank" rel="noopener" lang="en">Managing Metastatic Thymoma With Metabolic and Medical Therapy: A Case Report.</a></li></ol></div>
+</section>
+
+<!-- 08 -->
+<section class="reveal">
+  <div class="idx">08 · Limits</div>
+  <h2>한계</h2>
+  <ul class="limits">
+    <li><b>생존 이득 미증명.</b> 국제 종양영양 지침은 어떤 식단도 암을 재현성 있게 치료한다고 증명되지 않았다고 본다. 단식 계열은 “실험적 보조”로 분류된다 (42926076).</li>
+    <li><b>적용 범위의 구조적 제한.</b> 모든 시험이 영양 상태가 양호한 환자를 대상으로 했다. 정작 대사 개입에 관심이 큰 진행기·악액질 환자는 근거 밖에 있다 (35552051, 29587670).</li>
+    <li><b>암종 편중.</b> 단식 계열 중재연구 20편(871명) 중 9편이 유방암 단독이다. 11편은 항암화학요법 맥락이다 (41978091).</li>
+    <li><b>중재의 비동질성.</b> 상업용 포장 제품, 레시피형(34–54% 열량), 3일·4일·5일 프로토콜이 섞여 있어 연구 간 직접 비교가 어렵다.</li>
+    <li><b>장기 영향 미상.</b> 반복 주기의 근감소, 미량영양소 결핍, 장기 심리 영향을 평가한 연구가 부족하다 (38970205).</li>
+    <li><b>이 문서의 한계.</b> 검색 결과 173편의 초록을 기준으로 작성했다. 1차 평가변수와 ITT/PP 구분 등 일부 세부사항은 전문 확인이 필요하다.</li>
+  </ul>
+<div class="srclist"><div class="idx">Sources · 08 · 5편</div><ol><li><span class="m">Abbasi 2026 · <i>Crit Rev Oncol Hematol</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/42926076/" target="_blank" rel="noopener" lang="en">Metabolic diets and fasting in oncology: Integrating guideline-based nutrition, nutrition assessments and biomarker-driven clinical pathology.</a></li><li><span class="m">Bozzetti 2022 · <i>Clin Nutr</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/35552051/" target="_blank" rel="noopener" lang="en">Calorie restriction in cancer patients undergoing chemotherapy: Facts, phantasy or misunderstanding.</a></li><li><span class="m">Caccialanza 2018 · <i>BMC Cancer</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/29587670/" target="_blank" rel="noopener" lang="en">To fast, or not to fast before chemotherapy, that is the question.</a></li><li><span class="m">Wen 2026 · <i>Nutrients</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/41978091/" target="_blank" rel="noopener" lang="en">Fasting-Based Dietary Interventions in Cancer Patients and Survivors: A Scoping Review.</a></li><li><span class="m">Da Prat 2024 · <i>Cancer Med</i></span> — <a href="https://pubmed.ncbi.nlm.nih.gov/38970205/" target="_blank" rel="noopener" lang="en">Anticancer restrictive diets and the risk of psychological distress: Review and perspectives.</a></li></ol></div>
+</section>
+
+<!-- 09 -->
+<section class="reveal">
+  <div class="idx">09 · Closing</div>
+  <h2>논지로 돌아가며</h2>
+  <p>FMD는 “암을 굶긴다”는 오래된 직관을 <strong>정상세포와 암세포의 반응 차이</strong>라는 검증 가능한 가설로 바꿔 놓았다. 그 가설은 사람에게서 대사·면역 대리지표 수준까지 재현됐다. 잘 선별된 환자에서는 안전성 신호도 일관된다. 남은 질문은 하나다. 그 변화가 생존을 바꾸는가? 그 답은 2027년 이후에야 나온다.</p>
+  <p>그때까지 이 지식의 올바른 용도는 직접 시도할 방법이 아니다. <strong>주치의와 영양팀에게 더 정확한 질문을 던지는 데</strong> 쓰는 것이다.</p>
+  <div class="safety">
+    <h3>안전 경계선</h3>
+    <ul>
+      <li>식이 변경을 포함한 모든 치료 결정의 <b>최종 결정권은 주치의</b>에게 있다.</li>
+      <li>본문에 언급된 약물은 모두 <b>예시(illustrative)</b>이며 병용 권고가 아니다.</li>
+      <li>이 문서는 FMD 시행 방법(구성, 열량, 일정)을 안내하지 않는다.</li>
+      <li>AI는 결정을 내리는 도구가 아니라, 더 나은 질문을 준비하는 도구다.</li>
+    </ul>
+  </div>
+  <a class="related" href="https://davidkangkr.github.io/positive-progress-case-studies/hien-case-lung-expert-2026-10-28-v2.html"><span class="idx">관련 사례 →</span> Hien 사례 (대만 폐암, 전문가용 분석)</a>
+</section>
+
+<section class="refs">
+  <div class="idx">References · 전체 목록 (PubMed)</div>
+  <ol>
+    <li>Nencioni 2018 · Nat Rev Cancer · <a href="https://pubmed.ncbi.nlm.nih.gov/30327499/">30327499</a></li>
+    <li>Di Tano &amp; Longo 2022 · Int Rev Cell Mol Biol · <a href="https://pubmed.ncbi.nlm.nih.gov/36283768/">36283768</a></li>
+    <li>Blazevits 2023 · Trends Cancer · <a href="https://pubmed.ncbi.nlm.nih.gov/36646607/">36646607</a></li>
+    <li>Buono &amp; Longo 2018 · Trends Endocrinol Metab · <a href="https://pubmed.ncbi.nlm.nih.gov/29463451/">29463451</a></li>
+    <li>Raffaghello &amp; Longo 2017 · Int Rev Cell Mol Biol · <a href="https://pubmed.ncbi.nlm.nih.gov/28526131/">28526131</a></li>
+    <li>Ylikomi &amp; Nees 2026 · Cancers (KD) · <a href="https://pubmed.ncbi.nlm.nih.gov/42649914/">42649914</a></li>
+    <li>Fanti &amp; Longo 2024 · Endocr Relat Cancer · <a href="https://pubmed.ncbi.nlm.nih.gov/39166749/">39166749</a></li>
+    <li>Caffa 2020 · Nature · <a href="https://pubmed.ncbi.nlm.nih.gov/32669709/">32669709</a></li>
+    <li>Li 2025 · Drug Resist Updat · <a href="https://pubmed.ncbi.nlm.nih.gov/39499997/">39499997</a></li>
+    <li>Salvadori 2021 · Cell Metab · <a href="https://pubmed.ncbi.nlm.nih.gov/34731655/">34731655</a></li>
+    <li>Bensalek 2026 · Med Oncol · <a href="https://pubmed.ncbi.nlm.nih.gov/42789187/">42789187</a></li>
+    <li>Di Biase 2016 · Cancer Cell · <a href="https://pubmed.ncbi.nlm.nih.gov/27411588/">27411588</a></li>
+    <li>Cortellino 2022 · Cell Rep · <a href="https://pubmed.ncbi.nlm.nih.gov/36001966/">36001966</a></li>
+    <li>Zhang 2026 · Cancer Res · <a href="https://pubmed.ncbi.nlm.nih.gov/42579808/">42579808</a></li>
+    <li>Nan 2025 · Gut · <a href="https://pubmed.ncbi.nlm.nih.gov/39870395/">39870395</a></li>
+    <li>Padrão 2026 · Nature · <a href="https://pubmed.ncbi.nlm.nih.gov/41372410/">41372410</a></li>
+    <li>Safdie 2012 · PLoS One · <a href="https://pubmed.ncbi.nlm.nih.gov/22984531/">22984531</a></li>
+    <li>D'Aronzo 2015 · Oncotarget · <a href="https://pubmed.ncbi.nlm.nih.gov/26176887/">26176887</a></li>
+    <li>Caffa 2015 · Oncotarget · <a href="https://pubmed.ncbi.nlm.nih.gov/25909220/">25909220</a></li>
+    <li>Wang 2025 · Front Pharmacol · <a href="https://pubmed.ncbi.nlm.nih.gov/40808689/">40808689</a></li>
+    <li>Cortellino 2023 · Nat Commun · <a href="https://pubmed.ncbi.nlm.nih.gov/37684243/">37684243</a></li>
+    <li>Di Tano 2020 · Nat Commun · <a href="https://pubmed.ncbi.nlm.nih.gov/32393788/">32393788</a></li>
+    <li>Raucci 2024 · Cancer Res · <a href="https://pubmed.ncbi.nlm.nih.gov/38241703/">38241703</a></li>
+    <li>de Groot 2020 · Nat Commun (DIRECT) · <a href="https://pubmed.ncbi.nlm.nih.gov/32576828/">32576828</a></li>
+    <li>Lugtenberg 2021 · Breast Cancer Res Treat · <a href="https://pubmed.ncbi.nlm.nih.gov/33179154/">33179154</a></li>
+    <li>de Gruil 2023 · Cancers · <a href="https://pubmed.ncbi.nlm.nih.gov/38136416/">38136416</a></li>
+    <li>Vernieri 2020 · Nat Commun (comment) · <a href="https://pubmed.ncbi.nlm.nih.gov/32848145/">32848145</a></li>
+    <li>Bahrami 2024 · Front Nutr · <a href="https://pubmed.ncbi.nlm.nih.gov/39703333/">39703333</a></li>
+    <li>Ligorio 2025 · Cell Metab (BREAKFAST) · <a href="https://pubmed.ncbi.nlm.nih.gov/39694040/">39694040</a></li>
+    <li>Goncalves &amp; Iyengar 2025 · Cell Metab · <a href="https://pubmed.ncbi.nlm.nih.gov/39908983/">39908983</a></li>
+    <li>Vernieri 2022 · Cancer Discov · <a href="https://pubmed.ncbi.nlm.nih.gov/34789537/">34789537</a></li>
+    <li>Ligorio 2024 · Int J Cancer · <a href="https://pubmed.ncbi.nlm.nih.gov/37615485/">37615485</a></li>
+    <li>Ligorio 2022 · Eur J Cancer · <a href="https://pubmed.ncbi.nlm.nih.gov/35810555/">35810555</a></li>
+    <li>Valdemarin 2021 · Cancers · <a href="https://pubmed.ncbi.nlm.nih.gov/34439167/">34439167</a></li>
+    <li>Ghaddar 2026 · Clin Lung Cancer · <a href="https://pubmed.ncbi.nlm.nih.gov/42060951/">42060951</a></li>
+    <li>Fay-Watt 2023 · Prostate Cancer Prostatic Dis · <a href="https://pubmed.ncbi.nlm.nih.gov/35314788/">35314788</a></li>
+    <li>Xue 2025 · Breast Cancer Res Treat · <a href="https://pubmed.ncbi.nlm.nih.gov/40711668/">40711668</a></li>
+    <li>Guo 2026 · BMJ Open (protocol) · <a href="https://pubmed.ncbi.nlm.nih.gov/42425570/">42425570</a></li>
+    <li>Vernieri 2019 · Clin Lung Cancer (FAME) · <a href="https://pubmed.ncbi.nlm.nih.gov/30617039/">30617039</a></li>
+    <li>Guidi &amp; Longo 2018 · EMBO J · <a href="https://pubmed.ncbi.nlm.nih.gov/29875131/">29875131</a></li>
+    <li>Fuller-Shavel 2025 · Front Nutr · <a href="https://pubmed.ncbi.nlm.nih.gov/41425618/">41425618</a></li>
+    <li>Abbasi 2026 · Crit Rev Oncol Hematol · <a href="https://pubmed.ncbi.nlm.nih.gov/42926076/">42926076</a></li>
+    <li>Bozzetti 2022 · Clin Nutr · <a href="https://pubmed.ncbi.nlm.nih.gov/35552051/">35552051</a></li>
+    <li>Caccialanza 2018 · BMC Cancer · <a href="https://pubmed.ncbi.nlm.nih.gov/29587670/">29587670</a></li>
+    <li>Da Prat 2024 · Cancer Med · <a href="https://pubmed.ncbi.nlm.nih.gov/38970205/">38970205</a></li>
+    <li>Wen 2026 · Nutrients · <a href="https://pubmed.ncbi.nlm.nih.gov/41978091/">41978091</a></li>
+    <li>Clark 2021 · Complement Ther Med · <a href="https://pubmed.ncbi.nlm.nih.gov/33359756/">33359756</a></li>
+    <li>Phillips 2020 · Front Oncol (case) · <a href="https://pubmed.ncbi.nlm.nih.gov/32457832/">32457832</a></li>
+  </ol>
+</section>
+
+<footer>히포크라테스의 친구들 · 전문가용 심화판 · 2026-10-28 · 초보자용 안내와 짝을 이루는 문서</footer>
+</div>
+<script>
+(function(){
+  document.querySelectorAll('table').forEach(function(t){
+    var hs=[].map.call(t.querySelectorAll('thead th'),function(h){return h.textContent.trim()});
+    t.querySelectorAll('tbody tr').forEach(function(r){[].forEach.call(r.children,function(c,i){if(hs[i])c.setAttribute('data-label',hs[i]);});});
+  });
+  var els=document.querySelectorAll('.reveal');
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce||!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('on')});return;}
+  var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('on');io.unobserve(x.target);}})},{threshold:.05});
+  els.forEach(function(e){io.observe(e)});
+  window.addEventListener('beforeprint',function(){els.forEach(function(e){e.classList.add('on')})});
+})();
+</script>
+</body>
+</html>

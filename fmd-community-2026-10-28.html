@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>굶는 척하는 식단, FMD</title>
+<meta name="description" content="단식 모방 식단(FMD)과 암 치료 — 연구자들은 왜 주목하는가. 히포크라테스의 친구들 초보자용 안내 (2026-10-28)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fbf6ec; --paper-2:#f4ecdc; --ink:#2b2621; --ink-soft:#5a5048; --line:#e2d6c1;
+  --accent:#b5562f; --accent-soft:#f6e1d4;
+  --green:#2f7d4f; --green-bg:#e3f1e7;
+  --yellow:#a87508; --yellow-bg:#fbf0cf;
+  --red:#b23a3a; --red-bg:#f8e0de;
+  --blue:#2d5f8a; --blue-bg:#e2ecf5;
+  --radius:16px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;font-size:19px;line-height:1.85;word-break:keep-all;overflow-wrap:break-word}
+.wrap{max-width:720px;margin:0 auto;padding:0 18px 80px}
+h1,h2,h3{font-family:"Gowun Batang",serif;line-height:1.4;margin:0}
+h2{font-size:1.55rem;margin-bottom:.6em}
+h3{font-size:1.2rem;margin-bottom:.3em}
+p{margin:.6em 0}
+a{color:var(--blue)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+strong{color:#1f1a16}
+.hero{padding:56px 0 36px;text-align:center}
+.hero .kicker{display:inline-block;font-size:.85rem;letter-spacing:.06em;color:var(--accent);background:var(--accent-soft);padding:4px 14px;border-radius:999px;margin-bottom:18px}
+.hero h1{font-size:2.1rem;margin-bottom:.4em}
+.hero .sub{color:var(--ink-soft);font-size:1.05rem}
+.hero .meta{margin-top:18px;font-size:.85rem;color:var(--ink-soft)}
+section{padding:34px 0;border-top:1px dashed var(--line)}
+.num{display:inline-block;font-family:"Gowun Batang",serif;font-weight:700;color:#fff;background:var(--accent);width:36px;height:36px;border-radius:50%;text-align:center;line-height:36px;font-size:1rem;margin-bottom:10px}
+.quote{background:#fff;border-left:5px solid var(--accent);border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin:14px 0;font-family:"Gowun Batang",serif;font-size:1.1rem}
+.quote small{display:block;font-family:"Noto Sans KR",sans-serif;font-size:.8rem;color:var(--ink-soft);margin-top:6px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;margin:14px 0}
+.card h3{margin-top:0}
+.tag{display:inline-block;font-size:.8rem;font-weight:700;padding:2px 10px;border-radius:999px;margin-bottom:6px}
+.vs{text-align:center;font-family:"Gowun Batang",serif;color:var(--ink-soft);margin:4px 0}
+.callout{background:var(--paper-2);border-radius:var(--radius);padding:16px 20px;margin:16px 0}
+.flow{display:flex;flex-direction:column;align-items:stretch;gap:0;margin:18px 0}
+.flow .step{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;text-align:center}
+.flow .arrow{text-align:center;font-size:1.6rem;color:var(--accent);line-height:1.4}
+.flow .split{display:flex;flex-direction:column;gap:12px}
+.flow .good{border-color:var(--green);background:var(--green-bg)}
+.flow .bad{border-color:var(--red);background:var(--red-bg)}
+.emoji{font-size:1.8rem;display:block;line-height:1.3}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
+.tile{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:14px;text-align:center}
+.tile b{display:block;font-family:"Gowun Batang",serif;font-size:1.25rem;color:var(--accent)}
+.tile span{font-size:.9rem;color:var(--ink-soft)}
+.compare{display:flex;flex-direction:column;gap:12px;margin:16px 0}
+.compare .col{border-radius:var(--radius);padding:16px 18px}
+.compare .col.water{background:var(--red-bg);border:1px solid #e9bcb8}
+.compare .col.fmd{background:var(--green-bg);border:1px solid #b9dcc5}
+.compare ul{margin:6px 0 0;padding-left:1.1em}
+.compare li{margin:4px 0}
+.ladder{list-style:none;padding:0;margin:16px 0;display:flex;flex-direction:column;gap:8px}
+.ladder li{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;border-left-width:8px}
+.ladder .lv{font-family:"Gowun Batang",serif;font-weight:700;font-size:1.2rem;line-height:1.5;min-width:1.3em}
+.ladder .en{font-size:.8rem;color:var(--ink-soft)}
+.ladder .eg{font-size:.88rem;color:var(--ink-soft)}
+.ladder .l1{border-left-color:#d9e8dc}.ladder .l2{border-left-color:#b9d6c0}.ladder .l3{border-left-color:#e6c46e}
+.ladder .l4{border-left-color:var(--accent)}.ladder .l5{border-left-color:var(--red)}
+.ladder .me{border:2px solid var(--accent);border-left-width:8px;background:var(--accent-soft)}
+.ladder .here{display:inline-block;font-size:.75rem;font-weight:700;color:#fff;background:var(--accent);border-radius:999px;padding:1px 10px;vertical-align:2px}
+.light{border-radius:var(--radius);padding:18px 20px;margin:14px 0;border:2px solid}
+.light .dot{display:inline-block;width:22px;height:22px;border-radius:50%;vertical-align:-4px;margin-right:8px}
+.light.g{border-color:var(--green);background:var(--green-bg)} .light.g .dot{background:var(--green)}
+.light.y{border-color:var(--yellow);background:var(--yellow-bg)} .light.y .dot{background:var(--yellow)}
+.light.r{border-color:var(--red);background:var(--red-bg)} .light.r .dot{background:var(--red)}
+.light h3{display:flex;align-items:center}
+.light ul{margin:8px 0 0;padding-left:1.1em}
+.light li{margin:6px 0}
+.src-kind{font-weight:700;background:rgba(255,255,255,.7);padding:0 4px;border-radius:4px}
+.bigbox{background:#fff;border:3px double var(--accent);border-radius:var(--radius);padding:20px;margin:20px 0;font-family:"Gowun Batang",serif;font-size:1.12rem;text-align:center}
+.warnlist{list-style:none;padding:0;margin:12px 0}
+.warnlist li{background:#fff;border:1px solid var(--line);border-left:6px solid var(--yellow);border-radius:10px;padding:12px 16px;margin:10px 0}
+.linkcard{display:block;text-decoration:none;color:inherit;background:var(--blue-bg);border:2px solid var(--blue);border-radius:var(--radius);padding:20px;margin:16px 0}
+.linkcard .go{display:inline-block;margin-top:8px;font-weight:700;color:var(--blue)}
+.ask{position:relative;background:#fff;border:2px solid var(--accent);border-radius:var(--radius);padding:18px 18px 14px;margin:14px 0}
+.ask .q{font-family:"Gowun Batang",serif;font-size:1.08rem}
+.ask .q::before{content:"“";color:var(--accent);font-size:1.6rem;line-height:0;vertical-align:-.35em;margin-right:2px}
+.ask .q::after{content:"”";color:var(--accent);font-size:1.6rem;line-height:0;vertical-align:-.35em;margin-left:2px}
+.ask .why{font-size:.88rem;color:var(--ink-soft);margin-top:6px}
+.copy{margin-top:10px;font:inherit;font-size:.88rem;font-weight:700;color:var(--accent);background:var(--accent-soft);border:0;border-radius:999px;padding:6px 16px;cursor:pointer;min-height:40px}
+.steps{counter-reset:s;list-style:none;padding:0}
+.steps li{counter-increment:s;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px 16px 64px;margin:12px 0;position:relative}
+.steps li::before{content:counter(s);position:absolute;left:16px;top:16px;width:34px;height:34px;border-radius:50%;background:var(--green);color:#fff;text-align:center;line-height:34px;font-weight:700}
+.safety{background:#fff;border:3px solid var(--red);border-radius:var(--radius);padding:20px;margin:18px 0}
+.safety h3{color:var(--red)}
+.safety ul{padding-left:1.1em;margin:8px 0 0}
+.safety li{margin:8px 0}
+.ai-note{background:#eef0f7;border:1px dashed #6b74a6;border-radius:12px;padding:14px 16px;margin:14px 0;font-size:.95rem}
+.ai-note .lbl{display:inline-block;font-size:.78rem;font-weight:700;color:#fff;background:#565f95;padding:2px 10px;border-radius:999px;margin-bottom:6px}
+.closing{text-align:center;font-family:"Gowun Batang",serif;font-size:1.2rem;padding:24px 0 8px}
+.closing .path{display:flex;flex-direction:column;align-items:center;gap:2px;margin:14px 0;font-size:1.05rem}
+.closing .path span.a{color:var(--accent)}
+.refs{font-size:.8rem;color:var(--ink-soft);line-height:1.7;margin-top:12px}
+.refs b{color:var(--ink-soft)}
+.srcbox{margin-top:16px;background:#fff;border:1px solid var(--line);border-radius:12px}
+.srcbox summary{cursor:pointer;list-style:none;padding:12px 16px;min-height:48px;font-size:.92rem;font-weight:700;color:var(--ink-soft)}
+.srcbox summary::-webkit-details-marker{display:none}
+.srcbox summary::after{content:"＋";float:right;color:var(--accent)}
+.srcbox[open] summary::after{content:"－"}
+.srcbox summary .cnt{font-weight:400;font-size:.82rem;margin-left:4px}
+.srcbox ol{margin:0;padding:4px 16px 14px 34px;font-size:.88rem;line-height:1.6}
+.srcbox li{margin:12px 0}
+.srcbox .t{display:block;font-style:italic;color:var(--ink-soft);font-size:.82rem;margin-top:2px;word-break:normal}
+.srcbox .j{display:block;font-size:.8rem;color:var(--ink-soft);margin-top:2px}
+.secsrc{font-size:.78rem;color:var(--ink-soft);margin-top:12px}
+footer{border-top:1px solid var(--line);margin-top:30px;padding-top:20px;font-size:.82rem;color:var(--ink-soft)}
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.reveal.on{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important;transition:none!important}}
+@media (min-width:640px){
+  .flow .split{flex-direction:row}
+  .flow .split>.step{flex:1}
+}
+@media (max-width:380px){body{font-size:18px}.tiles{grid-template-columns:1fr}}
+@media print{
+  body{background:#fff;font-size:12pt}
+  .reveal{opacity:1!important;transform:none!important}
+  .copy{display:none}
+  .srcbox summary::after{content:""}
+  section{break-inside:auto}
+  .card,.light,.ask,.safety,.linkcard{break-inside:avoid}
+  .linkcard::after{content:" (" attr(href) ")";font-size:9pt;word-break:break-all}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <span class="kicker">히포크라테스의 친구들 · 함께 공부하기</span>
+  <h1>굶는 것이 아니라,<br>굶는 척하는 식단</h1>
+  <p class="sub">단식 모방 식단(FMD)과 암 치료 —<br>연구자들은 왜 여기에 주목할까요?</p>
+  <p class="meta">2026년 10월 28일 · PubMed 논문 173편을 살펴보고 정리했습니다</p>
+</header>
+
+<!-- 0 -->
+<section class="reveal">
+  <span class="num">0</span>
+  <h2>이런 질문을 자주 듣습니다</h2>
+  <div class="quote">“단식을 하면 암이 굶어 죽는다던데,<br>저도 며칠씩 굶어 봐야 할까요?”
+    <small>회원들이 자주 묻는 질문을 바탕으로 다시 쓴 문장입니다</small></div>
+  <p>이런 마음이 드는 건 당연합니다. 내 손으로 무언가를 할 수 있다는 건 큰 힘이 되니까요. 그리고 실제로 세계의 연구자들도 <strong>“음식과 암 치료”</strong>의 관계를 진지하게 연구하고 있습니다.</p>
+  <p>그런데 연구자들이 살펴본 것은 <strong>“오래 굶기”</strong>가 아닙니다. <strong>짧게, 주기적으로, 영양을 갖춰, 의료진이 지켜보는 가운데</strong> 하는 특별한 식단입니다. 이름은 <strong>단식 모방 식단</strong>, 영어로 Fasting-Mimicking Diet, 줄여서 <strong>FMD</strong>라고 부릅니다.</p>
+  <div class="callout">이 글은 FMD를 <strong>권하는 글도, 방법을 알려주는 글도 아닙니다.</strong> 연구자들이 왜 FMD에 주목하는지, 그리고 지금 어디까지 알려졌는지를 함께 이해하려는 글입니다.</div>
+</section>
+
+<!-- 1 -->
+<section class="reveal">
+  <span class="num">1</span>
+  <h2>두 가지 생각이 있습니다</h2>
+  <div class="card">
+    <span class="tag" style="background:var(--red-bg);color:var(--red)">생각 ①</span>
+    <h3>“암을 굶겨 죽이면 된다”</h3>
+    <p>암세포가 당분을 많이 먹으니, 오래 굶으면 암도 굶어 죽는다는 생각입니다.</p>
+    <p><strong>문제는</strong> 굶는 동안 정상세포와 내 몸도 함께 굶는다는 점입니다. 근육이 빠지고 체력이 떨어지면 치료를 버티기 어려워집니다. 그리고 이 생각은 아직 학계에서 <strong>논쟁 중인 주장</strong>입니다.</p>
+  </div>
+  <p class="vs">그리고</p>
+  <div class="card">
+    <span class="tag" style="background:var(--green-bg);color:var(--green)">생각 ②</span>
+    <h3>“굶주림에 대한 반응 차이를 이용한다”</h3>
+    <p>정상세포와 암세포는 배고픔에 <strong>서로 다르게 반응</strong>합니다. 이 차이를 이용해 항암 치료가 정상세포는 덜 다치게 하고, 암세포에는 더 잘 듣게 하자는 생각입니다.</p>
+    <p>“암세포에는 먹는 방식에 약점이 있다”는 점은 주류 의학도 폭넓게 인정합니다.</p>
+  </div>
+  <div class="bigbox">FMD는 <strong>생각 ②</strong> 위에 서 있습니다.<br>암을 굶기는 것이 아니라, <strong>치료를 돕는 것</strong>이 목표입니다.</div>
+  <details class="srcbox"><summary>📚 이 내용의 근거 논문 보기 <span class="cnt">2편</span></summary><ol><li><strong>단식과 암 — 원리와 임상 적용을 정리한 종설 (2018)</strong><span class="t" lang="en">Fasting and cancer: molecular mechanisms and clinical application.</span><span class="j">Nat Rev Cancer · <a href="https://pubmed.ncbi.nlm.nih.gov/30327499/" target="_blank" rel="noopener">PubMed에서 보기 →</a></span></li><li><strong>효모에서 사람까지, 단식과 암 연구의 흐름을 정리한 종설 (2022)</strong><span class="t" lang="en">Fasting and cancer: from yeast to mammals.</span><span class="j">Int Rev Cell Mol Biol · <a href="https://pubmed.ncbi.nlm.nih.gov/36283768/" target="_blank" rel="noopener">PubMed에서 보기 →</a></span></li></ol></details>
+</section>
+
+<!-- 2 -->
+<section class="reveal">
+  <span class="num">2</span>
+  <h2>흉년이 들면 생기는 일</h2>
+  <p>원리를 하나의 그림으로 정리해 보겠습니다. 몸속에 <strong>흉년</strong>이 들었다고 상상해 보세요.</p>
+  <div class="flow" role="img" aria-label="흉년이 들면 정상세포는 겨울잠에 들어 보호받고, 고장 난 암세포는 멈추지 못해 약해진다는 흐름도">
+    <div class="step"><span class="emoji" aria-hidden="true">🌾</span><strong>몸에 흉년이 듭니다</strong><br><span style="font-size:.92rem;color:var(--ink-soft)">혈당, 인슐린, 성장 신호가 내려갑니다</span></div>
+    <div class="arrow" aria-hidden="true">↓</div>
+    <div class="split">
+      <div class="step good"><span class="emoji" aria-hidden="true">🏠</span><strong>정상세포</strong><br>창고 문을 닫고 겨울잠에 듭니다<br><span style="font-size:.92rem">→ 항암제의 피해를 덜 받습니다</span></div>
+      <div class="step bad"><span class="emoji" aria-hidden="true">⚙️</span><strong>암세포</strong><br>스위치가 고장 나 멈추지 못합니다<br><span style="font-size:.92rem">→ 계속 먹으려다 지쳐 치료에 더 약해집니다</span></div>
+    </div>
+  </div>
+  <p>그런데 왜 암세포는 멈추지 못할까요? 암세포는 “계속 자라라”는 스위치가 고장 난 채로 켜져 있기 때문입니다. 정상세포는 “아껴 써라”라는 신호를 따르지만, 암세포는 그 신호를 듣지 못합니다.</p>
+  <div class="card" style="border-color:var(--blue)">
+    <h3>🛡️ 덤으로: 면역이 깨어날 수도 있습니다</h3>
+    <p><span class="src-kind">쥐 실험</span>에서는 FMD와 항암제를 함께 쓸 때 암을 공격하는 면역세포가 늘었습니다. <span class="src-kind">환자 약 100명을 대상으로 한 연구</span>에서도 면역을 억누르는 세포가 줄어드는 변화가 관찰되었습니다.</p>
+  </div>
+  <div class="callout">⚠️ 이 흉년 그림은 주로 <strong>쥐 실험과 세포 실험</strong>에서 확인된 원리입니다. 사람에게서 실제로 치료 효과로 이어지는지는 4번에서 따로 살펴봅니다.</div>
+  <details class="srcbox"><summary>📚 이 내용의 근거 논문 보기 <span class="cnt">5편</span></summary><ol><li><strong>단식·FMD를 암 예방과 치료에 쓰는 원리를 정리한 종설 (2023)</strong><span class="t" lang="en">Fasting and fasting mimicking diets in cancer prevention and therapy.</span><span class="j">Trends Cancer · <a href="https://pubmed.ncbi.nlm.nih.gov/36646607/" target="_blank" rel="noopener">PubMed에서 보기 →</a></span></li><li><strong>굶주림이 정상세포와 암세포에 다르게 작용하는 원리 (2018)</strong><span class="t" lang="en">Starvation, Stress Resistance, and Cancer.</span><span class="j">Trends Endocrinol Metab · <a href="https://pubmed.ncbi.nlm.nih.gov/29463451/" target="_blank" rel="noopener">PubMed에서 보기 →</a></span></li><li><strong>단식이 암세포를 치료에 더 약하게 만드는 원리 (2016)</strong><span class="t" lang="en">Fasting-induced differential stress sensitization in cancer treatment.</span><span class="j">Molecular &amp; cellular oncology · <a href="https://pubmed.ncbi.nlm.nih.gov/27314084/" target="_blank" rel="noopener">PubMed에서 보기 →</a></span></li><li><strong>쥐 실험 — FMD가 암을 공격하는 면역세포를 늘림 (2016)</strong><span class="t" lang="en">Fasting-Mimicking Diet Reduces HO-1 to Promote T Cell-Mediated Tumor Cytotoxicity.</span><span class="j">Cancer Cell · <a href="https://pubmed.ncbi.nlm.nih.gov/27411588/" target="_blank" rel="noopener">PubMed에서 보기 →</a></span></li><li><strong>여러 암 환자 101명 연구 — 안전성과 몸속 변화 (2022)</strong><span class="t" lang="en">Fasting-Mimicking Diet Is Safe and Reshapes Metabolism and Antitumor Immunity in Patients with Cancer.</span><span class="j">Cancer Discov · <a href="https://pubmed.ncbi.nlm.nih.gov/34789537/" target="_blank" rel="noopener">PubMed에서 보기 →</a></span></li></ol></details>
+</section>
+
+<!-- 3 -->
+<section class="reveal">
+  <span class="num">3</span>
+  <h2>FMD란 무엇인가요?</h2>
+  <p>FMD는 <strong>음식을 먹으면서도</strong> 몸이 “굶고 있다”고 느끼게 만들도록 설계한 짧은 식단입니다. 연구에서 쓰인 FMD는 대체로 이렇습니다.</p>
+  <div class="tiles">
+    <div class="tile"><b>4~5일</b><span>짧게만 합니다</span></div>
+    <div class="tile"><b>3~4주마다</b><span>항암 주기에 맞춰 반복</span></div>
+    <div class="tile"><b>식물성</b><span>당과 단백질은 적게</span></div>
+    <div class="tile"><b>평소의 1/3~1/2</b><span>열량을 크게 줄입니다</span></div>
+  </div>
+  <p>연구에서는 정해진 제품이나 레시피를 썼고, <strong>의료진과 영양 전문가가 함께 지켜봤습니다.</strong></p>
+  <h3 style="margin-top:26px">“단식”에도 종류가 있습니다</h3>
+  <p>흔히 모두 “단식”이라고 부르지만, 연구자들은 크게 다섯 가지로 나눕니다. 아래로 갈수록 <strong>굶는 강도가 셉니다.</strong></p>
+  <ol class="ladder" aria-label="단식 방식을 강도가 약한 것부터 센 것 순서로 나열">
+    <li class="l1"><span class="lv">①</span><div><strong>시간제한 식사</strong> <span class="en">(TRE)</span><br>매일 정해진 8~10시간 안에만 먹습니다.<br><span class="eg">예: 흔히 “16:8 간헐적 단식”이라 부르는 방식</span></div></li>
+    <li class="l2"><span class="lv">②</span><div><strong>간헐적 단식</strong> <span class="en">(IF)</span><br>일주일에 하루이틀, 굶거나 아주 적게 먹습니다.<br><span class="eg">예: 5일은 평소대로, 2일은 크게 줄이는 “5:2”</span></div></li>
+    <li class="l3"><span class="lv">③</span><div><strong>단기 단식</strong> <span class="en">(STF)</span><br>항암 치료 앞뒤로 하루~사흘 물 위주로 굶습니다.<br><span class="eg">주로 연구 안에서 쓰인 방식입니다</span></div></li>
+    <li class="l4 me"><span class="lv">④</span><div><strong>단식 모방 식단</strong> <span class="en">(FMD)</span> <span class="here">이 글의 주제</span><br>4~5일 동안 적은 양의 정해진 식단을 먹고, 3~4주마다 반복합니다.</div></li>
+    <li class="l5"><span class="lv">⑤</span><div><strong>장기 물 단식</strong><br>5일 넘게 물이나 액체만 마십니다.<br><span class="eg">사람 근거는 개별 환자 사례 수준입니다</span></div></li>
+  </ol>
+  <div class="callout">📌 2026년에 발표된 고찰 논문(20개 연구, 871명)에 따르면, FMD나 단기 단식처럼 <strong>강도가 센 방식</strong>은 몸속 변화가 더 뚜렷했습니다. 시간제한 식사는 <strong>지키기는 쉬웠지만</strong> 결과가 들쭉날쭉했습니다.<br><span style="font-size:.9rem;color:var(--ink-soft)">이 글은 FMD 논문만 자세히 살펴봤습니다. ①, ②, ③번의 암 관련 근거는 따로 검토하지 않았습니다.</span></div>
+  <h3 style="margin-top:22px">오래 굶기와 FMD, 무엇이 다를까요?</h3>
+  <div class="compare">
+    <div class="col water">
+      <h3>💧 물만 마시는 장기 단식</h3>
+      <ul>
+        <li>음식을 거의 먹지 않습니다</li>
+        <li>며칠 이상 길게 이어지기도 합니다</li>
+        <li>근육 손실과 영양실조 위험이 큽니다</li>
+        <li>환자가 견디기 어렵습니다</li>
+        <li>사람 연구 근거: <strong>개별 환자 사례 수준</strong></li>
+      </ul>
+    </div>
+    <div class="col fmd">
+      <h3>🥗 단식 모방 식단 (FMD)</h3>
+      <ul>
+        <li>적은 양이지만 음식을 먹습니다</li>
+        <li>4~5일로 짧게 끝냅니다</li>
+        <li>연구 참여자의 근육은 대체로 유지되었습니다</li>
+        <li>의료진 감독을 전제로 합니다</li>
+        <li>사람 연구 근거: <strong>수십~백여 명 규모의 초기 연구</strong></li>
+      </ul>
+    </div>
+  </div>
+  <details class="srcbox"><summary>📚 이 내용의 근거 논문 보기 <span class="cnt">6편</span></summary><ol><li><strong>전이성 폐암 환자 10명 연구 — 안전성 확인 (2026)</strong><span class="t" lang="en">Brief Report: A Pilot Study Evaluating the Feasibility, Safety, and Compliance With a Fasting-Mimicking Diet in Patients With Metastatic Non-Small Cell Lung Cancer.</span><span class="j">Clin Lung Cancer · <a href="https://pubmed.ncbi.nlm.nih.gov/42060951/" target="_blank" rel="noopener">PubMed에서 보기 →</a></span></li><li><strong>중국 유방암 환자 30명 연구 — 레시피로 만든 FMD (2025)</strong><span class="t" lang="en">The feasibility and safety of fasting-mimicking diet in breast cancer patients with chemotherapy in China.</span><span class="j">Breast Cancer Res Treat · <a href="https://pubmed.ncbi.nlm.nih.gov/40711668/" target="_blank" rel="noopener">PubMed에서 보기 →</a></span></li><li><strong>단식·FMD를 암 예방과 치료에 쓰는 원리를 정리한 종설 (2023)</strong><span class="t" lang="en">Fasting and fasting mimicking diets in cancer prevention and therapy.</span><span class="j">Trends Cancer · <a href="https://pubmed.ncbi.nlm.nih.gov/36646607/" target="_blank" rel="noopener">PubMed에서 보기 →</a></span></li><li><strong>주기적 FMD가 건강과 여러 질병에 미치는 영향 (종설) (2025)</strong><span class="t" lang="en">Effects of the periodic fasting-mimicking diet on health, lifespan, and multiple diseases: a narrative review and clinical implications.</span><span class="j">Nutrition reviews · <a href="https://pubmed.ncbi.nlm.nih.gov/38287649/" target="_blank" rel="noopener">PubMed에서 보기 →</a></span></li><li><strong>여러 단식 방식을 비교 정리한 고찰 — 20개 연구, 871명 (2026)</strong><span class="t" lang="en">Fasting-Based Dietary Interventions in Cancer Patients and Survivors: A Scoping Review.</span><span class="j">Nutrients · <a href="https://pubmed.ncbi.nlm.nih.gov/41978091/" target="_blank" rel="noopener">PubMed에서 보기 →</a></span></li><li><strong>치료 중인 암 환자 90명 연구 — 안전성과 영양 상태 (2021)</strong><span class="t" lang="en">Safety and Feasibility of Fasting-Mimicking Diet and Effects on Nutritional Status and Circulating Metabolic and Inflammatory Factors in Cancer Patients Undergoing Active Treatment.</span><span class="j">Cancers · <a href="https://pubmed.ncbi.nlm.nih.gov/34439167/" target="_blank" rel="noopener">PubMed에서 보기 →</a></span></li></ol></details>
+</section>
+
+<!-- 4 -->
+<section class="reveal">
+  <span class="num">4</span>
+  <h2>사람에게서는 어디까지 확인됐나요?</h2>
+  <p>신호등으로 정리해 보겠습니다. 각 문장 앞에 <strong>어떤 연구에서 나온 이야기인지</strong>를 함께 적었습니다.</p>
+
+  <div class="light g">
+    <h3><span class="dot" aria-hidden="true"></span>초록불 · 안전하게 해볼 수 있었다</h3>
+    <ul>
+      <li><span class="src-kind">환자 101명 연구</span>에서 항암 치료와 함께 해도 안전했고, 혈당과 성장 신호가 실제로 내려갔습니다.</li>
+      <li><span class="src-kind">환자 90명 연구</span>에서 평균 6번 넘게 반복했는데도 체중과 악력(손힘)이 유지되었습니다.</li>
+      <li><span class="src-kind">폐암 환자 10명 연구</span>에서 대부분 먹는 표적치료제를 쓰면서 한 번 해본 결과, 심각한 부작용은 없었습니다.</li>
+    </ul>
+  </div>
+
+  <div class="light y">
+    <h3><span class="dot" aria-hidden="true"></span>노란불 · 효과의 신호가 보인다</h3>
+    <ul>
+      <li><span class="src-kind">유방암 환자 131명을 두 그룹으로 나눈 연구</span>에서, FMD를 한 그룹에 영상 검사상 종양이 줄어든 환자가 더 많았습니다. 다만 이 연구의 원래 목표였던 “부작용 줄이기”에서는 두 그룹의 차이가 없었습니다.</li>
+      <li><span class="src-kind">유방암 환자 44명을 두 그룹으로 나눈 연구</span>에서, FMD 그룹은 구토와 백혈구 감소 같은 부작용이 적었습니다.</li>
+      <li><span class="src-kind">삼중음성 유방암 환자 30명 연구</span>에서, 수술 때 암이 완전히 사라진 비율이 약 57%로 높았습니다. 다만 비교 그룹이 없었습니다.</li>
+    </ul>
+  </div>
+
+  <div class="light r">
+    <h3><span class="dot" aria-hidden="true"></span>빨간불 · 아직 모른다</h3>
+    <ul>
+      <li><strong>더 오래 사는지는 아직 증명되지 않았습니다.</strong></li>
+      <li><span class="src-kind">대장암 환자 602명 대상 대규모 연구</span>가 바로 이 질문에 답하려고 진행 중이며, 2027년 말 끝날 예정입니다.</li>
+      <li>지금까지의 연구는 대부분 <strong>유방암</strong> 환자였습니다. 다른 암에서는 근거가 더 적습니다.</li>
+    </ul>
+  </div>
+
+  <div class="bigbox">FMD는 아직 <strong>“확실히 효과가 있다”</strong>고 말할 수 있는 단계가 아닙니다.<br><strong>“안전하게 해볼 수 있고, 가능성이 보이는”</strong> 단계입니다.</div>
+  <details class="srcbox"><summary>📚 이 내용의 근거 논문 보기 <span class="cnt">8편</span></summary><ol><li><strong>여러 암 환자 101명 연구 — 안전성과 몸속 변화 (2022)</strong><span class="t" lang="en">Fasting-Mimicking Diet Is Safe and Reshapes Metabolism and Antitumor Immunity in Patients with Cancer.</span><span class="j">Cancer Discov · <a href="https://pubmed.ncbi.nlm.nih.gov/34789537/" target="_blank" rel="noopener">PubMed에서 보기 →</a></span></li><li><strong>치료 중인 암 환자 90명 연구 — 안전성과 영양 상태 (2021)</strong><span class="t" lang="en">Safety and Feasibility of Fasting-Mimicking Diet and Effects on Nutritional Status and Circulating Metabolic and Inflammatory Factors in Cancer Patients Undergoing Active Treatment.</span><span class="j">Cancers · <a href="https://pubmed.ncbi.nlm.nih.gov/34439167/" target="_blank" rel="noopener">PubMed에서 보기 →</a></span></li><li><strong>전이성 폐암 환자 10명 연구 — 안전성 확인 (2026)</strong><span class="t" lang="en">Brief Report: A Pilot Study Evaluating the Feasibility, Safety, and Compliance With a Fasting-Mimicking Diet in Patients With Metastatic Non-Small Cell Lung Cancer.</span><span class="j">Clin Lung Cancer · <a href="https://pubmed.ncbi.nlm.nih.gov/42060951/" target="_blank" rel="noopener">PubMed에서 보기 →</a></span></li><li><strong>유방암 환자 131명을 두 그룹으로 나눈 연구 (2020)</strong><span class="t" lang="en">Fasting mimicking diet as an adjunct to neoadjuvant chemotherapy for breast cancer in the multicentre randomized phase 2 DIRECT trial.</span><span class="j">Nat Commun · <a href="https://pubmed.ncbi.nlm.nih.gov/32576828/" target="_blank" rel="noopener">PubMed에서 보기 →</a></span></li><li><strong>유방암 환자 44명을 두 그룹으로 나눈 연구 (2024)</strong><span class="t" lang="en">Fasting mimicking diet during neo-adjuvant chemotherapy in breast cancer patients: a randomized controlled trial study.</span><span class="j">Front Nutr · <a href="https://pubmed.ncbi.nlm.nih.gov/39703333/" target="_blank" rel="noopener">PubMed에서 보기 →</a></span></li><li><strong>삼중음성 유방암 환자 30명 연구 (2025)</strong><span class="t" lang="en">Early downmodulation of tumor glycolysis predicts response to fasting-mimicking diet in triple-negative breast cancer patients.</span><span class="j">Cell Metab · <a href="https://pubmed.ncbi.nlm.nih.gov/39694040/" target="_blank" rel="noopener">PubMed에서 보기 →</a></span></li><li><strong>암 영양 지침과 단식·식단 연구를 함께 정리한 종설 (2026)</strong><span class="t" lang="en">Metabolic diets and fasting in oncology: Integrating guideline-based nutrition, nutrition assessments and biomarker-driven clinical pathology.</span><span class="j">Crit Rev Oncol Hematol · <a href="https://pubmed.ncbi.nlm.nih.gov/42926076/" target="_blank" rel="noopener">PubMed에서 보기 →</a></span></li><li><strong>진행 중인 대장암 환자 602명 대규모 연구의 계획서 (2026)</strong><span class="t" lang="en">Effects of a fasting-mimicking diet on long-term prognosis in patients with colorectal cancer undergoing radical resection: protocol for a multicentre, prospective, randomised controlled trial.</span><span class="j">BMJ Open · <a href="https://pubmed.ncbi.nlm.nih.gov/42425570/" target="_blank" rel="noopener">PubMed에서 보기 →</a></span></li></ol></details>
+</section>
+
+<!-- 5 -->
+<section class="reveal">
+  <span class="num">5</span>
+  <h2>이런 분은 특히 조심하세요</h2>
+  <p>FMD 연구들은 <strong>영양 상태가 좋은 환자만</strong> 참여시켰습니다. 아래에 해당하는 분들은 처음부터 연구 대상에서 빠졌거나, 위험이 더 크다고 알려진 분들입니다.</p>
+  <ul class="warnlist">
+    <li>⚖️ <strong>최근 체중이 계속 줄고 있는 분</strong></li>
+    <li>💪 <strong>근육이 빠지고 기운이 많이 없는 분</strong></li>
+    <li>🍚 <strong>입맛이 없거나 메스꺼움으로 이미 식사량이 적은 분</strong></li>
+    <li>🩸 <strong>당뇨가 있거나 혈당약·인슐린을 쓰는 분</strong><br><span style="font-size:.9rem;color:var(--ink-soft)">유방암 대규모 연구는 당뇨 환자를 처음부터 제외했습니다</span></li>
+    <li>📏 <strong>많이 마른 분</strong><br><span style="font-size:.9rem;color:var(--ink-soft)">연구들은 체질량지수(BMI) 18 이하인 분을 받지 않았습니다</span></li>
+    <li>🛏️ <strong>하루 대부분을 누워 지낼 만큼 몸 상태가 떨어진 분</strong></li>
+  </ul>
+  <div class="callout">항암 치료 중에는 <strong>잘 먹는 것 자체가 치료의 일부</strong>입니다. 세계 암 영양 지침은 영양 상태를 일찍 점검하고, 필요하면 단계적으로 영양을 지원하라고 권합니다. 그리고 어떤 식단도 암을 낫게 한다고 증명된 적은 없다고 말합니다.</div>
+  <details class="srcbox"><summary>📚 이 내용의 근거 논문 보기 <span class="cnt">6편</span></summary><ol><li><strong>항암 중 열량 제한 — 사실과 오해를 따져본 종설 (2022)</strong><span class="t" lang="en">Calorie restriction in cancer patients undergoing chemotherapy: Facts, phantasy or misunderstanding.</span><span class="j">Clin Nutr · <a href="https://pubmed.ncbi.nlm.nih.gov/35552051/" target="_blank" rel="noopener">PubMed에서 보기 →</a></span></li><li><strong>항암 전 단식, 해야 할까? — 신중론을 편 논문 (2018)</strong><span class="t" lang="en">To fast, or not to fast before chemotherapy, that is the question.</span><span class="j">BMC Cancer · <a href="https://pubmed.ncbi.nlm.nih.gov/29587670/" target="_blank" rel="noopener">PubMed에서 보기 →</a></span></li><li><strong>제한 식단과 심리적 부담을 살핀 종설 (2024)</strong><span class="t" lang="en">Anticancer restrictive diets and the risk of psychological distress: Review and perspectives.</span><span class="j">Cancer Med · <a href="https://pubmed.ncbi.nlm.nih.gov/38970205/" target="_blank" rel="noopener">PubMed에서 보기 →</a></span></li><li><strong>암 영양 지침과 단식·식단 연구를 함께 정리한 종설 (2026)</strong><span class="t" lang="en">Metabolic diets and fasting in oncology: Integrating guideline-based nutrition, nutrition assessments and biomarker-driven clinical pathology.</span><span class="j">Crit Rev Oncol Hematol · <a href="https://pubmed.ncbi.nlm.nih.gov/42926076/" target="_blank" rel="noopener">PubMed에서 보기 →</a></span></li><li><strong>유방암 환자 131명을 두 그룹으로 나눈 연구 (2020)</strong><span class="t" lang="en">Fasting mimicking diet as an adjunct to neoadjuvant chemotherapy for breast cancer in the multicentre randomized phase 2 DIRECT trial.</span><span class="j">Nat Commun · <a href="https://pubmed.ncbi.nlm.nih.gov/32576828/" target="_blank" rel="noopener">PubMed에서 보기 →</a></span></li><li><strong>전이성 폐암 환자 10명 연구 — 안전성 확인 (2026)</strong><span class="t" lang="en">Brief Report: A Pilot Study Evaluating the Feasibility, Safety, and Compliance With a Fasting-Mimicking Diet in Patients With Metastatic Non-Small Cell Lung Cancer.</span><span class="j">Clin Lung Cancer · <a href="https://pubmed.ncbi.nlm.nih.gov/42060951/" target="_blank" rel="noopener">PubMed에서 보기 →</a></span></li></ol></details>
+</section>
+
+<!-- 6 -->
+<section class="reveal">
+  <span class="num">6</span>
+  <h2>함께 읽기</h2>
+  <p>이 글은 일반적인 원리와 연구를 다뤘습니다. 실제 한 환자가 걸어간 길이 궁금하다면 아래 사례를 따로 읽어 보세요. 한 사람의 경험은 그 사람만의 것이니, <strong>원리와 함께 비추어</strong> 읽으시길 권합니다.</p>
+  <a class="linkcard" href="https://davidkangkr.github.io/positive-progress-case-studies/hien-case-lung-community-2026-10-28-v2.html">
+    <strong>📖 실제 환자의 여정이 궁금하다면</strong><br>
+    대만 폐암 환자 Hien의 사례 읽기
+    <span class="go">사례 페이지로 가기 →</span>
+  </a>
+</section>
+
+<!-- 7 -->
+<section class="reveal">
+  <span class="num">7</span>
+  <h2>주치의께 이렇게 물어보세요</h2>
+  <p>그대로 복사해서 진료실에 가져가셔도 됩니다.</p>
+
+  <div class="ask"><div class="q">제 지금 영양 상태와 체중 변화로 볼 때, 식사량을 줄이는 식단이 저에게 위험하지 않을까요?</div>
+    <div class="why">→ 5번의 “조심할 분”에 해당하는지 확인하는 질문입니다</div>
+    <button class="copy" type="button">질문 복사하기</button></div>
+
+  <div class="ask"><div class="q">제가 받는 치료와 단식 모방 식단(FMD)을 함께 연구한 결과가 있나요?</div>
+    <div class="why">→ 연구는 대부분 유방암 항암 치료에서 나왔습니다</div>
+    <button class="copy" type="button">질문 복사하기</button></div>
+
+  <div class="ask"><div class="q">혹시 제가 참여할 수 있는 FMD 임상시험이 있을까요?</div>
+    <div class="why">→ 연구 안에서 하는 것이 가장 안전한 방법입니다</div>
+    <button class="copy" type="button">질문 복사하기</button></div>
+
+  <div class="ask"><div class="q">영양 상담이나 영양 상태 검사를 받아볼 수 있을까요?</div>
+    <div class="why">→ 어떤 식단을 고민하든 첫 단계가 되는 질문입니다</div>
+    <button class="copy" type="button">질문 복사하기</button></div>
+
+  <div class="ask"><div class="q">제가 지금 먹고 있는 약 중에 식사량을 줄이면 조심해야 하는 약이 있나요?</div>
+    <div class="why">→ 혈당약, 스테로이드 등은 식사량에 따라 조절이 필요할 수 있습니다</div>
+    <button class="copy" type="button">질문 복사하기</button></div>
+</section>
+
+<!-- 8 -->
+<section class="reveal">
+  <span class="num">8</span>
+  <h2>이것부터 해보세요!</h2>
+  <p>위험 없이 오늘부터 할 수 있는 첫걸음입니다.</p>
+  <ol class="steps">
+    <li><strong>일주일에 한 번, 같은 시간에 몸무게를 적어 보세요.</strong><br>아침 화장실 다녀온 뒤가 좋습니다. 숫자의 흐름이 내 몸의 상태를 알려줍니다.</li>
+    <li><strong>하루에 무엇을 얼마나 먹었는지 간단히 적어 보세요.</strong><br>사진을 찍어 두는 것도 좋습니다. 진료실에서 큰 도움이 됩니다.</li>
+    <li><strong>다음 진료 때 영양 상담을 요청해 보세요.</strong><br>7번의 네 번째 질문을 그대로 쓰시면 됩니다.</li>
+  </ol>
+</section>
+
+<!-- 9 -->
+<section class="reveal">
+  <span class="num">9</span>
+  <h2>꼭 지켜야 할 안전 경계선</h2>
+  <div class="safety">
+    <h3>🚧 이것만은 기억해 주세요</h3>
+    <ul>
+      <li>식단을 바꾸는 것을 포함해, 치료에 관한 <strong>최종 결정은 반드시 주치의</strong>와 함께 내려야 합니다.</li>
+      <li>항암 치료 중에 <strong>혼자서 굶거나 식사량을 크게 줄이지 마세요.</strong></li>
+      <li>이 글은 FMD를 <strong>하는 방법을 안내하지 않습니다.</strong> 연구에서는 정해진 식단과 의료진의 감독이 함께했습니다.</li>
+      <li>FMD는 표준 치료를 <strong>대신하는 것이 아니라 함께 쓰는 보조 방법</strong>으로 연구되고 있습니다.</li>
+    </ul>
+  </div>
+  <div class="ai-note"><span class="lbl">AI 클로드 주석</span><br>논문들을 읽으며 가장 분명하게 보인 점은 이것입니다. 연구자들이 가능성을 본 방식과, 흔히 들리는 “오래 굶으면 암이 사라진다”는 이야기 사이에는 큰 거리가 있습니다. 앞의 것에는 근거가 쌓이고 있고, 뒤의 것은 아직 개별 사례 수준에 머물러 있습니다.</div>
+  <div class="closing">
+    조급함 대신, 함께 걸어가요.
+    <div class="path"><span class="a">원리를 알고</span><span aria-hidden="true">↓</span><span class="a">가능성을 이해하고</span><span aria-hidden="true">↓</span><span class="a">근거 위에서 시도하자</span></div>
+  </div>
+</section>
+
+<footer>
+  <p><strong>이 글을 만든 방법</strong><br>PubMed에서 “Fasting-Mimicking Diet for cancer”로 검색한 논문 173편 가운데, 사람 대상 연구와 대표적인 원리 연구, 안전 관련 연구를 골라 초록을 바탕으로 정리했습니다. 논문 전문을 모두 읽은 것은 아니며, 원문의 세부 내용은 다를 수 있습니다.</p>
+  <div class="refs"><b>참고 논문 (PMID)</b><br>
+  원리: 30327499 · 36283768 · 36646607 · 29463451 · 27314084 · 27411588<br>
+  식단 구성: 42060951 · 40711668 · 38287649<br>
+  사람 연구: 34789537 · 34439167 · 42060951 · 32576828 · 39703333 · 39694040<br>
+  진행 중 연구: 42425570 (NCT05384444)<br>
+  안전·한계: 42926076 · 35552051 · 29587670 · 38970205<br>
+  각 번호는 <a href="https://pubmed.ncbi.nlm.nih.gov/">pubmed.ncbi.nlm.nih.gov</a>에서 검색할 수 있습니다.</div>
+  <p style="margin-top:14px">히포크라테스의 친구들 · 2026-10-28 · 전문가용 심화판은 따로 준비되어 있습니다.</p>
+</footer>
+</div>
+
+<script>
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce||!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('on')});}
+  else{
+    var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('on');io.unobserve(x.target);}})},{threshold:.08});
+    els.forEach(function(e){io.observe(e)});
+  }
+  window.addEventListener('beforeprint',function(){els.forEach(function(e){e.classList.add('on')});document.querySelectorAll('details').forEach(function(d){d.open=true});});
+  document.querySelectorAll('.copy').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var t=btn.parentNode.querySelector('.q').textContent.trim();
+      function done(){var o=btn.textContent;btn.textContent='복사되었습니다 ✓';setTimeout(function(){btn.textContent=o},1800);}
+      if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(done,fallback);}else{fallback();}
+      function fallback(){var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');done();}catch(e){}document.body.removeChild(ta);}
+    });
+  });
+})();
+</script>
+</body>
+</html>
