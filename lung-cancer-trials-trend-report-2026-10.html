@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>폐암 임상시험 동향 리포트 (2026년 10월)</title>
+<style>
+:root{
+  --navy:#16324f; --ink:#1f2937; --muted:#6b7280; --line:#e5e7eb; --bg:#f6f7fb; --card:#ffffff;
+  --teal:#0f8b8d; --blue:#2563eb; --orange:#f08a24; --red:#d9480f; --purple:#7c3aed; --green:#2f9e44; --pink:#c2255c;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;word-break:keep-all}
+a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 60px}
+header.hero{background:linear-gradient(135deg,#16324f 0%,#0f8b8d 100%);color:#fff;padding:44px 0 36px;margin-bottom:28px}
+header.hero .wrap{padding-bottom:0}
+.tag{display:inline-block;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);padding:3px 10px;border-radius:999px;font-size:13px;margin-right:6px}
+h1{font-size:32px;margin:14px 0 8px;letter-spacing:-.5px}
+.hero p{margin:0;opacity:.92;font-size:16px}
+h2{font-size:23px;margin:0 0 6px;color:var(--navy);letter-spacing:-.3px}
+h2 .num{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:8px;background:var(--navy);color:#fff;font-size:15px;margin-right:8px;vertical-align:2px}
+.sub{color:var(--muted);margin:0 0 18px;font-size:15px}
+section{background:var(--card);border-radius:16px;padding:26px 26px 22px;margin-bottom:22px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.kpi{background:#f3f6fa;border-radius:12px;padding:16px}
+.kpi b{display:block;font-size:30px;color:var(--navy);line-height:1.15}
+.kpi span{font-size:14px;color:var(--muted)}
+.tldr{margin-top:18px;background:#fff8ec;border-left:5px solid var(--orange);border-radius:10px;padding:14px 18px}
+.tldr ul{margin:6px 0 0;padding-left:20px}
+.tldr li{margin:3px 0}
+.chart{width:100%;overflow-x:auto}
+.chart svg{display:block;width:100%;height:auto}
+.note{font-size:13px;color:var(--muted);margin-top:8px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+/* flow */
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:0;align-items:stretch;margin-top:6px}
+.step{position:relative;padding:0 10px}
+.step .box{border-radius:12px;padding:14px 12px 12px;height:100%;border:2px solid;background:#fff}
+.step .box h4{margin:0 0 2px;font-size:16px}
+.step .box .cnt{font-size:13px;font-weight:700;margin-bottom:8px;display:block}
+.step .box ul{margin:0;padding-left:16px;font-size:13.5px}
+.step .box li{margin:4px 0}
+.step:not(:last-child)::after{content:"";position:absolute;right:-9px;top:44px;border-left:14px solid #9aa5b4;border-top:10px solid transparent;border-bottom:10px solid transparent;z-index:2}
+.support{margin:14px 10px 0;border:2px dashed #b197fc;border-radius:12px;padding:10px 14px;background:#f8f5ff;font-size:14px}
+.support b{color:var(--purple)}
+/* trend cards */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{border:1px solid var(--line);border-radius:14px;padding:18px 18px 14px;position:relative;overflow:hidden}
+.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--c)}
+.card h3{margin:0 0 2px;font-size:18px;color:var(--ink)}
+.card .one{color:var(--c);font-weight:700;font-size:14px;margin-bottom:10px}
+.card .lab{display:inline-block;font-size:12px;font-weight:700;color:#fff;background:var(--c);border-radius:6px;padding:1px 7px;margin-right:6px}
+.card p{margin:6px 0;font-size:14.5px}
+.card .ex{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);font-size:13.5px}
+.card .ex div{margin:3px 0}
+.pill{display:inline-block;font-size:12px;padding:1px 8px;border-radius:999px;background:#eef2f7;color:#334155;margin-left:4px}
+/* mini diagram */
+.mech{display:flex;align-items:center;gap:8px;margin:8px 0 4px;flex-wrap:wrap;font-size:13px}
+.mech .n{padding:5px 9px;border-radius:8px;background:#f1f5f9;border:1px solid #dbe3ec}
+.mech .ar{color:#94a3b8;font-weight:700}
+/* table */
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}
+th{background:#f3f6fa;color:#334155;font-size:13px;white-space:nowrap}
+td.drug b{color:var(--navy)}
+td.drug small{display:block;color:var(--muted)}
+.ph{display:inline-block;font-size:12px;font-weight:700;padding:1px 7px;border-radius:6px;background:#e7f5ff;color:#1864ab;white-space:nowrap}
+.ph.p3{background:#d3f9d8;color:#2b8a3e}.ph.p4{background:#d3f9d8;color:#2b8a3e}.ph.soon{background:#fff3bf;color:#a86b00}
+.grp{font-weight:700;color:#fff;padding:8px 12px;border-radius:8px;margin:18px 0 6px;font-size:15px}
+.warn{background:#fff5f5;border:1px solid #ffc9c9;border-radius:12px;padding:14px 18px;margin-top:16px;font-size:14.5px}
+.warn h4{margin:0 0 6px;color:var(--red)}
+.ok{background:#ebfbee;border:1px solid #b2f2bb;border-radius:12px;padding:14px 18px;font-size:14.5px}
+/* ladder */
+.ladder{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;align-items:end;margin:8px 0 14px}
+.rung{border-radius:12px 12px 4px 4px;color:#fff;padding:12px;font-size:13.5px}
+.rung b{display:block;font-size:17px}
+.check li{margin:6px 0}
+footer{color:var(--muted);font-size:13px;text-align:center;margin-top:24px}
+@media (max-width:860px){
+  .kpis{grid-template-columns:1fr 1fr}.grid2,.cards{grid-template-columns:1fr}
+  .flow{grid-template-columns:1fr;gap:16px}.step:not(:last-child)::after{right:auto;left:50%;top:auto;bottom:-17px;border-left:10px solid transparent;border-right:10px solid transparent;border-top:14px solid #9aa5b4;border-bottom:0;transform:translateX(-50%)}
+  .ladder{grid-template-columns:1fr 1fr}
+  h1{font-size:26px}
+  th:nth-child(3),td:nth-child(3){display:none}
+  table{font-size:13px;table-layout:fixed} th,td{padding:8px 5px;overflow-wrap:anywhere} th{white-space:normal}
+  section{padding:20px 16px}
+}
+@media print{body{background:#fff}section{box-shadow:none;border:1px solid #ddd;break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="tag">샘플 리포트</span><span class="tag">폐암</span><span class="tag">기준일 2026-10-29</span>
+    <h1>지금 폐암 임상시험은 어디로 가고 있나</h1>
+    <p>현재 모집 중이거나 곧 모집을 시작하는 폐암 중재(치료·검진·관리) 임상시험 2,456건을 한 번에 훑어본 동향 리포트<br>
+    <small>데이터: ClinicalTrials.gov (opencancer.ai TrialRadar와 같은 데이터원) · 커뮤니티 '용도변경된 약들 활용한 환자 주도형 암 임상 시험' 학습용</small></p>
+  </div>
+</header>
+
+<div class="wrap">
+
+<section>
+  <h2><span class="num">1</span>한눈에 보기</h2>
+  <p class="sub">숫자로 보는 지금의 폐암 임상시험</p>
+  <div class="kpis">
+    <div class="kpi"><b>2,456</b><span>모집 중 1,782 + 모집 예정 674</span></div>
+    <div class="kpi"><b>850</b><span>최근 12개월 새로 등록된 시험</span></div>
+    <div class="kpi"><b>161 / 146</b><span>호주 / 한국 병원이 참여하는 시험</span></div>
+    <div class="kpi"><b>약 13건</b><span>기존 약을 '암 치료 목적'으로 다시 시험 (0.5%)</span></div>
+  </div>
+  <div class="tldr">
+    <b>세 줄 요약</b>
+    <ul>
+      <li><b>면역항암제는 이제 '기본값'</b>이고, 연구의 관심은 그 위에 무엇을 더 얹을지(이중항체, ADC, 표적치료제)로 옮겨가고 있습니다.</li>
+      <li>치료 시점이 <b>점점 앞당겨지고(수술 전·후)</b>, 피 검사(ctDNA)로 <b>누구에게 더 하고 덜 할지</b> 정하려는 시험이 늘고 있습니다.</li>
+      <li>용도변경 약 시험은 소수지만 <b>베타차단제·당뇨약(메트포르민, SGLT2)·아스피린</b>을 면역항암/표적치료와 '함께' 쓰는 방식이 주류입니다.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">2</span>환자 여정별로 보면: 어느 단계에서 무엇을 시험하나</h2>
+  <p class="sub">검진부터 내성 이후까지, 단계마다 '요즘 가장 많이 시험하는 질문'을 정리했습니다. (건수는 키워드 기준 대략치)</p>
+  <div class="flow">
+    <div class="step"><div class="box" style="border-color:#74c0fc">
+      <h4 style="color:#1864ab">① 예방·검진·진단</h4><span class="cnt" style="color:#1864ab">약 260건</span>
+      <ul>
+        <li>AI로 CT 결절 판독·관리</li>
+        <li>검진 참여 늘리기, 금연 연계</li>
+        <li>새 PET 추적자로 정밀 진단</li>
+        <li>고위험군 <b>예방 백신</b>(SurVaxM)</li>
+      </ul></div></div>
+    <div class="step"><div class="box" style="border-color:#63e6be">
+      <h4 style="color:#087f5b">② 수술 가능 (조기)</h4><span class="cnt" style="color:#087f5b">약 455건</span>
+      <ul>
+        <li><b>수술 전·후</b> 면역항암 어떤 순서가 최선?</li>
+        <li><b>ctDNA/MRD</b>로 보조치료 여부 결정</li>
+        <li>작은 암은 폐를 덜 자르기(분절절제)</li>
+        <li>수술 후 표적치료(KRAS, 희귀 EGFR)</li>
+      </ul></div></div>
+    <div class="step"><div class="box" style="border-color:#ffd43b">
+      <h4 style="color:#a86b00">③ 수술 불가 3기</h4><span class="cnt" style="color:#a86b00">약 300건</span>
+      <ul>
+        <li>항암방사선 후 '공고요법'을 더발루맙보다 좋게?</li>
+        <li>이중항체·ADC를 이 단계로 앞당기기</li>
+        <li>방사선 부작용(폐·심장) 줄이기</li>
+      </ul></div></div>
+    <div class="step"><div class="box" style="border-color:#ff8787">
+      <h4 style="color:#c92a2a">④ 전이성 1차</h4><span class="cnt" style="color:#c92a2a">진행·전이 약 840건</span>
+      <ul>
+        <li><b>이중항체 vs 키트루다</b> 정면 승부</li>
+        <li>KRAS·EGFR 표적 + 면역/항암 병용</li>
+        <li>소수 전이엔 방사선(SABR) 추가</li>
+      </ul></div></div>
+    <div class="step"><div class="box" style="border-color:#b197fc">
+      <h4 style="color:#6741d9">⑤ 내성·재발 이후</h4><span class="cnt" style="color:#6741d9">④에 포함</span>
+      <ul>
+        <li><b>ADC</b>로 도세탁셀 대체</li>
+        <li>면역항암 내성 후 치료 백신</li>
+        <li>소세포폐암 <b>DLL3</b> 표적</li>
+      </ul></div></div>
+  </div>
+  <div class="support"><b>전 과정 공통: 지지요법·삶의 질 (약 160건)</b> &nbsp;운동·재활, 영양(오메가3), 식욕부진, 혈전 예방(스타틴), 약 부작용 관리(체중 증가 등), 마음 건강. 용도변경 약이 가장 자연스럽게 들어가는 영역이기도 합니다.</div>
+</section>
+
+<section>
+  <h2><span class="num">3</span>어떤 종류의 치료를 시험하나</h2>
+  <p class="sub">한 시험이 여러 방식을 함께 쓰는 경우가 많아 합계는 100%를 넘습니다.</p>
+  <div class="chart" id="chartMod"></div>
+  <p class="note">분류 방법: 시험 제목과 중재(약·시술) 이름의 키워드로 자동 분류. 대략적인 규모 비교용입니다.</p>
+</section>
+
+<section>
+  <h2><span class="num">4</span>지금 뜨는 6가지 흐름: 무엇을, 왜</h2>
+  <p class="sub">각 시험의 'Background(배경)' 설명에서 연구자들이 밝힌 이유를 쉽게 풀었습니다. NCT 번호를 누르면 원문으로 이동합니다.</p>
+  <div class="cards">
+
+    <div class="card" style="--c:#7c3aed">
+      <h3>A. 이중항체: 한 약에 열쇠 두 개</h3>
+      <div class="one">PD-1(면역 브레이크) + VEGF(종양 혈관)를 동시에 · 140건, 신규 등록 2021년 6건 → 2025년 55건</div>
+      <div class="mech"><span class="n">면역 브레이크 해제</span><span class="ar">+</span><span class="n">암에 영양 주는 혈관 차단</span><span class="ar">→</span><span class="n">한 분자로 동시에</span></div>
+      <p><span class="lab">왜</span>면역항암제 단독 효과가 한계에 이르자, 혈관신생 억제를 같은 분자에 묶어 효과를 높이려는 시도입니다. 이제는 <b>키트루다·더발루맙과 직접 비교하는 3상</b>이 여러 개 진행 중이라 '다음 표준' 후보로 주목받습니다.</p>
+      <div class="ex">
+        <div><a href="https://clinicaltrials.gov/study/NCT07361510" target="_blank">NCT07361510</a> 퍼미타믹 vs 펨브롤리주맙, 전이성 1차 <span class="pill">3상 750명 · BMS · 호주 포함</span></div>
+        <div><a href="https://clinicaltrials.gov/study/NCT06767514" target="_blank">NCT06767514</a> 이보네시맙, PD-L1 높은 전이성 1차 <span class="pill">3상 780명</span></div>
+        <div><a href="https://clinicaltrials.gov/study/NCT06712355" target="_blank">NCT06712355</a> BNT327 + 항암, 소세포폐암 1차 <span class="pill">3상 621명</span></div>
+      </div>
+    </div>
+
+    <div class="card" style="--c:#d9480f">
+      <h3>B. ADC: 유도미사일 항암제</h3>
+      <div class="one">항체(길잡이) + 강한 항암제(탄두) · 125건, 신규 등록 2021년 3건 → 2026년 51건</div>
+      <div class="mech"><span class="n">암세포 표지 (TROP2·HER3·B7-H3)</span><span class="ar">→</span><span class="n">항체가 찾아감</span><span class="ar">→</span><span class="n">안에서 항암제 방출</span></div>
+      <p><span class="lab">왜</span>독한 항암제를 암세포에만 집중시켜 효과는 높이고 전신 부작용은 줄이려는 전략입니다. 처음엔 수십 년 된 2차 표준인 <b>도세탁셀을 대체</b>하려 했고, 지금은 <b>1차·유지요법</b>까지 앞당기는 시험이 늘고 있습니다.</p>
+      <div class="ex">
+        <div><a href="https://clinicaltrials.gov/study/NCT07291037" target="_blank">NCT07291037</a> Dato-DXd vs 도세탁셀, TROP2 양성 <span class="pill">3상 · AstraZeneca</span></div>
+        <div><a href="https://clinicaltrials.gov/study/NCT06422143" target="_blank">NCT06422143</a> 키트루다 ± sac-TMT 유지, 편평상피암 <span class="pill">3상 851명</span></div>
+        <div><a href="https://clinicaltrials.gov/study/NCT07502300" target="_blank">NCT07502300</a> BL-B01D1(이중항체 ADC) 1차 <span class="pill">3상 · 중국</span></div>
+      </div>
+    </div>
+
+    <div class="card" style="--c:#c2255c">
+      <h3>C. 소세포폐암의 반격: DLL3</h3>
+      <div class="one">오래 정체됐던 소세포폐암(SCLC) · SCLC 시험 408건</div>
+      <div class="mech"><span class="n">SCLC 세포에 많은 DLL3</span><span class="ar">↔</span><span class="n">T세포 연결체가 다리 놓기</span><span class="ar">→</span><span class="n">면역세포가 직접 공격</span></div>
+      <p><span class="lab">왜</span>SCLC는 수십 년간 치료 발전이 더뎠습니다. DLL3는 SCLC 세포엔 많고 정상세포엔 적어 좋은 표적입니다. 요즘 시험은 '효과가 있나'를 넘어 <b>피하주사로 편하게, 컨디션이 나쁜 환자도, 집에서</b> 맞는 방법까지 다룹니다.</p>
+      <div class="ex">
+        <div><a href="https://clinicaltrials.gov/study/NCT07778316" target="_blank">NCT07778316</a> 탈라타맙 피하주사 vs 정맥주사 <span class="pill">3상 · 호주 포함</span></div>
+        <div><a href="https://clinicaltrials.gov/study/NCT07203053" target="_blank">NCT07203053</a> 전신상태 2(ECOG 2) 환자 대상 <span class="pill">2상 · 유럽</span></div>
+        <div><a href="https://clinicaltrials.gov/study/NCT06957314" target="_blank">NCT06957314</a> 탈라타맙 재택 투여(Hospital-at-Home) <span class="pill">MSK</span></div>
+      </div>
+    </div>
+
+    <div class="card" style="--c:#1864ab">
+      <h3>D. KRAS: '못 잡던 표적'의 확장</h3>
+      <div class="one">KRAS 관련 86건 · 1세대 → 2세대·다른 변이·조기 단계로</div>
+      <div class="mech"><span class="n">G12C 1세대</span><span class="ar">→</span><span class="n">2세대 + 면역항암</span><span class="ar">→</span><span class="n">G12D 등 다른 변이</span><span class="ar">→</span><span class="n">수술 후</span></div>
+      <p><span class="lab">왜</span>KRAS는 오랫동안 약으로 막을 수 없다고 여겨졌습니다. 첫 약들이 나온 뒤 <b>더 강한 2세대, 다른 변이형(G12D), 그리고 수술 후 재발 예방</b>으로 범위를 넓히는 중입니다.</p>
+      <div class="ex">
+        <div><a href="https://clinicaltrials.gov/study/NCT07541170" target="_blank">NCT07541170</a> 디바라십, 수술 후 KRAS G12C <span class="pill">3상 · Roche</span></div>
+        <div><a href="https://clinicaltrials.gov/study/NCT06890598" target="_blank">NCT06890598</a> 올로모라십 + 표준치료 <span class="pill">3상 700명 · 호주 포함</span></div>
+        <div><a href="https://clinicaltrials.gov/study/NCT07566052" target="_blank">NCT07566052</a> 세티데그라십, KRAS G12D <span class="pill">3상 · Astellas</span></div>
+      </div>
+    </div>
+
+    <div class="card" style="--c:#0f8b8d">
+      <h3>E. 피 한 방울로 맞춤: ctDNA / MRD</h3>
+      <div class="one">혈액 속 암 DNA로 치료 강도 조절 · 52건</div>
+      <div class="mech"><span class="n">수술/치료 후 혈액검사</span><span class="ar">→</span><span class="n">암 DNA 남음?</span><span class="ar">→</span><span class="n">예: 치료 강화 / 아니오: 줄이기</span></div>
+      <p><span class="lab">왜</span>수술 전 면역항암이 표준이 되면서 "모두에게 똑같이 더 할 필요가 있나?"가 핵심 질문이 됐습니다. 재발 위험이 높은 사람만 골라 치료하면 <b>효과는 지키고 부작용·비용은 줄일 수</b> 있습니다.</p>
+      <div class="ex">
+        <div><a href="https://clinicaltrials.gov/study/NCT07120698" target="_blank">NCT07120698</a> MRD에 따라 보조 면역항암 조절 (ADAPT Lung) <span class="pill">2상</span></div>
+        <div><a href="https://clinicaltrials.gov/study/NCT07554846" target="_blank">NCT07554846</a> 수술 전·후 vs 수술 후 vs 수술 전 면역항암 비교 <span class="pill">3상 759명</span></div>
+        <div><a href="https://clinicaltrials.gov/study/NCT07874490" target="_blank">NCT07874490</a> ctDNA 남은 EGFR 환자에 사이클로스포린 추가 <span class="pill">2상 · NYU</span></div>
+      </div>
+    </div>
+
+    <div class="card" style="--c:#2f9e44">
+      <h3>F. 덜 하고, 더 정확하게</h3>
+      <div class="one">폐 기능 보존과 국소 치료 · 수술 방법 219건, 방사선 325건</div>
+      <div class="mech"><span class="n">검진으로 작은 암 발견 ↑</span><span class="ar">→</span><span class="n">폐를 덜 자르기</span><span class="ar">/</span><span class="n">전이 몇 개면 정밀 방사선</span></div>
+      <p><span class="lab">왜</span>검진이 늘며 2cm 이하 작은 암이 많이 발견됩니다. 폐엽 전체 대신 <b>일부만 절제</b>하거나 <b>수술 대신 정밀 방사선(SABR)</b>으로 같은 결과를 낼 수 있는지 확인합니다. 전이가 몇 군데뿐일 때 방사선을 더하면 생존이 늘어나는지도 시험 중입니다.</p>
+      <div class="ex">
+        <div><a href="https://clinicaltrials.gov/study/NCT04937283" target="_blank">NCT04937283</a> 분절절제 vs 엽절제, 2cm 이하 <span class="pill">690명</span></div>
+        <div><a href="https://clinicaltrials.gov/study/NCT02468024" target="_blank">NCT02468024</a> 부분절제 vs SABR (JoLT-Ca) <span class="pill">3상 · 호주 포함</span></div>
+        <div><a href="https://clinicaltrials.gov/study/NCT06563388" target="_blank">NCT06563388</a> 전이암 즉시 vs 3개월 후 SABR <span class="pill">3상 800명</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">5</span>새로운 방식이 얼마나 빨리 늘고 있나</h2>
+  <p class="sub">현재 열려 있는 시험을 '처음 등록된 해' 기준으로 나눴습니다. 막대는 전체 신규 등록, 선은 그중 ADC·이중항체 비율입니다.</p>
+  <div class="chart" id="chartYear"></div>
+  <p class="note">오래된 시험은 이미 종료된 경우가 많아 과거 연도 막대는 작게 보입니다. 2026년은 10월 29일까지 집계. 핵심은 '비율' 선: 2023년 5% → 2026년 14%.</p>
+</section>
+
+<section>
+  <div class="grid2">
+    <div>
+      <h2><span class="num">6</span>많이 연구되는 표적(바이오마커)</h2>
+      <p class="sub">내 검사지에 있는 단어가 여기 있나 찾아보세요.</p>
+      <div class="chart" id="chartBm"></div>
+      <p class="note">보라색 = 최근 떠오르는 ADC/T세포 연결체 표적.</p>
+    </div>
+    <div>
+      <h2><span class="num">7</span>어디서 연구하나</h2>
+      <p class="sub">참여 병원이 있는 국가 기준 (한 시험이 여러 나라 포함 가능)</p>
+      <div class="chart" id="chartCountry"></div>
+      <p class="note">2024년부터 신규 시험 수에서 중국이 미국을 앞섰습니다 (2025년 신규: 중국 302 vs 미국 207). 중국 신약이 글로벌 3상으로 이어지는 경우가 많습니다.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">8</span>커뮤니티 특집: 용도변경 약은 어디에 있나</h2>
+  <p class="sub">2,456건 중 기존에 다른 병에 쓰던 약을 시험하는 경우를 직접 골라 읽었습니다. 핵심 패턴: <b>단독이 아니라 표준치료에 '더하는' 방식</b>입니다.</p>
+
+  <div class="grp" style="background:#16324f">A. 암 자체를 겨냥한 시험 (약 13건)</div>
+  <table>
+    <tr><th>약 (원래 용도)</th><th>함께 쓰는 치료 · 대상</th><th>단계 · 규모</th><th>연구자가 밝힌 이유</th></tr>
+    <tr><td class="drug"><b>메트포르민</b><small>당뇨약</small></td><td>EGFR 표적치료제와 병용 · EGFR 변이 비소세포폐암</td><td><span class="ph p3">3상</span> 312명 · 멕시코<br><a href="https://clinicaltrials.gov/study/NCT05445791" target="_blank">NCT05445791</a></td><td>LKB1-AMPK 대사 경로를 건드려 표적치료제 <b>내성을 늦추고</b> 무진행 생존을 늘리려는 목적</td></tr>
+    <tr><td class="drug"><b>프로프라놀롤</b><small>혈압·심장약 (베타차단제)</small></td><td>면역항암 + 항암 · 전이성 NSCLC / 수술 가능 NSCLC / 소세포폐암 <b>(같은 병원 3건)</b></td><td><span class="ph">1상</span> 중국<br><a href="https://clinicaltrials.gov/study/NCT05979818" target="_blank">NCT05979818</a> · <a href="https://clinicaltrials.gov/study/NCT07886229" target="_blank">NCT07886229</a> · <a href="https://clinicaltrials.gov/study/NCT07886047" target="_blank">NCT07886047</a></td><td>스트레스 호르몬(아드레날린) 신호를 막으면 <b>면역세포 반응이 강해져</b> 면역항암 효과가 커질 수 있다는 가설</td></tr>
+    <tr><td class="drug"><b>아스피린</b><small>진통·항혈소판</small></td><td>세르플리맙 + 항암 · 확장기 소세포폐암 1차</td><td><span class="ph soon">2상 · 모집 예정</span> 43명<br><a href="https://clinicaltrials.gov/study/NCT06554535" target="_blank">NCT06554535</a></td><td>면역항암 효과를 높이고 <b>혈전·발열 같은 부작용을 줄일</b> 수 있다는 보고</td></tr>
+    <tr><td class="drug"><b>피르페니돈</b><small>폐섬유증 약</small></td><td>아테졸리주맙 · 2차 이상 NSCLC</td><td><span class="ph">1/2상</span> 25명 · 미국 캔자스대<br><a href="https://clinicaltrials.gov/study/NCT04467723" target="_blank">NCT04467723</a></td><td>항종양 효과를 높이고 <b>면역항암 내성</b>을 줄이는지 확인</td></tr>
+    <tr><td class="drug"><b>사이클로스포린 A</b><small>면역억제제</small></td><td>오시머티닙 · EGFR 변이, 3주 후에도 ctDNA 남은 환자</td><td><span class="ph">2상</span> 60명 · 미국 NYU (2026-10 등록)<br><a href="https://clinicaltrials.gov/study/NCT07874490" target="_blank">NCT07874490</a></td><td>표적치료에 반응이 덜한 사람을 <b>피 검사로 골라</b> 효과를 높이려는 설계</td></tr>
+    <tr><td class="drug"><b>다파글리플로진 / SGLT2 억제제</b><small>당뇨·심부전 약</small></td><td>① 1A기 폐선암 수술 전 ② 당뇨 동반 진행성 폐암</td><td><span class="ph">초기 1상</span> 48명 · UCLA <a href="https://clinicaltrials.gov/study/NCT07235280" target="_blank">NCT07235280</a><br><span class="ph soon">모집 예정</span> 200명 · 상하이 <a href="https://clinicaltrials.gov/study/NCT07272057" target="_blank">NCT07272057</a></td><td>초기 폐선암에 <b>SGLT2 단백질이 많고</b>, 당뇨 환자에서 이 약을 쓰면 폐암 예후가 좋았다는 관찰</td></tr>
+    <tr><td class="drug"><b>리도카인</b><small>국소 마취제</small></td><td>수술 중 정맥 주입 · 수술받는 NSCLC</td><td><span class="ph soon">모집 예정</span> 1,400명 · 중국<br><a href="https://clinicaltrials.gov/study/NCT07347977" target="_blank">NCT07347977</a></td><td>마취 방법이 <b>수술 후 재발·전이 위험</b>을 줄일 수 있는지 확인</td></tr>
+    <tr><td class="drug"><b>올란자핀</b><small>정신과 약 (구토·식욕에도 사용)</small></td><td>① 니볼루맙 1차 병용 ② 영양상담 + 표준치료</td><td><span class="ph">2상</span> 156명 <a href="https://clinicaltrials.gov/study/NCT06554613" target="_blank">NCT06554613</a><br><span class="ph p3">3상</span> 230명 <a href="https://clinicaltrials.gov/study/NCT06338683" target="_blank">NCT06338683</a></td><td>마음·신경계와 면역의 연결, 그리고 <b>식욕·체중 회복이 생존으로 이어지는지</b> 확인</td></tr>
+    <tr><td class="drug"><b>탈리도마이드</b></td><td>캄렐리주맙 + 항암 · 진행성 NSCLC 1차</td><td><span class="ph soon">4상 · 모집 예정</span> 104명<br><a href="https://clinicaltrials.gov/study/NCT06276933" target="_blank">NCT06276933</a></td><td>등록 정보에 이유 설명이 거의 없음 (안전성·효과 탐색)</td></tr>
+  </table>
+
+  <div class="grp" style="background:#7c3aed">B. 부작용·합병증을 관리하는 시험</div>
+  <table>
+    <tr><th>약 (원래 용도)</th><th>목적</th><th>단계 · 규모</th><th>시험 번호</th></tr>
+    <tr><td class="drug"><b>로수바스타틴</b><small>콜레스테롤 약</small></td><td>암 환자 <b>혈전</b> 예방 (출혈 위험 없이)</td><td><span class="ph p4">4상</span> 4,000명</td><td><a href="https://clinicaltrials.gov/study/NCT07303816" target="_blank">NCT07303816</a></td></tr>
+    <tr><td class="drug"><b>터제파타이드 (GLP-1)</b><small>비만·당뇨 약</small></td><td>롤라티닙(ALK 표적치료제)으로 인한 <b>급격한 체중 증가</b> 관리</td><td><span class="ph">1상</span> 30명</td><td><a href="https://clinicaltrials.gov/study/NCT07782359" target="_blank">NCT07782359</a></td></tr>
+    <tr><td class="drug"><b>아토르바스타틴 + 리시노프릴</b><small>콜레스테롤·혈압 약</small></td><td>방사선 치료 후 <b>심장 질환</b> 예방</td><td><span class="ph">2상</span></td><td><a href="https://clinicaltrials.gov/study/NCT07685938" target="_blank">NCT07685938</a></td></tr>
+    <tr><td class="drug"><b>N-아세틸시스테인</b><small>가래약</small></td><td>간질성 폐질환 환자의 <b>방사선 호흡기 증상</b> 감소</td><td><span class="ph">2상</span></td><td><a href="https://clinicaltrials.gov/study/NCT05986318" target="_blank">NCT05986318</a></td></tr>
+    <tr><td class="drug"><b>트라넥삼산 (흡입)</b><small>지혈제</small></td><td>암 환자의 <b>폐출혈(객혈)</b> 치료</td><td><span class="ph p3">3상</span></td><td><a href="https://clinicaltrials.gov/study/NCT05053867" target="_blank">NCT05053867</a></td></tr>
+  </table>
+
+  <div class="warn">
+    <h4>읽을 때 주의할 점</h4>
+    <ul style="margin:0;padding-left:20px">
+      <li><b>이트라코나졸</b>(무좀약)이 6건에 나오지만, 모두 신약과의 <b>약물 상호작용을 확인하는 도구</b>로 쓰인 것이지 항암 목적이 아닙니다. 약 이름만 보고 판단하면 오해하기 쉽습니다.</li>
+      <li>커뮤니티에서 자주 논의되는 <b>이버멕틴, 펜벤다졸, 메벤다졸, 니클로사마이드, 디설피람</b>은 현재 모집 중인 폐암 시험에서 <b>0건</b>이었습니다.</li>
+      <li>시험이 등록됐다는 것은 '효과가 증명됐다'가 아니라 <b>'확인해 볼 가치가 있다'</b>는 뜻입니다. 대부분 1~2상 초기 단계입니다.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">9</span>회원용: 임상시험 목록 읽는 법</h2>
+  <p class="sub">단계(Phase)가 높을수록 '표준 치료'에 가깝습니다. 현재 열린 폐암 시험의 단계별 건수입니다.</p>
+  <div class="ladder">
+    <div class="rung" style="background:#74c0fc;height:110px"><b>1상 · 약 690건</b>안전한가? 용량은?<br>(초기 1상, 1/2상 포함)</div>
+    <div class="rung" style="background:#4dabf7;height:140px"><b>2상 · 811건</b>효과 신호가 있나?<br>가장 많은 단계</div>
+    <div class="rung" style="background:#228be6;height:170px"><b>3상 · 약 280건</b>기존 표준보다 나은가?<br>(2/3상 포함) 결과가 좋으면 곧 표준이 될 후보</div>
+    <div class="rung" style="background:#1864ab;height:200px"><b>4상 · 45건</b>이미 승인된 약을 실제 진료에서 더 잘 쓰는 법</div>
+  </div>
+  <p class="note" style="margin-top:-6px">단계 표시가 없는 624건은 수술 방법·검진·운동·교육처럼 '약이 아닌' 시험입니다.</p>
+
+  <div class="grid2" style="margin-top:14px">
+    <div class="ok">
+      <b>opencancer.ai에서 이렇게 해보세요</b>
+      <ol style="margin:6px 0 0;padding-left:20px">
+        <li>암 종류에서 <b>Lung Cancer</b> 선택 → "Just filter for now"</li>
+        <li>Status를 <b>Opening Soon</b>으로 바꾸면 가장 최신 아이디어</li>
+        <li>Phase를 <b>Phase 3</b>로 바꾸면 곧 표준이 될 후보</li>
+        <li>관심 시험의 <b>View Details → About This Trial</b>에서 '왜'를 읽기</li>
+        <li>모르는 용어는 상단 <b>Ask a question</b>(AI)에 질문</li>
+      </ol>
+    </div>
+    <div class="ok" style="background:#f3f6fa;border-color:#dbe3ec">
+      <b>시험 하나를 볼 때 체크할 5가지</b>
+      <ul class="check" style="margin:6px 0 0;padding-left:20px">
+        <li><b>무엇과 비교하나?</b> 위약? 기존 표준?</li>
+        <li><b>몇 명?</b> 수십 명은 탐색, 수백 명 이상은 본격 검증</li>
+        <li><b>누가 후원하나?</b> 제약사 vs 병원·학계</li>
+        <li><b>어떤 환자만?</b> 바이오마커, 치료 단계, 전신상태</li>
+        <li><b>병용약 제한은?</b> 많은 시험이 보충제·다른 약 복용을 제한</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section style="background:#fafafa">
+  <h2 style="font-size:18px">방법과 한계</h2>
+  <ul style="font-size:14px;color:#4b5563;margin:6px 0 0;padding-left:20px">
+    <li>2026-10-29 ClinicalTrials.gov API에서 '폐암' 관련, 중재시험, 모집 중/모집 예정 상태인 2,456건을 내려받았습니다. 여러 암을 함께 모집하는 '고형암 전체' 시험도 포함됩니다.</li>
+    <li>치료 방식·단계·표적 분류는 제목·중재명 키워드 기반 자동 분류라 오차가 있습니다. 규모 비교용으로만 보세요. 용도변경 약 목록은 직접 읽고 골랐습니다.</li>
+    <li>이미 종료된 시험과 결과는 포함하지 않습니다. 이 리포트는 '지금 무엇을 확인하고 있는가'를 보여줄 뿐, 효과를 보증하지 않습니다.</li>
+    <li><b>의학적 조언이 아닙니다.</b> 치료 결정과 임상시험 참여는 반드시 담당 의료진과 상의하세요.</li>
+  </ul>
+</section>
+
+<footer>폐암 임상시험 동향 리포트 · 샘플판 · 2026년 10월 · 데이터 출처 ClinicalTrials.gov</footer>
+</div>
+
+<script>
+const NS='http://www.w3.org/2000/svg';
+function el(tag,attrs,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!=null)e.textContent=text;return e;}
+function hbar(id,data,opt={}){
+  const W=opt.w||960,rowH=opt.rowH||34,labelW=opt.labelW||220,pad=16,H=data.length*rowH+pad*2;
+  const max=Math.max(...data.map(d=>d.v));
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img'});
+  data.forEach((d,i)=>{
+    const y=pad+i*rowH, bw=(W-labelW-80)*d.v/max;
+    svg.appendChild(el('text',{x:labelW-10,y:y+rowH/2+5,'text-anchor':'end','font-size':opt.fs||15,fill:'#334155'},d.k));
+    svg.appendChild(el('rect',{x:labelW,y:y+5,width:W-labelW-80,height:rowH-10,rx:6,fill:'#f1f5f9'}));
+    svg.appendChild(el('rect',{x:labelW,y:y+5,width:Math.max(bw,3),height:rowH-10,rx:6,fill:d.c||opt.color||'#0f8b8d'}));
+    svg.appendChild(el('text',{x:labelW+bw+8,y:y+rowH/2+5,'font-size':opt.fs||15,'font-weight':700,fill:'#1f2937'},d.v.toLocaleString()));
+  });
+  document.getElementById(id).appendChild(svg);
+}
+hbar('chartMod',[
+  {k:'면역항암 (PD-1/PD-L1)',v:751,c:'#2563eb'},
+  {k:'표적치료 (EGFR·ALK·KRAS…)',v:578,c:'#1864ab'},
+  {k:'방사선치료',v:325,c:'#f08a24'},
+  {k:'진단·영상·조기검진',v:291,c:'#74c0fc'},
+  {k:'수술 방법',v:219,c:'#2f9e44'},
+  {k:'지지요법·삶의 질',v:157,c:'#b197fc'},
+  {k:'이중/삼중항체 ★',v:140,c:'#7c3aed'},
+  {k:'ADC (항체-약물접합체) ★',v:125,c:'#d9480f'},
+  {k:'세포치료·백신',v:89,c:'#c2255c'},
+  {k:'ctDNA/MRD 맞춤 ★',v:52,c:'#0f8b8d'},
+  {k:'식이·천연물·장내미생물',v:28,c:'#a9a9a9'},
+  {k:'금연',v:17,c:'#a9a9a9'}
+],{labelW:260});
+
+(function(){
+  const d=[{y:'2022',all:150,n:5},{y:'2023',all:226,n:12},{y:'2024',all:451,n:37},{y:'2025',all:663,n:84},{y:'2026*',all:727,n:99}];
+  const W=960,H=340,L=60,R=70,T=30,B=46,cw=(W-L-R)/d.length,max=800;
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`});
+  [0,200,400,600,800].forEach(v=>{const y=T+(H-T-B)*(1-v/max);svg.appendChild(el('line',{x1:L,x2:W-R,y1:y,y2:y,stroke:'#eef2f7'}));svg.appendChild(el('text',{x:L-8,y:y+4,'text-anchor':'end','font-size':12,fill:'#6b7280'},v));});
+  [0,5,10,15,20].forEach(p=>{const y=T+(H-T-B)*(1-p/20);svg.appendChild(el('text',{x:W-R+8,y:y+4,'font-size':12,fill:'#d9480f'},p+'%'));});
+  const pts=[];
+  d.forEach((r,i)=>{
+    const x=L+i*cw+cw*0.2,bw=cw*0.6,h=(H-T-B)*r.all/max,y=H-B-h;
+    svg.appendChild(el('rect',{x,y,width:bw,height:h,rx:6,fill:'#b6d4f0'}));
+    const nh=(H-T-B)*r.n/max;svg.appendChild(el('rect',{x,y:H-B-nh,width:bw,height:nh,rx:4,fill:'#7c3aed'}));
+    svg.appendChild(el('text',{x:x+bw/2,y:y-6,'text-anchor':'middle','font-size':13,'font-weight':700,fill:'#16324f'},r.all));
+    svg.appendChild(el('text',{x:x+bw/2,y:H-B+20,'text-anchor':'middle','font-size':14,fill:'#334155'},r.y));
+    const pct=r.n/r.all*100;pts.push([x+bw/2,T+(H-T-B)*(1-pct/20),pct]);
+  });
+  svg.appendChild(el('polyline',{points:pts.map(p=>p[0]+','+p[1]).join(' '),fill:'none',stroke:'#d9480f','stroke-width':3}));
+  pts.forEach(p=>{svg.appendChild(el('circle',{cx:p[0],cy:p[1],r:5,fill:'#fff',stroke:'#d9480f','stroke-width':3}));svg.appendChild(el('text',{x:p[0]+10,y:p[1]+20,'font-size':13,'font-weight':700,fill:'#d9480f'},p[2].toFixed(0)+'%'));});
+  const lg=el('g',{});lg.appendChild(el('rect',{x:L,y:6,width:14,height:12,rx:3,fill:'#b6d4f0'}));lg.appendChild(el('text',{x:L+20,y:16,'font-size':13,fill:'#334155'},'전체 신규 등록'));
+  lg.appendChild(el('rect',{x:L+130,y:6,width:14,height:12,rx:3,fill:'#7c3aed'}));lg.appendChild(el('text',{x:L+150,y:16,'font-size':13,fill:'#334155'},'ADC·이중항체 시험 수'));
+  lg.appendChild(el('line',{x1:L+300,x2:L+322,y1:12,y2:12,stroke:'#d9480f','stroke-width':3}));lg.appendChild(el('text',{x:L+328,y:16,'font-size':13,fill:'#334155'},'ADC·이중항체 비율(오른쪽 축)'));
+  svg.appendChild(lg);
+  document.getElementById('chartYear').appendChild(svg);
+})();
+
+hbar('chartBm',[
+  {k:'EGFR',v:272,c:'#1864ab'},{k:'PD-L1',v:115,c:'#2563eb'},{k:'KRAS',v:86,c:'#1864ab'},{k:'HER2',v:70,c:'#1864ab'},
+  {k:'ALK',v:61,c:'#1864ab'},{k:'MET',v:45,c:'#1864ab'},{k:'ROS1',v:22,c:'#1864ab'},{k:'DLL3',v:19,c:'#7c3aed'},
+  {k:'B7-H3',v:16,c:'#7c3aed'},{k:'RET',v:12,c:'#1864ab'},{k:'TROP2',v:11,c:'#7c3aed'},{k:'HER3',v:11,c:'#7c3aed'},{k:'BRAF',v:9,c:'#1864ab'}
+],{w:520,labelW:80,rowH:30,fs:14});
+
+hbar('chartCountry',[
+  {k:'중국',v:991,c:'#e03131'},{k:'미국',v:790,c:'#1c7ed6'},{k:'프랑스',v:226,c:'#868e96'},{k:'스페인',v:206,c:'#868e96'},
+  {k:'이탈리아',v:163,c:'#868e96'},{k:'호주',v:161,c:'#0f8b8d'},{k:'한국',v:146,c:'#0f8b8d'},{k:'캐나다',v:137,c:'#868e96'},
+  {k:'일본',v:133,c:'#868e96'},{k:'영국',v:129,c:'#868e96'},{k:'독일',v:126,c:'#868e96'},{k:'대만',v:121,c:'#868e96'}
+],{w:520,labelW:80,rowH:30,fs:14});
+</script>
+</body>
+</html>
