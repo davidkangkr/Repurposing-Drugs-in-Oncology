@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>펜벤다졸과 난소암 — 이번 논문은 무엇이 다른가요? | 커뮤니티판</title>
+<meta name="description" content="펜벤다졸(fenbendazole)의 난소암 연구(BMC Cancer 2024)를 처음 보는 분도 이해할 수 있게 풀어 쓴 커뮤니티용 해설입니다.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#fdfaf4;
+    --paper-2:#f6f0e4;
+    --ink:#2f2a24;
+    --ink-soft:#5d554a;
+    --line:#e3d9c6;
+    --green:#2f7d53;
+    --green-bg:#e8f3ec;
+    --amber:#b5760f;
+    --amber-bg:#fdf3e0;
+    --red:#b0352f;
+    --red-bg:#fbeae8;
+    --blue:#2a5f8f;
+    --blue-bg:#e9f1f8;
+    --violet:#6b4a8f;
+    --violet-bg:#f1ebf8;
+    --radius:16px;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Noto Sans KR",system-ui,-apple-system,sans-serif;
+    font-size:19px;
+    line-height:1.95;
+    letter-spacing:-0.01em;
+    word-break:keep-all;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:0 20px 90px;}
+  h1,h2,h3{font-family:"Noto Serif KR",serif;line-height:1.5;letter-spacing:-0.02em;}
+
+  /* ---------- Hero ---------- */
+  header.hero{
+    background:linear-gradient(180deg,#f7efe0 0%,var(--paper) 100%);
+    border-bottom:1px solid var(--line);
+    padding:56px 0 44px;
+    text-align:center;
+  }
+  .kicker{
+    display:inline-block;font-size:14px;font-weight:700;letter-spacing:.08em;
+    color:var(--green);background:var(--green-bg);
+    border-radius:999px;padding:7px 16px;margin-bottom:22px;
+  }
+  h1{font-size:33px;margin:0 0 18px;}
+  .sub{font-size:18px;color:var(--ink-soft);margin:0 auto;max-width:520px;}
+  .source{
+    margin-top:30px;font-size:14.5px;line-height:1.8;color:var(--ink-soft);
+    background:#fff;border:1px solid var(--line);border-radius:12px;
+    padding:16px 18px;text-align:left;
+  }
+  .source strong{color:var(--ink);}
+  .source a{color:var(--blue);word-break:break-all;}
+
+  /* ---------- Sections ---------- */
+  section{margin-top:64px;}
+  h2{
+    font-size:26px;margin:0 0 10px;
+    display:flex;align-items:baseline;gap:12px;
+  }
+  h2 .num{
+    font-family:"Noto Sans KR",sans-serif;font-size:15px;font-weight:700;
+    color:#fff;background:var(--ink);border-radius:8px;
+    padding:3px 10px;flex:0 0 auto;line-height:1.6;
+  }
+  h3{font-size:20.5px;margin:38px 0 10px;}
+  p{margin:0 0 20px;}
+  .lead{font-size:20px;}
+
+  /* ---------- Boxes ---------- */
+  .quote-user{
+    background:#fff;border-left:5px solid var(--line);
+    border-radius:0 12px 12px 0;padding:20px 22px;margin:0 0 26px;
+    color:var(--ink-soft);font-size:18px;
+  }
+  .quote-user p{margin:0 0 10px;}
+  .quote-user p:last-child{margin:0;}
+  .quote-user .who{font-size:15px;color:#9b9183;}
+
+  .ask{
+    background:#fff;border:2px dashed var(--green);
+    border-radius:var(--radius);padding:20px 22px;margin:0 0 18px;
+    position:relative;
+  }
+  .ask::before{
+    content:"“";font-family:"Noto Serif KR",serif;font-size:58px;color:var(--green);
+    opacity:.25;position:absolute;top:-6px;left:14px;line-height:1;
+  }
+  .ask p{margin:0;padding-left:30px;font-size:18.5px;font-weight:500;}
+  .ask-label{
+    display:inline-block;background:var(--green);color:#fff;
+    font-size:13px;font-weight:700;border-radius:999px;padding:4px 13px;margin-bottom:14px;
+  }
+
+  .callout{border-radius:var(--radius);padding:22px 24px;margin:26px 0;}
+  .callout h4{margin:0 0 10px;font-size:18px;font-family:"Noto Serif KR",serif;}
+  .callout p:last-child{margin-bottom:0;}
+  .c-warn{background:var(--amber-bg);border:1px solid #efd8a8;}
+  .c-warn h4{color:var(--amber);}
+  .c-safe{background:var(--green-bg);border:1px solid #bfdcc9;}
+  .c-safe h4{color:var(--green);}
+  .c-stop{background:var(--red-bg);border:1px solid #efc3bf;}
+  .c-stop h4{color:var(--red);}
+
+  /* AI 해설 */
+  .ai{
+    background:var(--violet-bg);border:1px solid #d7c8ea;
+    border-left:6px solid var(--violet);
+    border-radius:0 var(--radius) var(--radius) 0;
+    padding:20px 22px;margin:26px 0;
+  }
+  .ai-label{
+    display:inline-flex;align-items:center;gap:7px;
+    background:var(--violet);color:#fff;font-size:13px;font-weight:700;
+    border-radius:999px;padding:5px 14px;margin-bottom:12px;letter-spacing:.02em;
+  }
+  .ai p:last-child{margin-bottom:0;}
+  .ai p{font-size:17.5px;}
+
+  /* ---------- Figures ---------- */
+  figure{margin:30px 0;text-align:center;}
+  figure svg{max-width:100%;height:auto;display:block;margin:0 auto;}
+  figcaption{font-size:15.5px;color:var(--ink-soft);margin-top:14px;line-height:1.75;text-align:left;}
+
+  /* ---------- Table ---------- */
+  .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:24px 0;}
+  table{border-collapse:collapse;width:100%;font-size:17px;background:#fff;
+        border:1px solid var(--line);border-radius:12px;overflow:hidden;}
+  th,td{padding:14px 14px;text-align:left;border-bottom:1px solid var(--line);}
+  thead th{background:var(--paper-2);font-weight:700;font-size:16px;}
+  tbody tr:last-child td{border-bottom:none;}
+  td.big{font-weight:700;font-size:19px;color:var(--green);white-space:nowrap;}
+
+  ul.plain{margin:0 0 20px;padding-left:22px;}
+  ul.plain li{margin-bottom:12px;}
+
+  .close{
+    margin-top:66px;text-align:center;background:var(--paper-2);
+    border-radius:var(--radius);padding:38px 26px;
+  }
+  .close p{font-family:"Noto Serif KR",serif;font-size:21px;line-height:2;margin:0;}
+
+  footer{
+    margin-top:50px;padding-top:26px;border-top:1px solid var(--line);
+    font-size:14.5px;color:var(--ink-soft);line-height:1.85;
+  }
+  footer a{color:var(--blue);word-break:break-all;}
+
+  a:focus-visible,button:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:4px;}
+
+  /* ---------- Reveal ---------- */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease;}
+  .reveal.on{opacity:1;transform:none;}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1 !important;transform:none !important;transition:none !important;}
+  }
+  @media (max-width:520px){
+    body{font-size:18px;}
+    h1{font-size:27px;}
+    h2{font-size:22.5px;}
+    h3{font-size:19px;}
+    .wrap{padding:0 16px 70px;}
+    th,td{padding:12px 10px;font-size:16px;}
+  }
+  @media print{
+    body{background:#fff;font-size:12pt;}
+    .reveal{opacity:1;transform:none;}
+    section{page-break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">커뮤니티판 · 처음 보시는 분을 위한 해설</span>
+    <h1>펜벤다졸과 난소암,<br>이번 논문은 무엇이 다른가요?</h1>
+    <p class="sub">2024년 한 중국 연구팀이 펜벤다졸을 난소암 세포와 쥐에게 써 보고,<br>“왜 듣는지”를 유전자 수준까지 들여다본 논문입니다.</p>
+    <div class="source">
+      <strong>원본 논문</strong><br>
+      Wang X, Tian W, 외. <em>Transcriptome analysis reveals the anticancer effects of fenbendazole on ovarian cancer: an in vitro and in vivo study.</em> BMC Cancer. 2024;24:1593.<br>
+      <a href="https://doi.org/10.1186/s12885-024-13361-9" target="_blank" rel="noopener">https://doi.org/10.1186/s12885-024-13361-9</a> (무료 공개 논문)<br>
+      <span style="color:#9b9183;font-size:13.5px;">※ 이 페이지는 원문을 그대로 옮긴 것이 아니라, 사실 내용을 우리말로 다시 풀어 쓴 해설입니다.</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<!-- ========== 1 ========== -->
+<section class="reveal">
+  <h2><span class="num">1</span> “또 펜벤다졸이에요?”</h2>
+
+  <div class="quote-user">
+    <p>“펜벤다졸 이야기는 몇 년째 듣고 있어요. 효과 봤다는 분도 있고, 아무 소용 없었다는 분도 있고요. 솔직히 이제는 무슨 말을 믿어야 할지 모르겠습니다.”</p>
+    <p class="who">— 커뮤니티에 자주 올라오는 질문</p>
+  </div>
+
+  <p class="lead">그렇게 느끼시는 건 전혀 이상한 일이 아닙니다. 지금까지 우리가 들어온 이야기 대부분은 <strong>“누가 먹고 좋아졌다”</strong>는 <strong>결과 이야기</strong>였습니다. 결과 이야기는 아무리 많이 모여도 “그래서 왜?”에 답을 못 해 줍니다.</p>
+
+  <p>이번 논문이 다른 점은 딱 하나입니다. <strong>“왜 그런 일이 벌어지는가”를 실험실에서 하나하나 뜯어봤다는 것</strong>입니다. 효과가 있다/없다를 주장하는 글이 아니라, <em>작동 방식</em>을 설명하려는 논문입니다.</p>
+
+  <div class="callout c-safe">
+    <h4>이 글을 읽고 나면 할 수 있게 되는 것</h4>
+    <p>약을 어떻게 먹을지 결정하는 게 아니라, <strong>주치의 선생님께 더 나은 질문을 드릴 수 있게</strong> 됩니다. 이 글 맨 끝에 그대로 복사해 쓰실 수 있는 질문 문장들을 준비해 두었습니다.</p>
+  </div>
+</section>
+
+<!-- ========== 2 ========== -->
+<section class="reveal">
+  <h2><span class="num">2</span> 한 장의 그림: 멈춰 선 복사 공장</h2>
+
+  <p>암세포를 <strong>쉬지 않고 자기를 복사하는 작은 공장</strong>이라고 생각해 보세요. 공장이 자기 자신을 한 번 복사할 때마다, 안에 있는 <strong>설계도(염색체)</strong>를 정확히 반으로 나눠서 양쪽으로 끌고 가야 합니다.</p>
+
+  <p>그 설계도를 양쪽으로 끌고 가는 장치가 <strong>레일</strong>입니다. 세포 안에 실제로 있는 이 레일을 <strong>미세소관(microtubule)</strong>이라고 부릅니다.</p>
+
+  <p>이번 논문이 말하는 펜벤다졸의 역할은 간단합니다. <strong>이 레일을 흔들어 놓는 것</strong>입니다.</p>
+
+  <figure>
+    <svg viewBox="0 0 360 620" role="img" aria-labelledby="fig1t fig1d" xmlns="http://www.w3.org/2000/svg">
+      <title id="fig1t">복사 공장 비유</title>
+      <desc id="fig1d">정상 세포는 설계도를 양쪽으로 깔끔히 나누지만, 펜벤다졸이 레일을 흔들면 설계도가 엉킨 채 멈추고 결국 세포가 스스로 무너집니다.</desc>
+
+      <!-- panel 1 -->
+      <rect x="6" y="6" width="348" height="168" rx="16" fill="#e8f3ec" stroke="#bfdcc9"/>
+      <text x="26" y="36" font-family="Noto Sans KR,sans-serif" font-size="14" font-weight="700" fill="#2f7d53">① 평소의 세포 분열</text>
+      <line x1="60" y1="105" x2="300" y2="105" stroke="#2f7d53" stroke-width="3"/>
+      <line x1="60" y1="125" x2="300" y2="125" stroke="#2f7d53" stroke-width="3"/>
+      <circle cx="96" cy="115" r="14" fill="#2f7d53"/>
+      <circle cx="264" cy="115" r="14" fill="#2f7d53"/>
+      <path d="M150 115 L120 115" stroke="#2f7d53" stroke-width="2.5" marker-end="url(#ag)"/>
+      <path d="M210 115 L240 115" stroke="#2f7d53" stroke-width="2.5" marker-end="url(#ag)"/>
+      <text x="180" y="78" text-anchor="middle" font-family="Noto Sans KR,sans-serif" font-size="13" fill="#5d554a">레일이 곧게 깔림</text>
+      <text x="180" y="158" text-anchor="middle" font-family="Noto Sans KR,sans-serif" font-size="13.5" fill="#2f2a24">설계도가 정확히 반으로 나뉨 → 복사 성공</text>
+
+      <!-- arrow -->
+      <path d="M180 180 L180 202" stroke="#b5760f" stroke-width="3" marker-end="url(#aa)"/>
+      <text x="196" y="198" font-family="Noto Sans KR,sans-serif" font-size="13" font-weight="700" fill="#b5760f">펜벤다졸 투입</text>
+
+      <!-- panel 2 -->
+      <rect x="6" y="212" width="348" height="168" rx="16" fill="#fdf3e0" stroke="#efd8a8"/>
+      <text x="26" y="242" font-family="Noto Sans KR,sans-serif" font-size="14" font-weight="700" fill="#b5760f">② 레일이 흔들림</text>
+      <path d="M60 300 Q110 282 150 312 T240 300 T300 318" fill="none" stroke="#b5760f" stroke-width="3"/>
+      <path d="M60 330 Q120 348 170 320 T260 340 T300 326" fill="none" stroke="#b5760f" stroke-width="3"/>
+      <circle cx="150" cy="316" r="13" fill="#b5760f"/>
+      <circle cx="196" cy="326" r="13" fill="#b5760f"/>
+      <text x="180" y="284" text-anchor="middle" font-family="Noto Sans KR,sans-serif" font-size="13" fill="#5d554a">레일이 구부러지고 엉킴</text>
+      <text x="180" y="364" text-anchor="middle" font-family="Noto Sans KR,sans-serif" font-size="13.5" fill="#2f2a24">설계도가 양쪽으로 못 감 → 복사 도중 정지</text>
+
+      <!-- arrow -->
+      <path d="M180 386 L180 408" stroke="#b0352f" stroke-width="3" marker-end="url(#ar)"/>
+
+      <!-- panel 3 -->
+      <rect x="6" y="418" width="348" height="190" rx="16" fill="#fbeae8" stroke="#efc3bf"/>
+      <text x="26" y="448" font-family="Noto Sans KR,sans-serif" font-size="14" font-weight="700" fill="#b0352f">③ 공장이 스스로 문을 닫음</text>
+      <circle cx="180" cy="516" r="44" fill="none" stroke="#b0352f" stroke-width="3" stroke-dasharray="7 6"/>
+      <circle cx="162" cy="502" r="11" fill="#b0352f" opacity=".75"/>
+      <circle cx="198" cy="508" r="9" fill="#b0352f" opacity=".75"/>
+      <circle cx="176" cy="532" r="10" fill="#b0352f" opacity=".75"/>
+      <text x="180" y="582" text-anchor="middle" font-family="Noto Sans KR,sans-serif" font-size="13.5" fill="#2f2a24">핵이 여러 조각으로 쪼개짐 → 세포 사멸</text>
+      <text x="180" y="600" text-anchor="middle" font-family="Noto Sans KR,sans-serif" font-size="12.5" fill="#8a4a46">전문 용어로 ‘유사분열 파국(mitotic catastrophe)’</text>
+
+      <defs>
+        <marker id="ag" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+          <path d="M0 0 L8 4 L0 8 z" fill="#2f7d53"/></marker>
+        <marker id="aa" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+          <path d="M0 0 L9 4.5 L0 9 z" fill="#b5760f"/></marker>
+        <marker id="ar" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+          <path d="M0 0 L9 4.5 L0 9 z" fill="#b0352f"/></marker>
+      </defs>
+    </svg>
+    <figcaption>복사 공장 비유 — 레일(미세소관)이 흔들리면 설계도를 나누지 못하고, 세포는 복사 도중에 멈춘 채 스스로 무너집니다.</figcaption>
+  </figure>
+
+  <div class="ai">
+    <span class="ai-label">AI 클로드 해설</span>
+    <p>이 방식 자체는 전혀 낯선 것이 아닙니다. 난소암 표준 항암제로 쓰이는 <strong>파클리탁셀(paclitaxel, 탁솔)</strong> 도 같은 레일을 건드려서 암세포를 죽입니다. 논문도 바로 그 점을 근거로 삼고 있습니다. 다만 <strong>“같은 원리로 작동한다”와 “사람에게 같은 효과를 낸다”는 전혀 다른 이야기</strong>입니다. 이 논문은 앞쪽만 보여 줍니다.</p>
+  </div>
+</section>
+
+<!-- ========== 3 ========== -->
+<section class="reveal">
+  <h2><span class="num">3</span> 세포의 신호등, 어디서 멈추나</h2>
+
+  <p>세포가 자기를 복사하는 과정에는 정해진 순서가 있습니다. 신호등이 있는 길이라고 생각하시면 쉽습니다. 펜벤다졸을 넣으면 세포들이 <strong>마지막 구간에서 빨간불에 걸려 더 못 나아가고 쌓입니다.</strong></p>
+
+  <figure>
+    <svg viewBox="0 0 360 400" role="img" aria-labelledby="fig2t fig2d" xmlns="http://www.w3.org/2000/svg">
+      <title id="fig2t">세포주기 신호등</title>
+      <desc id="fig2d">세포는 G1, S 구간을 지나 G2/M 구간에서 펜벤다졸에 의해 멈춥니다.</desc>
+      <line x1="40" y1="50" x2="40" y2="330" stroke="#e3d9c6" stroke-width="6" stroke-linecap="round"/>
+
+      <circle cx="40" cy="70" r="15" fill="#2f7d53"/>
+      <text x="70" y="66" font-family="Noto Sans KR,sans-serif" font-size="16" font-weight="700" fill="#2f2a24">G1 — 준비 단계</text>
+      <text x="70" y="88" font-family="Noto Sans KR,sans-serif" font-size="13.5" fill="#5d554a">통과 (초록불)</text>
+
+      <circle cx="40" cy="150" r="15" fill="#2f7d53"/>
+      <text x="70" y="146" font-family="Noto Sans KR,sans-serif" font-size="16" font-weight="700" fill="#2f2a24">S — 설계도 복사</text>
+      <text x="70" y="168" font-family="Noto Sans KR,sans-serif" font-size="13.5" fill="#5d554a">통과 (초록불)</text>
+
+      <circle cx="40" cy="240" r="19" fill="#b0352f"/>
+      <rect x="23" y="237" width="34" height="6" rx="3" fill="#fff"/>
+      <text x="76" y="232" font-family="Noto Sans KR,sans-serif" font-size="17" font-weight="700" fill="#b0352f">G2/M — 나누기 직전</text>
+      <text x="76" y="256" font-family="Noto Sans KR,sans-serif" font-size="14" font-weight="700" fill="#b0352f">여기서 멈춤 (빨간불)</text>
+      <text x="76" y="277" font-family="Noto Sans KR,sans-serif" font-size="13" fill="#5d554a">약을 많이 줄수록 여기 갇힌 세포가 늘어남</text>
+
+      <path d="M40 300 L40 322" stroke="#b0352f" stroke-width="4" stroke-dasharray="5 5"/>
+      <circle cx="40" cy="340" r="15" fill="#8a4a46"/>
+      <text x="70" y="336" font-family="Noto Sans KR,sans-serif" font-size="16" font-weight="700" fill="#2f2a24">세포 사멸</text>
+      <text x="70" y="358" font-family="Noto Sans KR,sans-serif" font-size="13.5" fill="#5d554a">빠져나오지 못하고 무너짐</text>
+    </svg>
+    <figcaption>논문은 두 가지 난소암 세포(A2780, SKOV3)에서 모두 이 G2/M 구간 정체를 확인했고, <strong>약 농도를 올릴수록 갇히는 세포가 늘어나는 것</strong>도 확인했습니다.</figcaption>
+  </figure>
+</section>
+
+<!-- ========== 4 ========== -->
+<section class="reveal">
+  <h2><span class="num">4</span> “진짜 그 경로가 맞나?”를 증명한 방법</h2>
+
+  <p>세포가 죽은 것만 보면 “그냥 독해서 죽은 것 아닌가?” 하는 의심이 남습니다. 연구팀은 이걸 영리하게 확인했습니다.</p>
+
+  <p>세포에는 <strong>스스로 무너지는 자폭 스위치</strong>가 있습니다(전문 용어로 <strong>카스파제, caspase</strong> 경로). 연구팀은 이 <strong>자폭 스위치를 먼저 막아 놓고</strong> 펜벤다졸을 넣어 봤습니다. 만약 펜벤다졸이 정말 그 스위치를 눌러서 세포를 죽인 거라면, 스위치를 막았을 때 세포가 훨씬 덜 죽어야 합니다.</p>
+
+  <figure>
+    <svg viewBox="0 0 360 300" role="img" aria-labelledby="fig3t fig3d" xmlns="http://www.w3.org/2000/svg">
+      <title id="fig3t">자폭 스위치를 막았을 때 세포 사멸률 변화</title>
+      <desc id="fig3d">A2780 세포는 33.3퍼센트에서 9.3퍼센트로, SKOV3 세포는 54.3퍼센트에서 8.1퍼센트로 사멸률이 떨어졌습니다.</desc>
+
+      <text x="10" y="22" font-family="Noto Sans KR,sans-serif" font-size="14" font-weight="700" fill="#2f2a24">세포가 죽은 비율 (%)</text>
+
+      <!-- A2780 -->
+      <text x="10" y="56" font-family="Noto Sans KR,sans-serif" font-size="13.5" font-weight="700" fill="#5d554a">A2780 세포</text>
+      <rect x="10" y="66" width="235" height="30" rx="6" fill="#b0352f"/>
+      <text x="22" y="87" font-family="Noto Sans KR,sans-serif" font-size="14" font-weight="700" fill="#fff">펜벤다졸만 — 33.3%</text>
+      <rect x="10" y="104" width="66" height="30" rx="6" fill="#bfd4c6"/>
+      <text x="84" y="125" font-family="Noto Sans KR,sans-serif" font-size="14" font-weight="700" fill="#2f7d53">+ 스위치 차단 — 9.3%</text>
+
+      <!-- SKOV3 -->
+      <text x="10" y="178" font-family="Noto Sans KR,sans-serif" font-size="13.5" font-weight="700" fill="#5d554a">SKOV3 세포</text>
+      <rect x="10" y="188" width="330" height="30" rx="6" fill="#b0352f"/>
+      <text x="22" y="209" font-family="Noto Sans KR,sans-serif" font-size="14" font-weight="700" fill="#fff">펜벤다졸만 — 54.3%</text>
+      <rect x="10" y="226" width="58" height="30" rx="6" fill="#bfd4c6"/>
+      <text x="76" y="247" font-family="Noto Sans KR,sans-serif" font-size="14" font-weight="700" fill="#2f7d53">+ 스위치 차단 — 8.1%</text>
+
+      <text x="10" y="285" font-family="Noto Sans KR,sans-serif" font-size="12.5" fill="#8a8275">※ 논문 본문에 기재된 수치입니다.</text>
+    </svg>
+    <figcaption>자폭 스위치를 막자 사멸률이 크게 떨어졌습니다. 즉 세포가 그냥 녹아 없어진 게 아니라, <strong>세포 스스로 정해진 절차를 밟아 죽었다</strong>는 뜻입니다.</figcaption>
+  </figure>
+
+  <div class="ai">
+    <span class="ai-label">AI 클로드 해설</span>
+    <p>이 부분이 제가 보기에 이 논문에서 가장 단단한 대목입니다. “효과가 있더라”를 관찰한 게 아니라, <strong>경로를 일부러 끊어서 효과가 사라지는지 확인</strong>했기 때문입니다. 원인과 결과를 이어 붙이는 제대로 된 방식입니다. 다만 이 모든 일은 <strong>배양 접시 안에서 일어난 일</strong>이라는 점을 잊으면 안 됩니다.</p>
+  </div>
+</section>
+
+<!-- ========== 5 ========== -->
+<section class="reveal">
+  <h2><span class="num">5</span> 쥐에게 <u>먹여서</u> 종양이 줄었습니다</h2>
+
+  <p>접시 실험만으로는 부족합니다. 연구팀은 난소암 세포를 이식한 쥐에게 펜벤다졸을 <strong>주사가 아니라 입으로</strong> 먹였습니다.</p>
+
+  <div class="tablewrap">
+    <table>
+      <tbody>
+        <tr><th scope="row" style="width:36%">동물</th><td>생후 4주 암컷 누드마우스 16마리 (두 그룹)</td></tr>
+        <tr><th scope="row">투여 방식</th><td><strong>경구 투여(입으로 먹임)</strong>, 하루 1회</td></tr>
+        <tr><th scope="row">기간</th><td><strong>21일 연속</strong></td></tr>
+        <tr><th scope="row">용량</th><td>체중 1 kg당 50 mg</td></tr>
+        <tr><th scope="row">결과 ①</th><td>종양 <strong>크기</strong>가 대조군보다 뚜렷하게 작음</td></tr>
+        <tr><th scope="row">결과 ②</th><td>종양 <strong>무게</strong>도 뚜렷하게 가벼움</td></tr>
+        <tr><th scope="row">결과 ③</th><td>쥐의 <strong>체중은 줄지 않음</strong> (두 그룹 차이 없음)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <figure>
+    <svg viewBox="0 0 360 260" role="img" aria-labelledby="fig4t fig4d" xmlns="http://www.w3.org/2000/svg">
+      <title id="fig4t">21일간 종양 크기 변화 경향</title>
+      <desc id="fig4d">대조군은 종양이 계속 커졌고, 펜벤다졸군은 훨씬 완만하게 커졌습니다.</desc>
+      <line x1="46" y1="26" x2="46" y2="200" stroke="#cdc2ac" stroke-width="2"/>
+      <line x1="46" y1="200" x2="340" y2="200" stroke="#cdc2ac" stroke-width="2"/>
+      <text x="14" y="32" font-family="Noto Sans KR,sans-serif" font-size="12" fill="#8a8275">종양</text>
+      <text x="14" y="46" font-family="Noto Sans KR,sans-serif" font-size="12" fill="#8a8275">크기</text>
+      <text x="46" y="220" font-family="Noto Sans KR,sans-serif" font-size="12" fill="#8a8275">0일</text>
+      <text x="312" y="220" font-family="Noto Sans KR,sans-serif" font-size="12" fill="#8a8275">21일</text>
+
+      <polyline points="56,160 112,142 168,118 224,96 280,72 330,50" fill="none" stroke="#b0352f" stroke-width="4" stroke-linecap="round"/>
+      <polyline points="56,160 112,154 168,148 224,140 280,133 330,126" fill="none" stroke="#2a5f8f" stroke-width="4" stroke-linecap="round"/>
+
+      <circle cx="330" cy="50" r="5" fill="#b0352f"/>
+      <circle cx="330" cy="126" r="5" fill="#2a5f8f"/>
+
+      <rect x="150" y="232" width="13" height="13" rx="3" fill="#b0352f"/>
+      <text x="169" y="243" font-family="Noto Sans KR,sans-serif" font-size="13" fill="#2f2a24">약 안 준 그룹</text>
+      <rect x="20" y="232" width="13" height="13" rx="3" fill="#2a5f8f"/>
+      <text x="39" y="243" font-family="Noto Sans KR,sans-serif" font-size="13" fill="#2f2a24">펜벤다졸</text>
+    </svg>
+    <figcaption><strong>경향을 보여 주는 개념도입니다</strong> — 정확한 눈금 수치가 아니라 두 그룹의 차이가 벌어지는 모양을 그린 것입니다. 통계적으로 두 그룹 차이는 우연으로 보기 어려운 수준이었습니다.</figcaption>
+  </figure>
+
+  <div class="ai">
+    <span class="ai-label">AI 클로드 해설</span>
+    <p>커뮤니티 입장에서 <strong>가장 중요한 한 줄은 “입으로 먹여서 줄었다”</strong>입니다. 주사나 복강 투여였다면 우리와 거의 상관없는 이야기가 됐을 겁니다.<br><br>다만 꼭 같이 기억하셔야 할 것이 있습니다. 이 쥐들은 <strong>면역이 없도록 만든 특수한 쥐</strong>이고, 종양도 피부 밑에 이식한 덩어리입니다. 사람 몸 속 난소암과는 환경이 많이 다릅니다. 그리고 이 실험은 <strong>항암 치료와 함께 썼을 때</strong>를 본 것이 아닙니다.</p>
+  </div>
+</section>
+
+<!-- ========== 6 ========== -->
+<section class="reveal">
+  <h2><span class="num">6</span> “그럼 사람은 얼마를 먹는 건가요?”</h2>
+
+  <p>가장 많이 나오는 질문이고, <strong>가장 조심해서 다뤄야 할 질문</strong>입니다. 먼저 계산 자체를 투명하게 보여 드리겠습니다.</p>
+
+  <h3>계산 방법</h3>
+  <p>동물 용량을 사람 용량으로 바꿀 때 미국 식품의약국(FDA)이 쓰는 공식이 있습니다. 몸무게가 아니라 <strong>몸 표면적(체표면적, BSA)</strong> 비율로 맞추는 방식입니다. 쥐의 경우 <strong>12.3으로 나누면</strong> 됩니다.</p>
+
+  <div class="callout c-safe" style="text-align:center;">
+    <p style="font-size:20px;font-weight:700;margin:0;">50 mg/kg ÷ 12.3 = 약 <span style="color:var(--green);">4.07 mg/kg</span></p>
+    <p style="font-size:15px;margin:10px 0 0;color:var(--ink-soft);">(사람 체중 1 kg당 하루 4.07 mg에 해당)</p>
+  </div>
+
+  <h3>체중별 환산표 <span style="font-size:15px;color:var(--amber);font-weight:400;">— 단순 수학 계산</span></h3>
+
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>사람 체중</th><th>환산된 1일 용량</th><th>21일 합계</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>50 kg</td><td class="big">약 203 mg</td><td>약 4,270 mg</td></tr>
+        <tr><td>60 kg</td><td class="big">약 244 mg</td><td>약 5,124 mg</td></tr>
+        <tr><td>70 kg</td><td class="big">약 285 mg</td><td>약 5,977 mg</td></tr>
+        <tr><td>80 kg</td><td class="big">약 325 mg</td><td>약 6,830 mg</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout c-stop">
+    <h4>이 표를 복용량으로 읽으시면 안 됩니다</h4>
+    <p>이 숫자들은 <strong>계산기를 두드린 결과일 뿐</strong>입니다. 다음 세 가지가 전혀 반영돼 있지 않습니다.</p>
+    <ul class="plain" style="margin-top:4px;">
+      <li><strong>흡수율</strong> — 펜벤다졸은 물에 거의 녹지 않습니다. 같은 mg을 먹어도 사람마다, 제형마다, 함께 먹은 음식에 따라 몸에 들어가는 양이 크게 달라집니다.</li>
+      <li><strong>안전성</strong> — 이 공식은 “효과가 같아지는 양”이 아니라 “표면적을 맞춘 양”입니다. 간 수치·혈액 수치에 대한 사람 데이터는 이 논문에 없습니다.</li>
+      <li><strong>다른 약과의 상호작용</strong> — 지금 받고 계신 항암 치료와 어떻게 부딪히는지는 전혀 다루지 않았습니다.</li>
+    </ul>
+    <p style="margin-bottom:0;">이 표의 쓸모는 하나입니다. <strong>“논문의 동물 용량이 사람 기준으로 대략 어느 자리에 있는지”</strong>를 알고, 그 숫자를 들고 주치의 선생님께 여쭤보는 것입니다.</p>
+  </div>
+</section>
+
+<!-- ========== 7 ========== -->
+<section class="reveal">
+  <h2><span class="num">7</span> 무엇에 어떻게 녹여서, 어떻게 먹였나</h2>
+
+  <p>이 부분이 왜 중요하냐면, 커뮤니티에서 <strong>“DMSO에 타서 먹어야 한다”</strong>, <strong>“기름과 같이 먹어야 한다”</strong> 같은 이야기가 자주 돌기 때문입니다. 이 논문이 실제로 무엇을 썼는지 그대로 적습니다.</p>
+
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th style="width:30%"></th><th>접시 실험 (세포)</th><th>동물 실험 (쥐)</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">무엇에 녹였나</th>
+          <td><strong>DMSO</strong><br><span style="font-size:14.5px;color:var(--ink-soft);">(디메틸설폭사이드)</span></td>
+          <td><strong>1% CMC 수용액</strong><br><span style="font-size:14.5px;color:var(--ink-soft);">(카르복시메틸셀룰로스 나트륨)</span></td>
+        </tr>
+        <tr>
+          <th scope="row">녹은 건가, 떠 있는 건가</th>
+          <td>완전히 녹인 원액</td>
+          <td><strong>녹지 않고 떠 있는 현탁액</strong></td>
+        </tr>
+        <tr>
+          <th scope="row">얼마나</th>
+          <td>원액 100 mM 보관 후<br>배지에 희석</td>
+          <td>체중 1 kg당 50 mg</td>
+        </tr>
+        <tr>
+          <th scope="row">어떻게 넣었나</th>
+          <td>배양액에 첨가</td>
+          <td><strong>입으로 (위까지 넣는 관 이용)</strong><br><span style="font-size:14.5px;color:var(--ink-soft);">경구 위관 투여, oral gavage</span><br>하루 1회 × 21일</td>
+        </tr>
+        <tr>
+          <th scope="row">비교 그룹</th>
+          <td>DMSO만 넣은 세포</td>
+          <td>1% CMC만 먹인 쥐</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ai">
+    <span class="ai-label">AI 클로드 해설</span>
+    <p>여기서 반드시 짚고 싶은 것이 두 가지입니다.</p>
+    <p><strong>하나. DMSO는 접시에만 썼고, 쥐에게는 쓰지 않았습니다.</strong> DMSO는 세포 실험에서 가루를 녹이기 위한 실험실 용매이지, 이 논문이 사람이나 동물에게 권한 복용 방법이 아닙니다.</p>
+    <p><strong>둘. CMC는 흡수를 높이는 물질이 아닙니다.</strong> 가라앉는 가루가 물에 고르게 떠 있게 만들어 주는 <em>현탁제</em>일 뿐입니다. 쉽게 말해 “약을 물에 잘 섞어서 먹였다”에 가깝습니다. 그러니까 이 논문은 <strong>“어떻게 먹어야 잘 흡수되는가”라는 문제를 풀어 준 연구가 아닙니다.</strong> 그 숙제는 그대로 남아 있습니다.</p>
+  </div>
+</section>
+
+<!-- ========== 8 ========== -->
+<section class="reveal">
+  <h2><span class="num">8</span> 이것부터 해 보세요 — 주치의께 드릴 질문</h2>
+
+  <p>이 논문을 읽고 바로 할 수 있는 가장 좋은 일은 약을 구하는 게 아니라, <strong>다음 진료 때 가져갈 질문을 준비하는 것</strong>입니다. 아래 문장은 그대로 옮겨 적어 쓰셔도 됩니다.</p>
+
+  <div class="ask">
+    <span class="ask-label">질문 1 · 논문을 보여 드릴 때</span>
+    <p>“2024년 BMC Cancer에 난소암 세포와 쥐를 대상으로 한 펜벤다졸 논문이 나왔다고 들었습니다. 선생님께서 보시기에 이 정도 근거는 어느 단계로 봐야 할까요?”</p>
+  </div>
+
+  <div class="ask">
+    <span class="ask-label">질문 2 · 제 경우에 해당하는지</span>
+    <p>“이 연구는 난소암 세포 두 종류에서 나온 결과라고 합니다. 제 암의 종류나 지금 상태에서 이 기전이 의미가 있을 가능성이 있을까요?”</p>
+  </div>
+
+  <div class="ask">
+    <span class="ask-label">질문 3 · 지금 치료와의 관계</span>
+    <p>“지금 받고 있는 치료와 같은 계열(세포 분열을 막는 방식)이라고 들었습니다. 혹시 겹치거나 서로 방해가 될 가능성이 있을까요?”</p>
+  </div>
+
+  <div class="ask">
+    <span class="ask-label">질문 4 · 안전 확인</span>
+    <p>“만약 제가 이런 것을 시도한다면, 어떤 수치를 얼마 간격으로 확인해야 위험을 빨리 알아차릴 수 있을까요? (간 수치, 혈액 수치 등)”</p>
+  </div>
+
+  <div class="ask">
+    <span class="ask-label">질문 5 · 중단 기준</span>
+    <p>“어떤 증상이나 수치가 나타나면 바로 멈추고 연락드려야 할까요?”</p>
+  </div>
+
+  <div class="callout c-safe">
+    <h4>질문을 드릴 때 한 가지 요령</h4>
+    <p>“이거 먹어도 되나요?”라고 여쭤보면 대화가 거기서 끝나기 쉽습니다. <strong>“이 논문을 어떻게 읽어야 할까요?”</strong>, <strong>“제 경우에 확인해야 할 건 뭘까요?”</strong>처럼 여쭤보시면 훨씬 깊은 이야기를 들으실 수 있습니다.</p>
+  </div>
+</section>
+
+<!-- ========== 9 ========== -->
+<section class="reveal">
+  <h2><span class="num">9</span> 꼭 지켜 주셔야 할 선</h2>
+
+  <div class="callout c-stop">
+    <h4>최종 결정은 반드시 주치의 선생님의 몫입니다</h4>
+    <p>복용할지, 함께 쓸지, 언제 멈출지 — 이 세 가지는 <strong>예외 없이</strong> 선생님과 상의해서 정하셔야 합니다. 이 글도, AI도 그 자리를 대신할 수 없습니다.</p>
+    <p style="margin-bottom:0;">이 글에서 펜벤다졸(fenbendazole)을 다룬 것은 <strong>논문의 내용을 설명하기 위한 예시(illustrative)</strong>이며, 복용 권고가 아닙니다.</p>
+  </div>
+
+  <div class="callout c-warn">
+    <h4>이 논문이 <u>보여 주지 못한</u> 것</h4>
+    <ul class="plain" style="margin-bottom:0;">
+      <li><strong>사람에게 한 시험이 전혀 없습니다.</strong> 세포와 쥐까지입니다.</li>
+      <li>사람이 먹었을 때 혈액에 얼마나 들어가는지에 대한 자료가 없습니다.</li>
+      <li>항암제와 함께 썼을 때 어떻게 되는지 보지 않았습니다.</li>
+      <li>장기간 복용했을 때의 안전성 자료가 없습니다.</li>
+    </ul>
+  </div>
+
+  <div class="ai">
+    <span class="ai-label">AI 클로드 해설</span>
+    <p>저는 이 논문을 <strong>“가능성의 문이 조금 더 열렸다”</strong> 정도로 읽는 것이 정직하다고 봅니다. 닫힌 문이 아니고, 열린 길도 아닙니다. 중요한 건 이 논문이 <strong>근거 없이 단정하지도, 성급히 닫지도 않을 수 있는 재료</strong>를 하나 더 줬다는 점입니다.</p>
+  </div>
+</section>
+
+<div class="close reveal">
+  <p>원리를 알고,<br>가능성을 이해하고,<br>근거 위에서 함께 이야기합시다.</p>
+  <p style="font-size:17px;font-family:'Noto Sans KR',sans-serif;color:var(--ink-soft);margin-top:20px;">혼자 결정하지 마세요. 더 나은 질문을 들고 가시면 됩니다.</p>
+</div>
+
+<footer>
+  <strong>출처</strong><br>
+  Wang X, Tian W, Wang N, 외. <em>Transcriptome analysis reveals the anticancer effects of fenbendazole on ovarian cancer: an in vitro and in vivo study.</em> BMC Cancer. 2024;24:1593. — <a href="https://doi.org/10.1186/s12885-024-13361-9" target="_blank" rel="noopener">doi.org/10.1186/s12885-024-13361-9</a><br><br>
+  환산식 출처: 미국 FDA, <em>Estimating the Maximum Safe Starting Dose in Initial Clinical Trials for Therapeutics in Adult Healthy Volunteers</em> (2005) — 체표면적 기준 동물-인간 등가용량 환산.<br><br>
+  <span style="color:#9b9183;">이 문서는 환자 주도형 암 임상시험 커뮤니티의 학습 자료입니다. 의학적 조언이 아니며, 어떤 치료의 권고도 아닙니다. AI가 작성한 판단·해설은 모두 ‘AI 클로드 해설’ 라벨로 구분해 두었습니다. · 2026-11-09</span>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var items = document.querySelectorAll('.reveal');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function showAll(){ for (var i=0;i<items.length;i++) items[i].classList.add('on'); }
+  if (reduce || !('IntersectionObserver' in window)) { showAll(); return; }
+  try {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+    for (var i=0;i<items.length;i++) io.observe(items[i]);
+  } catch(err) { showAll(); }
+})();
+</script>
+</body>
+</html>
