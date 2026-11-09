@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>펜벤다졸 난소암 전사체 연구 — 기전·용량환산·근거등급 분석 | 전문가판</title>
+<meta name="description" content="Wang et al. BMC Cancer 2024;24:1593 — 펜벤다졸(fenbendazole)의 난소암 항종양 기전을 전사체 수준에서 분석하고, FDA BSA 기준 HED 환산과 제형·투여경로, 근거 등급과 구조적 한계를 정리한 전문가용 문서.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0d1117;
+    --bg-2:#141a22;
+    --bg-3:#1a212b;
+    --fg:#dfe6ef;
+    --fg-dim:#9aa7b8;
+    --fg-faint:#6b7a8d;
+    --line:#26303d;
+
+    --mech:#36c6d9;      /* 기전 */
+    --mech-bg:rgba(54,198,217,.10);
+    --evid:#e0a33a;      /* 근거 */
+    --evid-bg:rgba(224,163,58,.10);
+    --tool:#a87ae8;      /* 도구·데이터 */
+    --tool-bg:rgba(168,122,232,.10);
+    --limit:#f0607e;     /* 한계·경계 */
+    --limit-bg:rgba(240,96,126,.10);
+    --ai:#7fe0a8;        /* AI 해설 */
+    --ai-bg:rgba(127,224,168,.08);
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;background:var(--bg);color:var(--fg);
+    font-family:"Noto Sans KR",system-ui,sans-serif;
+    font-size:16.5px;line-height:1.85;font-weight:300;
+    letter-spacing:-0.005em;word-break:keep-all;
+  }
+  .wrap{max-width:880px;margin:0 auto;padding:0 22px 110px;}
+  h1,h2,h3,h4{font-family:"Noto Serif KR",serif;font-weight:700;line-height:1.45;letter-spacing:-0.02em;}
+  .mono{font-family:"IBM Plex Mono",ui-monospace,monospace;}
+  strong{font-weight:700;color:#fff;}
+  em{color:var(--fg-dim);font-style:italic;}
+  a{color:var(--mech);text-decoration:none;border-bottom:1px solid rgba(54,198,217,.35);}
+  a:hover{border-bottom-color:var(--mech);}
+  a:focus-visible{outline:2px solid var(--mech);outline-offset:3px;}
+
+  /* header */
+  header.top{
+    border-bottom:1px solid var(--line);
+    background:linear-gradient(180deg,#121922 0%,var(--bg) 100%);
+    padding:58px 0 44px;
+  }
+  .eyebrow{
+    font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.22em;
+    color:var(--tool);text-transform:uppercase;margin-bottom:20px;
+  }
+  h1{font-size:31px;margin:0 0 16px;color:#fff;}
+  .deck{font-size:17px;color:var(--fg-dim);max-width:660px;margin:0;}
+  .cite{
+    margin-top:28px;border-left:3px solid var(--tool);background:var(--bg-2);
+    padding:16px 18px;font-size:14px;line-height:1.75;color:var(--fg-dim);
+  }
+  .cite strong{color:var(--fg);}
+
+  /* sections */
+  section{margin-top:76px;scroll-margin-top:20px;}
+  .sec-idx{
+    font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.2em;
+    color:var(--fg-faint);display:block;margin-bottom:10px;
+  }
+  h2{font-size:25px;margin:0 0 14px;color:#fff;}
+  h3{font-size:19px;margin:38px 0 12px;color:#fff;}
+  h4{font-size:16.5px;margin:26px 0 8px;color:var(--fg);}
+  p{margin:0 0 18px;}
+
+  /* thesis */
+  .thesis{
+    border:1px solid var(--mech);background:var(--mech-bg);
+    padding:30px 28px;margin:34px 0;position:relative;
+  }
+  .thesis .tag{
+    position:absolute;top:-11px;left:22px;background:var(--bg);
+    font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.18em;
+    color:var(--mech);padding:0 10px;
+  }
+  .thesis p{font-family:"Noto Serif KR",serif;font-size:20px;line-height:1.85;margin:0;color:#fff;}
+
+  /* blocks */
+  .block{border-left:4px solid var(--line);padding:20px 22px;margin:26px 0;background:var(--bg-2);}
+  .block .tag{
+    display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:11px;
+    letter-spacing:.16em;padding:3px 10px;margin-bottom:12px;text-transform:uppercase;
+  }
+  .block p:last-child{margin-bottom:0;}
+  .b-mech{border-left-color:var(--mech);background:var(--mech-bg);}
+  .b-mech .tag{color:var(--mech);border:1px solid var(--mech);}
+  .b-evid{border-left-color:var(--evid);background:var(--evid-bg);}
+  .b-evid .tag{color:var(--evid);border:1px solid var(--evid);}
+  .b-tool{border-left-color:var(--tool);background:var(--tool-bg);}
+  .b-tool .tag{color:var(--tool);border:1px solid var(--tool);}
+  .b-limit{border-left-color:var(--limit);background:var(--limit-bg);}
+  .b-limit .tag{color:var(--limit);border:1px solid var(--limit);}
+
+  .ai{border-left:4px solid var(--ai);background:var(--ai-bg);padding:20px 22px;margin:26px 0;}
+  .ai .tag{
+    display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:11.5px;
+    letter-spacing:.14em;color:#0d1117;background:var(--ai);
+    padding:4px 12px;margin-bottom:13px;font-weight:600;
+  }
+  .ai p:last-child{margin-bottom:0;}
+
+  /* tables */
+  .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:26px 0;border:1px solid var(--line);}
+  table{border-collapse:collapse;width:100%;font-size:15px;min-width:460px;}
+  th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;}
+  thead th{
+    background:var(--bg-3);color:var(--fg);font-weight:700;font-size:13.5px;
+    font-family:"IBM Plex Mono",monospace;letter-spacing:.05em;white-space:nowrap;
+  }
+  tbody tr:last-child td{border-bottom:none;}
+  tbody tr:nth-child(even){background:rgba(255,255,255,.015);}
+  td.num,th.num{font-family:"IBM Plex Mono",monospace;white-space:nowrap;}
+  td.hl{color:var(--evid);font-weight:600;font-family:"IBM Plex Mono",monospace;white-space:nowrap;}
+  caption{caption-side:bottom;text-align:left;font-size:13.5px;color:var(--fg-faint);padding:12px 14px;line-height:1.7;}
+
+  /* formula */
+  .formula{
+    background:var(--bg-3);border:1px dashed var(--line);
+    font-family:"IBM Plex Mono",monospace;font-size:14.5px;line-height:2.1;
+    padding:20px 22px;margin:24px 0;overflow-x:auto;color:var(--fg);
+  }
+  .formula .k{color:var(--mech);}
+  .formula .r{color:var(--evid);font-weight:600;}
+
+  ul.l{margin:0 0 18px;padding-left:20px;}
+  ul.l li{margin-bottom:11px;}
+  ul.l li::marker{color:var(--fg-faint);}
+
+  figure{margin:32px 0;}
+  figure svg{max-width:100%;height:auto;display:block;margin:0 auto;}
+  figcaption{font-size:13.5px;color:var(--fg-faint);margin-top:14px;line-height:1.75;}
+
+  .grade{
+    display:inline-block;font-family:"IBM Plex Mono",monospace;font-weight:600;
+    width:26px;height:26px;line-height:26px;text-align:center;border-radius:4px;font-size:14px;
+  }
+  .gA{background:#1f6f45;color:#fff;} .gB{background:#2a5f8f;color:#fff;}
+  .gC{background:#8a6a1e;color:#fff;} .gD{background:#8f3447;color:#fff;}
+
+  footer{
+    margin-top:80px;padding-top:28px;border-top:1px solid var(--line);
+    font-size:13.5px;color:var(--fg-faint);line-height:1.9;
+  }
+
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease;}
+  .reveal.on{opacity:1;transform:none;}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1 !important;transform:none !important;transition:none !important;}
+  }
+  @media (max-width:560px){
+    body{font-size:16px;}
+    h1{font-size:25px;} h2{font-size:21px;} h3{font-size:17.5px;}
+    .thesis p{font-size:17.5px;}
+    .wrap{padding:0 16px 80px;}
+    th,td{padding:10px 11px;font-size:14px;}
+  }
+  @media print{
+    body{background:#fff;color:#111;font-size:11pt;}
+    .wrap{max-width:none;}
+    h1,h2,h3,h4,strong{color:#000;}
+    .block,.thesis,.ai{background:#f6f6f6 !important;border-left-width:4px;}
+    .tablewrap{border-color:#bbb;} thead th{background:#eee;color:#000;}
+    td,th{border-color:#ddd;} a{color:#114488;}
+    .reveal{opacity:1;transform:none;}
+    section{page-break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="eyebrow">Expert register · Methodology &amp; evidence appraisal</div>
+    <h1>미세소관에서 전사체까지:<br>펜벤다졸 난소암 연구를 어떻게 읽을 것인가</h1>
+    <p class="deck">Wang et al. (2024)의 기여는 “펜벤다졸이 듣는다”가 아니라, <strong>왜 듣는지를 세포주기 단백질과 전사체 수준에서 특정했다</strong>는 점에 있다. 이 문서는 그 기전 사슬, FDA 기준 인간 등가용량(HED) 환산, 제형·투여경로의 실제 기재사항, 그리고 이 설계가 구조적으로 답할 수 없는 것을 분리해 정리한다.</p>
+    <div class="cite">
+      <strong>Primary source</strong> — Wang X, Tian W, Wang N, Yang X, Liu Z, Li L, Zhao T, Wang C, Zhang H, Yang H, Jia Y.
+      <em>Transcriptome analysis reveals the anticancer effects of fenbendazole on ovarian cancer: an in vitro and in vivo study.</em>
+      BMC Cancer. 2024 Dec 30;24:1593. DOI: <a href="https://doi.org/10.1186/s12885-024-13361-9" target="_blank" rel="noopener">10.1186/s12885-024-13361-9</a> · Open Access (CC BY-NC-ND 4.0) · RNA-seq raw data: GEO <span class="mono">GSE275290</span><br>
+      <span style="color:var(--fg-faint)">※ 라이선스가 변경 금지(ND)이므로 본 문서는 원문·원도를 전재하지 않고 사실 정보만 추출해 독자 도식·서술로 재구성했다.</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<!-- 01 -->
+<section class="reveal">
+  <span class="sec-idx">01 / THESIS</span>
+  <h2>논지</h2>
+  <div class="thesis">
+    <span class="tag">THESIS</span>
+    <p>이 논문의 가치는 효능 주장이 아니라 <strong>기전 특정(mechanism specification)</strong>에 있다. 펜벤다졸(fenbendazole, FBZ)은 미세소관 교란 → CDK1 인산화 유지(불활성) → cyclin B1 축적 → G2/M 정체 → 유사분열 파국(mitotic catastrophe) → 카스파제 의존 세포사라는 <strong>단일 축의 인과 사슬</strong>을 따르며, 저자들은 전사체 전역 분석과 <strong>경로 차단 역증명</strong>으로 이 사슬을 지지했다. 그러나 동일 설계는 인체 노출(PK), 병용, 면역 맥락에 대해 <strong>원리상 아무것도 말하지 않는다</strong>. 따라서 이 논문의 올바른 사용처는 “용량 결정”이 아니라 <strong>가설의 해상도를 높이는 것</strong>이다.</p>
+  </div>
+</section>
+
+<!-- 02 -->
+<section class="reveal">
+  <span class="sec-idx">02 / REFRAMING</span>
+  <h2>패러다임 재정의 — 구충제가 아니라 미세소관 표적제</h2>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>축</th><th>통상적 프레임 (구)</th><th>이 논문이 제안하는 프레임 (신)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>FBZ의 범주</strong></td><td>동물용 구충제가 “우연히” 항암 효과를 보임</td><td><strong>벤즈이미다졸계 미세소관 탈안정화제</strong> — 탁산(taxane)·빈카(vinca)와 동일한 표적 계열</td></tr>
+        <tr><td><strong>근거의 성격</strong></td><td>개인 증례·일화의 누적</td><td>세포주 2종 + 이종이식 모델 + 전역 전사체 + 경로 차단 대조</td></tr>
+        <tr><td><strong>핵심 질문</strong></td><td>“효과가 있는가?”</td><td>“<strong>어떤 아형에서, 어떤 분자 경로를 통해</strong> 효과가 성립하는가?”</td></tr>
+        <tr><td><strong>검증 가능성</strong></td><td>반증 설계 불가</td><td>표적 경로 차단 시 효과 소실 여부로 반증 가능</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="block b-mech">
+    <span class="tag">Mechanism</span>
+    <p>난소암 1차 표준요법의 핵심 약제인 <strong>파클리탁셀(paclitaxel)</strong> 역시 유사분열 파국을 유도한다. 저자들은 이를 근거로 “FBZ가 동일한 oncosuppressive 기전을 공유한다”는 틀을 세운다. 이는 가설 생성 측면에서는 강점이지만, <strong>후술할 교차내성 문제를 동시에 끌고 들어온다.</strong></p>
+  </div>
+</section>
+
+<!-- 03 -->
+<section class="reveal">
+  <span class="sec-idx">03 / MECHANISM</span>
+  <h2>기전 사슬 — 1차 원리에서</h2>
+
+  <figure>
+    <svg viewBox="0 0 360 700" role="img" aria-labelledby="mt md" xmlns="http://www.w3.org/2000/svg">
+      <title id="mt">FBZ 항종양 기전 캐스케이드</title>
+      <desc id="md">FBZ는 미세소관을 교란하고 CDK1 인산화를 유지시켜 cyclin B1을 축적시키며, G2/M 정체와 유사분열 파국을 거쳐 카스파제 의존 세포사를 유도합니다.</desc>
+      <defs>
+        <marker id="am" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+          <path d="M0 0 L10 5 L0 10 z" fill="#36c6d9"/></marker>
+        <marker id="al" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+          <path d="M0 0 L10 5 L0 10 z" fill="#f0607e"/></marker>
+      </defs>
+
+      <g font-family="Noto Sans KR,sans-serif">
+        <!-- 1 -->
+        <rect x="14" y="10" width="332" height="62" rx="8" fill="rgba(54,198,217,.10)" stroke="#36c6d9"/>
+        <text x="30" y="34" font-size="11" font-family="IBM Plex Mono,monospace" fill="#36c6d9">STEP 1 · TARGET</text>
+        <text x="30" y="56" font-size="15" font-weight="700" fill="#ffffff">미세소관(microtubule) 탈안정화</text>
+        <line x1="180" y1="72" x2="180" y2="94" stroke="#36c6d9" stroke-width="2.5" marker-end="url(#am)"/>
+
+        <!-- 2 -->
+        <rect x="14" y="100" width="332" height="86" rx="8" fill="rgba(54,198,217,.10)" stroke="#36c6d9"/>
+        <text x="30" y="124" font-size="11" font-family="IBM Plex Mono,monospace" fill="#36c6d9">STEP 2 · CHECKPOINT</text>
+        <text x="30" y="146" font-size="15" font-weight="700" fill="#ffffff">p-CDK1 ↑ (CDK1 불활성 유지)</text>
+        <text x="30" y="168" font-size="12.5" fill="#9aa7b8">CDK1 단백 ↓ · 24 h 시점 웨스턴블롯</text>
+        <line x1="180" y1="186" x2="180" y2="208" stroke="#36c6d9" stroke-width="2.5" marker-end="url(#am)"/>
+
+        <!-- 3 -->
+        <rect x="14" y="214" width="332" height="86" rx="8" fill="rgba(54,198,217,.10)" stroke="#36c6d9"/>
+        <text x="30" y="238" font-size="11" font-family="IBM Plex Mono,monospace" fill="#36c6d9">STEP 3 · ACCUMULATION</text>
+        <text x="30" y="260" font-size="15" font-weight="700" fill="#ffffff">cyclin B1 축적 ↑</text>
+        <text x="30" y="282" font-size="12.5" fill="#9aa7b8">MPF 복합체 형성 실패 → 유사분열 진입 차단</text>
+        <line x1="180" y1="300" x2="180" y2="322" stroke="#36c6d9" stroke-width="2.5" marker-end="url(#am)"/>
+
+        <!-- 4 -->
+        <rect x="14" y="328" width="332" height="86" rx="8" fill="rgba(224,163,58,.10)" stroke="#e0a33a"/>
+        <text x="30" y="352" font-size="11" font-family="IBM Plex Mono,monospace" fill="#e0a33a">STEP 4 · ARREST</text>
+        <text x="30" y="374" font-size="15" font-weight="700" fill="#ffffff">G2/M 정체 (용량 의존적)</text>
+        <text x="30" y="396" font-size="12.5" fill="#9aa7b8">12 h·24 h 유세포분석에서 모두 확인 · A2780 / SKOV3</text>
+        <line x1="180" y1="414" x2="180" y2="436" stroke="#36c6d9" stroke-width="2.5" marker-end="url(#am)"/>
+
+        <!-- 5 -->
+        <rect x="14" y="442" width="332" height="100" rx="8" fill="rgba(224,163,58,.10)" stroke="#e0a33a"/>
+        <text x="30" y="466" font-size="11" font-family="IBM Plex Mono,monospace" fill="#e0a33a">STEP 5 · MITOTIC CATASTROPHE</text>
+        <text x="30" y="488" font-size="15" font-weight="700" fill="#ffffff">다핵화 · 미세핵 · 방추사 붕괴</text>
+        <text x="30" y="509" font-size="12.5" fill="#9aa7b8">DAPI 염색: 다핵 / 미세핵 출현</text>
+        <text x="30" y="529" font-size="12.5" fill="#9aa7b8">α-tubulin 면역형광: spindle disorganization</text>
+        <line x1="180" y1="542" x2="180" y2="564" stroke="#36c6d9" stroke-width="2.5" marker-end="url(#am)"/>
+
+        <!-- 6 -->
+        <rect x="14" y="570" width="332" height="112" rx="8" fill="rgba(240,96,126,.10)" stroke="#f0607e"/>
+        <text x="30" y="594" font-size="11" font-family="IBM Plex Mono,monospace" fill="#f0607e">STEP 6 · APOPTOSIS</text>
+        <text x="30" y="616" font-size="15" font-weight="700" fill="#ffffff">cleaved caspase-3 ↑ · BAX/BCL-2 비 ↑</text>
+        <text x="30" y="638" font-size="12.5" fill="#9aa7b8">BCL-2 자체는 유의하게 감소하지 않음</text>
+        <text x="30" y="658" font-size="12.5" fill="#9aa7b8">→ 비율 상승의 주동인은 BAX 증가</text>
+        <text x="30" y="676" font-size="12" font-family="IBM Plex Mono,monospace" fill="#f0607e">Z-VAD-FMK로 차단 시 효과 대부분 소실</text>
+      </g>
+    </svg>
+    <figcaption>색 코딩 — <span style="color:var(--mech)">■ 기전</span> / <span style="color:var(--evid)">■ 관찰·근거</span> / <span style="color:var(--limit)">■ 종결점·경계</span>. 모바일 가독을 위해 세로 레일로 배치했다.</figcaption>
+  </figure>
+
+  <div class="ai">
+    <span class="tag">AI 클로드 해설</span>
+    <p>이 사슬에서 <strong>내부 긴장이 하나 있다.</strong> 전사체·qPCR에서는 <span class="mono">CDC25C</span>가 <em>상향</em>되었는데, CDC25C의 기능은 CDK1을 탈인산화해 활성화하는 것이다. 즉 mRNA 수준만 보면 p-CDK1이 <em>감소</em>해야 하지만, 단백 수준에서는 p-CDK1이 <strong>증가</strong>했다. 저자들은 이 불일치를 명시적으로 해소하지 않는다.</p>
+    <p>해석 가능성은 둘이다. ⑴ 세포가 G2/M 정체를 벗어나려 CDC25C 전사를 올리는 <strong>보상 반응</strong>이며 단백 활성 수준에서는 이기지 못한 것이거나, ⑵ 전사체 시점(48 h)과 단백 시점(24 h)이 달라 생긴 <strong>시간 해상도의 불일치</strong>다. 어느 쪽이든 <strong>“mRNA 변화 = 단백 기능 변화”로 읽으면 안 된다</strong>는 일반 원칙의 사례이며, 후속 검증 과제로 남는다.</p>
+  </div>
+</section>
+
+<!-- 04 -->
+<section class="reveal">
+  <span class="sec-idx">04 / IN VITRO</span>
+  <h2>정량 데이터 — IC<sub>50</sub>과 농도 스케일</h2>
+
+  <div class="tablewrap">
+    <table>
+      <caption>CCK-8 기준 반수억제농도. 두 세포주 모두 <strong>시간 의존·용량 의존</strong> 패턴. A2780이 SKOV3보다 일관되게 민감하다.</caption>
+      <thead><tr><th>세포주</th><th class="num">24 h</th><th class="num">48 h</th><th class="num">72 h</th><th>배양 조건</th></tr></thead>
+      <tbody>
+        <tr><td><strong>A2780</strong></td><td class="hl">1.30 µM</td><td class="hl">0.44 µM</td><td class="hl">0.38 µM</td><td class="num">RPMI 1640</td></tr>
+        <tr><td><strong>SKOV3</strong></td><td class="hl">2.83 µM</td><td class="hl">1.05 µM</td><td class="hl">0.89 µM</td><td class="num">McCoy's 5A</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ul class="l">
+    <li>검사 농도 범위 — A2780 <span class="mono">0.039–20 µM</span>, SKOV3 <span class="mono">0.195–100 µM</span></li>
+    <li>콜로니 형성능도 용량 의존적으로 유의하게 억제 (48 h 처리 후 1–2주 배양)</li>
+    <li>세포주 인증: <strong>STR profiling</strong> 완료 (재현성 측면에서 평가할 만한 지점)</li>
+    <li>전사체 분석 처리 조건 — <strong>SKOV3, 1 µM, 48 h, n=3 biological replicates</strong></li>
+  </ul>
+
+  <div class="block b-limit">
+    <span class="tag">Scale check</span>
+    <p>FBZ 분자량 <span class="mono">299.35 g/mol</span> 기준, <strong>1 µM ≈ 0.30 µg/mL</strong>, IC<sub>50</sub> 0.44 µM ≈ <strong>0.13 µg/mL</strong>.<br>
+    이 수치는 <strong>배양액 내 자유 약물 농도</strong>이며, 인체 혈장에서 같은 농도가 성립하는지는 이 논문이 다루지 않는다. 혈장 단백 결합, 조직 분포, 종양 내 농도는 모두 미측정이다. <strong>µM을 mg 복용량으로 환산하려는 시도는 이 데이터만으로는 성립하지 않는다.</strong></p>
+  </div>
+</section>
+
+<!-- 05 -->
+<section class="reveal">
+  <span class="sec-idx">05 / CAUSALITY</span>
+  <h2>인과 증명 설계 — 경로 차단 역증명</h2>
+
+  <p>이 논문에서 가장 방법론적으로 단단한 부분이다. 관찰된 세포사가 <em>비특이적 독성</em>이 아니라 <em>카스파제 의존 아폽토시스</em>임을 보이기 위해, 저자들은 범카스파제 억제제 <strong>Z-VAD-FMK(10 µM)</strong>로 경로를 선차단한 뒤 FBZ를 투여했다.</p>
+
+  <div class="tablewrap">
+    <table>
+      <caption>경로를 끊자 효과가 거의 사라졌다 — “효과 관찰”이 아니라 <strong>“효과의 소실로 경로를 역증명”</strong> 한 설계.</caption>
+      <thead><tr><th>세포주</th><th class="num">FBZ 단독</th><th class="num">FBZ + Z-VAD-FMK</th><th class="num">상대 감소</th></tr></thead>
+      <tbody>
+        <tr><td><strong>A2780</strong> (FBZ 0.4 µM)</td><td class="num">33.30 %</td><td class="num">9.34 %</td><td class="hl">−72 %</td></tr>
+        <tr><td><strong>SKOV3</strong> (FBZ 1 µM)</td><td class="num">54.28 %</td><td class="num">8.11 %</td><td class="hl">−85 %</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="block b-evid">
+    <span class="tag">Evidence</span>
+    <p>CCK-8 생존율 측면에서도 Z-VAD-FMK 전처리가 FBZ 처리 세포의 생존율을 유의하게 회복시켰다. 다만 회복은 <strong>부분적</strong>이었다 — 저자들도 “partially reverse”로 기술한다. 이는 카스파제 비의존 경로(괴사성 세포사, 유사분열 미끄러짐 후 노화 등)가 일부 기여할 가능성을 남긴다.</p>
+  </div>
+</section>
+
+<!-- 06 -->
+<section class="reveal">
+  <span class="sec-idx">06 / TRANSCRIPTOME</span>
+  <h2>전사체 전역 분석</h2>
+
+  <figure>
+    <svg viewBox="0 0 360 160" role="img" aria-labelledby="dt dd" xmlns="http://www.w3.org/2000/svg">
+      <title id="dt">차등발현 유전자 분포</title>
+      <desc id="dd">총 1747개 중 803개 상향, 944개 하향 조절되었습니다.</desc>
+      <text x="8" y="22" font-family="IBM Plex Mono,monospace" font-size="12" fill="#6b7a8d">DEGs · |log2FC| ≥ 1 · adj P &lt; 0.05 · DESeq2 v1.30.1</text>
+      <rect x="8" y="40" width="152" height="34" rx="4" fill="#8f3447"/>
+      <text x="20" y="63" font-family="Noto Sans KR,sans-serif" font-size="14" font-weight="700" fill="#fff">▲ 상향 803</text>
+      <rect x="8" y="84" width="179" height="34" rx="4" fill="#2a5f8f"/>
+      <text x="20" y="107" font-family="Noto Sans KR,sans-serif" font-size="14" font-weight="700" fill="#fff">▼ 하향 944</text>
+      <text x="8" y="143" font-family="Noto Sans KR,sans-serif" font-size="13" fill="#9aa7b8">총 1,747개 · SKOV3 · FBZ 1 µM · 48 h · n = 3</text>
+    </svg>
+  </figure>
+
+  <h3>농축 분석 수렴 양상</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>분석</th><th>주요 농축 항목</th></tr></thead>
+      <tbody>
+        <tr><td><strong>GO</strong><br><span style="color:var(--fg-faint);font-size:13px;">MF / BP / CC</span></td><td>유사분열 핵분열 조절, 염색체 분리, 자매염색분체 분리, 방추극·미세소관 관련 세포 구성요소, DNA 복제</td></tr>
+        <tr><td><strong>KEGG</strong></td><td><strong>Cell cycle</strong>(최대 농축), motor proteins, cellular senescence, oocyte meiosis, DNA replication, Fanconi anemia pathway, p53 signaling, homologous recombination, mismatch repair, TNF·IL-17 signaling</td></tr>
+        <tr><td><strong>Reactome</strong></td><td><strong>Cell cycle checkpoints</strong>, M phase, RHO GTPase effectors, mitotic prometaphase, metaphase/anaphase, mitotic spindle checkpoint, G2/M checkpoints</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h4>RT-qPCR 교차검증 (4 유전자)</h4>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>유전자</th><th>방향</th><th>기능적 맥락</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">CDC25C</td><td style="color:var(--limit)">▲ 상향</td><td>G2/M 전이 — CDK1 탈인산화 포스파타제</td></tr>
+        <tr><td class="mono">DLGAP5</td><td style="color:var(--limit)">▲ 상향</td><td>방추사 조립·미세소관 결합</td></tr>
+        <tr><td class="mono">TPX2</td><td style="color:var(--limit)">▲ 상향</td><td>Aurora A 활성화·방추극 형성</td></tr>
+        <tr><td class="mono">CEBPD</td><td style="color:var(--mech)">▼ 하향</td><td>전사인자 — 세포주기 정지·분화</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ai">
+    <span class="tag">AI 클로드 해설</span>
+    <p>세 가지 독립 농축 분석(GO·KEGG·Reactome)이 <strong>모두 유사분열/세포주기 축으로 수렴</strong>한 것은 결과의 내적 일관성을 높인다. 전사체가 기전 가설을 사후적으로 뒷받침한 것이 아니라, <strong>표적을 모르는 상태에서 돌려도 같은 축이 나온다</strong>는 구조이기 때문이다.</p>
+    <p>다만 주의할 점. 상향된 <span class="mono">DLGAP5</span>, <span class="mono">TPX2</span>는 평소 <strong>증식성 종양에서 나쁜 예후와 연관되는 유전자들</strong>이다. 여기서 이들이 올라간 것은 “증식이 활발해졌다”가 아니라 <strong>G2/M에 세포가 갇혀 축적된 결과</strong>로 읽는 것이 타당하다. 전사체 방향성만 떼어 보면 정반대 결론이 나올 수 있는 지점이므로, <strong>세포주기 분포 데이터와 반드시 함께 해석해야 한다.</strong></p>
+  </div>
+</section>
+
+<!-- 07 -->
+<section class="reveal">
+  <span class="sec-idx">07 / IN VIVO</span>
+  <h2>이종이식 모델</h2>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>항목</th><th>기재 내용</th></tr></thead>
+      <tbody>
+        <tr><td>모델</td><td>SKOV3 피하 이종이식 (8×10<sup>6</sup> cells/mouse)</td></tr>
+        <tr><td>동물</td><td>4주령 암컷 BALB/c nude mice, <strong>n = 16</strong> (군당 8)</td></tr>
+        <tr><td>무작위화</td><td>종양 부피 약 <span class="mono">125 mm³</span> 도달 시점, 부피 기준 2군 배정</td></tr>
+        <tr><td>투여</td><td><strong>FBZ 50 mg/kg, 경구 위관(oral gavage), QD × 21일</strong></td></tr>
+        <tr><td>대조</td><td>1% sodium carboxymethyl cellulose (vehicle) 단독</td></tr>
+        <tr><td>측정</td><td>3일 간격 체중·종양부피 (부피 = 장경 × 단경² / 2)</td></tr>
+        <tr><td>종양 부피</td><td style="color:var(--evid);font-weight:600">FBZ군 유의하게 감소 (<span class="mono">P &lt; 0.001</span>)</td></tr>
+        <tr><td>종양 중량</td><td style="color:var(--evid);font-weight:600">FBZ군 유의하게 감소 (<span class="mono">P = 0.0002</span>)</td></tr>
+        <tr><td>체중</td><td>두 군 간 유의한 차이 없음 — 명백한 전신 독성 신호 없음</td></tr>
+        <tr><td>윤리</td><td>Kunming Medical University 동물윤리위원회 승인 (<span class="mono">kmmu20221422</span>)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="block b-evid">
+    <span class="tag">Evidence</span>
+    <p><strong>경구 투여로 성립한 결과</strong>라는 점이 임상 환원 가능성 측면에서 결정적이다. 복강 투여나 종양 내 주사였다면 경구 섭취 맥락으로의 이전은 불가능했을 것이다.</p>
+  </div>
+
+  <div class="block b-limit">
+    <span class="tag">Caution — 효과의 <em>형태</em></span>
+    <p>효과 크기는 <strong>종양 성장 지연(growth delay)</strong> 수준이지 퇴축(regression)이 아니다. 21일 종료 시점에도 FBZ군 종양은 계속 커지고 있었다. 커뮤니티 전달 시 <strong>“종양이 줄었다”가 아니라 “덜 자랐다”</strong>가 정확한 기술이다.</p>
+    <p style="margin-bottom:0;"><strong>단, 이것은 효능 부재나 내성의 증거가 아니다.</strong> 아래에서 분리해 다룬다.</p>
+  </div>
+
+  <h3>성장 지연 ≠ 무효 ≠ 내성 — 세 개념의 분리</h3>
+
+  <div class="tablewrap">
+    <table>
+      <caption>이 논문의 in vivo 결과를 두고 가장 흔히 발생하는 세 가지 오독과 그 교정.</caption>
+      <thead><tr><th>해석</th><th>성립 여부</th><th>근거</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>“효과가 없었다”</strong></td>
+          <td style="color:var(--limit);font-weight:700">성립하지 않음</td>
+          <td>종양 부피 <span class="mono">P &lt; 0.001</span>, 종양 중량 <span class="mono">P = 0.0002</span>. 전임상 효능 판정 기준은 퇴축이 아니라 <strong>종양 성장 억제율(TGI)</strong>이며, 두 1차 종결점 모두 유의하게 충족됐다.</td>
+        </tr>
+        <tr>
+          <td><strong>“내성이 생겼다”</strong></td>
+          <td style="color:var(--limit);font-weight:700">성립하지 않음</td>
+          <td>내성의 조작적 정의는 <em>초기 반응 후 반응 소실</em>이며, 곡선상 <strong>두 군의 간격이 재수렴하는 구간</strong>으로 나타난다. 이 실험에서 간격은 21일 내내 단조 증가했다 — 약효가 종료 시점까지 유지됐다는 뜻이다. 또한 21일은 내성 클론 선택이 발현되기에 구조적으로 너무 짧다. <strong>이 설계는 내성을 관찰할 수도, 배제할 수도 없다.</strong></td>
+        </tr>
+        <tr>
+          <td><strong>“퇴축이 없는 것은 기전상 예상된다”</strong></td>
+          <td style="color:var(--evid);font-weight:700">성립함</td>
+          <td>미세소관 표적제는 <strong>M기 진입 세포에만 작용</strong>한다. 종양 내 비증식 분획(G0)은 표적 자체를 제시하지 않으므로 약리적으로 도달 불가다. 따라서 세포주기 특이적 약물의 단독요법은 <strong>원리상 성장 지연형 곡선을 산출한다</strong>. 탁산도 동일한 제약을 공유한다.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ai">
+    <span class="tag">AI 클로드 해설</span>
+    <p>위 표의 세 번째 행이 이 논문 전체에서 임상 환원 측면의 핵심이다. <strong>세포주기 특이적 약물의 단독 효능 상한은 종양의 증식 분획(growth fraction)에 의해 구조적으로 제한된다.</strong> 이것은 약효의 크기 문제가 아니라 <em>표적 가용성</em>의 문제다.</p>
+    <p>바로 이 제약 때문에 임상 레짐은 거의 예외 없이 <strong>기전이 직교하는 약제를 결합</strong>한다. 난소암 1차 표준요법의 <strong>카보플라틴(carboplatin, DNA 가교) + 파클리탁셀(paclitaxel, 미세소관)</strong> 조합이 정확히 그 설계다 — 세포주기 비특이적 약제가 휴지기 세포를, 세포주기 특이적 약제가 분열 세포를 분담한다.</p>
+    <p>따라서 이 결과의 정확한 독해는 <strong>“단독 효능이 약하다”가 아니라 “단독 설계이므로 단독의 구조적 상한이 그대로 측정된 것이며, 병용 조건의 거동은 미측정”</strong>이다. 이 논문은 병용군을 두지 않았다.</p>
+    <p><strong>그리고 내성을 실제로 경계해야 할 지점은 이 이종이식 실험이 아니다.</strong> FBZ가 탁산과 미세소관 표적을 공유한다는 사실은, <strong>탁산 기치료(taxane-pretreated) 환자에서 이미 선택된 내성 기전 — βIII-tubulin 아형 발현, P-gp/MDR1 유출펌프 상향 — 이 FBZ에도 그대로 적용될 수 있음</strong>을 함의한다. 즉 임상적으로 유의미한 내성 질문은 “21일 뒤 쥐에서 내성이 생겼나”가 아니라 <strong>“이 환자는 들어가기 전부터 이미 내성인가”</strong>다. 이 논문은 어느 쪽도 검토하지 않았다(11절 Limits 재확인).</p>
+  </div>
+</section>
+
+<!-- 08 -->
+<section class="reveal">
+  <span class="sec-idx">08 / DOSE TRANSLATION</span>
+  <h2>동물 용량 → 인간 등가 용량(HED) 환산</h2>
+
+  <h3>환산식의 유도</h3>
+  <p>FDA는 체중(mg/kg)이 아니라 <strong>체표면적(BSA, m²)</strong> 기준으로 종간 용량을 정규화한다. 대사율이 체중보다 체표면적에 비례한다는 allometric scaling 가정에 근거한다.</p>
+
+  <div class="formula">
+<span class="k">K<sub>m</sub></span> = 체중(kg) ÷ 체표면적(m²)<br>
+<span class="k">K<sub>m</sub></span>(mouse, 0.02 kg) = <strong>3</strong>　　<span class="k">K<sub>m</sub></span>(human, 60 kg) = <strong>37</strong><br><br>
+HED (mg/kg) = 동물용량(mg/kg) × ( K<sub>m,animal</sub> ÷ K<sub>m,human</sub> )<br>
+　　　　　 = 동물용량 × ( 3 ÷ 37 ) = 동물용량 ÷ <span class="r">12.3</span>　(37/3 ≈ 12.33)<br><br>
+→ HED = 50 mg/kg ÷ 12.3 = <span class="r">4.07 mg/kg</span>
+  </div>
+
+  <div class="tablewrap">
+    <table>
+      <caption><strong>경고 — 본 표는 순수 수학적 환산이며 복용 권고가 아니다.</strong> 마우스 50 mg/kg QD × 21일을 체표면적 기준으로 인간 스케일에 투영한 값일 뿐이다.</caption>
+      <thead><tr><th>체중</th><th class="num">HED 1일 용량</th><th class="num">1일 용량 (BSA 환산 참고)</th><th class="num">21일 누적</th></tr></thead>
+      <tbody>
+        <tr><td>50 kg</td><td class="hl">203 mg/일</td><td class="num">≈ 1.5 m² 기준 약 135 mg/m²</td><td class="num">약 4,270 mg</td></tr>
+        <tr><td>60 kg</td><td class="hl">244 mg/일</td><td class="num">≈ 1.6 m² 기준 약 153 mg/m²</td><td class="num">약 5,124 mg</td></tr>
+        <tr><td>70 kg</td><td class="hl">285 mg/일</td><td class="num">≈ 1.8 m² 기준 약 158 mg/m²</td><td class="num">약 5,977 mg</td></tr>
+        <tr><td>80 kg</td><td class="hl">325 mg/일</td><td class="num">≈ 2.0 m² 기준 약 163 mg/m²</td><td class="num">약 6,830 mg</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="block b-limit">
+    <span class="tag">Structural limits of this conversion</span>
+    <ul class="l" style="margin-bottom:0;">
+      <li><strong>BSA 환산은 생체이용률을 보정하지 않는다.</strong> FBZ는 수용해도가 극히 낮은 BCS Class II 유형 화합물로, 경구 흡수가 제형과 식이(특히 지방 동반 섭취)에 크게 좌우된다. 동일 mg이 동일 노출(AUC)을 의미하지 않는다.</li>
+      <li><strong>HED는 안전 시작용량 추정 도구이지 유효용량 추정 도구가 아니다.</strong> FDA 가이던스의 본래 용도는 무독성량(NOAEL)으로부터 1상 시작용량을 산출하는 것이며, 이 논문의 50 mg/kg은 NOAEL이 아니라 <em>효력 관찰 용량</em>이다. 적용 방향 자체가 가이던스의 원래 목적과 다르다.</li>
+      <li><strong>종간 대사 경로 차이가 반영되지 않는다.</strong> FBZ는 주로 설폭사이드 대사체(옥스펜다졸, oxfendazole)로 전환되며, 전환 효율은 종에 따라 다르다.</li>
+      <li><strong>안전성 데이터가 아예 없다.</strong> 이 논문의 안전성 관찰은 마우스 체중 변화 하나뿐이다. 간기능, 혈액학적 지표, 장기 독성은 미측정이다.</li>
+    </ul>
+  </div>
+
+  <div class="ai">
+    <span class="tag">AI 클로드 해설</span>
+    <p>이 환산표의 정당한 사용처는 단 하나다 — <strong>전임상 용량이 인간 스케일에서 어느 자릿수에 떨어지는지 확인하는 것</strong>. “논문의 유효 용량이 인체 기준 수 g 단위인가, 수백 mg 단위인가”는 가설의 현실성을 가늠하는 데 의미가 있지만, 그 숫자가 곧 복용량이 되는 순간 이 환산은 오용된다.</p>
+    <p><strong>각주 —</strong> 산출값(60 kg 기준 약 244 mg/일)이 커뮤니티에서 널리 유통되는 수의용 제품 단위(222 mg)와 근접하다는 점은 사실로 기록해 둔다. 그러나 이것은 <strong>독립적인 두 숫자가 우연히 가까운 것</strong>이며, 어느 쪽도 다른 쪽을 검증하지 않는다. 수학적 근접성을 생물학적 타당성으로 읽는 것은 전형적인 해석 오류다.</p>
+  </div>
+</section>
+
+<!-- 09 -->
+<section class="reveal">
+  <span class="sec-idx">09 / FORMULATION</span>
+  <h2>용해 물질·사용량·투여 방식 (원문 기재사항)</h2>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>항목</th><th>In vitro (세포)</th><th>In vivo (마우스)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>시약 출처</strong></td><td colspan="2">Fenbendazole — Macklin (Shanghai), Cat. <span class="mono">F810011</span></td></tr>
+        <tr><td><strong>용해/분산 매질</strong></td><td style="color:var(--tool);font-weight:600">DMSO (dimethyl sulfoxide, Servicebio)</td><td style="color:var(--tool);font-weight:600">1% sodium carboxymethyl cellulose (CMC-Na) 수용액</td></tr>
+        <tr><td><strong>물리적 상태</strong></td><td>완전 용해 (solution)</td><td><strong>현탁액 (suspension)</strong> — 용해 아님</td></tr>
+        <tr><td><strong>스톡 농도</strong></td><td class="num">FBZ 100 mM · Z-VAD-FMK 5 mM<br>−20 ℃ 보관, 사용 직전 신선 배지로 희석</td><td>해당 없음 (투여 직전 현탁)</td></tr>
+        <tr><td><strong>작업 농도 / 용량</strong></td><td class="num">A2780 0.039–20 µM<br>SKOV3 0.195–100 µM<br>RNA-seq: 1 µM / 48 h<br>Z-VAD-FMK: 10 µM</td><td class="num"><strong>50 mg/kg</strong></td></tr>
+        <tr><td><strong>투여 경로</strong></td><td>배양액 첨가</td><td style="color:var(--evid);font-weight:600"><strong>경구 위관 투여 (oral gavage)</strong><br>1일 1회 × 21일 연속</td></tr>
+        <tr><td><strong>대조군 매질</strong></td><td>DMSO 단독 (vehicle control)</td><td>1% CMC-Na 단독 (vehicle control)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="block b-tool">
+    <span class="tag">Formulation note</span>
+    <p><strong>CMC-Na는 현탁화제(suspending agent)이지 가용화제(solubilizer)가 아니다.</strong> 역할은 불용성 입자가 침전하지 않고 균일하게 분산된 상태를 유지시켜 <em>투여량의 재현성</em>을 확보하는 것이다. 흡수 촉진 기능은 없다. 즉 이 프로토콜은 생체이용률 문제를 <strong>해결한 것이 아니라 통제한 것</strong>이다.</p>
+  </div>
+
+  <div class="ai">
+    <span class="tag">AI 클로드 해설</span>
+    <p>커뮤니티 논의에서 자주 혼동되는 두 지점을 분명히 해 둔다.</p>
+    <p><strong>① DMSO는 in vitro 전용이다.</strong> 이 논문에서 DMSO는 세포 실험의 용매일 뿐이며, 동물에게는 전혀 사용되지 않았다. “논문에서 DMSO를 썼다”를 복용 방법론으로 옮기는 것은 설계 자체의 오독이다. DMSO 자체도 vehicle control로 별도 대조군을 둬 <em>용매 효과를 배제하기 위해</em> 존재했다.</p>
+    <p><strong>② 이 논문은 제형 문제에 답하지 않는다.</strong> 흡수 촉진(지방 동반, 나노입자, 미셀 등)은 이 연구의 범위 밖이다. 흥미롭게도 저자들이 선행연구로 인용한 <em>PLGA 나노입자</em>·<em>mPEG-b-PCL 미셀</em> 연구들은 정확히 그 제형 문제를 겨냥한 것들이었고, 본 논문은 <strong>의도적으로 제형 변수를 제거한 채 순수 기전만 본 설계</strong>다. 설계 목적상 올바른 선택이지만, 그 결과 <strong>“어떻게 먹어야 하는가”에 대한 정보는 0</strong>이다.</p>
+  </div>
+</section>
+
+<!-- 10 -->
+<section class="reveal">
+  <span class="sec-idx">10 / EVIDENCE GRADING</span>
+  <h2>근거 등급화와 해석 함정</h2>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th class="num">등급</th><th>정의</th><th>본 논문 해당 여부</th></tr></thead>
+      <tbody>
+        <tr><td><span class="grade gA">A</span></td><td>무작위대조시험(RCT) · 메타분석</td><td style="color:var(--fg-faint)">해당 없음</td></tr>
+        <tr><td><span class="grade gB">B</span></td><td>전향적 비무작위 연구 · 대규모 코호트</td><td style="color:var(--fg-faint)">해당 없음</td></tr>
+        <tr><td><span class="grade gC">C</span></td><td>후향적 연구 · 증례 시리즈</td><td style="color:var(--fg-faint)">해당 없음</td></tr>
+        <tr><td><span class="grade gD">D</span></td><td><strong>전임상 — in vitro · 동물 모델</strong></td><td style="color:var(--limit);font-weight:700">■ 본 논문 = D등급</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="block b-evid">
+    <span class="tag">Within-tier quality</span>
+    <p>같은 D등급 안에서는 <strong>상위권</strong>으로 평가할 만하다. 근거: ⑴ 세포주 2종 독립 확인, ⑵ STR 인증, ⑶ 전역 전사체 + 표적 qPCR 교차검증, ⑷ 경로 차단 역증명 대조군, ⑸ in vitro → in vivo 연결, ⑹ 경구 투여 설계, ⑺ 원시 데이터 공개(GEO). <strong>그러나 등급 자체는 올라가지 않는다. D등급 상위는 여전히 D등급이다.</strong></p>
+  </div>
+
+  <h3>이 논문을 인용할 때의 흔한 함정</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>함정</th><th>내용</th></tr></thead>
+      <tbody>
+        <tr><td><strong>농도-용량 혼동</strong></td><td>배양액 µM 농도를 인체 혈중 농도와 동일시. 흡수·분포·결합을 건너뛴 추론.</td></tr>
+        <tr><td><strong>면역 맥락 소거</strong></td><td>누드마우스는 T세포 기능이 결손되어 있다. 면역 매개 항종양 효과는 <em>측정될 수 없었고</em>, 역으로 면역 관련 부작용도 드러날 수 없었다.</td></tr>
+        <tr><td><strong>모델 불일치</strong></td><td>피하 이식 고형 결절 ≠ 진행성 난소암의 실제 패턴(복강 파종, 복수, 복막 전이).</td></tr>
+        <tr><td><strong>단독요법 설계</strong></td><td>플래티넘·탁산 병용 시의 상승 혹은 길항은 전혀 검증되지 않았다.</td></tr>
+        <tr><td><strong>불멸시간 편향</strong><br><span class="mono" style="font-size:12px">immortal time bias</span></td><td>이 논문 자체의 문제는 아니나, 본 논문을 근거로 증례 보고를 해석할 때 전형적으로 발생한다. “오래 복용한 사람이 더 오래 살았다”는 <em>오래 살아야 오래 복용할 수 있다</em>는 역방향 인과를 포함한다.</td></tr>
+        <tr><td><strong>생존자 편향</strong></td><td>커뮤니티에 남아 보고하는 사례는 중단·악화 사례를 체계적으로 누락한다.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 11 -->
+<section class="reveal">
+  <span class="sec-idx">11 / LIMITS</span>
+  <h2>이 방법론이 구조적으로 대체할 수 없는 것</h2>
+
+  <div class="block b-limit">
+    <span class="tag">Limits</span>
+    <ul class="l" style="margin-bottom:0;">
+      <li><strong>인체 약동학(PK)의 부재.</strong> 경구 FBZ의 인체 C<sub>max</sub>·AUC·대사체 전환 데이터가 없다. 이것이 없으면 in vitro IC<sub>50</sub>과 복용량 사이에 다리가 놓이지 않는다. <em>가장 치명적인 공백이다.</em></li>
+      <li><strong>교차내성 가능성 미검증.</strong> FBZ가 탁산과 미세소관이라는 표적을 공유한다는 사실은 양날이다. 탁산 치료 경험이 있는 환자에서 흔한 내성 기전(βIII-tubulin 아형 발현, P-gp/MDR1 유출펌프 상향)은 <strong>FBZ에도 동일하게 작용할 수 있다.</strong> 이 논문은 이를 검토하지 않았다.</li>
+      <li><strong>바이오마커 기반 개별화 부재.</strong> A2780(p53 야생형 경향)과 SKOV3(p53 결손, HER2 과발현)의 민감도가 2–3배 달랐다. 이 차이를 설명할 분자적 예측인자는 제시되지 않았다. <strong>“누구에게 더 들을 것인가”에 대한 답이 없다.</strong></li>
+      <li><strong>장기 안전성·내성 발현 미관찰.</strong> 21일 설계로는 치료 후 재증식이나 내성 클론 선택을 볼 수 없다.</li>
+      <li><strong>표준치료와의 상호작용 미검증.</strong> 환자 주도 시도의 현실적 맥락은 항상 <em>표준치료 + 추가</em>이지 <em>대체</em>가 아니다. 이 논문은 그 조건을 전혀 다루지 않았다.</li>
+    </ul>
+  </div>
+
+  <h3>논리적으로 다음에 와야 할 검증 단계</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th class="num">단계</th><th>질문</th><th>필요한 자료</th></tr></thead>
+      <tbody>
+        <tr><td class="num">① PK</td><td>경구 FBZ가 인체에서 IC<sub>50</sub> 근처 혈중 농도에 도달하는가?</td><td>인체 PK 연구. 참고 축으로 대사체 <strong>옥스펜다졸(oxfendazole)</strong>의 인체 1상 자료 확인 — 별도 검색 필요</td></tr>
+        <tr><td class="num">② 병용</td><td>카보플라틴·파클리탁셀과 상승인가 길항인가?</td><td>병용 in vitro 및 이종이식 병용군</td></tr>
+        <tr><td class="num">③ 개별화</td><td>어떤 분자 아형이 민감한가?</td><td>세포주 패널 × 유전체 상관분석 (GDSC/CCLE 등)</td></tr>
+        <tr><td class="num">④ 임상 등록</td><td>현재 진행 중인 인체 시험이 있는가?</td><td>ClinicalTrials.gov 검색: fenbendazole / mebendazole / oxfendazole × ovarian</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ai">
+    <span class="tag">AI 클로드 해설</span>
+    <p>①번이 전체 사슬의 병목이다. ②③④가 아무리 좋아도 <strong>인체에서 유효 농도에 도달하지 못하면 나머지는 성립하지 않는다.</strong> 그리고 역으로, ①에서 도달 가능성이 확인되는 순간 나머지 질문들은 전부 의미를 갖는다. 커뮤니티가 추적해야 할 단일 변수를 하나만 고르라면, 나는 <strong>경구 벤즈이미다졸 계열의 인체 노출 데이터</strong>를 꼽겠다.</p>
+    <p>동시에 이 문서의 어떤 내용도 <strong>복용·병용·중단에 대한 결정 근거가 될 수 없다</strong>는 점을 반복해 둔다. 이 분석의 목적은 결정을 대신하는 것이 아니라, 주치의와의 대화에서 <strong>질문의 해상도를 올리는 것</strong>이다.</p>
+  </div>
+</section>
+
+<!-- 12 -->
+<section class="reveal">
+  <span class="sec-idx">12 / CLOSING</span>
+  <h2>클로징</h2>
+
+  <div class="thesis">
+    <span class="tag">RESTATEMENT</span>
+    <p>Wang et al. (2024)는 펜벤다졸을 <strong>일화의 영역에서 검증 가능한 가설의 영역으로 한 칸 옮겨 놓았다.</strong> 기전은 특정되었고, 경로는 차단 실험으로 역증명되었으며, 경구 투여로 in vivo 신호가 확인되었다. 동시에 이 논문은 인체 노출·병용·개별화라는 세 개의 공백을 그대로 남겨 두었다.<br><br>이 두 가지를 동시에 쥐는 것이 정직한 독해다. <strong>근거 없이 단정하지 않되, 근거 없이 성급히 닫지도 않는다.</strong></p>
+  </div>
+
+  <div class="block b-limit">
+    <span class="tag">Safety boundary — 필수</span>
+    <p>본 문서에서 다룬 펜벤다졸(fenbendazole)은 <strong>논문 내용을 설명하기 위한 예시(illustrative)</strong>이며, 어떠한 복용 권고도 아니다. 복용·병용·중단에 관한 <strong>최종 결정은 예외 없이 주치의의 몫</strong>이다. 본 문서의 HED 환산표를 포함한 모든 수치는 원문 기재사항과 공개 환산식을 그대로 계산한 결과이며, 용법·용량 지침으로 사용될 수 없다.</p>
+  </div>
+</section>
+
+<footer>
+  <strong>참고 문헌 및 출처</strong><br><br>
+  [1] Wang X, Tian W, Wang N, Yang X, Liu Z, Li L, Zhao T, Wang C, Zhang H, Yang H, Jia Y. <em>Transcriptome analysis reveals the anticancer effects of fenbendazole on ovarian cancer: an in vitro and in vivo study.</em> BMC Cancer. 2024;24:1593. — <a href="https://doi.org/10.1186/s12885-024-13361-9" target="_blank" rel="noopener">doi.org/10.1186/s12885-024-13361-9</a><br><br>
+  [2] U.S. FDA, Center for Drug Evaluation and Research. <em>Guidance for Industry: Estimating the Maximum Safe Starting Dose in Initial Clinical Trials for Therapeutics in Adult Healthy Volunteers.</em> 2005. — 체표면적 기준 동물-인간 등가용량 환산계수(K<sub>m</sub>) 출처.<br><br>
+  [3] 원시 전사체 데이터: NCBI Gene Expression Omnibus, accession <span class="mono">GSE275290</span>.<br><br>
+  <span style="color:var(--fg-faint)">본 문서는 환자 주도형 암 임상시험 커뮤니티(용도변경 약물 연구)의 심화 학습 자료다. 의학적 조언이 아니다. AI가 생성한 모든 판단·해석·주석은 ‘AI 클로드 해설’ 라벨로 명시적으로 구분했으며, 라벨이 없는 서술은 원문 기재사항 또는 공개 환산식에 근거한다. · 2026-11-09</span>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var items = document.querySelectorAll('.reveal');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function showAll(){ for (var i=0;i<items.length;i++) items[i].classList.add('on'); }
+  if (reduce || !('IntersectionObserver' in window)) { showAll(); return; }
+  try {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+    for (var i=0;i<items.length;i++) io.observe(items[i]);
+  } catch(err) { showAll(); }
+})();
+</script>
+</body>
+</html>
