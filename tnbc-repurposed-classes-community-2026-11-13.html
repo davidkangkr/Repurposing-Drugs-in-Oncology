@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>오래된 약, 새로운 싸움 — 삼중음성유방암과 용도변경 약물 (커뮤니티용)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBF7F0; --card:#FFFFFF; --ink:#2B2620; --soft:#5E554A; --line:#E6DCCB;
+    --green:#2E7D4F; --green-bg:#E8F3EC;
+    --amber:#A8650F; --amber-bg:#FBF0DD;
+    --slate:#4F6475; --slate-bg:#E9EEF2;
+    --rose:#A63D40; --rose-bg:#F8E8E6;
+    --claude:#6B4FA0; --claude-bg:#F1ECF8;
+    --accent:#8A5A2B;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;font-size:19px;line-height:1.85;word-break:keep-all;overflow-wrap:break-word}
+  .wrap{max-width:720px;margin:0 auto;padding:0 22px 80px}
+  h1,h2,h3{font-family:"Noto Serif KR",serif;line-height:1.4;margin:0}
+  h1{font-size:2rem;font-weight:900}
+  h2{font-size:1.5rem;font-weight:700;margin:64px 0 18px}
+  h3{font-size:1.2rem;font-weight:700}
+  p{margin:0 0 1em}
+  a{color:var(--accent)}
+  a:focus-visible,button:focus-visible{outline:3px solid #1F5FAD;outline-offset:3px;border-radius:4px}
+  .en{color:var(--soft);font-size:.85em}
+
+  header.hero{padding:56px 0 28px;border-bottom:2px solid var(--line)}
+  .kicker{display:inline-block;font-size:.85rem;font-weight:700;color:var(--accent);letter-spacing:.04em;margin-bottom:14px}
+  .hero .sub{font-size:1.1rem;color:var(--soft);margin-top:14px}
+  .source{margin-top:22px;font-size:.88rem;color:var(--soft);background:#F3ECE0;border-radius:12px;padding:14px 16px;line-height:1.7}
+
+  .quote{background:var(--card);border-left:5px solid var(--accent);border-radius:0 14px 14px 0;padding:18px 20px;margin:28px 0;font-family:"Noto Serif KR",serif;font-size:1.1rem}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 22px 10px;margin:22px 0}
+
+  /* metaphor */
+  .keys{display:flex;flex-direction:column;gap:14px;margin:24px 0}
+  .keyrow{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .keyrow .ico{font-size:1.7rem;line-height:1.3;flex:none}
+
+  /* stairs */
+  .stairs{display:flex;flex-direction:column-reverse;gap:10px;margin:22px 0}
+  .step{border-radius:14px;padding:14px 18px;display:flex;gap:14px;align-items:center}
+  .step b{font-size:1.05rem}
+  .step .dot{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700}
+  .s1{background:var(--slate-bg);margin-right:30%} .s1 .dot{background:var(--slate)}
+  .s2{background:var(--amber-bg);margin-right:15%} .s2 .dot{background:var(--amber)}
+  .s3{background:var(--green-bg)} .s3 .dot{background:var(--green)}
+
+  /* cards */
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;margin:22px 0;box-shadow:0 2px 0 rgba(0,0,0,.03)}
+  .card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+  .card .num{font-size:.85rem;font-weight:700;color:var(--accent)}
+  .badge{display:inline-block;font-size:.82rem;font-weight:700;border-radius:999px;padding:4px 12px;white-space:nowrap}
+  .b1{background:var(--slate-bg);color:var(--slate)}
+  .b2{background:var(--amber-bg);color:var(--amber)}
+  .drugs{font-size:.95rem;color:var(--soft);margin:4px 0 14px}
+  .row{border-top:1px dashed var(--line);padding:12px 0 4px}
+  .row .lab{display:block;font-size:.85rem;font-weight:700;color:var(--soft);margin-bottom:2px}
+  .row.warn .lab{color:var(--rose)}
+
+  /* claude note */
+  .claude{background:var(--claude-bg);border:2px solid var(--claude);border-radius:16px;padding:20px 20px 8px;margin:26px 0}
+  .claude .tag{display:inline-block;background:var(--claude);color:#fff;font-size:.8rem;font-weight:700;border-radius:6px;padding:3px 10px;margin-bottom:10px}
+
+  /* conclusion */
+  .lesson{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;margin:18px 0}
+  .lesson h3{display:flex;gap:10px;align-items:center;margin-bottom:10px}
+  .lesson .n{flex:none;width:36px;height:36px;border-radius:10px;background:var(--accent);color:#fff;display:grid;place-items:center;font-family:"Noto Sans KR";font-size:1rem}
+  .lesson .meta{background:#F6F0E6;border-radius:10px;padding:10px 14px;font-size:.95rem;margin-bottom:12px}
+
+  /* questions */
+  .q{position:relative;background:#FFFDF8;border:2px dashed #CDB894;border-radius:14px;padding:18px 18px 16px;margin:14px 0;font-size:1.02rem}
+  .q::before{content:"“";position:absolute;left:10px;top:-10px;font-family:"Noto Serif KR";font-size:3rem;color:#CDB894;line-height:1}
+  .q p{margin:0 0 10px;padding-left:14px}
+  .copy{font:inherit;font-size:.85rem;font-weight:700;background:var(--accent);color:#fff;border:0;border-radius:8px;padding:8px 14px;cursor:pointer;min-height:40px}
+  .copy.done{background:var(--green)}
+
+  .try{background:var(--green-bg);border-radius:18px;padding:22px 22px 8px;margin:22px 0}
+  .try ol{padding-left:1.3em;margin:0 0 14px}
+  .try li{margin-bottom:8px}
+
+  .safety{background:var(--rose-bg);border:2px solid var(--rose);border-radius:18px;padding:22px 22px 8px;margin:40px 0 22px}
+  .safety h2{margin:0 0 12px;color:var(--rose);font-size:1.3rem}
+
+  .closing{text-align:center;font-family:"Noto Serif KR",serif;font-size:1.2rem;margin:40px 0;padding:24px 10px;border-top:2px solid var(--line);border-bottom:2px solid var(--line)}
+  .refs{font-size:.88rem;line-height:1.7;color:var(--soft)}
+  .refs h3{font-size:1rem;margin:22px 0 6px;color:var(--ink)}
+  .refs ul{padding-left:1.1em;margin:0}
+  .refs li{margin-bottom:6px}
+  footer{font-size:.85rem;color:var(--soft);margin-top:40px}
+
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.reveal{opacity:1!important;transform:none!important;transition:none!important}}
+  @media (max-width:520px){body{font-size:18px}h1{font-size:1.65rem}h2{font-size:1.35rem}.s1{margin-right:14%}.s2{margin-right:7%}}
+  @media print{
+    body{background:#fff;font-size:12pt}
+    .reveal{opacity:1!important;transform:none!important}
+    .copy{display:none}
+    .card,.lesson,.box,.claude,.safety,.q{break-inside:avoid;box-shadow:none}
+    a{color:var(--ink)}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <span class="kicker">해외 논문 쉽게 읽기 · 커뮤니티용</span>
+  <h1>오래된 약, 새로운 싸움</h1>
+  <p class="sub">삼중음성유방암<span class="en">(TNBC)</span>에서 다시 주목받는 용도변경 약물 6가지 — 그리고 논문이 “앞으로 더 신경 써야 한다”고 짚은 것들</p>
+  <div class="source">
+    원본 논문: Tshimweneka VS, Mhlanga TV. <i>Old Drugs, New Battles: Unleashing Repurposed Drug Classes in Triple-Negative Breast Cancer Treatment.</i> International Journal of Molecular Sciences 2025;26(22):11196. (2025년 11월 19일 발표, 남아공 프리토리아대학교)<br>
+    <a href="https://www.mdpi.com/1422-0067/26/22/11196" target="_blank" rel="noopener">논문 원문 보기 (무료 공개)</a> · 정리: 꿈많은사람2 (AI 클로드 정리 지원) · 2026.11.13
+  </div>
+</header>
+
+<main>
+
+<section class="reveal">
+  <h2>“표적이 없다”는 말을 들으셨나요?</h2>
+  <div class="quote">“삼중음성이라서 쓸 수 있는 표적치료제가 없대요. 그럼 다른 방법은 정말 없는 건가요?”</div>
+  <p>삼중음성유방암 진단을 받으면 많은 분들이 이런 질문을 품게 됩니다. 그 막막함은 지극히 자연스러운 것입니다.</p>
+  <p>유방암 세포에는 보통 세 가지 “문고리”가 있습니다. 여성호르몬 문고리 두 개<span class="en">(ER, PR)</span>와 HER2라는 문고리입니다. 많은 유방암 치료제는 이 문고리를 붙잡고 작동합니다. 삼중음성은 <b>이 세 문고리가 모두 없는</b> 유방암입니다. 그래서 “표적이 없다”는 말을 듣게 됩니다.</p>
+  <div class="box">
+    <p><b>논문이 정리한 삼중음성유방암의 모습</b></p>
+    <p>· 전체 유방암의 약 15~20%를 차지합니다.<br>
+    · 비교적 젊은 여성과 흑인 여성에게 더 많습니다.<br>
+    · 재발률이 약 25%로, 특히 수술 전 항암 후 미세하게 남은 암이 있을 때 재발이 잦습니다.<br>
+    · 유전성 유방암 유전자인 BRCA1 변이와 자주 함께 나타납니다.</p>
+    <p>그리고 중요한 점이 하나 있습니다. <b>삼중음성도 한 가지가 아닙니다.</b> 연구자들은 성격이 다른 4가지 이상의 아형으로 나눕니다. 면역 반응이 활발한 형, 남성호르몬 수용체가 있는 형, 세포가 잘 움직이는 형, 세포분열·DNA 복구가 고장 난 형 등입니다. 같은 “삼중음성”이라도 사람마다 암의 성격이 다를 수 있다는 뜻입니다.</p>
+  </div>
+  <p>이 논문은 바로 이 지점에서 시작합니다. “새 약이 나올 때까지 기다리기만 할 것이 아니라, <b>이미 우리 곁에 있는 오래된 약들</b>을 다시 살펴보자”는 것입니다.</p>
+</section>
+
+<section class="reveal">
+  <h2>오래된 열쇠꾸러미로 새 자물쇠 열어보기</h2>
+  <p>용도변경<span class="en">(drug repurposing)</span>을 하나의 그림으로 생각해 보겠습니다.</p>
+  <div class="keys">
+    <div class="keyrow"><span class="ico" aria-hidden="true">🔑</span><div><b>열쇠꾸러미</b> — 당뇨약, 무좀약, 구충제, 우울증약, 혈압약, 진통제처럼 이미 수십 년 써온 약들입니다. 어떤 부작용이 있는지 이미 잘 알려져 있습니다.</div></div>
+    <div class="keyrow"><span class="ico" aria-hidden="true">🔒</span><div><b>새 자물쇠</b> — 삼중음성유방암 세포가 살아남고 자라는 데 쓰는 여러 통로입니다.</div></div>
+    <div class="keyrow"><span class="ico" aria-hidden="true">🧪</span><div><b>맞춰보기</b> — 이 열쇠가 그 자물쇠에도 맞는지 실험실에서, 동물에서, 그리고 사람에게서 차례로 확인하는 과정입니다.</div></div>
+  </div>
+  <p>새 약을 처음부터 만들려면 보통 10~17년이 걸리고 비용도 막대합니다. 반면 이미 안전성 자료가 있는 약은 초기 단계를 건너뛸 수 있어 시간과 비용이 크게 줄어듭니다. 실제로 탈리도마이드<span class="en">(thalidomide)</span>는 입덧약에서 다발골수종 치료제로, 삼산화비소<span class="en">(arsenic trioxide)</span>는 백혈병의 한 종류 치료제로 쓰이게 되었습니다.</p>
+  <p>다만 이 비유에는 처음부터 기억해 둘 점이 있습니다. <b>열쇠가 “맞을 것 같다”와 “실제로 문이 열렸다”는 전혀 다른 이야기</b>입니다. 그래서 각 약이 지금 어느 단계까지 왔는지를 함께 보셔야 합니다.</p>
+
+  <h3 style="margin-top:34px">지금 어디까지 왔을까? — 확인의 세 계단</h3>
+  <div class="stairs" role="list">
+    <div class="step s1" role="listitem"><span class="dot">1</span><div><b>실험실 계단</b><br>세포나 동물에서 맞는 듯 보였습니다.</div></div>
+    <div class="step s2" role="listitem"><span class="dot">2</span><div><b>사람 흔적 계단</b><br>그 약을 먹던 사람들의 기록에서 좋은 신호가 보였습니다. 하지만 우연이나 다른 이유일 수 있습니다.</div></div>
+    <div class="step s3" role="listitem"><span class="dot">3</span><div><b>확인 계단</b><br>대규모 임상시험에서 효과가 확인되었습니다.</div></div>
+  </div>
+  <p>미리 말씀드리면, 이 논문이 다룬 6개 약물군 중 <b>삼중음성유방암에서 3번째 계단에 올라선 약은 아직 없습니다.</b> 이것은 “소용없다”는 뜻이 아니라 “아직 확인 중”이라는 뜻입니다.</p>
+</section>
+
+<section class="reveal">
+  <h2>논문이 살펴본 열쇠 6가지</h2>
+  <p>아래 약 이름은 모두 <b>논문에 나온 예시</b>입니다. 복용을 권하는 목록이 아닙니다.</p>
+
+  <article class="card">
+    <div class="top"><div><div class="num">열쇠 1</div><h3>당뇨약</h3></div><span class="badge b2">2계단 · 큰 임상시험도 있음</span></div>
+    <div class="drugs">메트포르민<span class="en">(metformin)</span></div>
+    <div class="row"><span class="lab">원래 쓰임</span>제2형 당뇨병의 혈당 조절</div>
+    <div class="row"><span class="lab">암에서 보인 가능성</span>암세포의 “발전소”를 약하게 만들어 에너지를 줄이고, 성장 신호를 꺼뜨립니다. 동물 실험에서 종양이 작아졌고, 항암제가 더 잘 듣게 도왔습니다.</div>
+    <div class="row"><span class="lab">지금 어디까지</span>메트포르민을 먹던 당뇨 환자들의 기록에서는 좋은 신호가 있었습니다. 하지만 당뇨가 없는 환자 대상 임상시험 결과는 엇갈렸습니다. 논문은 몸의 대사 상태에 따라 효과가 달라질 수 있다고 봅니다.</div>
+    <div class="row warn"><span class="lab">조심할 점</span>위장 불편이 흔합니다. 콩팥 기능이 떨어진 분은 젖산증 위험을 살펴야 합니다. 몸에 흡수가 잘 안 되고 종양 속으로 잘 들어가지 않는 문제도 있습니다.</div>
+  </article>
+
+  <div class="claude">
+    <span class="tag">AI 클로드 주석</span>
+    <p>논문 표에는 메트포르민 3상 임상시험이 “결과가 엇갈렸다”고만 적혀 있습니다. 이 시험은 MA.32라는 대규모 시험으로, 2022년 JAMA에 결과가 발표되었습니다. 당뇨가 없는 유방암 환자 3,649명이 참여했는데, <b>호르몬 수용체 음성 그룹(삼중음성이 포함되는 그룹)에서는 중간 분석에서 효과가 없다고 판단되어 일찍 중단</b>되었습니다.</p>
+    <p>“먹던 사람들의 기록에서는 좋아 보였는데, 제대로 비교해 보니 차이가 없었다.” 2계단과 3계단이 왜 다른지 보여주는 좋은 예입니다. 그렇다고 가능성이 완전히 닫힌 것은 아닙니다. 논문 말처럼 “누구에게 맞는가”를 더 찾아야 한다는 뜻입니다.</p>
+  </div>
+
+  <article class="card">
+    <div class="top"><div><div class="num">열쇠 2</div><h3>무좀약 (항진균제)</h3></div><span class="badge b1">1~2계단</span></div>
+    <div class="drugs">케토코나졸<span class="en">(ketoconazole)</span>, 클로트리마졸<span class="en">(clotrimazole)</span>, 이트라코나졸<span class="en">(itraconazole)</span></div>
+    <div class="row"><span class="lab">원래 쓰임</span>곰팡이 감염 치료</div>
+    <div class="row"><span class="lab">암에서 보인 가능성</span>암세포가 주변으로 퍼지는 길을 막고, 암이 자라는 데 쓰는 “헤지호그<span class="en">(Hedgehog)</span>” 신호를 끕니다. 항암제를 밖으로 뿜어내는 암세포의 펌프를 막아 항암제가 더 오래 머물게 할 수 있습니다. 케토코나졸은 뇌 전이와 관련된 신호를 억제한 실험 결과가 있습니다.</div>
+    <div class="row"><span class="lab">지금 어디까지</span>과거 기록을 돌아본 연구와 소수 환자 보고에서 좋은 신호가 있습니다. 큰 임상시험은 아직 필요합니다.</div>
+    <div class="row warn"><span class="lab">조심할 점</span>케토코나졸은 간 손상 위험이 있습니다. 이트라코나졸은 물에 잘 녹지 않아 흡수가 고르지 않습니다.</div>
+  </article>
+
+  <article class="card">
+    <div class="top"><div><div class="num">열쇠 3</div><h3>구충제</h3></div><span class="badge b1">1계단 · 임상시험 진행 중</span></div>
+    <div class="drugs">메벤다졸<span class="en">(mebendazole)</span>, 이버멕틴<span class="en">(ivermectin)</span></div>
+    <div class="row"><span class="lab">원래 쓰임</span>기생충 감염 치료</div>
+    <div class="row"><span class="lab">암에서 보인 가능성</span>메벤다졸은 세포가 둘로 나뉠 때 쓰는 “뼈대”를 무너뜨려 분열을 멈추게 합니다. 이버멕틴은 암세포의 생존 신호를 꺼뜨리고 움직임을 둔하게 합니다. 동물 실험에서 메벤다졸은 종양 성장을 줄이고 생존을 늘렸습니다.</div>
+    <div class="row"><span class="lab">지금 어디까지</span>삼중음성유방암 환자에게 직접 효과를 본 임상시험은 아직 적다고 논문은 말합니다. 메벤다졸은 파클리탁셀<span class="en">(paclitaxel)</span>과, 이버멕틴은 면역항암제와 함께 쓰는 조합이 연구되고 있습니다.</div>
+    <div class="row warn"><span class="lab">조심할 점</span>메벤다졸은 물에 잘 녹지 않아 몸에 흡수되는 양이 적습니다. 이버멕틴은 드물게 고용량에서 신경 독성이 보고되었고, 종양 속으로 잘 들어가지 않습니다.</div>
+  </article>
+
+  <article class="card">
+    <div class="top"><div><div class="num">열쇠 4</div><h3>우울증약 · 정신과 약</h3></div><span class="badge b1">1계단</span></div>
+    <div class="drugs">플루옥세틴<span class="en">(fluoxetine)</span>, 파록세틴<span class="en">(paroxetine)</span>, 이미프라민<span class="en">(imipramine)</span>, 티오리다진<span class="en">(thioridazine)</span></div>
+    <div class="row"><span class="lab">원래 쓰임</span>우울증, 조현병 등 정신과 질환 치료</div>
+    <div class="row"><span class="lab">암에서 보인 가능성</span>암세포의 생존 신호를 꺼서 스스로 죽게 하거나, 암세포의 DNA 수선 능력을 떨어뜨립니다. 일부는 항암제를 밖으로 뿜어내는 펌프를 막습니다. 환자 암 조직을 이식한 쥐에서 이미프라민이 종양을 줄였습니다.</div>
+    <div class="row"><span class="lab">지금 어디까지</span>유방암 임상시험이 진행 중이지만 자료는 아직 부족합니다.</div>
+    <div class="row warn"><span class="lab">조심할 점</span>오랜 사용으로 안전성은 알려져 있지만, 암 치료에 쓸 때는 용량 조절이 필요할 수 있습니다.</div>
+    <div class="row"><span class="lab">덧붙여</span>논문은 암 환자의 우울증이 일반인보다 훨씬 흔하고(12.5% 대 3.3%), 우울증이 암 사망 위험을 39% 높인다고 소개합니다. 마음을 돌보는 일 자체가 치료의 일부라는 뜻이기도 합니다.</div>
+  </article>
+
+  <article class="card">
+    <div class="top"><div><div class="num">열쇠 5</div><h3>혈압약 · 심장약 · 고지혈증약</h3></div><span class="badge b2">2계단 · 임상시험 진행 중</span></div>
+    <div class="drugs">프로프라놀롤<span class="en">(propranolol)</span>, ACE 억제제·ARB 계열 혈압약, 스타틴<span class="en">(statins)</span></div>
+    <div class="row"><span class="lab">원래 쓰임</span>고혈압, 심장 질환, 콜레스테롤 조절</div>
+    <div class="row"><span class="lab">암에서 보인 가능성</span>프로프라놀롤은 스트레스 호르몬이 암을 돕는 신호를 막고, 암을 공격하는 면역세포(NK세포)를 되살립니다. 혈압약 일부는 암이 새 혈관을 만드는 것을 줄입니다. 스타틴은 암세포가 성장 신호를 켜는 데 필요한 재료를 막습니다.</div>
+    <div class="row"><span class="lab">지금 어디까지</span>항암 중 베타차단제를 함께 쓴 환자들의 기록에서 생존 신호가 보였습니다. 스타틴도 비슷한 신호가 있습니다. 하지만 무작위 비교 임상시험은 부족합니다. 프로프라놀롤과 면역항암제를 함께 쓰는 임상시험이 진행 중입니다.</div>
+    <div class="row warn"><span class="lab">조심할 점</span>베타차단제와 혈압약은 혈압 저하와 피로가 있을 수 있습니다. 스타틴은 근육통과 간 수치 상승을 살펴야 합니다.</div>
+  </article>
+
+  <article class="card">
+    <div class="top"><div><div class="num">열쇠 6</div><h3>소염진통제 (NSAIDs)</h3></div><span class="badge b2">2계단 · 결과 엇갈림</span></div>
+    <div class="drugs">아스피린<span class="en">(aspirin)</span>, 인도메타신<span class="en">(indomethacin)</span>, 나프록센<span class="en">(naproxen)</span></div>
+    <div class="row"><span class="lab">원래 쓰임</span>통증, 염증, 열</div>
+    <div class="row"><span class="lab">암에서 보인 가능성</span>삼중음성유방암에 많은 “COX-2”라는 염증 효소를 막아, 염증이 암을 키우는 고리를 끊습니다. 파클리탁셀이나 독소루비신<span class="en">(doxorubicin)</span> 같은 항암제가 더 잘 듣게 돕는다는 실험 결과가 있습니다.</div>
+    <div class="row"><span class="lab">지금 어디까지</span>소염진통제를 쓰던 사람들의 기록에서 재발이 적었다는 연구가 있지만, 결과가 엇갈립니다. 논문은 더 큰 임상시험이 필요하다고 말합니다.</div>
+    <div class="row warn"><span class="lab">조심할 점</span>오래 쓰면 위궤양, 심혈관 위험, 콩팥 손상이 생길 수 있습니다.</div>
+  </article>
+</section>
+
+<section class="reveal">
+  <h2>앞으로 우리가 더 신경 써야 할 것</h2>
+  <p>이 논문의 결론은 짧지만 분명합니다. 오래된 약을 다시 쓰는 일은 비용이 적고 안전성 자료가 있어 <b>희망적인 길</b>이라고 말합니다. 그러면서도 <b>아직 남은 숙제</b>를 세 가지로 꼽고, 본문 곳곳에서 네 번째 숙제를 강조합니다. 열쇠 비유로 하나씩 풀어보겠습니다.</p>
+
+  <div class="lesson">
+    <h3><span class="n">1</span>내성 — 자물쇠는 모양을 바꿉니다</h3>
+    <div class="meta">논문: 한 가지 약만 쓰면 내성이 생길 위험이 커진다. 여러 약을 함께 쓰면 더 효과적일 수 있지만, 약끼리 부딪쳐 부작용이 늘 수 있다.</div>
+    <p>같은 열쇠로 계속 두드리면 암은 다른 문을 찾아냅니다. 그렇다고 열쇠 여러 개를 한꺼번에 꽂으면, 부작용이라는 또 다른 문제가 겹칩니다. <b>“무엇을 더할까”만큼 “무엇과 부딪치지 않을까”가 중요합니다.</b></p>
+  </div>
+
+  <div class="lesson">
+    <h3><span class="n">2</span>독성 — 오래 쓴 약도 내 몸에선 다를 수 있습니다</h3>
+    <div class="meta">논문: 약마다 간·콩팥·위장·근육·신경에 대한 독성을 살펴야 하며, 암 환자에서의 안전성을 확인한 무작위 임상시험이 부족하다.</div>
+    <p>“다른 병으로 오래 써온 약이니 안전하다”는 생각은 절반만 맞습니다. 항암 치료 중인 몸은 간과 콩팥이 이미 바쁘게 일하고 있습니다. 같은 열쇠라도 <b>지금 내 몸의 상태</b>에서는 다르게 작용할 수 있습니다.</p>
+  </div>
+
+  <div class="lesson">
+    <h3><span class="n">3</span>용량 — 열쇠가 자물쇠까지 닿아야 합니다</h3>
+    <div class="meta">논문: 암 치료에 맞는 용량은 아직 정해지지 않았다. 많은 약이 물에 잘 녹지 않거나, 흡수가 적거나, 종양 속으로 잘 들어가지 않는다.</div>
+    <p>실험실 접시에서는 열쇠를 자물쇠에 바로 꽂을 수 있습니다. 하지만 사람 몸에서는 약이 흡수되고, 피를 타고 돌고, 종양 속까지 들어가야 합니다. 메트포르민, 이트라코나졸, 메벤다졸, 이버멕틴 모두 이 “전달”이 걸림돌로 지적되었습니다. 그래서 연구자들은 나노입자처럼 약을 더 잘 전달하는 방법을 찾고 있습니다. <b>이 숙제는 “많이 먹으면 된다”로 풀리지 않습니다.</b> 용량을 늘리면 독성(2번 숙제)도 함께 커지기 때문입니다.</p>
+  </div>
+
+  <div class="lesson">
+    <h3><span class="n">4</span>개별화 — 자물쇠 모양은 사람마다 다릅니다</h3>
+    <div class="meta">논문: 같은 약이라도 환자의 유전적 배경과 삼중음성 아형, 대사 상태에 따라 결과가 달라질 수 있다. 맞춤형 접근이 필요하다.</div>
+    <p>삼중음성은 하나가 아니라고 앞에서 말씀드렸습니다. 메트포르민이 당뇨 환자 기록에서는 좋아 보였지만 당뇨가 없는 환자 시험에서는 엇갈렸던 것도, 사람마다 자물쇠가 다르다는 신호일 수 있습니다. <b>“이 약이 좋다더라”보다 “나 같은 사람에게도 맞을까”가 먼저입니다.</b></p>
+  </div>
+
+  <p>논문은 마지막으로 이렇게 정리합니다. 이 약들이 실제 암 치료 안에서 어떤 자리를 차지할지는 <b>계속되는 연구와 임상시험</b>으로 확인해야 한다는 것입니다. 희망을 닫지도, 서둘러 단정하지도 않는 태도입니다.</p>
+</section>
+
+<section class="reveal">
+  <h2>주치의께 이렇게 물어보세요</h2>
+  <p>아래 문장은 그대로 복사해서 메모장에 적어 가셔도 됩니다. 필요한 부분만 골라 쓰세요.</p>
+
+  <div class="q"><p>제 삼중음성유방암은 어떤 아형에 가까운가요? PD-L1이나 BRCA 같은 검사 결과가 있다면, 그것이 제 치료 선택에 어떤 의미가 있나요?</p><button class="copy" type="button">복사하기</button></div>
+  <div class="q"><p>제가 지금 먹고 있는 약과 영양제 목록을 가져왔습니다. 이 중에 지금 받는 항암 치료와 부딪치거나, 간·콩팥에 부담이 될 만한 것이 있을까요?</p><button class="copy" type="button">복사하기</button></div>
+  <div class="q"><p>메트포르민이나 프로프라놀롤 같은 약이 유방암에서 연구되고 있다는 글을 읽었습니다. 제 상황에서 이런 약을 생각해 볼 근거가 있는지, 아니면 아직 이른지 선생님 의견이 궁금합니다.</p><button class="copy" type="button">복사하기</button></div>
+  <div class="q"><p>제가 참여할 수 있는 임상시험이 있을까요? 용도변경 약물을 함께 쓰는 임상시험도 포함해서 알아볼 수 있을까요?</p><button class="copy" type="button">복사하기</button></div>
+  <div class="q"><p>만약 어떤 약을 추가한다면, 효과와 부작용을 어떤 검사로, 얼마나 자주 확인하게 되나요?</p><button class="copy" type="button">복사하기</button></div>
+</section>
+
+<section class="reveal">
+  <div class="try">
+    <h2 style="margin-top:0">이것부터 시도해 보세요!</h2>
+    <ol>
+      <li><b>내 약 목록 한 장 만들기</b> — 처방약, 영양제, 한약, 건강식품까지 이름과 먹는 시간을 적어 둡니다. 다음 진료 때 그대로 보여드리면 됩니다.</li>
+      <li><b>내 검사 결과 이름 알아두기</b> — “삼중음성”이라는 진단 외에, 조직검사에서 어떤 표지자를 확인했는지 여쭤보세요.</li>
+      <li><b>읽은 글은 출처와 함께 가져가기</b> — “어디서 봤는데”보다 논문 제목이 있으면 주치의도 더 정확히 답할 수 있습니다. 이 글 맨 아래 원문 링크를 함께 보여드려도 좋습니다.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="safety reveal" aria-labelledby="safety-h">
+  <h2 id="safety-h">꼭 기억해 주세요</h2>
+  <p>· 이 글에 나온 약 이름은 모두 <b>논문 속 예시</b>이며, 복용을 권하는 것이 아닙니다.</p>
+  <p>· 약을 새로 먹을지, 함께 쓸지, 끊을지는 <b>반드시 주치의와 상의해서 결정</b>하세요. 혼자 시작하거나 지금 받는 치료를 바꾸지 마세요.</p>
+  <p>· 이 논문의 근거는 대부분 실험실과 동물 연구, 그리고 과거 기록을 돌아본 연구입니다. 삼중음성유방암에서 대규모 임상시험으로 효과가 확인된 약은 아직 없습니다.</p>
+  <p>· AI는 결정을 대신하지 않습니다. <b>더 좋은 질문을 준비하는 도구</b>입니다.</p>
+</section>
+
+<div class="closing reveal">
+  원리를 알고, 가능성을 이해하고, 근거 위에서 시도합니다.<br>
+  오래된 열쇠를 들고 가는 길, 주치의와 함께 걸어가세요.
+</div>
+
+<section class="refs reveal">
+  <h2 style="font-size:1.2rem">출처</h2>
+  <h3>원본 논문</h3>
+  <ul>
+    <li>Tshimweneka VS, Mhlanga TV. Old Drugs, New Battles: Unleashing Repurposed Drug Classes in Triple-Negative Breast Cancer Treatment. <i>Int J Mol Sci</i> 2025;26(22):11196. <a href="https://doi.org/10.3390/ijms262211196" target="_blank" rel="noopener">doi.org/10.3390/ijms262211196</a></li>
+  </ul>
+  <h3>AI 클로드 주석에 쓴 자료</h3>
+  <ul>
+    <li>Goodwin PJ, et al. Effect of Metformin vs Placebo on Invasive Disease-Free Survival in Patients With Breast Cancer: The MA.32 Randomized Clinical Trial. <i>JAMA</i> 2022;327(20):1963–1973. <a href="https://doi.org/10.1001/jama.2022.6147" target="_blank" rel="noopener">doi.org/10.1001/jama.2022.6147</a> · <a href="https://clinicaltrials.gov/study/NCT01101438" target="_blank" rel="noopener">NCT01101438</a></li>
+  </ul>
+</section>
+
+<footer>
+  히포크라테스의 친구들 · 해외 사례 분석집 · 이 문서는 교육용 자료이며 의학적 조언이 아닙니다.
+</footer>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce || !('IntersectionObserver' in window)) {
+    els.forEach(function(e){ e.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, {threshold: 0.08});
+    els.forEach(function(e){ io.observe(e); });
+  }
+  window.addEventListener('beforeprint', function(){ els.forEach(function(e){ e.classList.add('in'); }); });
+
+  document.querySelectorAll('.copy').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var text = btn.parentElement.querySelector('p').innerText;
+      var done = function(){ btn.textContent = '복사되었습니다'; btn.classList.add('done');
+        setTimeout(function(){ btn.textContent = '복사하기'; btn.classList.remove('done'); }, 1800); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, function(){ fallback(text); done(); });
+      } else { fallback(text); done(); }
+    });
+  });
+  function fallback(t){
+    var ta = document.createElement('textarea'); ta.value = t; ta.setAttribute('readonly','');
+    ta.style.position='absolute'; ta.style.left='-9999px'; document.body.appendChild(ta);
+    ta.select(); try{ document.execCommand('copy'); }catch(e){} document.body.removeChild(ta);
+  }
+})();
+</script>
+</body>
+</html>

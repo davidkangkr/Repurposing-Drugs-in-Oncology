@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Old Drugs, New Battles — TNBC 용도변경 약물군 심화 분석 (전문가용)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0E1217; --panel:#151B23; --panel2:#1B232D; --line:#2A3441; --ink:#E4E9EF; --soft:#9AA7B5; --dim:#6E7C8B;
+    --mech:#4FC3D9; --mech-bg:rgba(79,195,217,.10);
+    --evid:#E9B44C; --evid-bg:rgba(233,180,76,.10);
+    --pk:#A88BEB; --pk-bg:rgba(168,139,235,.10);
+    --lim:#EC7A86; --lim-bg:rgba(236,122,134,.10);
+    --ok:#6FCF97;
+    --ai:#C9D3DD;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;font-size:16.5px;line-height:1.8;word-break:keep-all;overflow-wrap:break-word}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px 90px}
+  h1,h2,h3{font-family:"Noto Serif KR",serif;margin:0;line-height:1.35}
+  h1{font-size:2.15rem;font-weight:900}
+  h2{font-size:1.5rem;margin:8px 0 16px}
+  h3{font-size:1.1rem;margin:22px 0 8px}
+  p{margin:0 0 1em}
+  a{color:var(--mech)}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--evid);outline-offset:3px;border-radius:3px}
+  .mono{font-family:"IBM Plex Mono",monospace}
+  .idx{font-family:"IBM Plex Mono",monospace;font-size:.78rem;letter-spacing:.12em;color:var(--dim);text-transform:uppercase}
+  section{padding:54px 0 0}
+  .c-mech{color:var(--mech)} .c-evid{color:var(--evid)} .c-pk{color:var(--pk)} .c-lim{color:var(--lim)}
+
+  header{padding:54px 0 26px;border-bottom:1px solid var(--line)}
+  header .lede{color:var(--soft);font-size:1.05rem;margin-top:12px}
+  .bib{margin-top:20px;font-size:.86rem;color:var(--soft);border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:var(--panel)}
+  .legend{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:16px;font-size:.82rem}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
+
+  .thesis{margin-top:30px;border-left:4px solid var(--evid);background:var(--panel);padding:22px 24px;border-radius:0 12px 12px 0}
+  .thesis .idx{color:var(--evid)}
+  .thesis p{font-family:"Noto Serif KR",serif;font-size:1.22rem;line-height:1.65;margin:8px 0 0}
+
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin:16px 0}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .para{border-radius:12px;padding:18px 20px;border:1px solid var(--line)}
+  .para.old{background:var(--panel)}
+  .para.new{background:var(--panel2);border-color:var(--mech)}
+  .para h3{margin-top:0}
+
+  table{width:100%;border-collapse:collapse;font-size:.88rem;line-height:1.6}
+  th,td{border-bottom:1px solid var(--line);padding:10px 10px;text-align:left;vertical-align:top}
+  th{font-family:"IBM Plex Mono",monospace;font-size:.74rem;letter-spacing:.06em;color:var(--soft);text-transform:uppercase;font-weight:500;background:var(--panel2)}
+  .tscroll{overflow-x:auto;border:1px solid var(--line);border-radius:12px;margin:16px 0;background:var(--panel)}
+  .tscroll table{min-width:720px}
+
+  .grade{display:inline-block;font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:.8rem;border-radius:5px;padding:1px 8px;margin:1px 2px 1px 0;white-space:nowrap}
+  .gA{background:rgba(111,207,151,.16);color:var(--ok)}
+  .gB{background:var(--evid-bg);color:var(--evid)}
+  .gC{background:rgba(233,180,76,.06);color:#CFA65A;border:1px solid rgba(233,180,76,.35)}
+  .gD{background:var(--panel2);color:var(--soft);border:1px solid var(--line)}
+  .neg{background:var(--lim-bg);color:var(--lim)}
+
+  /* mechanism map: vertical */
+  .mapcol{display:flex;flex-direction:column;gap:12px;margin:18px 0}
+  .mcard{display:grid;grid-template-columns:150px 1fr;gap:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel)}
+  .mcard .cls{background:var(--panel2);padding:14px;border-right:1px solid var(--line)}
+  .mcard .cls b{display:block;font-family:"Noto Serif KR",serif;font-size:1rem}
+  .mcard .cls small{color:var(--soft);font-size:.78rem;line-height:1.5;display:block;margin-top:4px}
+  .mcard .body{padding:12px 16px}
+  .chain{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:4px 0}
+  .node{font-family:"IBM Plex Mono",monospace;font-size:.78rem;border-radius:6px;padding:2px 8px;background:var(--mech-bg);color:var(--mech);border:1px solid rgba(79,195,217,.35)}
+  .node.out{background:transparent;color:var(--ink);border-color:var(--line)}
+  .arrow{color:var(--dim);font-size:.8rem}
+  .mcard .pk{font-size:.84rem;color:var(--pk);margin-top:6px}
+  .mcard .tox{font-size:.84rem;color:var(--lim)}
+
+  /* subtype */
+  .subs{display:flex;flex-direction:column;gap:10px}
+  .sub{display:grid;grid-template-columns:110px 1fr;border:1px solid var(--line);border-radius:10px;background:var(--panel);overflow:hidden}
+  .sub .k{font-family:"IBM Plex Mono",monospace;font-weight:600;color:var(--mech);padding:12px;background:var(--panel2);border-right:1px solid var(--line)}
+  .sub .v{padding:10px 14px;font-size:.92rem}
+  .sub .v .hook{color:var(--evid);font-size:.84rem}
+
+  /* challenge blocks */
+  .chal{border:1px solid var(--line);border-radius:12px;background:var(--panel);margin:14px 0;overflow:hidden}
+  .chal .hd{display:flex;gap:12px;align-items:baseline;padding:14px 18px;border-bottom:1px solid var(--line);background:var(--panel2)}
+  .chal .hd .mono{color:var(--lim);font-size:.85rem}
+  .chal .hd h3{margin:0}
+  .chal .bd{padding:14px 18px}
+  .chal dl{margin:0;display:grid;grid-template-columns:150px 1fr;gap:6px 14px;font-size:.92rem}
+  .chal dt{color:var(--soft);font-family:"IBM Plex Mono",monospace;font-size:.76rem;letter-spacing:.04em;padding-top:3px}
+  .chal dd{margin:0}
+
+  /* rail */
+  .rail{position:relative;margin:18px 0 0 8px;padding-left:26px;border-left:2px solid var(--line)}
+  .rstep{position:relative;margin-bottom:22px}
+  .rstep::before{content:attr(data-n);position:absolute;left:-41px;top:0;width:28px;height:28px;border-radius:50%;background:var(--panel2);border:2px solid var(--mech);color:var(--mech);font-family:"IBM Plex Mono",monospace;font-size:.8rem;display:grid;place-items:center}
+  .rstep h3{margin:0 0 6px}
+  .gate{font-size:.84rem;border:1px dashed var(--evid);color:var(--evid);border-radius:8px;padding:6px 10px;margin-top:8px;background:var(--evid-bg)}
+  pre.prompt{white-space:pre-wrap;font-family:"IBM Plex Mono",monospace;font-size:.82rem;line-height:1.65;background:#0A0D11;border:1px solid var(--line);border-left:3px solid var(--mech);border-radius:8px;padding:14px 16px;margin:10px 0;color:#CFD8E1}
+  pre.prompt em{font-style:normal;color:var(--lim)}
+  pre.prompt b{color:var(--evid);font-weight:500}
+
+  .ai{border:1px dashed var(--ai);border-radius:12px;padding:18px 20px 6px;margin:18px 0;background:rgba(201,211,221,.05)}
+  .ai .tag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.74rem;letter-spacing:.06em;background:var(--ai);color:#0E1217;border-radius:4px;padding:2px 8px;margin-bottom:10px;font-weight:600}
+
+  .limits li{margin-bottom:10px}
+  .limits li b{color:var(--lim)}
+  .boundary{border:1px solid var(--lim);background:var(--lim-bg);border-radius:12px;padding:18px 20px 6px;margin:20px 0}
+  .closing{font-family:"Noto Serif KR",serif;font-size:1.2rem;line-height:1.7;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px 4px;margin:46px 0 0}
+
+  .refs{margin-top:14px;font-size:.82rem;color:var(--soft);border-top:1px dashed var(--line);padding-top:10px}
+  .refs b{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.08em;color:var(--dim);font-weight:500}
+  .refs ul{margin:6px 0 0;padding-left:1.1em}
+  .refs li{margin-bottom:4px}
+  footer{margin-top:40px;font-size:.8rem;color:var(--dim)}
+
+  .reveal{opacity:0;transform:translateY(12px);transition:opacity .55s ease,transform .55s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.reveal{opacity:1!important;transform:none!important;transition:none!important}}
+  @media (max-width:700px){
+    body{font-size:16px}
+    h1{font-size:1.7rem}
+    .grid2{grid-template-columns:1fr}
+    .mcard{grid-template-columns:1fr}
+    .mcard .cls{border-right:0;border-bottom:1px solid var(--line)}
+    .sub{grid-template-columns:1fr}
+    .sub .k{border-right:0;border-bottom:1px solid var(--line)}
+    .chal dl{grid-template-columns:1fr}
+    .chal dt{padding-top:6px}
+  }
+  @media (max-width:700px){
+    .tscroll{overflow:visible;border:0;background:transparent}
+    .tscroll table{min-width:0}
+    .tscroll thead{display:none}
+    .tscroll table,.tscroll tbody,.tscroll tr,.tscroll td{display:block;width:100%}
+    .tscroll tr{background:var(--panel);border:1px solid var(--line);border-radius:12px;margin:0 0 12px;padding:6px 4px}
+    .tscroll td{border-bottom:1px dashed var(--line);padding:8px 12px}
+    .tscroll td:last-child{border-bottom:0}
+    .tscroll td::before{content:attr(data-label);display:block;font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.06em;color:var(--dim);text-transform:uppercase;margin-bottom:2px}
+    .tscroll td:first-child::before{display:none}
+    .tscroll td:first-child{font-size:1rem}
+  }
+  @media print{
+    :root{--bg:#fff;--panel:#fff;--panel2:#F3F5F7;--line:#C9D1D9;--ink:#111;--soft:#444;--dim:#666;
+      --mech:#0B6E83;--evid:#8A5A00;--pk:#5A3FA8;--lim:#A3283A;--ok:#1F7A45;--ai:#555}
+    body{font-size:10.5pt}
+    .reveal{opacity:1!important;transform:none!important}
+    .panel,.mcard,.chal,.ai,.boundary,.sub,.para{break-inside:avoid}
+    pre.prompt{background:#F6F7F9;color:#111}
+    .tscroll{overflow:visible}.tscroll table{min-width:0}
+    a{color:#0B6E83}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="idx">해외 사례 분석집 · 심화/방법론 · Review Dissection</div>
+  <h1 style="margin-top:10px">Old Drugs, New Battles — 삼중음성유방암 용도변경 6개 약물군의 기전·근거·병목</h1>
+  <p class="lede">개관 리뷰 한 편을 “어디까지 확인되었고, 무엇이 막혀 있는가”의 관점으로 재구성합니다.</p>
+  <div class="bib mono">
+    Tshimweneka VS, Mhlanga TV. Int J Mol Sci 2025;26(22):11196 · Review · Published 2025-11-19 · Dept. Physiology, Univ. of Pretoria ·
+    <a href="https://doi.org/10.3390/ijms262211196" target="_blank" rel="noopener">doi:10.3390/ijms262211196</a> · CC BY 4.0 · Funding: NRF (South Africa) · COI: none declared<br>
+    편집: 꿈많은사람2 · 분석 지원: AI 클로드 · 2026-11-13
+  </div>
+  <div class="legend">
+    <span><i style="background:var(--mech)"></i>기전 Mechanism</span>
+    <span><i style="background:var(--evid)"></i>근거 Evidence</span>
+    <span><i style="background:var(--pk)"></i>전달·용량 PK/Delivery</span>
+    <span><i style="background:var(--lim)"></i>독성·한계 Toxicity/Limits</span>
+    <span><i style="background:var(--ai)"></i>AI 클로드 주석</span>
+  </div>
+  <div class="thesis reveal">
+    <div class="idx">Thesis</div>
+    <p>이 리뷰가 보여주는 것은 “어떤 약이 듣는가”가 아니라 <span class="c-evid">기전은 넓게 밝혀졌지만 사람에서의 확인은 얇고</span>, 그 사이를 <span class="c-pk">약물 전달·용량</span>과 <span class="c-lim">독성·내성</span>, 그리고 <span class="c-mech">아형별 개별화</span>라는 병목이 막고 있다는 지도다. 결론이 짚은 과제가 곧 다음 연구 질문의 목록이다.</p>
+  </div>
+</header>
+
+<main>
+
+<section class="reveal" id="s1">
+  <div class="idx">§1 · Problem framing</div>
+  <h2>문제 재정의: “표적 부재”에서 “경로 재활용”으로</h2>
+  <div class="grid2">
+    <div class="para old">
+      <div class="idx">구 패러다임</div>
+      <h3>수용체 중심</h3>
+      <p>ER/PR/HER2가 없다 → 쓸 수 있는 표적이 없다 → 세포독성 항암에 의존. 높은 재발률, 내성, 부작용이 남는다.</p>
+    </div>
+    <div class="para new">
+      <div class="idx c-mech">재정의</div>
+      <h3>경로·아형 중심</h3>
+      <p>TNBC가 의존하는 <span class="c-mech">대사·신호·면역·약물배출</span> 경로를 기존 승인 약물의 “부수 효과”로 건드린다. 안전성 자료가 있어 2/3상으로 바로 갈 수 있다.</p>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="idx">논문이 제시한 역학 수치</div>
+    <p style="margin-top:8px">전체 유방암의 약 15–20% · 젊은 여성·흑인 여성에서 더 흔함 · 진행 병기 환자의 약 40%가 5년 내 사망 · 재발률 약 25%(선행항암 후 잔존 미세전이에서 특히) · 원격전이 시 중앙생존 13.3개월 · BRCA1 변이와 잦은 동반 · 기저세포형(basal-like) 유방암과 유전자 발현 56% 중첩.</p>
+    <p>개발 경제성: 신약은 10–17년, 성공률 &lt;1%. 용도변경은 본문 기준 3–5년, 약 3억 달러 절감(그림 2 캡션은 3–12년으로 표기).</p>
+  </div>
+
+  <h3>TNBC 분자 아형과 논문이 연결한 치료 방향</h3>
+  <div class="subs">
+    <div class="sub"><div class="k">BL-1</div><div class="v">세포주기·DNA 복구 유전자 이상(MYC, PIK3CA, BRCA2, TP53) <span class="hook">→ PARP 억제제·유전독성 약제에 반응. 연결 후보: 이미프라민(PARP 억제제 감작)</span></div></div>
+    <div class="sub"><div class="k">BL-2</div><div class="v">EGFR, MET, NGF, Wnt/β-catenin, IGF-1R 신호 이상 <span class="hook">→ mTOR 억제제·성장인자 억제제. 연결 후보: 메트포르민·이버멕틴(mTOR), 메벤다졸(Wnt)</span></div></div>
+    <div class="sub"><div class="k">MES (M)</div><div class="v">높은 운동성·분화 신호(Wnt, TGF-β, ALK), 항암 내성 <span class="hook">→ mTOR 억제제·EMT 표적. 연결 후보: 메트포르민(EMT 억제), NSAIDs(EMT 억제)</span></div></div>
+    <div class="sub"><div class="k">IM</div><div class="v">T세포 수용체, B세포, IL-12 등 면역 경로 활성 <span class="hook">→ 면역관문억제제(PD-1/PD-L1/CTLA-4). 연결 후보: 프로프라놀롤·이버멕틴 + 면역항암 병용</span></div></div>
+    <div class="sub"><div class="k">LAR</div><div class="v">ER 음성이지만 AR 고발현·호르몬 경로 활성 <span class="hook">→ 항안드로겐 치료</span></div></div>
+  </div>
+  <div class="ai">
+    <span class="tag">AI 클로드 주석</span>
+    <p>위 표의 “연결 후보”는 논문 본문이 아형별로 제시한 치료 방향(mTOR, EMT, PARP, 면역관문)과 각 약물군의 기전을 클로드가 맞대어 본 것입니다. 논문이 아형별 약물 반응 자료를 직접 제시한 것은 아닙니다. 논문 스스로도 아형의 임상적 의미는 아직 연구 중이라고 밝힙니다. 따라서 이 연결은 검증된 짝짓기가 아니라 <b>가설 생성용</b>입니다.</p>
+  </div>
+  <div class="refs"><b>REFERENCES · 이 섹션의 근거</b><ul><li>[10] Bou Zerdan M, et al. Triple Negative Breast Cancer: Updates on Classification and Treatment in 2021. Cancers 2022;14:1253. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Triple%20Negative%20Breast%20Cancer%3A%20Updates%20on%20Classification%20and%20Treatment%20in%202021" target="_blank" rel="noopener">PubMed</a></li><li>[16] O&#x27;Reilly D, et al. Overview of recent advances in metastatic triple negative breast cancer. World J Clin Oncol 2021;12:164–182. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Overview%20of%20recent%20advances%20in%20metastatic%20triple%20negative%20breast%20cancer" target="_blank" rel="noopener">PubMed</a></li><li>[19] Derakhshan F, Reis-Filho JS. Pathogenesis of Triple-Negative Breast Cancer. Annu Rev Pathol 2022;17:181–204. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Pathogenesis%20of%20Triple-Negative%20Breast%20Cancer" target="_blank" rel="noopener">PubMed</a></li><li>[20] Yin L, et al. Triple-negative breast cancer molecular subtyping and treatment progress. Breast Cancer Res 2020;22:61. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Triple-negative%20breast%20cancer%20molecular%20subtyping%20and%20treatment%20progress" target="_blank" rel="noopener">PubMed</a></li><li>[3] Fu L, et al. Repurposing non-oncology small-molecule drugs to improve cancer therapy: Current situation and future directions. Acta Pharm Sin B 2022;12:532–557. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Repurposing%20non-oncology%20small-molecule%20drugs%20to%20improve%20cancer%20therapy%3A%20Current%20situation%20and%20future%20directions" target="_blank" rel="noopener">PubMed</a></li><li>[7] Xia Y, et al. Drug repurposing for cancer therapy. Signal Transduct Target Ther 2024;9:92. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Drug%20repurposing%20for%20cancer%20therapy" target="_blank" rel="noopener">PubMed</a></li><li>[23] Schein CH. Repurposing approved drugs for cancer therapy. Br Med Bull 2021;137:13–27. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Repurposing%20approved%20drugs%20for%20cancer%20therapy" target="_blank" rel="noopener">PubMed</a></li></ul></div>
+</section>
+
+<section class="reveal" id="s2">
+  <div class="idx">§2 · Mechanism map</div>
+  <h2>6개 약물군 기전 지도</h2>
+  <p>각 카드는 <span class="c-mech">표적 경로 → 결과</span>, <span class="c-pk">전달·용량 병목</span>, <span class="c-lim">주요 독성</span> 순서입니다. 약물명은 모두 논문 속 예시입니다.</p>
+
+  <div class="mapcol">
+    <div class="mcard">
+      <div class="cls"><b>4.1 당뇨약</b><small>metformin<br>(TZDs 언급)</small></div>
+      <div class="body">
+        <div class="chain"><span class="node">Complex I ↓</span><span class="arrow">→</span><span class="node">ATP ↓</span><span class="arrow">→</span><span class="node">AMPK ↑</span><span class="arrow">→</span><span class="node">mTOR ↓</span><span class="arrow">→</span><span class="node out">증식 억제</span></div>
+        <div class="chain"><span class="node">FASN·콜레스테롤 합성 ↓</span><span class="node">GLUT1 ↓</span><span class="node">줄기세포성·EMT ↓</span><span class="node">EGFR/Ras/MEK/ERK, IL-2β/STAT3 (그림 3)</span></div>
+        <div class="pk">PK: 장 흡수 낮음, 세포 유입이 OCT(유기양이온수송체)에 의존 → 종양 투과 제한, 나노제형 연구. TZDs도 생체이용률 문제.</div>
+        <div class="tox">독성: 위장 불편, 신기능 저하 시 젖산증.</div>
+      </div>
+    </div>
+    <div class="mcard">
+      <div class="cls"><b>4.2 항진균제</b><small>ketoconazole, clotrimazole, itraconazole</small></div>
+      <div class="body">
+        <div class="chain"><span class="node">PI3K/NF-κB ↓ (IκB)</span><span class="arrow">→</span><span class="node">MMP-9 ↓</span><span class="arrow">→</span><span class="node out">침윤·전이 억제</span></div>
+        <div class="chain"><span class="node">SMO ↓ (itraconazole)</span><span class="arrow">→</span><span class="node">GLI 핵이동 ↓</span><span class="arrow">→</span><span class="node out">Hedgehog 표적유전자 off</span></div>
+        <div class="chain"><span class="node">tGLI1 DNA 결합 ↓ (ketoconazole, 뇌전이 모델)</span><span class="node">약물배출펌프 ↓ → MDR 극복</span><span class="node">방사선 감작</span></div>
+        <div class="pk">PK: itraconazole 용해도·생체이용률 낮음 → 나노·지질 운반체 연구.</div>
+        <div class="tox">독성: ketoconazole 간독성.</div>
+      </div>
+    </div>
+    <div class="mcard">
+      <div class="cls"><b>4.3 구충제</b><small>mebendazole, ivermectin</small></div>
+      <div class="body">
+        <div class="chain"><span class="node">튜불린 중합 ↓ (mebendazole)</span><span class="arrow">→</span><span class="node">G2/M 정지</span><span class="arrow">→</span><span class="node out">세포자멸사</span></div>
+        <div class="chain"><span class="node">Wnt/β-catenin ↓ (mebendazole)</span><span class="node">PI3K/Akt/mTOR ↓ (ivermectin)</span><span class="node out">이동·전이 억제</span></div>
+        <div class="pk">PK: mebendazole 수용성·전신흡수 낮음 → 나노제형. ivermectin은 경구 흡수는 양호하나 종양 투과 제한.</div>
+        <div class="tox">독성: mebendazole 경미한 위장 증상. ivermectin 고용량에서 드문 신경독성.</div>
+      </div>
+    </div>
+    <div class="mcard">
+      <div class="cls"><b>4.4 항우울·항정신병약</b><small>fluoxetine, paroxetine (SSRI) · imipramine (TCA) · thioridazine</small></div>
+      <div class="body">
+        <div class="chain"><span class="node">PI3K/AKT/mTOR ↓ (SSRI)</span><span class="arrow">→</span><span class="node out">세포자멸사</span></div>
+        <div class="chain"><span class="node">DNA 복구 ↓ · ER 신호 ↓ (imipramine)</span><span class="arrow">→</span><span class="node out">PARP 억제제 감작</span></div>
+        <div class="chain"><span class="node">배출펌프 ↓ (thioridazine)</span><span class="node">자가포식 조절</span></div>
+        <div class="pk">PK: 흡수·분포 양호, 혈뇌장벽 투과 → 뇌전이 예방 가능성 제기. 대사·제형 문제는 남음.</div>
+        <div class="tox">독성: 장기 정신과 사용 안전성 확립. 종양학 적용 시 용량 조정 필요 가능.</div>
+      </div>
+    </div>
+    <div class="mcard">
+      <div class="cls"><b>4.5 심혈관약</b><small>propranolol · ACE-I/ARB · statins</small></div>
+      <div class="body">
+        <div class="chain"><span class="node">β-아드레날린 신호 ↓</span><span class="arrow">→</span><span class="node">PI3K/AKT·MAPK ↓, VEGF ↓</span><span class="arrow">→</span><span class="node out">NK세포 활성 회복</span></div>
+        <div class="chain"><span class="node">RAS(레닌-안지오텐신) ↓</span><span class="arrow">→</span><span class="node">VEGF·MMP·사이토카인 ↓</span></div>
+        <div class="chain"><span class="node">메발론산 경로 ↓ (statin)</span><span class="arrow">→</span><span class="node">Ras/Rho 프레닐화 ↓</span></div>
+        <div class="pk">PK: β-차단제·ACE-I는 흡수·분포 양호하나 종양 투과 제한. 지용성 스타틴은 종양 흡수가 상대적으로 양호.</div>
+        <div class="tox">독성: 저혈압·피로. 스타틴 근병증·간독성.</div>
+      </div>
+    </div>
+    <div class="mcard">
+      <div class="cls"><b>4.6 NSAIDs</b><small>aspirin, indomethacin, naproxen</small></div>
+      <div class="body">
+        <div class="chain"><span class="node">COX-2 ↓ (TNBC 과발현)</span><span class="arrow">→</span><span class="node">프로스타글란딘 ↓</span><span class="arrow">→</span><span class="node out">혈관신생·EMT·면역회피 ↓</span></div>
+        <div class="chain"><span class="node">COX 비의존: NF-κB, PI3K/AKT 조절</span><span class="node">암환자 DVT 예방 효과 언급</span></div>
+        <div class="pk">PK: 경구 생체이용률 양호하나 반감기 짧음 → 나노제형 연구.</div>
+        <div class="tox">독성(장기): 위장관 궤양, 심혈관 위험, 신기능 저하.</div>
+      </div>
+    </div>
+  </div>
+  <div class="refs"><b>REFERENCES · 이 섹션의 근거</b><ul><li>[28] Dhas Y, et al. Repurposing metabolic regulators: Antidiabetic drugs as anticancer agents. Mol Biomed 2024;5:40. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Repurposing%20metabolic%20regulators%3A%20Antidiabetic%20drugs%20as%20anticancer%20agents" target="_blank" rel="noopener">PubMed</a></li><li>[32] Corleto KA, et al. Metformin and Breast Cancer: Current Findings and Future Perspectives from Preclinical and Clinical Studies. Pharmaceuticals 2024;17:396. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Metformin%20and%20Breast%20Cancer%3A%20Current%20Findings%20and%20Future%20Perspectives%20from%20Preclinical%20and%20Clinical%20Studies" target="_blank" rel="noopener">PubMed</a></li><li>[33] Wahdan-Alaswad RS, et al. Metformin Targets Glucose Metabolism in Triple Negative Breast Cancer. J Oncol Transl Res 2018;4:129. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Metformin%20Targets%20Glucose%20Metabolism%20in%20Triple%20Negative%20Breast%20Cancer" target="_blank" rel="noopener">PubMed</a></li><li>[35] Bae SH, et al. Imidazole Antifungal Drugs Inhibit the Cell Proliferation and Invasion of Human Breast Cancer Cells. Biomol Ther 2018;26:494–502. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Imidazole%20Antifungal%20Drugs%20Inhibit%20the%20Cell%20Proliferation%20and%20Invasion%20of%20Human%20Breast%20Cancer%20Cells" target="_blank" rel="noopener">PubMed</a></li><li>[37] Li CL, et al. Repurposed itraconazole for use in the treatment of malignancies as a promising therapeutic strategy. Biomed Pharmacother 2022;154:113616. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Repurposed%20itraconazole%20for%20use%20in%20the%20treatment%20of%20malignancies%20as%20a%20promising%20therapeutic%20strategy" target="_blank" rel="noopener">PubMed</a></li><li>[39] Doheny D, et al. An FDA-Approved Antifungal, Ketoconazole, and Its Novel Derivative Suppress tGLI1-Mediated Breast Cancer Brain Metastasis by Inhibiting the DNA-Binding Activity of Brain Metastasis-Promoting Transcription Factor tGLI1. Cancers 2022;14:4256. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=An%20FDA-Approved%20Antifungal%2C%20Ketoconazole%2C%20and%20Its%20Novel%20Derivative%20Suppress%20tGLI1-Mediated%20Breast%20Cancer%20Brain%20Metastasis%20by%20Inhibiting%20the%20DNA-Binding%20Activity%20of%20Brain%20Metastasis-Promoting%20Transcription%20Factor%20tGLI1" target="_blank" rel="noopener">PubMed</a></li><li>[40] Wu HT, et al. Induced Cell Cycle Arrest in Triple-Negative Breast Cancer by Combined Treatment of Itraconazole and Rapamycin. Front Pharmacol 2022;13:873131. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Induced%20Cell%20Cycle%20Arrest%20in%20Triple-Negative%20Breast%20Cancer%20by%20Combined%20Treatment%20of%20Itraconazole%20and%20Rapamycin" target="_blank" rel="noopener">PubMed</a></li><li>[42] Huang H, et al. Progress in Redirecting Antiparasitic Drugs for Cancer Treatment. Drug Des Devel Ther 2021;15:2747–2767. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Progress%20in%20Redirecting%20Antiparasitic%20Drugs%20for%20Cancer%20Treatment" target="_blank" rel="noopener">PubMed</a></li><li>[44] Rodrigues AJ, et al. Repurposing mebendazole against triple-negative breast cancer CNS metastasis. J Neurooncol 2024;168:125–138. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Repurposing%20mebendazole%20against%20triple-negative%20breast%20cancer%20CNS%20metastasis" target="_blank" rel="noopener">PubMed</a></li><li>[46] Tang M, et al. Ivermectin, a potential anticancer drug derived from an antiparasitic drug. Pharmacol Res 2021;163:105207. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Ivermectin%2C%20a%20potential%20anticancer%20drug%20derived%20from%20an%20antiparasitic%20drug" target="_blank" rel="noopener">PubMed</a></li><li>[55] Huang Q, et al. Inhibition of TNBC Cell Growth by Paroxetine: Induction of Apoptosis and Blockage of Autophagy Flux. Cancers 2024;16:885. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Inhibition%20of%20TNBC%20Cell%20Growth%20by%20Paroxetine%3A%20Induction%20of%20Apoptosis%20and%20Blockage%20of%20Autophagy%20Flux" target="_blank" rel="noopener">PubMed</a></li><li>[56] Asensi-Canto A, et al. Antitumoral Effects of Tricyclic Antidepressants: Beyond Neuropathic Pain Treatment. Cancers 2022;14:3248. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Antitumoral%20Effects%20of%20Tricyclic%20Antidepressants%3A%20Beyond%20Neuropathic%20Pain%20Treatment" target="_blank" rel="noopener">PubMed</a></li><li>[58] Timilsina S, et al. The antidepressant imipramine inhibits breast cancer growth by targeting estrogen receptor signaling and DNA repair events. Cancer Lett 2022;540:215717. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=The%20antidepressant%20imipramine%20inhibits%20breast%20cancer%20growth%20by%20targeting%20estrogen%20receptor%20signaling%20and%20DNA%20repair%20events" target="_blank" rel="noopener">PubMed</a></li><li>[60] Racz B, Spengler G. Repurposing Antidepressants and Phenothiazine Antipsychotics as Efflux Pump Inhibitors in Cancer and Infectious Diseases. Antibiotics 2023;12:137. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Repurposing%20Antidepressants%20and%20Phenothiazine%20Antipsychotics%20as%20Efflux%20Pump%20Inhibitors%20in%20Cancer%20and%20Infectious%20Diseases" target="_blank" rel="noopener">PubMed</a></li><li>[61] Spini A, et al. Evidence of beta-blockers drug repurposing for the treatment of triple negative breast cancer: A systematic review. Neoplasma 2019;66:963–970. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Evidence%20of%20beta-blockers%20drug%20repurposing%20for%20the%20treatment%20of%20triple%20negative%20breast%20cancer%3A%20A%20systematic%20review" target="_blank" rel="noopener">PubMed</a></li><li>[62] Gelosa P, et al. Repurposing of drugs approved for cardiovascular diseases: Opportunity or mirage? Biochem Pharmacol 2020;177:113895. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Repurposing%20of%20drugs%20approved%20for%20cardiovascular%20diseases%3A%20Opportunity%20or%20mirage%3F%20Biochem%20Pharmacol%202020%3B177%3A113895." target="_blank" rel="noopener">PubMed</a></li><li>[63] Kassab AE, Gedawy EM. Repurposing of Indomethacin and Naproxen as anticancer agents: Progress from 2017 to present. RSC Adv 2024;14:40031–40057. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Repurposing%20of%20Indomethacin%20and%20Naproxen%20as%20anticancer%20agents%3A%20Progress%20from%202017%20to%20present" target="_blank" rel="noopener">PubMed</a></li><li>[72] Ozleyen A, et al. Looking at NSAIDs from a historical perspective and their current status in drug repurposing for cancer treatment and prevention. J Cancer Res Clin Oncol 2023;149:2095–2113. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Looking%20at%20NSAIDs%20from%20a%20historical%20perspective%20and%20their%20current%20status%20in%20drug%20repurposing%20for%20cancer%20treatment%20and%20prevention" target="_blank" rel="noopener">PubMed</a></li></ul></div>
+</section>
+
+<section class="reveal" id="s3">
+  <div class="idx">§3 · Evidence grading</div>
+  <h2>근거 등급 표: 어디까지 확인되었나</h2>
+  <p>등급 기준: <span class="grade gA">A</span> TNBC(또는 해당 집단) 대상 RCT·메타분석 · <span class="grade gB">B</span> 더 넓은 집단의 RCT, 소규모 전향 시험, 대리지표 창(window) 연구 · <span class="grade gC">C</span> 관찰·후향·증례 · <span class="grade gD">D</span> 전임상(세포·이종이식). 등급은 논문 본문과 Table 1에 기술된 내용 기준이며, <span class="grade neg">음성</span>은 효과가 확인되지 않은 결과입니다.</p>
+  <div class="tscroll">
+  <table>
+    <thead><tr><th>약물군</th><th>전임상</th><th>사람 근거</th><th>병용 근거(전임상 위주)</th><th>전달·독성 병목</th><th>최고 등급</th></tr></thead>
+    <tbody>
+      <tr><td data-label="약물군"><b>당뇨약</b><br>metformin</td><td data-label="전임상">이종이식 종양 축소, doxorubicin·cisplatin 감작</td><td data-label="사람 근거">당뇨 환자 관찰연구에서 TNBC 발생↓·생존↑. 비당뇨 TNBC 시험은 엇갈림</td><td data-label="병용 근거(전임상 위주)">항암 감작, 면역관문억제제 효과 증강, CSC 표적</td><td data-label="전달·독성 병목" class="c-pk">OCT 의존 흡수, 종양 투과 제한</td><td data-label="최고 등급"><span class="grade gB">B</span><span class="grade neg">음성*</span><span class="grade gC">C</span></td></tr>
+      <tr><td data-label="약물군"><b>항진균제</b></td><td data-label="전임상">tGLI1 억제(뇌전이), itraconazole+rapamycin G0/G1 정지</td><td data-label="사람 근거">관찰·후향 연구, 다치료 환자 소규모 보고</td><td data-label="병용 근거(전임상 위주)">배출펌프 억제로 MDR 극복, 방사선 감작</td><td data-label="전달·독성 병목" class="c-pk">itraconazole 용해도 / <span class="c-lim">ketoconazole 간독성</span></td><td data-label="최고 등급"><span class="grade gC">C</span></td></tr>
+      <tr><td data-label="약물군"><b>구충제</b></td><td data-label="전임상">mebendazole 이종이식 성장↓·생존↑(CNS 전이 모델 포함), ivermectin 내성세포 감작</td><td data-label="사람 근거">TNBC 직접 효과 임상 제한적. ivermectin+면역관문억제제 1/2상 진행</td><td data-label="병용 근거(전임상 위주)">mebendazole+paclitaxel, ivermectin+ICI</td><td data-label="전달·독성 병목" class="c-pk">mebendazole 흡수, ivermectin 종양 투과</td><td data-label="최고 등급"><span class="grade gD">D</span> <span class="mono" style="font-size:.78rem;color:var(--soft)">(시험 진행)</span></td></tr>
+      <tr><td data-label="약물군"><b>항우울·항정신</b></td><td data-label="전임상">paroxetine 항암 감작, imipramine PDX 종양부담↓·생존↑</td><td data-label="사람 근거">유방암 SSRI/TCA 시험 진행 중, 자료 부족</td><td data-label="병용 근거(전임상 위주)">자가포식·세포자멸 조절, 배출펌프 억제</td><td data-label="전달·독성 병목" class="c-pk">대사·제형</td><td data-label="최고 등급"><span class="grade gD">D</span></td></tr>
+      <tr><td data-label="약물군"><b>심혈관약</b></td><td data-label="전임상">propranolol 성장·전이 억제, ACE-I/ARB 이종이식 퇴행, propranolol+paclitaxel/5-FU 동물 생존↑</td><td data-label="사람 근거">β-차단제+항암 관찰연구 생존 신호, 스타틴 관찰연구, propranolol 창(window) 연구에서 증식 지표↓</td><td data-label="병용 근거(전임상 위주)">propranolol+ICI(+항암) 2상 진행</td><td data-label="전달·독성 병목" class="c-pk">종양 투과(지용성 스타틴은 양호) / <span class="c-lim">근병증·간독성</span></td><td data-label="최고 등급"><span class="grade gC">C</span><span class="grade gB">B</span><span class="mono" style="font-size:.74rem;color:var(--soft)">대리지표</span></td></tr>
+      <tr><td data-label="약물군"><b>NSAIDs</b></td><td data-label="전임상">indomethacin·naproxen 증식↓·이동↓, paclitaxel·doxorubicin 감작</td><td data-label="사람 근거">관찰 메타분석에서 재발·전이↓ 신호, 결과 엇갈림</td><td data-label="병용 근거(전임상 위주)">COX-2 억제로 염증성 내성 완화</td><td data-label="전달·독성 병목" class="c-pk">짧은 반감기 / <span class="c-lim">위장·심혈관·신장</span></td><td data-label="최고 등급"><span class="grade gC">C</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p style="font-size:.86rem;color:var(--soft)">* 메트포르민의 B·음성 등급은 논문 밖 자료(MA.32 결과)를 반영한 클로드의 판정입니다. 근거는 §4와 §6에 있습니다.</p>
+
+  <h3 class="c-lim">해석할 때 걸리는 함정</h3>
+  <div class="panel">
+    <p><b class="c-evid">관찰연구의 신호 ≠ 효과.</b> “그 약을 먹던 환자”는 처방 이유(당뇨, 고혈압, 통증) 자체가 예후와 얽혀 있습니다(적응증 교란). 복용 시작 시점을 잘못 잡으면 <b>불멸시간 편향(immortal time bias)</b>이 생깁니다. 노출군이 “살아남아서 약을 먹은 기간”을 공짜로 얻어 생존이 부풀려지는 현상입니다. 논문의 C등급 근거(메트포르민, β-차단제, 스타틴, NSAIDs)는 모두 이 위험에 노출되어 있습니다.</p>
+    <p style="margin:0"><b class="c-mech">시험관 농도 ≠ 체내 농도.</b> 전임상 효과가 임상 용량에서 종양 내 도달 가능한 농도인지가 이 리뷰의 거의 모든 약물군에서 미해결입니다(<span class="c-pk">PK 열</span> 참조).</p>
+  </div>
+  <div class="refs"><b>REFERENCES · 이 섹션의 근거</b><ul><li>[32] Corleto KA, et al. Metformin and Breast Cancer: Current Findings and Future Perspectives from Preclinical and Clinical Studies. Pharmaceuticals 2024;17:396. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Metformin%20and%20Breast%20Cancer%3A%20Current%20Findings%20and%20Future%20Perspectives%20from%20Preclinical%20and%20Clinical%20Studies" target="_blank" rel="noopener">PubMed</a></li><li>[34] Anselmino LE, et al. Repositioning metformin and propranolol for colorectal and triple negative breast cancers treatment. Sci Rep 2021;11:8091. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Repositioning%20metformin%20and%20propranolol%20for%20colorectal%20and%20triple%20negative%20breast%20cancers%20treatment" target="_blank" rel="noopener">PubMed</a></li><li>[41] Weng N, et al. Repurposing antifungal drugs for cancer therapy. J Adv Res 2023;48:259–273. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Repurposing%20antifungal%20drugs%20for%20cancer%20therapy" target="_blank" rel="noopener">PubMed</a></li><li>[45] Li YQ, et al. Repositioning of Antiparasitic Drugs for Tumor Treatment. Front Oncol 2021;11:670804. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Repositioning%20of%20Antiparasitic%20Drugs%20for%20Tumor%20Treatment" target="_blank" rel="noopener">PubMed</a></li><li>[61] Spini A, et al. Evidence of beta-blockers drug repurposing for the treatment of triple negative breast cancer: A systematic review. Neoplasma 2019;66:963–970. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Evidence%20of%20beta-blockers%20drug%20repurposing%20for%20the%20treatment%20of%20triple%20negative%20breast%20cancer%3A%20A%20systematic%20review" target="_blank" rel="noopener">PubMed</a></li><li>[64] Benjamin DJ, et al. Cardiovascular/anti-inflammatory drugs repurposed for treating or preventing cancer: A systematic review and meta-analysis of randomized trials. Cancer Med 2024;13:e7049. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Cardiovascular/anti-inflammatory%20drugs%20repurposed%20for%20treating%20or%20preventing%20cancer%3A%20A%20systematic%20review%20and%20meta-analysis%20of%20randomized%20trials" target="_blank" rel="noopener">PubMed</a></li><li>[71] Moris D, et al. The Role of NSAIDs in Breast Cancer Prevention and Relapse: Current Evidence and Future Perspectives. Breast Care 2016;11:339–344. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=The%20Role%20of%20NSAIDs%20in%20Breast%20Cancer%20Prevention%20and%20Relapse%3A%20Current%20Evidence%20and%20Future%20Perspectives" target="_blank" rel="noopener">PubMed</a></li><li>[70] Zhao X, et al. NSAIDs Use and Reduced Metastasis in Cancer Patients: Results from a meta-analysis. Sci Rep 2018;8:11378 (Author Correction). <a href="https://pubmed.ncbi.nlm.nih.gov/?term=NSAIDs%20Use%20and%20Reduced%20Metastasis%20in%20Cancer%20Patients%3A%20Results%20from%20a%20meta-analysis" target="_blank" rel="noopener">PubMed</a></li></ul></div>
+</section>
+
+<section class="reveal" id="s4">
+  <div class="idx">§4 · Table 1 reconstructed</div>
+  <h2>Table 1 재구성: 시험 식별자 확인</h2>
+  <p>원문 Table 1에는 NCT 번호나 시험명이 없습니다. 클로드가 ClinicalTrials.gov와 발표 논문으로 식별 가능한 항목을 대조했습니다. <b>식별하지 못한 항목은 비워 두었습니다.</b></p>
+  <div class="tscroll">
+  <table>
+    <thead><tr><th>약물</th><th>논문 표기</th><th>대조 결과 (AI 클로드 주석)</th><th>현재 상태</th></tr></thead>
+    <tbody>
+      <tr><td data-label="약물"><b>Metformin</b></td><td data-label="논문 표기">3상 · 등록됨 · 유방암 보조요법 · “결과 엇갈림”</td><td data-label="대조 결과 (AI 클로드 주석)"><span class="mono">MA.32 · NCT01101438</span> 으로 판단. 비당뇨 고위험 조기 유방암 3,649명 대상 위약대조 이중맹검 3상. ER/PgR− 코호트는 2차 중간분석에서 무익성(futility) 선언. ER/PgR−의 iDFS HR 1.01 (95% CI 0.79–1.30), ER/PgR+도 HR 1.01 (0.84–1.21).</td><td data-label="현재 상태"><span class="grade neg">결과 발표 · 음성</span> JAMA 2022</td></tr>
+      <tr><td data-label="약물"><b>Propranolol</b></td><td data-label="논문 표기">2상 · 진행 중 · 전이/절제불가 PD-L1+ TNBC, pembrolizumab+항암 병용</td><td data-label="대조 결과 (AI 클로드 주석)"><span class="mono">NCT05741164</span> (Roswell Park)로 판단. NCI 요약은 PD-L1+ 전이성 TNBC에서 항암+pembrolizumab에 propranolol을 더하는 설계. ClinicalTrials.gov 현재 제목은 “면역관문억제제 불응성 TNBC의 재감작”으로 바뀌어 있어 설계 변경이 있었던 것으로 보입니다.</td><td data-label="현재 상태"><span class="grade gD">모집 중</span></td></tr>
+      <tr><td data-label="약물"><b>Propranolol (창 연구)</b></td><td data-label="논문 표기">2상 window · 완료 · 진단–수술 사이 단기 투여, 증식 지표↓</td><td data-label="대조 결과 (AI 클로드 주석)">원문에 식별자 없음 · <b>미확인</b></td><td data-label="현재 상태">—</td></tr>
+      <tr><td data-label="약물"><b>Ivermectin</b></td><td data-label="논문 표기">2상 · 등록/진행 · 전이성 TNBC, PD-1/PD-L1 병용</td><td data-label="대조 결과 (AI 클로드 주석)"><span class="mono">NCT05318469</span>로 판단. ivermectin + balstilimab 또는 pembrolizumab, 1/2상, 2상 확장은 PD-L1 음성 TNBC. 1차 평가변수: 1상 안전성·권장용량, 2상 객관적 반응률.</td><td data-label="현재 상태"><span class="grade gD">모집 중</span> 1차 완료 예정 2026-10</td></tr>
+      <tr><td data-label="약물"><b>Mebendazole</b></td><td data-label="논문 표기">초기/파일럿 · 진행성 고형암(일부 위장관·원발불명) · TNBC 임상자료 제한</td><td data-label="대조 결과 (AI 클로드 주석)">TNBC 특이 시험 식별자 원문에 없음 · <b>미확인</b></td><td data-label="현재 상태">—</td></tr>
+      <tr><td data-label="약물"><b>Itraconazole</b></td><td data-label="논문 표기">초기 임상·파일럿 보고 · 다치료 전이성 유방암 일부 반응</td><td data-label="대조 결과 (AI 클로드 주석)">원문에 식별자 없음 · <b>미확인</b></td><td data-label="현재 상태">—</td></tr>
+      <tr><td data-label="약물"><b>Statins</b></td><td data-label="논문 표기">관찰·탐색적 분석 · RCT 제한</td><td data-label="대조 결과 (AI 클로드 주석)">개입 시험 아님</td><td data-label="현재 상태">—</td></tr>
+      <tr><td data-label="약물"><b>NSAIDs</b></td><td data-label="논문 표기">관찰 위주 · 일부 소규모 개입 · TNBC 특이 RCT 제한</td><td data-label="대조 결과 (AI 클로드 주석)">원문에 식별자 없음 · <b>미확인</b></td><td data-label="현재 상태">—</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="ai">
+    <span class="tag">AI 클로드 주석</span>
+    <p>가장 무게가 실리는 차이는 메트포르민입니다. 원문은 “mixed results”라고 적었습니다. 그러나 이 리뷰가 지목한 3상으로 보이는 MA.32에서 <b>호르몬수용체 음성 코호트(TNBC 포함)는 무익성으로 조기 중단</b>되었고, 장기 추적에서도 위약과 차이가 없었습니다. 이 코호트는 TNBC만이 아니라 HER2 양성 ER/PgR− 환자도 포함합니다. 따라서 “TNBC에서 메트포르민은 끝났다”는 결론은 과잉입니다. 정확한 표현은 <span class="c-evid">“선별하지 않은 비당뇨 집단에서 보조요법으로서의 효과는 RCT로 확인되지 않았다”</span>입니다.</p>
+    <p>진행 중 시험의 등록 정보는 바뀔 수 있습니다. 인용하기 전에 ClinicalTrials.gov 최신 기록을 다시 확인하세요.</p>
+  </div>
+  <div class="refs"><b>REFERENCES · 이 섹션의 근거</b><ul><li>Goodwin PJ, et al. Effect of Metformin vs Placebo on Invasive Disease-Free Survival in Patients With Breast Cancer: The MA.32 Randomized Clinical Trial. JAMA 2022;327(20):1963–1973. <a href="https://doi.org/10.1001/jama.2022.6147" target="_blank" rel="noopener">doi.org/10.1001/jama.2022.6147</a></li><li>ClinicalTrials.gov NCT01101438 — MA.32 (metformin vs placebo, early breast cancer). <a href="https://clinicaltrials.gov/study/NCT01101438" target="_blank" rel="noopener">clinicaltrials.gov/study/NCT01101438</a></li><li>ClinicalTrials.gov NCT05741164 — Propranolol and Pembrolizumab for Tumor Re-sensitization… Triple Negative Breast Cancer (Roswell Park). <a href="https://clinicaltrials.gov/study/NCT05741164" target="_blank" rel="noopener">clinicaltrials.gov/study/NCT05741164</a></li><li>ClinicalTrials.gov NCT05318469 — Ivermectin in Combination With Balstilimab or Pembrolizumab in Patients With Metastatic Triple Negative Breast Cancer. <a href="https://clinicaltrials.gov/study/NCT05318469" target="_blank" rel="noopener">clinicaltrials.gov/study/NCT05318469</a></li></ul></div>
+</section>
+
+<section class="reveal" id="s5">
+  <div class="idx">§5 · Conclusions → research agenda</div>
+  <h2>결론을 연구 과제로 바꾸기</h2>
+  <p>결론부 원문은 용도변경이 비용효율적이고 안전성 자료가 있어 시험을 앞당길 수 있다고 평가합니다. 동시에 <span class="c-lim">약물 내성, 독성, 용량 최적화</span>가 남은 과제이며, 진행 중인 연구와 임상시험으로 검증하고 종양학 안에 통합하는 방식을 다듬어야 한다고 맺습니다. 본문(§3, 초록)은 여기에 <span class="c-mech">개별화(유전 배경·아형·대사 상태)</span>를 반복해서 덧붙입니다. 아래는 각 과제를 “무엇이 나와야 풀리는가”로 재구성한 것입니다.</p>
+
+  <div class="chal">
+    <div class="hd"><span class="mono">C1</span><h3>약물 내성</h3></div>
+    <div class="bd"><dl>
+      <dt>논문의 진단</dt><dd>단독요법은 내성 위험이 크다. 병용은 다경로를 겨냥해 더 효과적이지만 상호작용으로 부작용이 늘 수 있다. 지속적 모니터링과 분자 연구가 필요하다.</dd>
+      <dt>풀리려면</dt><dd>표준치료 위에 얹는 <b>병용 설계</b>에서 약동학 상호작용(CYP 억제: 아졸계, 일부 SSRI)과 독성 중첩을 사전에 정의한 시험. 배출펌프 억제(itraconazole, thioridazine)는 항암제 노출도 함께 올리므로 이득과 독성이 같은 기전에서 나옵니다.</dd>
+      <dt>지켜볼 신호</dt><dd>병용 시험의 독성 프로파일과 용량 감량 빈도. 반응률만이 아닙니다.</dd>
+    </dl></div>
+  </div>
+
+  <div class="chal">
+    <div class="hd"><span class="mono">C2</span><h3>독성</h3></div>
+    <div class="bd"><dl>
+      <dt>논문의 진단</dt><dd>원 적응증에서의 안전성은 확립되어 있으나, TNBC 환자에서 안전성을 평가한 RCT가 없다(심혈관약 절). 간(ketoconazole, statin), 신장(metformin, NSAIDs), 위장(NSAIDs), 근육(statin), 신경(ivermectin 고용량) 독성이 약물군별로 지적됨.</dd>
+      <dt>풀리려면</dt><dd>항암 중인 장기 기능 상태를 반영한 안전성 자료. “원래 안전한 약”이라는 사전확률을 종양학 맥락으로 옮겨 다시 평가해야 합니다.</dd>
+      <dt>지켜볼 신호</dt><dd>1상·1/2상(예: NCT05318469)의 권장 2상 용량과 용량제한독성.</dd>
+    </dl></div>
+  </div>
+
+  <div class="chal">
+    <div class="hd"><span class="mono">C3</span><h3>용량 최적화 (전달 문제 포함)</h3></div>
+    <div class="bd"><dl>
+      <dt>논문의 진단</dt><dd>최적 용량 미정. metformin(OCT 의존·종양 투과), itraconazole·mebendazole(용해도), ivermectin(종양 투과), NSAIDs(반감기)에서 전달이 병목. 나노·지질 제형이 대안으로 반복 등장.</dd>
+      <dt>풀리려면</dt><dd>전임상 유효 농도와 임상 용량에서의 혈중·종양 내 농도를 맞대는 PK/PD 자료. 용량을 올리는 것은 C2와 정면 충돌하므로, 해법은 증량보다 <b>제형·전달</b> 쪽에 무게가 실려 있습니다.</dd>
+      <dt>지켜볼 신호</dt><dd>종양 조직 내 약물 농도를 측정한 창(window) 연구, 제형 개선 약물의 초기 임상.</dd>
+    </dl></div>
+  </div>
+
+  <div class="chal">
+    <div class="hd"><span class="mono">C4</span><h3>개별화</h3></div>
+    <div class="bd"><dl>
+      <dt>논문의 진단</dt><dd>같은 약이라도 개인의 유전 배경에 따라 결과가 다르다. 효과는 분자 맥락(아형)에 따라 달라지며, 메트포르민은 대사 상태가 효과를 좌우할 수 있다.</dd>
+      <dt>풀리려면</dt><dd>아형·바이오마커로 층화하거나 선별한 시험. 선별하지 않은 집단에서의 음성 결과(MA.32)가 “하위집단에서의 효과”를 배제하지 못하는 이유이자, 사후 하위분석만으로는 확정할 수 없는 이유입니다.</dd>
+      <dt>지켜볼 신호</dt><dd>PD-L1 상태로 코호트를 나눈 면역항암 병용 시험(NCT05318469의 PD-L1 음성 확장 코호트, NCT05741164)처럼 <b>선별 기준이 설계에 들어간</b> 시험.</dd>
+    </dl></div>
+  </div>
+  <div class="refs"><b>REFERENCES · 이 섹션의 근거</b><ul><li>[3] Fu L, et al. Repurposing non-oncology small-molecule drugs to improve cancer therapy: Current situation and future directions. Acta Pharm Sin B 2022;12:532–557. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Repurposing%20non-oncology%20small-molecule%20drugs%20to%20improve%20cancer%20therapy%3A%20Current%20situation%20and%20future%20directions" target="_blank" rel="noopener">PubMed</a></li><li>[28] Dhas Y, et al. Repurposing metabolic regulators: Antidiabetic drugs as anticancer agents. Mol Biomed 2024;5:40. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Repurposing%20metabolic%20regulators%3A%20Antidiabetic%20drugs%20as%20anticancer%20agents" target="_blank" rel="noopener">PubMed</a></li><li>[37] Li CL, et al. Repurposed itraconazole for use in the treatment of malignancies as a promising therapeutic strategy. Biomed Pharmacother 2022;154:113616. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Repurposed%20itraconazole%20for%20use%20in%20the%20treatment%20of%20malignancies%20as%20a%20promising%20therapeutic%20strategy" target="_blank" rel="noopener">PubMed</a></li><li>[41] Weng N, et al. Repurposing antifungal drugs for cancer therapy. J Adv Res 2023;48:259–273. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Repurposing%20antifungal%20drugs%20for%20cancer%20therapy" target="_blank" rel="noopener">PubMed</a></li><li>[45] Li YQ, et al. Repositioning of Antiparasitic Drugs for Tumor Treatment. Front Oncol 2021;11:670804. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Repositioning%20of%20Antiparasitic%20Drugs%20for%20Tumor%20Treatment" target="_blank" rel="noopener">PubMed</a></li><li>[61] Spini A, et al. Evidence of beta-blockers drug repurposing for the treatment of triple negative breast cancer: A systematic review. Neoplasma 2019;66:963–970. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Evidence%20of%20beta-blockers%20drug%20repurposing%20for%20the%20treatment%20of%20triple%20negative%20breast%20cancer%3A%20A%20systematic%20review" target="_blank" rel="noopener">PubMed</a></li><li>[72] Ozleyen A, et al. Looking at NSAIDs from a historical perspective and their current status in drug repurposing for cancer treatment and prevention. J Cancer Res Clin Oncol 2023;149:2095–2113. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Looking%20at%20NSAIDs%20from%20a%20historical%20perspective%20and%20their%20current%20status%20in%20drug%20repurposing%20for%20cancer%20treatment%20and%20prevention" target="_blank" rel="noopener">PubMed</a></li><li>ClinicalTrials.gov NCT05318469 — Ivermectin in Combination With Balstilimab or Pembrolizumab in Patients With Metastatic Triple Negative Breast Cancer. <a href="https://clinicaltrials.gov/study/NCT05318469" target="_blank" rel="noopener">clinicaltrials.gov/study/NCT05318469</a></li><li>ClinicalTrials.gov NCT05741164 — Propranolol and Pembrolizumab for Tumor Re-sensitization… Triple Negative Breast Cancer (Roswell Park). <a href="https://clinicaltrials.gov/study/NCT05741164" target="_blank" rel="noopener">clinicaltrials.gov/study/NCT05741164</a></li></ul></div>
+</section>
+
+<section class="reveal" id="s6">
+  <div class="idx">§6 · Worked example (short)</div>
+  <h2>한 약물로 끝까지 따라가 보기: 메트포르민</h2>
+  <div class="ai" style="margin-top:0">
+    <span class="tag">AI 클로드 주석</span>
+    <p style="margin:0">이 섹션은 원 논문에 없는 내용입니다. 이 리뷰를 읽은 뒤 <b>한 후보를 어떻게 검증 사슬에 올리는지</b> 보여주기 위해 클로드가 덧붙였습니다. 메트포르민은 예시(illustrative)이며 권고가 아닙니다.</p>
+  </div>
+
+  <div class="rail">
+    <div class="rstep" data-n="1">
+      <h3 class="c-mech">기전 주장 고정</h3>
+      <p>논문: Complex I 억제 → AMPK 활성 → mTOR 억제, FASN·GLUT1 감소, EMT·줄기세포성 억제. 동시에 세포 유입이 OCT에 의존하고 종양 투과가 낮다고 스스로 밝힙니다.</p>
+      <div class="gate">검증 게이트: 전임상 유효 농도가 임상 용량에서 종양 내 도달 가능한가? → 논문 안에서 미해결(C3).</div>
+    </div>
+    <div class="rstep" data-n="2">
+      <h3 class="c-mech">개별화 변수 추출</h3>
+      <p>논문이 직접 지목한 변수는 <b>대사 상태</b>입니다(당뇨 환자 관찰연구 양성 vs 비당뇨 시험 엇갈림). 여기에 아형(BL-2/MES의 mTOR·EMT 의존성)을 더하면 “누구에게”라는 질문이 구체화됩니다.</p>
+      <div class="gate">검증 게이트: 이 변수가 시험 설계의 층화·선별 기준으로 쓰였는가?</div>
+    </div>
+    <div class="rstep" data-n="3">
+      <h3 class="c-evid">실증 회수 (grounded retrieval)</h3>
+      <p>Table 1의 “3상”을 ClinicalTrials.gov와 PubMed로 대조 → MA.32(NCT01101438) 확인. 비당뇨 집단, ER/PgR− 코호트 무익성 중단, iDFS HR 1.01.</p>
+      <pre class="prompt"><b>[제약 조건이 명시된 질의 예시]</b>
+TNBC 또는 호르몬수용체 음성 유방암에서 metformin을 평가한
+<b>무작위 대조 임상시험만</b> 찾아줘.
+각 시험마다 NCT 번호, 대상(당뇨 여부·병기), 1차 평가변수, HR과 95% CI를
+<em>원문에서 확인한 값만</em> 적고, 확인 못 한 칸은 "미확인"으로 남겨.
+관찰연구는 별도 목록으로 분리하고, 각 연구에서
+<em>불멸시간 편향을 어떻게 다뤘는지</em> 원문 근거와 함께 표시해.</pre>
+      <div class="gate">검증 게이트: 각 수치가 1차 출처(논문 원문·등록 기록)에서 직접 확인되었는가?</div>
+    </div>
+    <div class="rstep" data-n="4">
+      <h3 class="c-evid">근거 등급화와 충돌 해소</h3>
+      <p>관찰연구(C, 양성) vs RCT(B, 음성). 선별하지 않은 비당뇨 집단에 대해서는 RCT가 우선합니다. 관찰연구 양성 신호는 적응증 교란과 불멸시간 편향으로 상당 부분 설명될 수 있습니다. 남는 질문은 <b>특정 대사 표현형(예: 고인슐린혈증·비만) 하위집단</b>에 대한 가설이며, 이는 새 시험으로만 확인됩니다.</p>
+    </div>
+    <div class="rstep" data-n="5" style="margin-bottom:0">
+      <h3 class="c-lim">임상 환원 (주치의 질문으로)</h3>
+      <p>“대규모 RCT에서 보조요법 효과가 확인되지 않았다는 점을 압니다. 그래도 제 대사 상태(당뇨·인슐린 저항성)를 고려할 때 따로 논의할 이유가 있는지, 아니면 이 가능성을 시험해 볼 임상시험이 있는지 궁금합니다.”</p>
+      <div class="gate">경계: 복용·병용·중단 결정은 주치의의 몫. 이 사슬의 산출물은 “결정”이 아니라 “더 나은 질문”.</div>
+    </div>
+  </div>
+  <div class="refs"><b>REFERENCES · 이 섹션의 근거</b><ul><li>[28] Dhas Y, et al. Repurposing metabolic regulators: Antidiabetic drugs as anticancer agents. Mol Biomed 2024;5:40. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Repurposing%20metabolic%20regulators%3A%20Antidiabetic%20drugs%20as%20anticancer%20agents" target="_blank" rel="noopener">PubMed</a></li><li>[32] Corleto KA, et al. Metformin and Breast Cancer: Current Findings and Future Perspectives from Preclinical and Clinical Studies. Pharmaceuticals 2024;17:396. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Metformin%20and%20Breast%20Cancer%3A%20Current%20Findings%20and%20Future%20Perspectives%20from%20Preclinical%20and%20Clinical%20Studies" target="_blank" rel="noopener">PubMed</a></li><li>[33] Wahdan-Alaswad RS, et al. Metformin Targets Glucose Metabolism in Triple Negative Breast Cancer. J Oncol Transl Res 2018;4:129. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Metformin%20Targets%20Glucose%20Metabolism%20in%20Triple%20Negative%20Breast%20Cancer" target="_blank" rel="noopener">PubMed</a></li><li>Goodwin PJ, et al. Effect of Metformin vs Placebo on Invasive Disease-Free Survival in Patients With Breast Cancer: The MA.32 Randomized Clinical Trial. JAMA 2022;327(20):1963–1973. <a href="https://doi.org/10.1001/jama.2022.6147" target="_blank" rel="noopener">doi.org/10.1001/jama.2022.6147</a></li><li>ClinicalTrials.gov NCT01101438 — MA.32 (metformin vs placebo, early breast cancer). <a href="https://clinicaltrials.gov/study/NCT01101438" target="_blank" rel="noopener">clinicaltrials.gov/study/NCT01101438</a></li></ul></div>
+</section>
+
+<section class="reveal" id="s7">
+  <div class="idx">§7 · Limits</div>
+  <h2>이 리뷰가 구조적으로 대체하지 못하는 것</h2>
+  <div class="ai" style="margin-top:0">
+    <span class="tag">AI 클로드 주석</span>
+    <p>논문에는 별도의 한계 섹션이 없습니다. 아래는 본문에서 드러나는 한계를 클로드가 정리한 것입니다.</p>
+  </div>
+  <ul class="limits">
+    <li><b>서술형 리뷰.</b> 검색 전략, 포함·제외 기준, 비뚤림 위험 평가가 기술되어 있지 않습니다. 근거의 대표성을 판단할 수 없습니다. 자료 가용성 진술대로 새 데이터는 없습니다.</li>
+    <li><b>근거가 전임상에 치우침.</b> 6개 약물군 모두 TNBC 특이 RCT가 없습니다. 사람 근거는 대부분 관찰연구입니다.</li>
+    <li><b>Table 1에 식별자 없음.</b> NCT 번호, 시험명, 결과 수치가 없고 일부 칸은 “기록 확인 요망(check record)”으로 남아 있습니다. 메트포르민 3상의 음성 결과는 “엇갈림”으로 완화되어 있습니다(§4).</li>
+    <li><b>인용과 주장의 연결이 약해 보이는 곳.</b> 참고문헌 제목만으로 보면, 일부 인용이 해당 문장을 직접 뒷받침하는지 불분명합니다. 예: 이미다졸 항진균제의 MMP-9 억제 문장에 flubendazole(구충제) 논문[36], 구충제의 생체 내 효과 문장에 벤즈이미다졸 유도체 합성 논문[47], SSRI/TCA 유방암 임상시험 진행 문장에 selegiline 세포독성 예비연구[59]가 인용됩니다. 원문을 열어 확인할 가치가 있습니다.</li>
+    <li><b>내부 불일치.</b> 용도변경 개발 기간이 본문은 3–5년, 그림 2 캡션은 3–12년입니다. 결론부의 요약 문장은 항진균제와 심혈관약을 따로 언급하지 않습니다.</li>
+    <li><b>아형별 근거 부재.</b> 아형의 중요성을 강조하지만, 약물군별로 아형에 따른 반응 자료는 제시하지 않습니다(§1 주석).</li>
+  </ul>
+  <div class="boundary">
+    <div class="idx c-lim">Boundary</div>
+    <p style="margin-top:6px">이 문서의 모든 약물명은 예시이며 치료 권고가 아닙니다. 용량은 의도적으로 싣지 않았습니다. 복용·병용·중단의 최종 결정은 반드시 주치의가 내립니다. 근거 검증 사슬은 의사의 판단을 대체하지 않고, 진료실에 가져갈 질문의 질을 높이는 도구입니다.</p>
+  </div>
+  <div class="refs"><b>REFERENCES · 이 섹션의 근거</b><ul><li>[36] Zhen Y, et al. Flubendazole elicits anti-cancer effects via targeting EVA1A-modulated autophagy and apoptosis in Triple-negative Breast Cancer. Theranostics 2020;10:8080–8097. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Flubendazole%20elicits%20anti-cancer%20effects%20via%20targeting%20EVA1A-modulated%20autophagy%20and%20apoptosis%20in%20Triple-negative%20Breast%20Cancer" target="_blank" rel="noopener">PubMed</a></li><li>[47] Ilhan S, et al. Design and synthesis of benzimidazole derivatives as apoptosis-inducing agents by targeting Bcl-2 protein. Mol Divers 2022;27:1703–1712. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Design%20and%20synthesis%20of%20benzimidazole%20derivatives%20as%20apoptosis-inducing%20agents%20by%20targeting%20Bcl-2%20protein" target="_blank" rel="noopener">PubMed</a></li><li>[59] Kumkar PS, et al. Preliminary study on cytotoxicity of selegiline on different cancer cell lines: Exploration of the induction of ROS-independent apoptosis in breast cancer cells. Med Oncol 2024;41:204. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Preliminary%20study%20on%20cytotoxicity%20of%20selegiline%20on%20different%20cancer%20cell%20lines%3A%20Exploration%20of%20the%20induction%20of%20ROS-independent%20apoptosis%20in%20breast%20cancer%20cells" target="_blank" rel="noopener">PubMed</a></li><li>Tshimweneka VS, Mhlanga TV. Old Drugs, New Battles: Unleashing Repurposed Drug Classes in Triple-Negative Breast Cancer Treatment. Int J Mol Sci 2025;26(22):11196. <a href="https://doi.org/10.3390/ijms262211196" target="_blank" rel="noopener">doi.org/10.3390/ijms262211196</a></li></ul></div>
+</section>
+
+<div class="closing reveal">
+  오래된 약의 기전 지도는 이미 넓게 그려져 있습니다. 비어 있는 것은 사람에게서 확인한 칸입니다. 이 논문의 결론이 남긴 네 가지 과제, 곧 내성·독성·용량·개별화는 그 빈칸을 채우는 순서이기도 합니다. 원리를 알고, 가능성을 이해하고, 근거 위에서 시도합니다.
+</div>
+
+<footer>히포크라테스의 친구들 · 해외 사례 분석집 · 전문가용 · 교육 목적 자료이며 의학적 조언이 아닙니다.</footer>
+</main>
+</div>
+<script>
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce||!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});}
+  else{var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}})},{threshold:0.05});els.forEach(function(e){io.observe(e)});}
+  window.addEventListener('beforeprint',function(){els.forEach(function(e){e.classList.add('in')})});
+})();
+</script>
+</body>
+</html>
